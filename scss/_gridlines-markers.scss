@@ -1,0 +1,148 @@
+@import url(http://fonts.googleapis.com/css?family=Inconsolata);
+$font--inconsolata: 'Inconsolata', arial;
+
+html, body { height: 100%; }
+
+$grid-breakpoint-xs: 480px;
+$grid-breakpoint-s: 720px;
+$grid-breakpoint-m: 944px;
+$grid-breakpoint-l: 1264px;
+
+// set to true if you want to show your breakpoint
+// markers (xs, s, m, l). helpful when defining
+// your layout
+$showMarkers: true !default;
+
+// set to true if you want to overlay the defined
+// grid system columns.  helpful when defining
+// your layout.  to ensure gridlines lineup with
+// your content on page, when gridlines are on they
+// will set the body & html to have a left and right
+// padding/margin of zero
+$showGridlines: true !default;
+$gridlineBackground: #ddd !default;
+$gridlineOpacity: 0.4 !default;
+
+
+// lineup gridlines with page content
+@if $showGridlines == true {
+	html, body {
+		margin-left: 0 !important; margin-right: 0 !important;
+		padding-left: 0 !important; padding-right: 0 !important;
+	}
+}
+
+// -- gridlines helper --
+.gridlines-toggle {
+	@if $showGridlines == false { display: none; }
+	position: fixed;
+	width: 92px;
+	top: 5px;
+	left: 5px;
+	background: lighten(#34495e, 20%);
+	color: white;
+	font-family: $font--inconsolata;
+	font-size: 14px;
+	cursor: pointer;
+	padding: 2px 0;
+	border-radius: 3px;
+	text-align: center;
+	letter-spacing: 2px;
+	line-height: 1.38;
+	&:hover { background: #34495e; }
+}
+.gridlines {
+	@if $showGridlines == false { display: none; }
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	.grid, [class*='col-'] { height: 100%; }
+	.gridlines--col {
+		background: $gridlineBackground;
+		opacity: $gridlineOpacity;
+		position: relative;
+		text-align: center;
+		font-size: 18px;
+		font-family: $font--inconsolata;
+		color: black;
+		width: 100%;
+		height: 100%;
+	}
+}
+// -- markers helper --
+.markers-toggle {
+	@if $showMarkers == false { display: none; }
+	position: fixed;
+	width: 92px;
+	top: 32px;
+	left: 5px;
+	background: lighten(#34495e, 20%);
+	color: white;
+	font-family: $font--inconsolata;
+	font-size: 14px;
+	cursor: pointer;
+	padding: 2px 0;
+	border-radius: 3px;
+	text-align: center;
+	letter-spacing: 2px;
+	line-height: 1.38;
+	&:hover { background: #34495e; }
+}
+.marker {
+	@if $showMarkers == false { display: none; }
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	height: 100%;
+	width: 1px;
+	&:before {
+		top: 0;
+		position: relative;
+		color: white;
+		text-align: center;
+		font-size: 18px;
+		font-family: $font--inconsolata;
+	}
+	&.marker--xs {
+		left: $grid-breakpoint-xs;
+		background: #c0392b;
+		&:before {
+			content: 'XS';
+			left: -0.65em;
+			background: #c0392b;
+			padding: 2px 4px;
+		}
+	}
+	&.marker--s {
+		left: $grid-breakpoint-s;
+		background: #e67e22;
+		&:before {
+			content: 'S';
+			left: -0.45em;
+			background: #e67e22;
+			padding: 2px 4px;      
+		}
+	}  
+	&.marker--m {
+		left: $grid-breakpoint-m;
+		background: #2980b9;
+		&:before {
+			content: 'M';
+			left: -0.45em;
+			background: #2980b9;
+			padding: 2px 4px;      
+		}
+	}  
+	&.marker--l {
+		left: $grid-breakpoint-l;
+		background: #27ae60;
+		&:before {
+			content: 'L';
+			left: -0.45em;
+			background: #27ae60;
+			padding: 2px 4px;      
+		}
+	}    
+}

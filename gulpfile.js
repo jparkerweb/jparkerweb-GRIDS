@@ -16,7 +16,7 @@
 // ===         setup Path variables       ===
 // ==========================================
 	var sourcePaths = {
-		SCSS: 'src/**/*.scss'
+		SCSS: 'scss/**/*.scss'
 	};
 	var destPaths = {
 		CSS: './'

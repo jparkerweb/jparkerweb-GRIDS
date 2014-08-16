@@ -1,0 +1,204 @@
+// ----------------------------------------
+// -- jparkerweb-Grids Framework Classes --
+// ----------------------------------------
+$grid-width: 1024px; //px or %
+$grid-gutter-width: 10px; //px
+
+$grid-breakpoint-xs: 480px;
+$grid-breakpoint-s: 720px;
+$grid-breakpoint-m: 944px;
+$grid-breakpoint-l: 1264px;
+$grid-breakpoint-xl: 1920px;
+
+$grid-stack-breakpoint: 720px;
+
+// gridline and marker helpers
+@import "gridlines-markers";
+
+
+$col-1: 1 / 12 * 100%;
+$col-2: 2 / 12 * 100%;
+$col-3: 3 / 12 * 100%;
+$col-4: 4 / 12 * 100%;
+$col-5: 5 / 12 * 100%;
+$col-6: 6 / 12 * 100%;
+$col-7: 7 / 12 * 100%;
+$col-8: 8 / 12 * 100%;
+$col-9: 9 / 12 * 100%;
+$col-10: 10 / 12 * 100%;
+$col-11: 11 / 12 * 100%;
+$col-12: 12 / 12 * 100%;
+
+
+*, *:after, *:before {
+	box-sizing: border-box;
+}
+
+.grid {
+	display: block;
+	position: relative;
+	margin: 0 auto;
+	max-width: $grid-width;
+	padding-left: $grid-gutter-width;
+	&:after {
+		display: table;
+		content: '';
+		clear: both;
+	}
+
+	.col-1 { width: $col-1; }
+	.col-2, .col-1-6 { width: $col-2; }
+	.col-3, .col-1-4, .col-25 { width: $col-3; }
+	.col-4, .col-1-3 { width: $col-4; }
+	.col-5 { width: $col-5; }
+	.col-6, .col-1-2, .col-50 { width: $col-6; }
+	.col-7 { width: $col-7; }
+	.col-8, .col-2-3 { width: $col-8; }
+	.col-9, .col-3-4, .col-75 { width: $col-9; }
+	.col-10, .col-5-6 { width: $col-10; }
+	.col-11 { width: $col-11; }
+	.col-12, .col-100 { width: $col-12; }
+
+	.col-push-1 { margin-left: $col-1; }
+	.col-push-2 { margin-left: $col-2; }
+	.col-push-3 { margin-left: $col-3; }
+	.col-push-4 { margin-left: $col-4; }
+	.col-push-5 { margin-left: $col-5; }
+	.col-push-6 { margin-left: $col-6; }
+	.col-push-7 { margin-left: $col-7; }
+	.col-push-8 { margin-left: $col-8; }
+	.col-push-9 { margin-left: $col-9; }
+	.col-push-10 { margin-left: $col-10; }
+	.col-push-11 { margin-left: $col-11; }
+	.col-push-12 { margin-left: $col-12; }
+
+	[class*='col-'] {
+		float: left;
+		position: relative;
+		vertical-align: top;
+		padding-right: $grid-gutter-width;
+		padding-bottom: $grid-gutter-width;
+		&:last-of-type {
+			padding-right: $grid-gutter-width;
+		}
+		@media (max-width: $grid-stack-breakpoint) {
+			float: none;
+			display: block;
+			width: 100%;
+			margin-left: 0;
+		}
+	}
+
+	// at breakpoints
+	@media (max-width: $grid-breakpoint-l) {
+		[class*='col-l-'] { float: left; background: papayawhip; }
+		.col-l-1 { width: $col-1; }
+		.col-l-2 { width: $col-2; }
+		.col-l-3 { width: $col-3; }
+		.col-l-4 { width: $col-4; }
+		.col-l-5 { width: $col-5; }
+		.col-l-6 { width: $col-6; }
+		.col-l-7 { width: $col-7; }
+		.col-l-8 { width: $col-8; }
+		.col-l-9 { width: $col-9; }
+		.col-l-10 { width: $col-10; }
+		.col-l-11 { width: $col-11; }
+		.col-l-12 { width: $col-12; }
+		.col-push-l-1 { margin-left: $col-1; }
+		.col-push-l-2 { margin-left: $col-2; }
+		.col-push-l-3 { margin-left: $col-3; }
+		.col-push-l-4 { margin-left: $col-4; }
+		.col-push-l-5 { margin-left: $col-5; }
+		.col-push-l-6 { margin-left: $col-6; }
+		.col-push-l-7 { margin-left: $col-7; }
+		.col-push-l-8 { margin-left: $col-8; }
+		.col-push-l-9 { margin-left: $col-9; }
+		.col-push-l-10 { margin-left: $col-10; }
+		.col-push-l-11 { margin-left: $col-11; }
+		.col-push-l-12 { margin-left: $col-12; }		
+	}
+	@media (max-width: $grid-breakpoint-m) {
+		[class*='col-m-'] { float: left; background: yellow; }
+		.col-m-1 { width: $col-1; }
+		.col-m-2 { width: $col-2; }
+		.col-m-3 { width: $col-3; }
+		.col-m-4 { width: $col-4; }
+		.col-m-5 { width: $col-5; }
+		.col-m-6 { width: $col-6; }
+		.col-m-7 { width: $col-7; }
+		.col-m-8 { width: $col-8; }
+		.col-m-9 { width: $col-9; }
+		.col-m-10 { width: $col-10; }
+		.col-m-11 { width: $col-11; }
+		.col-m-12 { width: $col-12; }
+		.col-push-m-1 { margin-left: $col-1; }
+		.col-push-m-2 { margin-left: $col-2; }
+		.col-push-m-3 { margin-left: $col-3; }
+		.col-push-m-4 { margin-left: $col-4; }
+		.col-push-m-5 { margin-left: $col-5; }
+		.col-push-m-6 { margin-left: $col-6; }
+		.col-push-m-7 { margin-left: $col-7; }
+		.col-push-m-8 { margin-left: $col-8; }
+		.col-push-m-9 { margin-left: $col-9; }
+		.col-push-m-10 { margin-left: $col-10; }
+		.col-push-m-11 { margin-left: $col-11; }
+		.col-push-m-12 { margin-left: $col-12; }		
+	}
+	@media (max-width: $grid-breakpoint-s) {
+		[class*='col-s-'] { float: left; background: pink; }
+		.col-s-1 { width: $col-1; }
+		.col-s-2 { width: $col-2; }
+		.col-s-3 { width: $col-3; }
+		.col-s-4 { width: $col-4; }
+		.col-s-5 { width: $col-5; }
+		.col-s-6 { width: $col-6; }
+		.col-s-7 { width: $col-7; }
+		.col-s-8 { width: $col-8; }
+		.col-s-9 { width: $col-9; }
+		.col-s-10 { width: $col-10; }
+		.col-s-11 { width: $col-11; }
+		.col-s-12 { width: $col-12; }
+		.col-push-s-1 { margin-left: $col-1; }
+		.col-push-s-2 { margin-left: $col-2; }
+		.col-push-s-3 { margin-left: $col-3; }
+		.col-push-s-4 { margin-left: $col-4; }
+		.col-push-s-5 { margin-left: $col-5; }
+		.col-push-s-6 { margin-left: $col-6; }
+		.col-push-s-7 { margin-left: $col-7; }
+		.col-push-s-8 { margin-left: $col-8; }
+		.col-push-s-9 { margin-left: $col-9; }
+		.col-push-s-10 { margin-left: $col-10; }
+		.col-push-s-11 { margin-left: $col-11; }
+		.col-push-s-12 { margin-left: $col-12; }			
+	}
+	@media (max-width: $grid-breakpoint-xs) {
+		[class*='col-xs-'] { float: left; background: cornflowerblue; }
+		.col-xs-1 { width: $col-1; }
+		.col-xs-2 { width: $col-2; }
+		.col-xs-3 { width: $col-3; }
+		.col-xs-4 { width: $col-4; }
+		.col-xs-5 { width: $col-5; }
+		.col-xs-6 { width: $col-6; }
+		.col-xs-7 { width: $col-7; }
+		.col-xs-8 { width: $col-8; }
+		.col-xs-9 { width: $col-9; }
+		.col-xs-10 { width: $col-10; }
+		.col-xs-11 { width: $col-11; }
+		.col-xs-12 { width: $col-12; }
+		.col-push-xs-1 { margin-left: $col-1; }
+		.col-push-xs-2 { margin-left: $col-2; }
+		.col-push-xs-3 { margin-left: $col-3; }
+		.col-push-xs-4 { margin-left: $col-4; }
+		.col-push-xs-5 { margin-left: $col-5; }
+		.col-push-xs-6 { margin-left: $col-6; }
+		.col-push-xs-7 { margin-left: $col-7; }
+		.col-push-xs-8 { margin-left: $col-8; }
+		.col-push-xs-9 { margin-left: $col-9; }
+		.col-push-xs-10 { margin-left: $col-10; }
+		.col-push-xs-11 { margin-left: $col-11; }
+		.col-push-xs-12 { margin-left: $col-12; }			
+	}
+}
+// ---------------------------
+// -- End of Grid Framework --
+// ---------------------------
