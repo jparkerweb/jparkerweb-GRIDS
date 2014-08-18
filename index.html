@@ -11,22 +11,82 @@
 		/* ------------------------------------------------- */
 		/* classes for demo only, not part of grid framework */
 		/* ------------------------------------------------- */
-		@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+		@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
+		@import url(http://fonts.googleapis.com/css?family=Nunito:300&amp;text=GRIDS);
+		@import url(http://fonts.googleapis.com/css?family=Inconsolata);
 		
-		html {
+		html, body { 
+			margin: 0;
+			padding: 0;
 			height: 100%;
+		}
+		html {
 			font-size: 18px;
 			font-family: 'open sans', sans-serif;
-		}	
+			font-weight: 300;
+			color: #333;
+		}
+		a { 
+			text-decoration: none; 
+		}
+		p { 
+			margin: 0 0 7px;
+			padding: 0;
+		}
 		header {
 			text-align: center;
-			margin: 10px 0 20px;
+			margin: 0 0 20px;
+			padding: 20px 10px;
+			background-image: -webkit-linear-gradient(341deg, #2980b9 0%, #16a085 100%);
+			background-image:    -moz-linear-gradient(341deg, #2980b9 0%, #16a085 100%);
+			background-image:      -o-linear-gradient(341deg, #2980b9 0%, #16a085 100%);
+			background-image:     -ms-linear-gradient(341deg, #2980b9 0%, #16a085 100%);
+			background-image:         linear-gradient(109deg, #2980b9 0%, #16a085 100%);
 		}
-		header h1 {
-			color: #16a085;
-			padding: 0;
-			margin: 0;
+		.logo {
+			text-align: right;
 		}
+		.logo > .subtitle {
+			color: rgb(230, 230, 230);
+			font-size: 14px;
+			font-weight: 300;
+			letter-spacing: 1px;
+		}
+		.logo > .title {
+			color: white;
+			font-size: 60px;
+			font-weight: 300;
+			line-height: 44px;
+			font-family: Nunito, 'open sans', sans-serif;
+		}
+		.description {
+			text-align: left;
+			color: #FFF;
+			margin-bottom: 25px;
+			font-weight: 300;
+			letter-spacing: 1px;
+			font-size: 18px;
+			padding-top: 20px;
+		}
+		.call-to-action {
+			text-align: right;
+		}
+		.call-to-action [class*='btn-'] {
+			color: white;
+			padding: 6px 20px;
+			border: 1px solid white;
+			border-radius: 5px;
+			min-width: 130px;
+			font-size: 1rem;
+			font-weight: 300;
+			transition: all 300ms ease;
+		}
+		.call-to-action [class*='btn-']:hover {
+			background: black;
+			border-color: gray;
+		}
+		.btn-download { margin-right: 10px; }
+
 		header .subtitle {
 			font-size: 13px;
 			color: #7f8c8d;
@@ -37,16 +97,56 @@
 		.demo-display .content {
 			width: 100%;
 			background: #f9f9f9;
-			outline: 1px solid #888;
+			outline: 1px solid #dedede;
 			padding: 2px 4px;
 			text-align: center;
 			font-size: 16px;
+			font-family: Inconsolata, sans-serif;
 		}
 		.demo-display p {
 			text-align: left;
-			margin: 0;
-			padding: 0 10px;
 		}
+
+		.section-title {
+			font-size: 30px;
+			font-weight: 400;
+			margin: 0 0 7px;
+			padding: 0;			
+		}
+		.section-title:after {
+			background-image: -webkit-linear-gradient(341deg, #2980b9 0%, #16a085 100%);
+			background-image:    -moz-linear-gradient(341deg, #2980b9 0%, #16a085 100%);
+			background-image:      -o-linear-gradient(341deg, #2980b9 0%, #16a085 100%);
+			background-image:     -ms-linear-gradient(341deg, #2980b9 0%, #16a085 100%);
+			background-image:         linear-gradient(109deg, #2980b9 0%, #16a085 100%);
+			width: 100%; width: calc(100% - 10px);
+			height: 3px;
+			bottom: 3px;
+			position: absolute;
+			left: 0;
+			content: '';
+		}
+		.keyword {
+			font-family: Inconsolata, sans-serif;
+			background: #f9f9f9;
+			color: #2c3e50;
+			padding: 2px 4px;
+			border: 1px solid #ddd;
+			border-radius: 2px;
+			line-height: 1.38;
+		}
+		.code-block {
+			display: inline-block;
+			background: #f9f9f9;
+			color: #2c3e50;
+			font-family: Inconsolata, sans-serif;
+			font-size: 17px;
+			line-height: 1.3;
+			padding: 15px;
+			border: 1px solid #ddd;
+			border-radius: 2px;
+		}
+
 		footer {
 			font-size: 14px;
 			text-align: center;
@@ -59,10 +159,57 @@
 			color: #2980b9;
 		}
 
+		/* -- google code prettyprint -- */
+		.com { color: #93a1a1; }
+		.lit { color: #195f91; }
+		.pun, .opn, .clo { color: #93a1a1; }
+		.fun { color: #005cb9; }
+		.str, .atv { color: #849d00; }
+		.kwd, .linenums, .tag { color: #3f5bb9; }
+		.typ, .atn, .dec, .var { color: #008ec4; }
+		.pln { color: #444; }
+
+		.prettyprint.linenums {
+			-webkit-box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
+			-moz-box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
+			box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
+		}
+		ol.linenums {
+			margin: 0 0 0 5px;
+		} 
+		ol.linenums li {
+			color: #bebec5;
+		  	text-shadow: 0 1px 0 #fff;
+		}
+		li.L1, li.L3, li.L5, li.L7, li.L9 {
+		    background: #f9f9f9;
+		}
+
+		pre.prettyprint { 
+			padding: 5px 0;
+			border: 1px solid #DEDEDE;
+			overflow: auto;
+			margin: 0 0 20px;
+			display: inline-block;
+			width: 100%;
+		}
+		/* ----------------------------- */
+
+		/* helper classes */
+		.margin-top {
+			margin-top: 30px;
+		}
+
+
 	</style>
 	<link rel="stylesheet" href="jparkerweb-grids.css">
 </head>
 <body>
+	<!-- 
+		*******************************************************************
+		** Helper Markup - Gridline/Breakpoint Marker Overlay & Controls **
+		*******************************************************************
+	-->
 	<!-- gridlines -->
 	<div class="gridlines">
 		<div class="grid">
@@ -81,6 +228,7 @@
 		</div>
 	</div>
 	<!-- markers for grid -->
+	<div class="marker marker--stack"></div>
 	<div class="marker marker--xs"></div>
 	<div class="marker marker--s"></div>
 	<div class="marker marker--m"></div>
@@ -89,205 +237,228 @@
 	<div class="gridlines-toggle">gridlines</div>
 	<!-- markers toggle -->
 	<div class="markers-toggle">markers</div>	
+	<!-- ******************************************************************* -->
 
 
 	<header>
-		<h1>jparkerweb-grids</h1>
-		<span class="subtitle">simple fluid grid framework</span>
+		<div class="grid">
+			<div class="col-4 col-m-3 col-s-12 logo">
+				<p class="subtitle">jparkerweb</p>
+				<p class="title">GRIDS</p>
+			</div>
+			<div class="col-push-1 col-7 col-push-m-1 col-m-8 col-push-s-0 col-s-12">
+				<p class="description">GRIDS is an easy to use grid framework that is built to work with the ever expansive list of devices that we encounter each day.  It affords various view-port and size configurations with all columns sporting fluid widths.  This tool-kit also comes with a few handy tools (gridline overlays and breakpoint markers) to aid in your page layout.</p>
+				<div class="call-to-action">
+					<a class="btn-download" href="https://github.com/jparkerweb/jparkerweb-grids/archive/master.zip">Download</a>
+					<a class="btn-github" href="https://github.com/jparkerweb/jparkerweb-grids" target="_blank">Github</a>
+				</div>
+			</div>
+		</div>
 	</header>
 
-	<div class="demo-display">
-		<!-- 1st row -->
-		<div class="grid">
-			<div class="col-1">
-				<div class="content">col-1</div>
-			</div>
-			<div class="col-11">
-				<div class="content">col-11</div>
-			</div>
-		</div>
-		<!-- 2nd row -->
-		<div class="grid">
-			<div class="col-2">
-				<div class="content">col-2</div>
-			</div>
-			<div class="col-10">
-				<div class="content">col-10</div>
-			</div>
-		</div>
-		<!-- 3rd row -->
-		<div class="grid">
-			<div class="col-3">
-				<div class="content">col-3</div>
-			</div>
-			<div class="col-9">
-				<div class="content">col-9</div>
-			</div>
-		</div>
-		<!-- 4th row -->
-		<div class="grid">
-			<div class="col-4">
-				<div class="content">col-4</div>
-			</div>
-			<div class="col-8">
-				<div class="content">col-8</div>
-			</div>
-		</div>
-		<!-- 5th row -->
-		<div class="grid">
-			<div class="col-5 col-m-2">
-				<div class="content">col-5 col-m-2</div>
-			</div>
-			<div class="col-7 col-m-2 col-push-m-8">
-				<div class="content">col-7 col-push-m-8 col-m-2</div>
-			</div>
-		</div>
-		<!-- 6th row -->
-		<div class="grid">
-			<div class="col-6 col-s-6 col-m-5">
-				<div class="content">col-6 col-s-6 col-m-5</div>
-			</div>
-			<div class="col-6 col-s-6 col-m-7">
-				<div class="content">col-6 col-s-6 col-m-7</div>
-			</div>
-		</div>
 
-		<!-- 7th row -->
-		<div class="grid">
-			<div class="col-7 col-m-4">
-				<div class="content">col-7 col-m-4</div>
+	<main>
+		<section class="tutorial-section--the-basics demo-display">
+			<div class="grid"><h2 class="col-12 section-title">The Basics</h2></div>
+			<div class="grid">
+				<p class="col-12">
+					GRIDS is made up of a parent element with a class of <span class="keyword">gird</span> and direct children that have a class name of <span class="keyword">col-{number}</span>.  Each grid row is made up of 12 columns.  A direct child is allowed to span multiple columns by specifying a number from 1 to 12 in the <span class="keyword">col-{number}</span> class name.
+				</p>
+				<p class="col-12 margin-top">
+					The following example is an element that spans 6 columns, taking up one half of the row (6/12 = one half).
+				</p>
 			</div>
-			<div class="col-5 col-l-2">
-				<div class="content">col-5 col-l-2</div>
-			</div>
-		</div>
-		<!-- 8th row -->
-		<div class="grid">
-			<div class="col-8">
-				<div class="content">col-8</div>
-			</div>
-			<div class="col-4">
-				<div class="content">col-4</div>
-			</div>
-		</div>
-		<!-- 9rd row -->
-		<div class="grid">
-			<div class="col-9">
-				<div class="content">col-9</div>
-			</div>
-			<div class="col-3">
-				<div class="content">col-3</div>
-			</div>
-		</div>
-		<!-- 10th row -->
-		<div class="grid">
-			<div class="col-10">
-				<div class="content">col-10</div>
-			</div>
-			<div class="col-2">
-				<div class="content">col-2</div>
-			</div>
-		</div>
-		<!-- 11th row -->
-		<div class="grid">
-			<div class="col-11">
-				<div class="content">col-11</div>
-			</div>
-			<div class="col-1">
-				<div class="content">col-1</div>
-			</div>
-		</div>
-		<!-- 12th row -->
-		<div class="grid">
-			<div class="col-12">
-				<div class="content">col-12</div>
-			</div>
-		</div>    
-	</div>
-
-
-	<div class="demo-display">
-		<div class="grid">
-			<div class="col-4">
-				<div class="content">col-4</div>
-			</div>
-			<div class="col-push-4 col-4 col-m-3 col-push-m-0">
-				<div class="content">col-push-4 col-4 col-push-m-0 col-m-3</div>
-			</div>
-		</div>
-		<div class="grid">
-			<div class="col-push-2 col-8">
-				<div class="content">col-push-2 col-8</div>
-			</div>
-		</div>
-		<div class="grid">
-			<div class="col-push-7 col-5">
-				<div class="content">col-push-7 col-5</div>
-			</div>
-		</div>
-		<div class="grid">
-			<div class="col-8">
-				<div class="content">col-8</div>
-			</div>
-			<div class="col-push-1 col-3">
-				<div class="content">col-push-1 col-3</div>
-			</div>
-		</div>
-		<div class="grid">
-			<div class="col-5">
-				<div class="content">col-5</div>
-			</div>
-			<div class="col-push-1 col-3">
-				<div class="content">col-push-1 col-3</div>
-			</div>
-			<div class="col-3">
-				<div class="content">col-3</div>
-			</div>    
-		</div>
-		<div class="grid">
-			<div class="col-2 col-no-stack">
-				<div class="content">col-4 col-no-stack</div>
-			</div>
-			<div class="col-push-2 col-4 col-no-stack">
-				<div class="content">col-3 col-no-stack</div>
-			</div>
-			<div class="col-push-2 col-2 col-no-stack">
-				<div class="content">col-4 col-no-stack</div>
-			</div>    
-		</div>
-	</div>
-
-
-	<div class="demo-display">
-		<article class="grid">
-			<section class="col-9 col-m-12 col-no-stack">
-				<div class="content">
-					col-9 col-m-12 col-no-stack
-					<div class="grid">
-						<div class="col-7 col-no-stack">
-							<div class="content">
-								col-7 col-no-stack
-								<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-								<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>   
-							</div>
-						</div>
-						<div class="col-5 col-no-stack">
-							<div class="content">
-								col-5 col-no-stack<br>
-								<img src="http://www.fillmurray.com/g/250/300" alt="pic" style="max-width:100%;" />
-							</div>
-						</div>
-					</div>
+			<div class="grid">
+				<div class="col-6">
+					<div class="content">.col-6</div>
 				</div>
-			</section>
-			<aside class="col-3 col-m-12 col-no-stack">
-				<div class="content">
-					col-3 col-m-12 col-no-stack
-					<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>        
+			</div>
+			<div class="grid">
+				<pre class="col-12 code-block prettyprint linenums">
+&lt;!-- element spanning six columns --&gt;
+&lt;div class=&quot;grid&quot;&gt;
+  &lt;div class=&quot;col-6&quot;&gt;.col-6&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+			</div>
+			<div class="grid">
+				<p class="col-12 margin-top">Next, lets create a grid that has two elements, that when combined, will take up the whole row.  Note, that to span the entire grid width/row, the sum of the columns must equal 12.  We will use col-3 + col-9 = 12</p>
+			</div>
+			<div class="grid">
+				<div class="col-3"><div class="content">.col-3</div></div>
+				<div class="col-9"><div class="content">.col-9</div></div>
+			</div>
+			<div class="grid">
+				<pre class="col-12 code-block prettyprint linenums">
+&lt;!-- two column grid row --&gt;
+&lt;div class=&quot;grid&quot;&gt;
+  &lt;div class=&quot;col-3&quot;&gt;.col-3&lt;/div&gt;
+  &lt;div class=&quot;col-9&quot;&gt;.col-9&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+			</div>
+
+			<div class="grid">
+				<p class="col-12 margin-top">To demonstrate this once more, how about we create a grid with three columns.  The first with a span of 3, second spannig 6, and the third spanning the remaining 3.</p>
+			</div>
+			<div class="grid">
+				<div class="col-3"><div class="content">.col-3</div></div>
+				<div class="col-6"><div class="content">.col-6</div></div>
+				<div class="col-3"><div class="content">.col-3</div></div>
+			</div>
+			<div class="grid">
+				<pre class="col-12 code-block prettyprint linenums">
+&lt;!-- grid row with three columns --&gt;
+&lt;div class=&quot;grid&quot;&gt;
+  &lt;div class=&quot;col-3&quot;&gt;.col-3&lt;/div&gt;
+  &lt;div class=&quot;col-6&quot;&gt;.col-6&lt;/div&gt;
+  &lt;div class=&quot;col-3&quot;&gt;.col-3&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+			</div>
+
+			<div class="grid">
+				<p class="col-12 margin-top">To round off the basics, you can see from this example all the variations of spanning multiple columns</p>
+			</div>
+			<!-- 1st row -->
+			<div class="grid">
+				<div class="col-1">
+					<div class="content">col-1</div>
 				</div>
-			</aside>
-		</article>
-	</div>
+				<div class="col-11">
+					<div class="content">col-11</div>
+				</div>
+			</div>
+			<!-- 2nd row -->
+			<div class="grid">
+				<div class="col-2">
+					<div class="content">col-2</div>
+				</div>
+				<div class="col-10">
+					<div class="content">col-10</div>
+				</div>
+			</div>
+			<!-- 3rd row -->
+			<div class="grid">
+				<div class="col-3">
+					<div class="content">col-3</div>
+				</div>
+				<div class="col-9">
+					<div class="content">col-9</div>
+				</div>
+			</div>
+			<!-- 4th row -->
+			<div class="grid">
+				<div class="col-4">
+					<div class="content">col-4</div>
+				</div>
+				<div class="col-8">
+					<div class="content">col-8</div>
+				</div>
+			</div>
+			<!-- 5th row -->
+			<div class="grid">
+				<div class="col-5">
+					<div class="content">col-5</div>
+				</div>
+				<div class="col-7">
+					<div class="content">col-7</div>
+				</div>
+			</div>
+			<!-- 6th row -->
+			<div class="grid">
+				<div class="col-6">
+					<div class="content">col-6</div>
+				</div>
+				<div class="col-6">
+					<div class="content">col-6</div>
+				</div>
+			</div>
+
+			<!-- 7th row -->
+			<div class="grid">
+				<div class="col-7">
+					<div class="content">col-7</div>
+				</div>
+				<div class="col-5">
+					<div class="content">col-5</div>
+				</div>
+			</div>
+			<!-- 8th row -->
+			<div class="grid">
+				<div class="col-8">
+					<div class="content">col-8</div>
+				</div>
+				<div class="col-4">
+					<div class="content">col-4</div>
+				</div>
+			</div>
+			<!-- 9rd row -->
+			<div class="grid">
+				<div class="col-9">
+					<div class="content">col-9</div>
+				</div>
+				<div class="col-3">
+					<div class="content">col-3</div>
+				</div>
+			</div>
+			<!-- 10th row -->
+			<div class="grid">
+				<div class="col-10">
+					<div class="content">col-10</div>
+				</div>
+				<div class="col-2">
+					<div class="content">col-2</div>
+				</div>
+			</div>
+			<!-- 11th row -->
+			<div class="grid">
+				<div class="col-11">
+					<div class="content">col-11</div>
+				</div>
+				<div class="col-1">
+					<div class="content">col-1</div>
+				</div>
+			</div>
+			<!-- 12th row -->
+			<div class="grid">
+				<div class="col-12">
+					<div class="content">col-12</div>
+				</div>
+			</div>	
+		</section>
+
+		<section class="tutorial-section--push-it demo-display">
+			<div class="grid"><h2 class="col-12 section-title">"Push It"</h2></div>
+			<div class="grid">
+				<p class="col-12">
+					Ok, so far we know how to create a simple grid, with each element spanning one or multiple columns, but what if we want a space between columns?  This is where the <span class="keyword">col-push-{number}</span> class will come in handy.
+				</p>
+				<p class="col-12 margin-top">
+					Let think back to our original example that displayed a single element taking up the first half of our grid.  Let's expand on this and first push it all the way to the right (6 colums over), and then push it to the center (3 columns over).  To help visualize this a bit more, click the <span class="keyword">gridlines</span> button in the top-left corner of this page to enable the grid overlay (this is one of the helper tools that comes with this framework, but more on that later).
+				</p>
+			</div>
+			<div class="grid">
+				<div class="col-push-6 col-6"><div class="content">.col-push-6 .col-6</div></div>
+			</div>
+			<div class="grid">
+				<div class="col-push-3 col-6"><div class="content">.col-push-3 .col-6</div></div>
+			</div>
+			<div class="grid">
+				<pre class="col-12 code-block prettyprint linenums">
+&lt;!-- pushing columns (inserting blank space) is easy --&gt;
+&lt;div class=&quot;grid&quot;&gt;
+  &lt;div class=&quot;col-push-6 col-6&quot;&gt;.col-push-6 .col-6&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;grid&quot;&gt;
+  &lt;div class=&quot;col-push-3 col-6&quot;&gt;.col-push-3 .col-6&lt;/div&gt;
+&lt;/div&gt;					
+</pre>
+			</div>
+		</section>
+
+	</main>
+
 
 	<footer>
 		<span>Inspired by: </span>
@@ -297,5 +468,7 @@
 	<!-- gridline and marker helper includes -->
 	<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="gridline-marker-helper.js"></script>
+	<script src="prettify.js"></script>
+	<script>prettyPrint();</script>
 </body>
 </html>
