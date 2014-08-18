@@ -1,16 +1,22 @@
 @import url(http://fonts.googleapis.com/css?family=Inconsolata);
-$font--inconsolata: 'Inconsolata', arial;
+$font--inconsolata: 'Inconsolata', arial, sans-serif;
 
 html, body { height: 100%; }
 
-$grid-breakpoint-xs: 480px;
-$grid-breakpoint-s: 720px;
-$grid-breakpoint-m: 944px;
-$grid-breakpoint-l: 1264px;
 
+// this file is only used to define helper
+// classes for showing gridlines and breakpoint
+// markers while you are developing/laying out
+// your page.  to enable these functions
+
+
+// ************
+// ** CONGIF **
+// ************
 // set to true if you want to show your breakpoint
 // markers (xs, s, m, l). helpful when defining
-// your layout
+// your layout and testing the variation of 
+// col-(xs, s, m, l)-*
 $showMarkers: true !default;
 
 // set to true if you want to overlay the defined
@@ -20,9 +26,18 @@ $showMarkers: true !default;
 // will set the body & html to have a left and right
 // padding/margin of zero
 $showGridlines: true !default;
+// background for each gridline column
 $gridlineBackground: #ddd !default;
+// opacity for each gridline column
 $gridlineOpacity: 0.4 !default;
 
+
+
+
+// ******************************************
+// ** Do Not Edit Below This Line          **
+// ** (unless you know what you are doing) **
+// ******************************************
 
 // lineup gridlines with page content
 @if $showGridlines == true {
@@ -32,13 +47,16 @@ $gridlineOpacity: 0.4 !default;
 	}
 }
 
-// -- gridlines helper --
+// ------------------------------
+// -- gridlines helper classes --
+// ------------------------------
 .gridlines-toggle {
 	@if $showGridlines == false { display: none; }
 	position: fixed;
-	width: 92px;
+	min-width: 92px;
 	top: 5px;
 	left: 5px;
+	z-index: 10;
 	background: lighten(#34495e, 20%);
 	color: white;
 	font-family: $font--inconsolata;
@@ -71,13 +89,16 @@ $gridlineOpacity: 0.4 !default;
 		height: 100%;
 	}
 }
-// -- markers helper --
+//-----------------------------
+// -- markers helper classes --
+//-----------------------------
 .markers-toggle {
 	@if $showMarkers == false { display: none; }
 	position: fixed;
-	width: 92px;
+	min-width: 92px;
 	top: 32px;
 	left: 5px;
+	z-index: 10;
 	background: lighten(#34495e, 20%);
 	color: white;
 	font-family: $font--inconsolata;
@@ -92,10 +113,9 @@ $gridlineOpacity: 0.4 !default;
 }
 .marker {
 	@if $showMarkers == false { display: none; }
-	position: absolute;
+	position: fixed;
 	top: 0;
 	bottom: 0;
-	height: 100%;
 	width: 1px;
 	&:before {
 		top: 0;
@@ -106,6 +126,7 @@ $gridlineOpacity: 0.4 !default;
 		font-family: $font--inconsolata;
 	}
 	&.marker--xs {
+		z-index: 10;
 		left: $grid-breakpoint-xs;
 		background: #c0392b;
 		&:before {
@@ -116,6 +137,7 @@ $gridlineOpacity: 0.4 !default;
 		}
 	}
 	&.marker--s {
+		z-index: 10;
 		left: $grid-breakpoint-s;
 		background: #e67e22;
 		&:before {
@@ -126,6 +148,7 @@ $gridlineOpacity: 0.4 !default;
 		}
 	}  
 	&.marker--m {
+		z-index: 10;
 		left: $grid-breakpoint-m;
 		background: #2980b9;
 		&:before {
@@ -136,6 +159,7 @@ $gridlineOpacity: 0.4 !default;
 		}
 	}  
 	&.marker--l {
+		z-index: 10;
 		left: $grid-breakpoint-l;
 		background: #27ae60;
 		&:before {
@@ -145,4 +169,21 @@ $gridlineOpacity: 0.4 !default;
 			padding: 2px 4px;      
 		}
 	}    
+}
+// -------------------------------------------
+// -- column outlines for marker thresholds --
+// -------------------------------------------
+@if $showMarkers == true {
+	@media (max-width: $grid-breakpoint-xs) {
+		[class*='col-xs-'] > * { outline: 2px solid #c0392b !important; }
+	}
+	@media (max-width: $grid-breakpoint-s) {
+		[class*='col-s-'] > * { outline: 2px solid #e67e22 !important; }
+	}
+	@media (max-width: $grid-breakpoint-m) {
+		[class*='col-m-'] > * { outline: 2px solid #2980b9 !important; }
+	}
+	@media (max-width: $grid-breakpoint-l) {
+		[class*='col-l-'] > * { outline: 2px solid #27ae60 !important; }
+	}
 }
