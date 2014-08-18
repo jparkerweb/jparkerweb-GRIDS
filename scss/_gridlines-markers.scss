@@ -57,7 +57,8 @@ $gridlineOpacity: 0.4 !default;
 	top: 5px;
 	left: 5px;
 	z-index: 10;
-	background: lighten(#34495e, 20%);
+	background: #30BDF4;
+	border: 1px solid #30BDF4;
 	color: white;
 	font-family: $font--inconsolata;
 	font-size: 14px;
@@ -67,7 +68,10 @@ $gridlineOpacity: 0.4 !default;
 	text-align: center;
 	letter-spacing: 2px;
 	line-height: 1.38;
-	&:hover { background: #34495e; }
+	&:hover { 
+		background: darken(#30BDF4, 20%);
+		border-color: #30BDF4;
+	}
 }
 .gridlines {
 	@if $showGridlines == false { display: none; }
@@ -99,7 +103,8 @@ $gridlineOpacity: 0.4 !default;
 	top: 32px;
 	left: 5px;
 	z-index: 10;
-	background: lighten(#34495e, 20%);
+	background: #30BDF4;
+	border: 1px solid #30BDF4;
 	color: white;
 	font-family: $font--inconsolata;
 	font-size: 14px;
@@ -109,7 +114,10 @@ $gridlineOpacity: 0.4 !default;
 	text-align: center;
 	letter-spacing: 2px;
 	line-height: 1.38;
-	&:hover { background: #34495e; }
+	&:hover { 
+		background: darken(#30BDF4, 20%);
+		border-color: #30BDF4;
+	}
 }
 .marker {
 	@if $showMarkers == false { display: none; }
@@ -124,6 +132,17 @@ $gridlineOpacity: 0.4 !default;
 		text-align: center;
 		font-size: 18px;
 		font-family: $font--inconsolata;
+	}
+	&.marker--stack {
+		z-index: 10;
+		left: $grid-stack-breakpoint;
+		background: #16a085;
+		&:before {
+			content: 'stack';
+			left: -1.5em;
+			background: #16a085;
+			padding: 2px 4px;
+		}
 	}
 	&.marker--xs {
 		z-index: 10;
@@ -174,16 +193,21 @@ $gridlineOpacity: 0.4 !default;
 // -- column outlines for marker thresholds --
 // -------------------------------------------
 @if $showMarkers == true {
-	@media (max-width: $grid-breakpoint-xs) {
-		[class*='col-xs-'] > * { outline: 2px solid #c0392b !important; }
-	}
-	@media (max-width: $grid-breakpoint-s) {
-		[class*='col-s-'] > * { outline: 2px solid #e67e22 !important; }
-	}
-	@media (max-width: $grid-breakpoint-m) {
-		[class*='col-m-'] > * { outline: 2px solid #2980b9 !important; }
-	}
-	@media (max-width: $grid-breakpoint-l) {
-		[class*='col-l-'] > * { outline: 2px solid #27ae60 !important; }
+	body.show-marker-outlines {
+		@media (max-width: $grid-breakpoint-l) {
+			[class*='col-l-'] > * { outline: 2px solid #27ae60 !important; }
+		}
+		@media (max-width: $grid-breakpoint-m) {
+			[class*='col-m-'] > * { outline: 2px solid #2980b9 !important; }
+		}
+		@media (max-width: $grid-breakpoint-s) {
+			[class*='col-s-'] > * { outline: 2px solid #e67e22 !important; }
+		}
+		@media (max-width: $grid-breakpoint-xs) {
+			[class*='col-xs-'] > * { outline: 2px solid #c0392b !important; }
+		}
+		@media (max-width: $grid-stack-breakpoint) {
+			.col-no-stack > * { outline: 2px dotted #16a085 !important; }
+		}
 	}
 }

@@ -4,13 +4,13 @@
 $grid-width: 1264px; //px or %
 $grid-gutter-width: 10px; //px
 
-$grid-breakpoint-xs: 480px;
+$grid-breakpoint-xs: 568px;
 $grid-breakpoint-s: 720px;
 $grid-breakpoint-m: 944px;
 $grid-breakpoint-l: 1264px;
 $grid-breakpoint-xl: 1920px;
 
-$grid-stack-breakpoint: 480px;
+$grid-stack-breakpoint: 500px;
 
 // gridline and marker helpers
 @import "gridlines-markers";
@@ -46,19 +46,19 @@ $col-12: 12 / 12 * 100%;
 		clear: both;
 	}
 
-	.col-0 						{ display: none; }
-	.col-1 						{ width: $col-1; display: block; }
-	.col-2, .col-1-6 			{ width: $col-2; display: block; }
-	.col-3, .col-1-4, .col-25 	{ width: $col-3; display: block; }
-	.col-4, .col-1-3 			{ width: $col-4; display: block; }
-	.col-5 						{ width: $col-5; display: block; }
-	.col-6, .col-1-2, .col-50 	{ width: $col-6; display: block; }
-	.col-7 						{ width: $col-7; display: block; }
-	.col-8, .col-2-3 			{ width: $col-8; display: block; }
-	.col-9, .col-3-4, .col-75 	{ width: $col-9; display: block; }
-	.col-10, .col-5-6 			{ width: $col-10; display: block; }
-	.col-11 					{ width: $col-11; display: block; }
-	.col-12, .col-100 			{ width: $col-12; display: block; }
+	.col-0                      { display: none; }
+	.col-1                      { width: $col-1; display: block; }
+	.col-2, .col-1-6            { width: $col-2; display: block; }
+	.col-3, .col-1-4, .col-25   { width: $col-3; display: block; }
+	.col-4, .col-1-3            { width: $col-4; display: block; }
+	.col-5                      { width: $col-5; display: block; }
+	.col-6, .col-1-2, .col-50   { width: $col-6; display: block; }
+	.col-7                      { width: $col-7; display: block; }
+	.col-8, .col-2-3            { width: $col-8; display: block; }
+	.col-9, .col-3-4, .col-75   { width: $col-9; display: block; }
+	.col-10, .col-5-6           { width: $col-10; display: block; }
+	.col-11                     { width: $col-11; display: block; }
+	.col-12, .col-100           { width: $col-12; display: block; }
 
 	.col-push-0 { margin-left: 0; }
 	.col-push-1 { margin-left: $col-1; }

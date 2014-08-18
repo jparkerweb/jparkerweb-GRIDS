@@ -10,6 +10,7 @@ $( document ).ready(function() {
 	// bind markers toggle
 	$(".markers-toggle").on("click", function () {
 		$(".marker").toggle();
+		$("body").toggleClass("show-marker-outlines");
 	});
 	// toggle off markers on page load
 	$(".marker").toggle();

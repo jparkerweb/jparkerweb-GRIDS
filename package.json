@@ -1,7 +1,9 @@
 {
   "name": "jparkerweb-grids",
-  "version": "0.0.2",
+  "version": "0.0.5",
+  "private": true,
   "description": "Simple Fluid Grid Framework",
+  "homepage": "http://jparkerweb.github.io/jparkerweb-grids/",
   "author": "Justin Parker",
   "license": "MIT",
   "devDependencies": {
