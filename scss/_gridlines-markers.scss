@@ -50,15 +50,10 @@ $gridlineOpacity: 0.4 !default;
 // ------------------------------
 // -- gridlines helper classes --
 // ------------------------------
-.gridlines-toggle {
-	@if $showGridlines == false { display: none; }
-	position: fixed;
+%toggle-button {
 	min-width: 92px;
-	top: 5px;
-	left: 5px;
-	z-index: 10;
-	background: #30BDF4;
-	border: 1px solid #30BDF4;
+	background: #30BDF4;	
+	border: 1px solid darken(#30BDF4, 20%);
 	color: white;
 	font-family: $font--inconsolata;
 	font-size: 14px;
@@ -68,10 +63,20 @@ $gridlineOpacity: 0.4 !default;
 	text-align: center;
 	letter-spacing: 2px;
 	line-height: 1.38;
+	transition: all 200ms ease;
 	&:hover { 
 		background: darken(#30BDF4, 20%);
 		border-color: #30BDF4;
 	}
+}
+
+.gridlines-toggle {
+	@extend %toggle-button;
+	@if $showGridlines == false { display: none; }
+	position: fixed;
+	bottom: 55px;
+	left: 5px;
+	z-index: 10;
 }
 .gridlines {
 	@if $showGridlines == false { display: none; }
@@ -97,34 +102,20 @@ $gridlineOpacity: 0.4 !default;
 // -- markers helper classes --
 //-----------------------------
 .markers-toggle {
+	@extend %toggle-button;
 	@if $showMarkers == false { display: none; }
 	position: fixed;
-	min-width: 92px;
-	top: 32px;
+	bottom: 25px;
 	left: 5px;
 	z-index: 10;
-	background: #30BDF4;
-	border: 1px solid #30BDF4;
-	color: white;
-	font-family: $font--inconsolata;
-	font-size: 14px;
-	cursor: pointer;
-	padding: 2px 0;
-	border-radius: 3px;
-	text-align: center;
-	letter-spacing: 2px;
-	line-height: 1.38;
-	&:hover { 
-		background: darken(#30BDF4, 20%);
-		border-color: #30BDF4;
-	}
 }
 .marker {
 	@if $showMarkers == false { display: none; }
 	position: fixed;
-	top: 0;
+	top: -2px;
 	bottom: 0;
 	width: 1px;
+	font-size: 18px;
 	&:before {
 		top: 0;
 		position: relative;
@@ -143,6 +134,17 @@ $gridlineOpacity: 0.4 !default;
 			background: #16a085;
 			padding: 2px 4px;
 		}
+		&:after {
+			display: block;
+			position: relative;
+			content: '';
+			border-color: #16a085 transparent;
+			border-style: solid;
+			border-width: 0.4em 1.5em 0 1.5em;
+			height: 0px;
+			width: 0px;
+			left: -1.5em;
+		}				
 	}
 	&.marker--xs {
 		z-index: 10;
@@ -150,9 +152,20 @@ $gridlineOpacity: 0.4 !default;
 		background: #c0392b;
 		&:before {
 			content: 'XS';
-			left: -0.65em;
+			left: -0.68em;
 			background: #c0392b;
 			padding: 2px 4px;
+		}
+		&:after {
+			display: block;
+			position: relative;
+			content: '';
+			border-color: #c0392b transparent;
+			border-style: solid;
+			border-width: .4em .73em 0 .73em;
+			height: 0px;
+			width: 0px;
+			left: -0.68em;
 		}
 	}
 	&.marker--s {
@@ -165,6 +178,17 @@ $gridlineOpacity: 0.4 !default;
 			background: #e67e22;
 			padding: 2px 4px;      
 		}
+		&:after {
+			display: block;
+			position: relative;
+			content: '';
+			border-color: #e67e22 transparent;
+			border-style: solid;
+			border-width: .3em .49em 0 .5em;
+			height: 0px;
+			width: 0px;
+			left: -0.45em;
+		}		
 	}  
 	&.marker--m {
 		z-index: 10;
@@ -176,6 +200,17 @@ $gridlineOpacity: 0.4 !default;
 			background: #2980b9;
 			padding: 2px 4px;      
 		}
+		&:after {
+			display: block;
+			position: relative;
+			content: '';
+			border-color: #2980b9 transparent;
+			border-style: solid;
+			border-width: .3em .49em 0 .5em;
+			height: 0px;
+			width: 0px;
+			left: -0.45em;
+		}			
 	}  
 	&.marker--l {
 		z-index: 10;
@@ -187,7 +222,37 @@ $gridlineOpacity: 0.4 !default;
 			background: #27ae60;
 			padding: 2px 4px;      
 		}
+		&:after {
+			display: block;
+			position: relative;
+			content: '';
+			border-color: #27ae60 transparent;
+			border-style: solid;
+			border-width: .3em .49em 0 .5em;
+			height: 0px;
+			width: 0px;
+			left: -0.45em;
+		}			
 	}    
+}
+.marker-indicator {
+	position: fixed;
+	display: block;
+	width: 100%;
+	bottom: 0;
+	height: 20px;
+	z-index: 10;
+	background: transparent;
+	text-align: center;
+	&:before { 
+		color: white; 
+		content: ''; 
+		font-size: 16px;
+		font-family: $font--inconsolata;
+		font-weight: 400;
+		position: relative;
+		top: -5px;
+	}
 }
 // -------------------------------------------
 // -- column outlines for marker thresholds --
@@ -196,18 +261,38 @@ $gridlineOpacity: 0.4 !default;
 	body.show-marker-outlines {
 		@media (max-width: $grid-breakpoint-l) {
 			[class*='col-l-'] > * { outline: 2px solid #27ae60 !important; }
+			.marker-indicator { 
+				background: #27ae60 !important;
+				&:before { content: 'breakpoint: L'; }
+			}
 		}
 		@media (max-width: $grid-breakpoint-m) {
 			[class*='col-m-'] > * { outline: 2px solid #2980b9 !important; }
+			.marker-indicator { 
+				background: #2980b9 !important;
+				&:before { content: 'breakpoint: M'; } 
+			}
 		}
 		@media (max-width: $grid-breakpoint-s) {
 			[class*='col-s-'] > * { outline: 2px solid #e67e22 !important; }
+			.marker-indicator { 
+				background: #e67e22 !important; 
+				&:before { content: 'breakpoint: S'; }
+			}
 		}
 		@media (max-width: $grid-breakpoint-xs) {
 			[class*='col-xs-'] > * { outline: 2px solid #c0392b !important; }
+			.marker-indicator { 
+				background: #c0392b !important; 
+				&:before { content: 'breakpoint: XS'; }
+			}
 		}
 		@media (max-width: $grid-stack-breakpoint) {
 			.col-no-stack > * { outline: 2px dotted #16a085 !important; }
+			.marker-indicator { 
+				background: #16a085 !important; 
+				&:before { content: 'breakpoint: stack'; }
+			}
 		}
 	}
 }
