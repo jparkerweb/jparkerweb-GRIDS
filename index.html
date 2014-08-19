@@ -7,6 +7,7 @@
 	<title>jparkerweb-grids</title>
 	<meta name="description" content="Simple Fluid Grid Framework">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
 	<style type="text/css" media="screen">
 		/* ------------------------------------------------- */
 		/* classes for demo only, not part of grid framework */
@@ -68,6 +69,9 @@
 			font-size: 18px;
 			padding-top: 20px;
 		}
+		@media (max-width: 720px) {
+			.description { padding-top: 0;}
+		}
 		.call-to-action {
 			text-align: right;
 		}
@@ -105,6 +109,14 @@
 		}
 		.demo-display p {
 			text-align: left;
+		}
+		.demo-display .gridlines-toggle,
+		.demo-display .markers-toggle {
+			position: relative;
+			display: inline-block;
+			left: inherit;
+			bottom: inherit;
+			z-index: 1;
 		}
 
 		.section-title {
@@ -199,8 +211,6 @@
 		.margin-top {
 			margin-top: 30px;
 		}
-
-
 	</style>
 	<link rel="stylesheet" href="jparkerweb-grids.css">
 </head>
@@ -233,6 +243,7 @@
 	<div class="marker marker--s"></div>
 	<div class="marker marker--m"></div>
 	<div class="marker marker--l"></div>
+	<div class="marker-indicator"></div>
 	<!-- gridlines toggle -->
 	<div class="gridlines-toggle">gridlines</div>
 	<!-- markers toggle -->
@@ -247,7 +258,7 @@
 				<p class="title">GRIDS</p>
 			</div>
 			<div class="col-push-1 col-7 col-push-m-1 col-m-8 col-push-s-0 col-s-12">
-				<p class="description">GRIDS is an easy to use grid framework that is built to work with the ever expansive list of devices that we encounter each day.  It affords various view-port and size configurations with all columns sporting fluid widths.  This tool-kit also comes with a few handy tools (gridline overlays and breakpoint markers) to aid in your page layout.</p>
+				<p class="description">GRIDS is a user-friendly framework compatible with the numerous devices we encounter daily.  This tool-kit features various view-port and size configurations, twelve fluid-width columns, gridline overlays and breakpoint markers to aid in page layout.</p>
 				<div class="call-to-action">
 					<a class="btn-download" href="https://github.com/jparkerweb/jparkerweb-grids/archive/master.zip">Download</a>
 					<a class="btn-github" href="https://github.com/jparkerweb/jparkerweb-grids" target="_blank">Github</a>
@@ -274,12 +285,14 @@
 				</div>
 			</div>
 			<div class="grid">
-				<pre class="col-12 code-block prettyprint linenums">
+				<div class="col-12">
+					<pre class="code-block prettyprint linenums">
 &lt;!-- element spanning six columns --&gt;
 &lt;div class=&quot;grid&quot;&gt;
   &lt;div class=&quot;col-6&quot;&gt;.col-6&lt;/div&gt;
 &lt;/div&gt;
-</pre>
+</pre>					
+				</div>
 			</div>
 			<div class="grid">
 				<p class="col-12 margin-top">Next, lets create a grid that has two elements, that when combined, will take up the whole row.  Note, that to span the entire grid width/row, the sum of the columns must equal 12.  We will use col-3 + col-9 = 12</p>
@@ -289,13 +302,15 @@
 				<div class="col-9"><div class="content">.col-9</div></div>
 			</div>
 			<div class="grid">
-				<pre class="col-12 code-block prettyprint linenums">
+				<div class="col-12">
+					<pre class="code-block prettyprint linenums">
 &lt;!-- two column grid row --&gt;
 &lt;div class=&quot;grid&quot;&gt;
   &lt;div class=&quot;col-3&quot;&gt;.col-3&lt;/div&gt;
   &lt;div class=&quot;col-9&quot;&gt;.col-9&lt;/div&gt;
 &lt;/div&gt;
-</pre>
+</pre>					
+				</div>
 			</div>
 
 			<div class="grid">
@@ -307,7 +322,8 @@
 				<div class="col-3"><div class="content">.col-3</div></div>
 			</div>
 			<div class="grid">
-				<pre class="col-12 code-block prettyprint linenums">
+				<div class="col-12">
+					<pre class="code-block prettyprint linenums">
 &lt;!-- grid row with three columns --&gt;
 &lt;div class=&quot;grid&quot;&gt;
   &lt;div class=&quot;col-3&quot;&gt;.col-3&lt;/div&gt;
@@ -315,6 +331,7 @@
   &lt;div class=&quot;col-3&quot;&gt;.col-3&lt;/div&gt;
 &lt;/div&gt;
 </pre>
+				</div>
 			</div>
 
 			<div class="grid">
@@ -435,7 +452,7 @@
 					Ok, so far we know how to create a simple grid, with each element spanning one or multiple columns, but what if we want a space between columns?  This is where the <span class="keyword">col-push-{number}</span> class will come in handy.
 				</p>
 				<p class="col-12 margin-top">
-					Let think back to our original example that displayed a single element taking up the first half of our grid.  Let's expand on this and first push it all the way to the right (6 colums over), and then push it to the center (3 columns over).  To help visualize this a bit more, click the <span class="keyword">gridlines</span> button in the top-left corner of this page to enable the grid overlay (this is one of the helper tools that comes with this framework, but more on that later).
+					Thinking back to our original example that displayed a single element taking up the first half of our grid.  Let's expand on this and first push it all the way to the right (6 colums over), and then push it to the center (3 columns over).  To help visualize this a bit more, click the <span class="gridlines-toggle">gridlines</span> button here, or in the bottom-left corner of this page to enable the grid overlay (this is one of the helper tools that comes with this framework, but more on that later).
 				</p>
 			</div>
 			<div class="grid">
@@ -445,7 +462,8 @@
 				<div class="col-push-3 col-6"><div class="content">.col-push-3 .col-6</div></div>
 			</div>
 			<div class="grid">
-				<pre class="col-12 code-block prettyprint linenums">
+				<div class="col-12">
+					<pre class="code-block prettyprint linenums">
 &lt;!-- pushing columns (inserting blank space) is easy --&gt;
 &lt;div class=&quot;grid&quot;&gt;
   &lt;div class=&quot;col-push-6 col-6&quot;&gt;.col-push-6 .col-6&lt;/div&gt;
@@ -453,7 +471,29 @@
 &lt;div class=&quot;grid&quot;&gt;
   &lt;div class=&quot;col-push-3 col-6&quot;&gt;.col-push-3 .col-6&lt;/div&gt;
 &lt;/div&gt;					
+</pre>					
+				</div>
+			</div>
+
+			<div class="grid margin-top">
+				<p class="col-12">
+					<span class="keyword">col-push-{number}</span> can also be used in combination with other columns within a row.
+				</p>
+			</div>
+			<div class="grid">
+				<div class="col-2"><div class="content">.col-2</div></div>
+				<div class="col-push-3 col-5"><div class="content">.col-push3 .col-5</div></div>
+			</div>
+			<div class="grid">
+				<div class="col-12">
+					<pre class="code-block prettyprint linenums">
+&lt;!-- two columns with the second pushed to the right --&gt;
+&lt;div class=&quot;grid&quot;&gt;
+  &lt;div class=&quot;col-2&quot;&gt;.col-2&lt;/div&gt;
+  &lt;div class=&quot;col-push-3 col-5&quot;&gt;.col-push3 .col-5&lt;/div&gt;
+&lt;/div&gt;
 </pre>
+				</div>
 			</div>
 		</section>
 
