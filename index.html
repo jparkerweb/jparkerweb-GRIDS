@@ -214,43 +214,8 @@
 	</style>
 	<link rel="stylesheet" href="jparkerweb-grids.css">
 </head>
+
 <body>
-	<!-- 
-		*******************************************************************
-		** Helper Markup - Gridline/Breakpoint Marker Overlay & Controls **
-		*******************************************************************
-	-->
-	<!-- gridlines -->
-	<div class="gridlines">
-		<div class="grid">
-			<div class="col-1"><div class="gridlines--col">1</div></div>
-			<div class="col-1"><div class="gridlines--col">2</div></div>
-			<div class="col-1"><div class="gridlines--col">3</div></div>
-			<div class="col-1"><div class="gridlines--col">4</div></div>
-			<div class="col-1"><div class="gridlines--col">5</div></div>
-			<div class="col-1"><div class="gridlines--col">6</div></div>
-			<div class="col-1"><div class="gridlines--col">7</div></div>
-			<div class="col-1"><div class="gridlines--col">8</div></div>
-			<div class="col-1"><div class="gridlines--col">9</div></div>
-			<div class="col-1"><div class="gridlines--col">10</div></div>
-			<div class="col-1"><div class="gridlines--col">11</div></div>
-			<div class="col-1"><div class="gridlines--col">12</div></div>
-		</div>
-	</div>
-	<!-- markers for grid -->
-	<div class="marker marker--stack"></div>
-	<div class="marker marker--xs"></div>
-	<div class="marker marker--s"></div>
-	<div class="marker marker--m"></div>
-	<div class="marker marker--l"></div>
-	<div class="marker-indicator"></div>
-	<!-- gridlines toggle -->
-	<div class="gridlines-toggle">gridlines</div>
-	<!-- markers toggle -->
-	<div class="markers-toggle">markers</div>	
-	<!-- ******************************************************************* -->
-
-
 	<header>
 		<div class="grid">
 			<div class="col-4 col-m-3 col-s-12 logo">
@@ -491,6 +456,38 @@
 &lt;div class=&quot;grid&quot;&gt;
   &lt;div class=&quot;col-2&quot;&gt;.col-2&lt;/div&gt;
   &lt;div class=&quot;col-push-3 col-5&quot;&gt;.col-push3 .col-5&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+				</div>
+			</div>
+		</section>
+
+		<section class="tutorial-section--stack-point demo-display">
+			<div class="grid"><h2 class="col-12 section-title">Stack Point</h2></div>
+			<div class="grid">
+				<div class="col-12">
+					<p>
+						GRIDS allows you to configure the browser width (view-port) at which it will <span class="keyword">stack</span> all columns on top of one another.  By default this is done at a browser width of 500px (landscape width of some larger smart phones).  This value can be easily changed by updating the <span class="keyword">$grid-stack-breakpoint</span> varialbe found in the top portion of the source file <span class="keyword">jparkerweb-grids.scss</span>.  
+					</p>
+					<p>
+						To see where the "stack point" threshold is visually, click the <span class="markers-toggle">markers</span> button here or in the bottom-left of the page.  Take note of the green line with the label of <span class="keyword">stack</span> that is now displayed on the top of the page.  This indicates the view-point width at which all grid columns on the page will stack on top of one another.  In addition to just stacking, each column will also span the entire width of the grid row.  With the <span class="keyword">markers</span> lines enabled, resize your browser's width to be smaller than the <span class="keyword">stack</span> line.
+					</p>
+					<p>
+						Once your browser width triggers the "stack point" you will see the two columns below "stack" on top of one another.  When the <span class="keyword">marker</span> lines are enabled, you will also see the <span class="keyword">marker</span> indicator bar at the bottom of the page display the current break point (more on the additional marker lines in the next section).						
+					</p>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="col-6"><div class="content">.col-6</div></div>
+				<div class="col-6"><div class="content">.col-6</div></div>
+			</div>
+			<div class="grid">
+				<div class="col-12">
+					<pre class="code-block prettyprint linenums">
+&lt;!-- columns will stack once the browser&#039;s width falls below the stack point --&gt;
+&lt;div class=&quot;grid&quot;&gt;
+	&lt;div class=&quot;col-6&quot;&gt;.col-6&lt;/div&gt;
+	&lt;div class=&quot;col-6&quot;&gt;.col-6&lt;/div&gt;
 &lt;/div&gt;
 </pre>
 				</div>
