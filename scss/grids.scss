@@ -1,19 +1,23 @@
-// ----------------------------------------
-// -- jparkerweb-Grids Framework Classes --
-// ----------------------------------------
+// ---------------------------------
+// -- jparkerweb-GRIDS Framework  --
+// ---------------------------------------------------
+// -- http://jparkerweb.github.io/jparkerweb-grids/ --
+// ---------------------------------------------------
+
 $grid-width: 1264px; //px or %
 $grid-gutter-width: 10px; //px
+
+$grid-stack-breakpoint: 500px;
 
 $grid-breakpoint-xs: 568px;
 $grid-breakpoint-s: 720px;
 $grid-breakpoint-m: 944px;
 $grid-breakpoint-l: 1264px;
-$grid-breakpoint-xl: 1920px;
+$grid-breakpoint-xl: 1680px;
 
-$grid-stack-breakpoint: 500px;
 
 // gridline and marker helpers
-@import "gridlines-markers";
+@import "grids--gridlines-markers";
 
 
 $col-1: 1 / 12 * 100%;
@@ -37,7 +41,8 @@ $col-12: 12 / 12 * 100%;
 .grid {
 	display: block;
 	position: relative;
-	margin: 0 auto;
+	margin-left: auto;
+	margin-right: auto;
 	max-width: $grid-width;
 	padding-left: $grid-gutter-width;
 	&:after {
@@ -87,13 +92,41 @@ $col-12: 12 / 12 * 100%;
 	// stack em' at our stack breakboint
 	[class*='col-']:not(.col-no-stack) {
 		@media (max-width: $grid-stack-breakpoint) {
-			float: none;
 			width: 100%;
 			margin-left: 0;
 		}
-	}	
+	}
 
 	// at breakpoints
+	@media (max-width: $grid-breakpoint-xl) {
+		[class*='col-xl-'] { float: left; }
+		.col-xl-0 { display: none; }
+		.col-xl-1 { width: $col-1; display: block; }
+		.col-xl-2 { width: $col-2; display: block; }
+		.col-xl-3 { width: $col-3; display: block; }
+		.col-xl-4 { width: $col-4; display: block; }
+		.col-xl-5 { width: $col-5; display: block; }
+		.col-xl-6 { width: $col-6; display: block; }
+		.col-xl-7 { width: $col-7; display: block; }
+		.col-xl-8 { width: $col-8; display: block; }
+		.col-xl-9 { width: $col-9; display: block; }
+		.col-xl-10 { width: $col-10; display: block; }
+		.col-xl-11 { width: $col-11; display: block; }
+		.col-xl-12 { width: $col-12; display: block; }
+		.col-push-xl-0 { margin-left: 0; }
+		.col-push-xl-1 { margin-left: $col-1; }
+		.col-push-xl-2 { margin-left: $col-2; }
+		.col-push-xl-3 { margin-left: $col-3; }
+		.col-push-xl-4 { margin-left: $col-4; }
+		.col-push-xl-5 { margin-left: $col-5; }
+		.col-push-xl-6 { margin-left: $col-6; }
+		.col-push-xl-7 { margin-left: $col-7; }
+		.col-push-xl-8 { margin-left: $col-8; }
+		.col-push-xl-9 { margin-left: $col-9; }
+		.col-push-xl-10 { margin-left: $col-10; }
+		.col-push-xl-11 { margin-left: $col-11; }
+		.col-push-xl-12 { margin-left: $col-12; }		
+	}
 	@media (max-width: $grid-breakpoint-l) {
 		[class*='col-l-'] { float: left; }
 		.col-l-0 { display: none; }
@@ -208,7 +241,7 @@ $col-12: 12 / 12 * 100%;
 		.col-push-xs-9 { margin-left: $col-9; }
 		.col-push-xs-10 { margin-left: $col-10; }
 		.col-push-xs-11 { margin-left: $col-11; }
-		.col-push-xs-12 { margin-left: $col-12; }			
+		.col-push-xs-12 { margin-left: $col-12; }
 	}
 }
 // ---------------------------

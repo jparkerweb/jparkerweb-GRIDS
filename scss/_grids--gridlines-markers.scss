@@ -1,3 +1,9 @@
+// ---------------------------------
+// -- jparkerweb-GRIDS Framework  --
+// ---------------------------------------------------
+// -- http://jparkerweb.github.io/jparkerweb-grids/ --
+// ---------------------------------------------------
+
 @import url(http://fonts.googleapis.com/css?family=Inconsolata);
 $font--inconsolata: 'Inconsolata', arial, sans-serif;
 
@@ -233,7 +239,29 @@ $gridlineOpacity: 0.4 !default;
 			width: 0px;
 			left: -0.45em;
 		}			
-	}    
+	}
+	&.marker--xl {
+		z-index: 10;
+		left: $grid-breakpoint-xl;
+		background: #f1c40f;
+		&:before {
+			content: 'XL';
+			left: -0.68em;
+			background: #f1c40f;
+			padding: 2px 4px;      
+		}
+		&:after {
+			display: block;
+			position: relative;
+			content: '';
+			border-color: #f1c40f transparent;
+			border-style: solid;
+			border-width: .4em .73em 0 .73em;
+			height: 0px;
+			width: 0px;
+			left: -0.68em;
+		}
+	}
 }
 .marker-indicator {
 	position: fixed;
@@ -259,6 +287,13 @@ $gridlineOpacity: 0.4 !default;
 // -------------------------------------------
 @if $showMarkers == true {
 	body.show-marker-outlines {
+		@media (max-width: $grid-breakpoint-xl) {
+			[class*='col-xl-'] > * { outline: 2px solid #f1c40f !important; }
+			.marker-indicator { 
+				background: #f1c40f !important;
+				&:before { content: 'breakpoint: XL'; }
+			}
+		}
 		@media (max-width: $grid-breakpoint-l) {
 			[class*='col-l-'] > * { outline: 2px solid #27ae60 !important; }
 			.marker-indicator { 

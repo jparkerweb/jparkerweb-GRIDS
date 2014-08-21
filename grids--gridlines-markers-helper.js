@@ -1,3 +1,9 @@
+// ---------------------------------
+// -- jparkerweb-GRIDS Framework  --
+// ---------------------------------------------------
+// -- http://jparkerweb.github.io/jparkerweb-grids/ --
+// ---------------------------------------------------
+
 $( document ).ready(function() {
 
 	// define markup require to render Gridline & Marker Helper elements
@@ -30,6 +36,7 @@ $( document ).ready(function() {
 		<div class=\"marker marker--s\"></div> \
 		<div class=\"marker marker--m\"></div> \
 		<div class=\"marker marker--l\"></div> \
+		<div class=\"marker marker--xl\"></div> \
 		<div class=\"marker-indicator\"></div> \
 		<!-- gridlines toggle --> \
 		<div class=\"gridlines-toggle\">gridlines</div> \

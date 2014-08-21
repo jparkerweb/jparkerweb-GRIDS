@@ -4,10 +4,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>jparkerweb-grids</title>
-	<meta name="description" content="Simple Fluid Grid Framework">
+	<title>GRIDS (jparkerweb)</title>
+	<meta name="description" content="GRIDS is a user-friendly framework compatible with the numerous devices we encounter daily. This tool-kit features various view-port and size configurations, twelve fluid-width columns, gridline overlays and breakpoint markers to aid in page layout.">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="icon" href="favicon.ico?v=1.2" type="image/x-icon">
 	<style type="text/css" media="screen">
 		/* ------------------------------------------------- */
 		/* classes for demo only, not part of grid framework */
@@ -31,8 +31,9 @@
 			text-decoration: none; 
 		}
 		p { 
-			margin: 0 0 7px;
+			margin: 0 0 20px;
 			padding: 0;
+			line-height: 1.5;
 		}
 		header {
 			text-align: center;
@@ -48,12 +49,15 @@
 			text-align: right;
 		}
 		.logo > .subtitle {
+			display: block;
 			color: rgb(230, 230, 230);
 			font-size: 14px;
 			font-weight: 300;
 			letter-spacing: 1px;
+			line-height: 30px;
 		}
 		.logo > .title {
+			display: block;
 			color: white;
 			font-size: 60px;
 			font-weight: 300;
@@ -67,7 +71,7 @@
 			font-weight: 300;
 			letter-spacing: 1px;
 			font-size: 18px;
-			padding-top: 20px;
+			padding-top: 23px;
 		}
 		@media (max-width: 720px) {
 			.description { padding-top: 0;}
@@ -91,10 +95,6 @@
 		}
 		.btn-download { margin-right: 10px; }
 
-		header .subtitle {
-			font-size: 13px;
-			color: #7f8c8d;
-		}
 		.demo-display {
 			margin-top: 30px;
 		}
@@ -158,12 +158,25 @@
 			border: 1px solid #ddd;
 			border-radius: 2px;
 		}
+		.class-types {
+			list-style: none;
+		}
+		.class-types li {
+			margin-bottom: 10px;
+		}
+		.class-types .class-type {
+			width: 120px;
+			display: inline-block;
+			color: #2980b9;
+			font-weight: 400;
+		}
 
 		footer {
 			font-size: 14px;
 			text-align: center;
 			margin-top: 30px;
 			color: #777;
+			margin-bottom: 30px;
 		}
 		footer a {
 			text-decoration: none;
@@ -181,7 +194,7 @@
 		.typ, .atn, .dec, .var { color: #008ec4; }
 		.pln { color: #444; }
 
-		.prettyprint.linenums {
+		.prettyprint.linenums, {
 			-webkit-box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
 			-moz-box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
 			box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
@@ -205,22 +218,33 @@
 			display: inline-block;
 			width: 100%;
 		}
+		pre.prettyprint.nolinenums {
+			padding: 5px 20px;
+		}
 		/* ----------------------------- */
 
 		/* helper classes */
 		.margin-top {
-			margin-top: 30px;
+			margin-top: 25px;
+		}
+		.margin-top-2x {
+			margin-top: 50px;
 		}
 	</style>
-	<link rel="stylesheet" href="jparkerweb-grids.css">
+    <!-- // =================================
+         // == jparkerweb-GRIDS Framework  ==
+         // ===================================================
+         // == http://jparkerweb.github.io/jparkerweb=grids/ ==
+         // ===================================================	 -->
+	<link rel="stylesheet" href="grids.css">
 </head>
 
 <body>
 	<header>
 		<div class="grid">
 			<div class="col-4 col-m-3 col-s-12 logo">
-				<p class="subtitle">jparkerweb</p>
-				<p class="title">GRIDS</p>
+				<span class="subtitle">jparkerweb</span>
+				<span class="title">GRIDS</span>
 			</div>
 			<div class="col-push-1 col-7 col-push-m-1 col-m-8 col-push-s-0 col-s-12">
 				<p class="description">GRIDS is a user-friendly framework compatible with the numerous devices we encounter daily.  This tool-kit features various view-port and size configurations, twelve fluid-width columns, gridline overlays and breakpoint markers to aid in page layout.</p>
@@ -234,14 +258,15 @@
 
 
 	<main>
+		<!-- Section: The Basics -->
 		<section class="tutorial-section--the-basics demo-display">
 			<div class="grid"><h2 class="col-12 section-title">The Basics</h2></div>
 			<div class="grid">
 				<p class="col-12">
-					GRIDS is made up of a parent element with a class of <span class="keyword">gird</span> and direct children that have a class name of <span class="keyword">col-{number}</span>.  Each grid row is made up of 12 columns.  A direct child is allowed to span multiple columns by specifying a number from 1 to 12 in the <span class="keyword">col-{number}</span> class name.
+					GRIDS is made up of a parent element with a class of <span class="keyword">gird</span> and direct children that have a class name of <span class="keyword">col-{number}</span>.  Each grid row is made up of 12 fluid columns.  A direct child is allowed to span multiple columns by specifying a number from 1 to 12 in the <span class="keyword">col-{number}</span> class name.
 				</p>
-				<p class="col-12 margin-top">
-					The following example is an element that spans 6 columns, taking up one half of the row (6/12 = one half).
+				<p class="col-12">
+					The following example is an element that spans 6 columns, taking up one half of the row (since 6 out of 12 is one half).
 				</p>
 			</div>
 			<div class="grid">
@@ -260,7 +285,7 @@
 				</div>
 			</div>
 			<div class="grid">
-				<p class="col-12 margin-top">Next, lets create a grid that has two elements, that when combined, will take up the whole row.  Note, that to span the entire grid width/row, the sum of the columns must equal 12.  We will use col-3 + col-9 = 12</p>
+				<p class="col-12">Next, lets create a grid that has two elements, that when combined, will take up the whole row.  Note, that to span the entire grid width/row, the sum of the columns must equal 12.  We will use <span class="keyword">col-3</span> and <span class="keyword">col-9</span> (3 + 9 is 12 total columns</p>
 			</div>
 			<div class="grid">
 				<div class="col-3"><div class="content">.col-3</div></div>
@@ -279,7 +304,7 @@
 			</div>
 
 			<div class="grid">
-				<p class="col-12 margin-top">To demonstrate this once more, how about we create a grid with three columns.  The first with a span of 3, second spannig 6, and the third spanning the remaining 3.</p>
+				<p class="col-12">To demonstrate this once more, how about we create a grid with three columns.  The first with a span of 3, second spannig 6, and the third spanning the remaining 3.</p>
 			</div>
 			<div class="grid">
 				<div class="col-3"><div class="content">.col-3</div></div>
@@ -300,7 +325,7 @@
 			</div>
 
 			<div class="grid">
-				<p class="col-12 margin-top">To round off the basics, you can see from this example all the variations of spanning multiple columns</p>
+				<p class="col-12">To round off the basics, you can see from this example all the variations of spanning multiple columns</p>
 			</div>
 			<!-- 1st row -->
 			<div class="grid">
@@ -410,14 +435,16 @@
 			</div>	
 		</section>
 
+		
+		<!-- Section: "Push It" -->
 		<section class="tutorial-section--push-it demo-display">
 			<div class="grid"><h2 class="col-12 section-title">"Push It"</h2></div>
 			<div class="grid">
 				<p class="col-12">
 					Ok, so far we know how to create a simple grid, with each element spanning one or multiple columns, but what if we want a space between columns?  This is where the <span class="keyword">col-push-{number}</span> class will come in handy.
 				</p>
-				<p class="col-12 margin-top">
-					Thinking back to our original example that displayed a single element taking up the first half of our grid.  Let's expand on this and first push it all the way to the right (6 colums over), and then push it to the center (3 columns over).  To help visualize this a bit more, click the <span class="gridlines-toggle">gridlines</span> button here, or in the bottom-left corner of this page to enable the grid overlay (this is one of the helper tools that comes with this framework, but more on that later).
+				<p class="col-12">
+					Thinking back to our original example (a single element taking up the first half of our grid), let's expand on this and first push it all the way to the right (6 colums over), and then push it to the center (3 columns over).  To help visualize this a bit more, click the <span class="gridlines-toggle">gridlines</span> button here, or in the bottom-left corner of this page to enable the grid overlay (this is one of the helper tools that comes with this framework, but more on that later).
 				</p>
 			</div>
 			<div class="grid">
@@ -440,7 +467,7 @@
 				</div>
 			</div>
 
-			<div class="grid margin-top">
+			<div class="grid margin-top-2x">
 				<p class="col-12">
 					<span class="keyword">col-push-{number}</span> can also be used in combination with other columns within a row.
 				</p>
@@ -462,20 +489,22 @@
 			</div>
 		</section>
 
+
+		<!-- Section: Stack Point -->
 		<section class="tutorial-section--stack-point demo-display">
 			<div class="grid"><h2 class="col-12 section-title">Stack Point</h2></div>
 			<div class="grid">
 				<div class="col-12">
 					<p>
-						GRIDS allows you to configure the browser width (view-port) at which it will <span class="keyword">stack</span> all columns on top of one another.  By default this is done at a browser width of 500px (landscape width of some larger smart phones).  This value can be easily changed by updating the <span class="keyword">$grid-stack-breakpoint</span> varialbe found in the top portion of the source file <span class="keyword">jparkerweb-grids.scss</span>.  
+						GRIDS allows you to configure the browser width at which it will <span class="keyword">stack</span> all columns on top of one another.  By default this is done at a browser width of 500px (landscape width of some larger smart phones).  This value can be easily changed by updating the <span class="keyword">$grid-stack-breakpoint</span> varialbe found in the top portion of the source file <span class="keyword">grids.scss</span>.  
 					</p>
 					<p>
 						To see where the "stack point" threshold is visually, click the <span class="markers-toggle">markers</span> button here or in the bottom-left of the page.  Take note of the green line with the label of <span class="keyword">stack</span> that is now displayed on the top of the page.  This indicates the view-point width at which all grid columns on the page will stack on top of one another.  In addition to just stacking, each column will also span the entire width of the grid row.  With the <span class="keyword">markers</span> lines enabled, resize your browser's width to be smaller than the <span class="keyword">stack</span> line.
 					</p>
 					<p>
-						Once your browser width triggers the "stack point" you will see the two columns below "stack" on top of one another.  When the <span class="keyword">marker</span> lines are enabled, you will also see the <span class="keyword">marker</span> indicator bar at the bottom of the page display the current break point (more on the additional marker lines in the next section).						
+						Once your browser width triggers the "stack point", you will see the two columns below "stack" on top of one another.  When the <span class="keyword">marker</span> lines are enabled, you will also see the <span class="keyword">marker</span> indicator bar at the bottom of the page display the current break point (more on the additional marker lines in the next section).						
 					</p>
-				</p>
+				</div>
 			</div>
 			<div class="grid">
 				<div class="col-6"><div class="content">.col-6</div></div>
@@ -486,14 +515,262 @@
 					<pre class="code-block prettyprint linenums">
 &lt;!-- columns will stack once the browser&#039;s width falls below the stack point --&gt;
 &lt;div class=&quot;grid&quot;&gt;
-	&lt;div class=&quot;col-6&quot;&gt;.col-6&lt;/div&gt;
-	&lt;div class=&quot;col-6&quot;&gt;.col-6&lt;/div&gt;
+  &lt;div class=&quot;col-6&quot;&gt;.col-6&lt;/div&gt;
+  &lt;div class=&quot;col-6&quot;&gt;.col-6&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+				</div>
+			</div>
+
+			<div class="grid margin-top">
+				<div class="col-12">
+					<p>
+						There may be situations where you do NOT want to stack columns.  This is done by adding the <span class="keyword">col-no-stack</span> class to the columns that should ignore the "stack point".  Using the previous two column example, now we will add the <span class="keyword">col-no-stack</span> class to each column.  After resizing the browser to trigger the <span class="keyword">stack</span> break point, notice the two columns still remain side by side.
+					</p>
+					<p>
+						It is easy to see which columns have the <span class="keyword">col-no-stack</span> class applied to them when you have the <span class="markers-toggle">markers</span> helper tool enabled (each <span class="keyword">col-no-stack</span> column will have a green dotted outline displayed aroud it when triggered).
+					</p>
+				</div>
+			</div>
+			<div class="grid">
+				<div class="col-6 col-no-stack"><div class="content">.col-6 .col-no-stack</div></div>
+				<div class="col-6 col-no-stack"><div class="content">.col-6 .col-no-stack</div></div>
+			</div>
+			<div class="grid">
+				<div class="col-12">
+					<pre class="code-block prettyprint linenums">
+&lt;!-- columns will not stack due to the &quot;col-no-stack&quot; class --&gt;
+&lt;div class=&quot;grid&quot;&gt;
+  &lt;div class=&quot;col-6 col-no-stack&quot;&gt;.col-6 .col-no-stack&lt;/div&gt;
+  &lt;div class=&quot;col-6 col-no-stack&quot;&gt;.col-6 .col-no-stack&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+				</div>
+			</div>
+
+			<div class="grid">
+				<p class="col-12">
+					The "stack point" only applies to columns that do NOT have the <span class="keyword">col-no-stack</span> class applied to them.  In other words, if we only apply the <span class="keyword">col-no-stack</span> class to the first column in our example, the second column will inherit the stack properties.  At the <span class="keyword">stack</span> breakpoint, the second column will have a width of 100% and push itself to the next line in order to fit within the page.
+				</p>
+			</div>
+			<div class="grid">
+				<div class="col-6 col-no-stack"><div class="content">.col-6 .col-no-stack</div></div>
+				<div class="col-6"><div class="content">.col-6</div></div>
+			</div>
+			<div class="grid">
+				<div class="col-12">
+					<pre class="code-block prettyprint linenums">
+&lt;!-- &quot;col-no-stack&quot; only applied to the first column; the second column will stack (width: 100%) --&gt;
+&lt;div class=&quot;grid&quot;&gt;
+  &lt;div class=&quot;col-6 col-no-stack&quot;&gt;.col-6 .col-no-stack&lt;/div&gt;
+  &lt;div class=&quot;col-6&quot;&gt;.col-6&lt;/div&gt;
 &lt;/div&gt;
 </pre>
 				</div>
 			</div>
 		</section>
 
+		
+		<!-- Section: Breakpoints & Markers -->
+		<section class="tutorial-section--breakpoints-and-markers demo-display">
+			<div class="grid"><h2 class="col-12 section-title">Breakpoints & Markers</h2></div>
+			<div class="grid">
+				<div class="col-12">
+					<p>
+						GRIDS allows for the definition of six different Breakpoints (CSS Media Queries).  We have already gone over the most import and unique breakpoint, the <span class="keyword">stack point</span>.  Just like configuring the <span class="keyword">stack point</span>, all other breakpoints can be changed in the beginning of the <span class="keyword">grids.scss</span> source file.  See the default values for these breakpoints below:
+					</p>
+					<pre class="code-block prettyprint nolinenums">
+$grid-stack-breakpoint: 500px;
+
+$grid-breakpoint-xs: 568px;
+$grid-breakpoint-s: 720px;
+$grid-breakpoint-m: 944px;
+$grid-breakpoint-l: 1264px;
+$grid-breakpoint-xl: 1680px;
+</pre>
+					<p>
+						As you have probably already noticed, when the <span class="markers-toggle">markers</span> helper is enabled, each breakpoint line is overlayed on the screen, as well as a marker indicator bar along the bottom of the page which displays which breakpoint is currently being triggered (if any).
+					</p>
+					<p>
+						Up to this point we have just defined "default" column sizes using the <span class="keyword">col-{number}</span> class.  With that understanding we can now really start to customise our layout at different screen sizes by using Breakpoints.  Let's start out by targeting the "medium" Breakpoint.  We will use our two column example and have each column span 6 until we reach a screen size of "medium", at which point we will have each column drop down to span only 3 by adding a <span class="keyword">col-m-{number}</span> class.
+					</p>
+				</div>
+			</div>	
+			<div class="grid">
+				<div class="col-6 col-m-3"><div class="content">.col-6 .col-m-3</div></div>
+				<div class="col-6 col-m-3"><div class="content">.col-6 .col-m-3</div></div>
+			</div>
+			<div class="grid">
+				<div class="col-12">
+					<pre class="code-block prettyprint linenums">
+&lt;!-- two column grid spanning 6 each; spanning 3 each at medium breakpoint --&gt;
+&lt;div class=&quot;grid&quot;&gt;
+  &lt;div class=&quot;col-6 col-m-3&quot;&gt;.col-6 .col-m-3&lt;/div&gt;
+  &lt;div class=&quot;col-6 col-m-3&quot;&gt;.col-6 .col-m-3&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+				</div>
+			</div>
+
+			<div class="grid">
+				<div class="col-12">
+					<p>
+						Enable the <span class="markers-toggle">markers</span> helper and re-examine the previous example.  Notice the <span class="keyword">blue</span> outlines around our two columns when the browser width falls bellow the "medium" breakpoint line.  Each breakpoint is color coded (as seen by the breakpoint line overlays) and their correspoinding color will be used to outline any affected elements when a breakpoint is triggered.  This can be very helpful when designing a layout for different view-ports and visualizing which elements have inherited a new <span class="keyword">col-{breakpoint}-{number}</span> class.
+					</p>
+					<p>
+						In addition to specifying new column spans at different breakpoints, we can also specify breakpoint push classes using the same pattern: <span class="keyword">col-push-{breakpoint}-{number}</span>.  Let's apply this to the previous example by not only shrinking both columns at the "medium" breakpoint, but also pushing the second column over by 6.
+					</p>
+				</div>
+			</div>
+			<div class="grid">
+				<div class="col-6 col-m-3"><div class="content">.col-6 .col-m-3</div></div>
+				<div class="col-6 col-push-m-6 col-m-3"><div class="content">.col-6 .col-push-m-6 .col-m-3</div></div>
+			</div>
+			<div class="grid">
+				<div class="col-12">
+					<pre class="code-block prettyprint linenums">
+&lt;!-- shrink columns to span 3 at medium breakpoint and push the second over by 6 --&gt;
+&lt;div class=&quot;grid&quot;&gt;
+  &lt;div class=&quot;col-6 col-m-3&quot;&gt;.col-6 .col-m-3&lt;/div&gt;
+  &lt;div class=&quot;col-6 col-push-m-6 col-m-3&quot;&gt;.col-6 .col-push-m-6 .col-m-3&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+				</div>
+
+				<div class="col-12">
+					<p>
+						Our default base column class <span class="keyword">col-{number}</span> will always be used up until the <span class="keyword">stack</span> breakpoint is reached (unless the <span class="keyword">col-no-stack</span> is set on an element).  In addition, you can also specify one or all of the other breakpoint classes on an element.  To demonstrate this, examine the example grid below at each breakpoint (start wide and slowly resize your browser past each breakpoint).
+					</p>
+				</div>
+			</div>
+			<div class="grid">
+				<div class="col-push-1 col-11 col-push-xl-2 col-xl-10 col-push-l-3 col-l-9 col-push-m-4 col-m-8 col-push-s-5 col-s-7 col-push-xs-6 col-xs-6 col-no-stack"><div class="content">.col-push-1 .col-11 .col-push-xl-2 .col-xl-10 .col-push-l-3 .col-l-9 .col-push-m-4 .col-m-8 .col-push-s-5 .col-s-7 .col-push-xs-6 .col-xs-6 .col-no-stack</div></div>
+			</div>
+			<div class="grid">
+				<div class="col-12">
+					<pre class="code-block prettyprint linenums">
+&lt;!-- column with differnt spans and pushes defined at every breakpoint --&gt;
+&lt;div class=&quot;grid&quot;&gt;
+  &lt;div class=&quot;col-push-1 col-11 col-push-xl-2 col-xl-10 col-push-l-3 col-l-9 col-push-m-4 col-m-8 col-push-s-5 col-s-7 col-push-xs-6 col-xs-6 col-no-stack&quot;&gt;.col-push-1 .col-11 .col-push-xl-2 .col-xl-10 .col-push-l-3 .col-l-9 .col-push-m-4 .col-m-8 .col-push-s-5 .col-s-7 .col-push-xs-6 .col-xs-6 .col-no-stack&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+				</div>
+			</div>
+
+			<div class="grid">
+				<div class="col-12">
+					<p>
+						So you can now customize column spans at diffenent breakpoints, but what if you want to hide a column instead.  Easy, just specify a 0 for the number value in any of the <span class="keyword">col-{number}</span> or <span class="keyword">col-{breakpoint}-{number}</span> classes.  Below, the second column will be hidden at the "medium" breakpoint.
+					</p>
+				</div>
+			</div>
+			<div class="grid">
+				<div class="col-6"><div class="content">.col-6</div></div>
+				<div class="col-6 col-m-0"><div class="content">.col-6 .col-m-0</div></div>
+			</div>
+			<div class="grid">
+				<div class="col-12">
+					<pre class="code-block prettyprint linenums">
+&lt;!-- hide the second column once the medium breakpoint is triggered --&gt;
+&lt;div class=&quot;grid&quot;&gt;
+  &lt;div class=&quot;col-6&quot;&gt;.col-6&lt;/div&gt;
+  &lt;div class=&quot;col-6 col-m-0&quot;&gt;.col-6 .col-m-0&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+				</div>
+			</div>
+
+			<div class="grid">
+				<div class="col-12">
+					<p>
+						Just like hiding columns, you can set a <span class="keyword">push</span> value of zero for each breakpoint as well.  Below, the second column's <span class="keyword">push</span> value will be removed (set to zero) once the "medium" breakpoint is met.
+					</p>
+				</div>
+			</div>
+			<div class="grid">
+				<div class="col-5"><div class="content">.col-5</div></div>
+				<div class="col-push-2 col-5 col-push-m-0"><div class="content">.col-push-2 .col-5 .col-push-m-0</div></div>
+			</div>
+			<div class="grid">
+				<div class="col-12">
+					<pre class="code-block prettyprint linenums">
+&lt;!-- the second column&#039;s push value is removed at the medium breakpoint --&gt;
+&lt;div class=&quot;grid&quot;&gt;
+  &lt;div class=&quot;col-5&quot;&gt;&lt;div class=&quot;content&quot;&gt;.col-5&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;col-push-2 col-5 col-push-m-0&quot;&gt;&lt;div class=&quot;content&quot;&gt;.col-push-2 .col-5 .col-push-m-0&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+				</div>
+			</div>
+			<div class="grid">
+				<div class="col-12">
+					<p>
+						One important thing to note in the above example is that we only removed the <span class="keyword">push</span> value at the "medium" breakpoint.  Its base span of 5 <span class="keyword">.col-5</span> was retained (inherited) and kept in place.  
+					</p>
+					<p>
+						With this knowledge in place, the combination of classes and different breakpoint will allow you to setup a vast array of layouts.  Below is a quick reference of each:
+					</p>
+					<p>
+						<ul class="class-types">
+							<li>
+								<!-- base -->
+								<span class="class-type">base </span>
+								<span class="keyword">.col-push-{0-12}</span>
+								<span class="keyword">.col-{0-12}</span>
+							</li>
+							<li>
+								<!-- extra large -->
+								<span class="class-type">extra large </span>
+								<span class="keyword">.col-push-xl-{0-12}</span>
+								<span class="keyword">.col-xl-{0-12}</span>
+							</li>
+							<li>
+								<!-- large -->
+								<span class="class-type">large </span>
+								<span class="keyword">.col-push-l-{0-12}</span>
+								<span class="keyword">.col-l-{0-12}</span>
+							</li>
+							<li>
+								<!-- medium -->
+								<span class="class-type">medium </span>
+								<span class="keyword">.col-push-m-{0-12}</span>
+								<span class="keyword">.col-m-{0-12}</span>
+							</li>
+							<li>
+								<!-- small -->
+								<span class="class-type">small </span>
+								<span class="keyword">.col-push-s-{0-12}</span>
+								<span class="keyword">.col-s-{0-12}</span>
+							</li>
+							<li>
+								<!-- extra small -->
+								<span class="class-type">extra small </span>
+								<span class="keyword">.col-push-xs-{0-12}</span>
+								<span class="keyword">.col-xs-{0-12}</span>
+							</li>
+							<li>
+								<!-- stack -->
+								<span class="class-type">stack </span>
+								<span class="keyword">.col-no-stack</span>
+							</li>
+						</ul>
+					</p>
+				</div>
+			</div>
+		</section>
+
+
+		<!-- Section: Installation & Toolkit -->
+		<section class="tutorial-section--installation-and-toolkit demo-display">
+			<div class="grid"><div class="col-12 section-title">Installation & Toolkit</div></div>
+			<div class="grid">
+				<div class="col-12">
+					<p>
+						Both the <span class="gridlines-toggle">gridlines</span> and <span class="markers-toggle">markers</span> are only inserted into the page if you include the helper javascript file (which you would leave out in production): <span class="keyword">grids--gridlines-markers-helper.js</span>
+					</p>
+				</div>
+			</div>
+		</section>
 	</main>
 
 
@@ -502,9 +779,11 @@
 		<a href="http://css-tricks.com/dont-overthink-it-grids/" target="_blank">Dont-Overthink-it-Grids</a>
 	</footer>
 
-	<!-- gridline and marker helper includes -->
+	<!-- jquery -->
 	<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script src="gridline-marker-helper.js"></script>
+	<!-- gridline and marker helper includes (depends on jquery) -->
+	<script src="grids--gridlines-markers-helper.js"></script>
+	<!-- code prettifier for examples -->
 	<script src="prettify.js"></script>
 	<script>prettyPrint();</script>
 </body>
