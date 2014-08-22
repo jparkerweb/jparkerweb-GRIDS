@@ -13,12 +13,15 @@ html, body { height: 100%; }
 // this file is only used to define helper
 // classes for showing gridlines and breakpoint
 // markers while you are developing/laying out
-// your page.  to enable these functions
+// your page.  to enable this toolkit make sure to
+// include the "grids--gridlines-markers-helper.js"
+// file in the bottom of your page (requires jQuery)
 
 
-// ************
-// ** CONGIF **
-// ************
+// **************************
+// ** CONFIGURATION VALUES **
+// **************************
+// ***************************************************
 // set to true if you want to show your breakpoint
 // markers (xs, s, m, l). helpful when defining
 // your layout and testing the variation of 
@@ -36,14 +39,16 @@ $showGridlines: true !default;
 $gridlineBackground: #ddd !default;
 // opacity for each gridline column
 $gridlineOpacity: 0.4 !default;
+// ***************************************************
 
 
 
 
-// ******************************************
-// ** Do Not Edit Below This Line          **
-// ** (unless you know what you are doing) **
-// ******************************************
+// *********************************
+// *********************************
+// ** Do Not Edit Below This Line **
+// *********************************
+// *********************************
 
 // lineup gridlines with page content
 @if $showGridlines == true {
@@ -52,6 +57,7 @@ $gridlineOpacity: 0.4 !default;
 		padding-left: 0 !important; padding-right: 0 !important;
 	}
 }
+
 
 // ------------------------------
 // -- gridlines helper classes --
@@ -104,9 +110,21 @@ $gridlineOpacity: 0.4 !default;
 		height: 100%;
 	}
 }
+
 //-----------------------------
 // -- markers helper classes --
 //-----------------------------
+
+// colors
+$markerColor--stack: #16a085;
+$markerColor--xxs: #30BDF4;
+$markerColor--xs: #c0392b;
+$markerColor--s: #FF6600;
+$markerColor--m: #3498db;
+$markerColor--l: #27ae60;
+$markerColor--xl: #f1c40f;
+
+// classes
 .markers-toggle {
 	@extend %toggle-button;
 	@if $showMarkers == false { display: none; }
@@ -115,176 +133,171 @@ $gridlineOpacity: 0.4 !default;
 	left: 5px;
 	z-index: 10;
 }
-.marker {
+.markers-background {
 	@if $showMarkers == false { display: none; }
 	position: fixed;
-	top: -2px;
+	top: 0;
+	right: 0;
 	bottom: 0;
-	width: 1px;
-	font-size: 18px;
+	left: 0;
+	.grid { height: 100%; width: 100%; }
 	&:before {
-		top: 0;
-		position: relative;
-		color: white;
-		text-align: center;
+		width: 100%;
+		background: black;
+	}
+	&:after {
+		width: 100%;
+		background: black;
+	}
+}
+.markers {
+	@if $showMarkers == false { display: none; }
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;	
+	.grid { height: 100%; }
+	.marker {
+		@if $showMarkers == false { display: none; }
+		position: absolute;
+		top: -2px;
+		bottom: 0;
+		width: 1px;
 		font-size: 18px;
-		font-family: $font--inconsolata;
-	}
-	&.marker--stack {
 		z-index: 10;
-		left: $grid-stack-breakpoint;
-		background: #16a085;
 		&:before {
-			content: 'stack';
-			left: -1.5em;
-			background: #16a085;
-			padding: 2px 4px;
+			top: -2px;
+			position: relative;
+			color: white;
+			text-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
+			text-align: center;
+			font-size: 18px;
+			font-family: $font--inconsolata;
 		}
 		&:after {
-			display: block;
-			position: relative;
-			content: '';
-			border-color: #16a085 transparent;
-			border-style: solid;
-			border-width: 0.4em 1.5em 0 1.5em;
-			height: 0px;
-			width: 0px;
-			left: -1.5em;
-		}				
-	}
-	&.marker--xxs {
-		z-index: 10;
-		left: $grid-breakpoint-xxs;
-		background: #30BDF4;
-		&:before {
-			content: 'XXS';
-			left: -0.94em;
-			background: #30BDF4;
-			padding: 2px 4px;
+				display: block;
+				position: relative;
+				content: '';
+				border-style: solid;
+				height: 0px;
+				width: 0px;
+				top: -2px;
 		}
-		&:after {
-			display: block;
-			position: relative;
-			content: '';
-			border-color: #30BDF4 transparent;
-			border-style: solid;
-			border-width: .35em .99em 0 .99em;
-			height: 0;
-			width: 0;
-			left: -.95em;
+		&.marker--stack {
+			z-index: 10;
+			margin-left: $grid-stack-breakpoint;
+			background: $markerColor--stack;
+			&:before {
+				content: 'stack';
+				left: -1.5em;
+				background: $markerColor--stack;
+				padding: 2px 4px;
+			}
+			&:after {
+				border-color: $markerColor--stack transparent;
+				border-width: 0.4em 1.5em 0 1.5em;
+				left: -1.5em;
+			}				
 		}
-	}
-	&.marker--xs {
-		z-index: 10;
-		left: $grid-breakpoint-xs;
-		background: #c0392b;
-		&:before {
-			content: 'XS';
-			left: -0.68em;
-			background: #c0392b;
-			padding: 2px 4px;
+		&.marker--xxs {
+			margin-left: $grid-breakpoint-xxs;
+			background: $markerColor--xxs;
+			&:before {
+				content: 'XXS';
+				left: -0.94em;
+				background: $markerColor--xxs;
+				padding: 2px 4px;
+			}
+			&:after {
+				border-color: $markerColor--xxs transparent;
+				border-width: .35em .99em 0 .99em;
+				left: -.95em;
+			}
 		}
-		&:after {
-			display: block;
-			position: relative;
-			content: '';
-			border-color: #c0392b transparent;
-			border-style: solid;
-			border-width: .4em .73em 0 .73em;
-			height: 0px;
-			width: 0px;
-			left: -0.68em;
+		&.marker--xs {
+			z-index: 10;
+			margin-left: $grid-breakpoint-xs;
+			background: $markerColor--xs;
+			&:before {
+				content: 'XS';
+				left: -0.68em;
+				background: $markerColor--xs;
+				padding: 2px 4px;
+			}
+			&:after {
+				border-color: $markerColor--xs transparent;
+				border-width: .4em .73em 0 .73em;
+				left: -0.68em;
+			}
 		}
-	}
-	&.marker--s {
-		z-index: 10;
-		left: $grid-breakpoint-s;
-		background: #FF6600;
-		&:before {
-			content: 'S';
-			left: -0.45em;
-			background: #FF6600;
-			padding: 2px 4px;      
+		&.marker--s {
+			z-index: 10;
+			margin-left: $grid-breakpoint-s;
+			background: $markerColor--s;
+			&:before {
+				content: 'S';
+				left: -0.45em;
+				background: $markerColor--s;
+				padding: 2px 4px;      
+			}
+			&:after {
+				border-color: $markerColor--s transparent;
+				border-width: .3em .49em 0 .5em;
+				left: -0.45em;
+			}		
+		}  
+		&.marker--m {
+			z-index: 10;
+			margin-left: $grid-breakpoint-m;
+			background: $markerColor--m;
+			&:before {
+				content: 'M';
+				left: -0.45em;
+				background: $markerColor--m;
+				padding: 2px 4px;      
+			}
+			&:after {
+				border-color: $markerColor--m transparent;
+				border-width: .3em .49em 0 .5em;
+				left: -0.45em;
+			}			
+		}  
+		&.marker--l {
+			z-index: 10;
+			margin-left: $grid-breakpoint-l;
+			background: $markerColor--l;
+			&:before {
+				content: 'L';
+				left: -0.45em;
+				background: $markerColor--l;
+				padding: 2px 4px;      
+			}
+			&:after {
+				border-color: $markerColor--l transparent;
+				border-width: .3em .49em 0 .5em;
+				left: -0.45em;
+			}			
 		}
-		&:after {
-			display: block;
-			position: relative;
-			content: '';
-			border-color: #FF6600 transparent;
-			border-style: solid;
-			border-width: .3em .49em 0 .5em;
-			height: 0px;
-			width: 0px;
-			left: -0.45em;
-		}		
-	}  
-	&.marker--m {
-		z-index: 10;
-		left: $grid-breakpoint-m;
-		background: #2980b9;
-		&:before {
-			content: 'M';
-			left: -0.45em;
-			background: #2980b9;
-			padding: 2px 4px;      
-		}
-		&:after {
-			display: block;
-			position: relative;
-			content: '';
-			border-color: #2980b9 transparent;
-			border-style: solid;
-			border-width: .3em .49em 0 .5em;
-			height: 0px;
-			width: 0px;
-			left: -0.45em;
-		}			
-	}  
-	&.marker--l {
-		z-index: 10;
-		left: $grid-breakpoint-l;
-		background: #27ae60;
-		&:before {
-			content: 'L';
-			left: -0.45em;
-			background: #27ae60;
-			padding: 2px 4px;      
-		}
-		&:after {
-			display: block;
-			position: relative;
-			content: '';
-			border-color: #27ae60 transparent;
-			border-style: solid;
-			border-width: .3em .49em 0 .5em;
-			height: 0px;
-			width: 0px;
-			left: -0.45em;
-		}			
-	}
-	&.marker--xl {
-		z-index: 10;
-		left: $grid-breakpoint-xl;
-		background: #f1c40f;
-		&:before {
-			content: 'XL';
-			left: -0.68em;
-			background: #f1c40f;
-			padding: 2px 4px;      
-		}
-		&:after {
-			display: block;
-			position: relative;
-			content: '';
-			border-color: #f1c40f transparent;
-			border-style: solid;
-			border-width: .4em .73em 0 .73em;
-			height: 0px;
-			width: 0px;
-			left: -0.68em;
+		&.marker--xl {
+			z-index: 10;
+			margin-left: $grid-breakpoint-xl;
+			background: $markerColor--xl;
+			&:before {
+				content: 'XL';
+				left: -0.68em;
+				background: $markerColor--xl;
+				padding: 2px 4px;      
+			}
+			&:after {
+				border-color: $markerColor--xl transparent;
+				border-width: .4em .73em 0 .73em;
+				left: -0.68em;
+			}
 		}
 	}
 }
+
 .marker-indicator {
 	position: fixed;
 	display: block;
@@ -310,51 +323,51 @@ $gridlineOpacity: 0.4 !default;
 @if $showMarkers == true {
 	body.show-marker-outlines {
 		@media (max-width: $grid-breakpoint-xl) {
-			[class*='col-xl-'] > * { outline: 2px solid #f1c40f !important; }
+			[class*='col-xl-'] > * { outline: 2px solid $markerColor--xl !important; }
 			.marker-indicator { 
-				background: #f1c40f !important;
+				background: $markerColor--xl !important;
 				&:before { content: 'breakpoint: XL'; }
 			}
 		}
 		@media (max-width: $grid-breakpoint-l) {
-			[class*='col-l-'] > * { outline: 2px solid #27ae60 !important; }
+			[class*='col-l-'] > * { outline: 2px solid $markerColor--l !important; }
 			.marker-indicator { 
-				background: #27ae60 !important;
+				background: $markerColor--l !important;
 				&:before { content: 'breakpoint: L'; }
 			}
 		}
 		@media (max-width: $grid-breakpoint-m) {
-			[class*='col-m-'] > * { outline: 2px solid #2980b9 !important; }
+			[class*='col-m-'] > * { outline: 2px solid $markerColor--m !important; }
 			.marker-indicator { 
-				background: #2980b9 !important;
+				background: $markerColor--m !important;
 				&:before { content: 'breakpoint: M'; } 
 			}
 		}
 		@media (max-width: $grid-breakpoint-s) {
-			[class*='col-s-'] > * { outline: 2px solid #FF6600 !important; }
+			[class*='col-s-'] > * { outline: 2px solid $markerColor--s !important; }
 			.marker-indicator { 
-				background: #FF6600 !important; 
+				background: $markerColor--s !important; 
 				&:before { content: 'breakpoint: S'; }
 			}
 		}
 		@media (max-width: $grid-breakpoint-xs) {
-			[class*='col-xs-'] > * { outline: 2px solid #c0392b !important; }
+			[class*='col-xs-'] > * { outline: 2px solid $markerColor--xs !important; }
 			.marker-indicator { 
-				background: #c0392b !important; 
+				background: $markerColor--xs !important; 
 				&:before { content: 'breakpoint: XS'; }
 			}
 		}
 		@media (max-width: $grid-breakpoint-xxs) {
-			[class*='col-xxs-'] > * { outline: 2px solid #30BDF4 !important; }
+			[class*='col-xxs-'] > * { outline: 2px solid $markerColor--xxs !important; }
 			.marker-indicator { 
-				background: #30BDF4 !important; 
+				background: $markerColor--xxs !important; 
 				&:before { content: 'breakpoint: XXS'; }
 			}
 		}
 		@media (max-width: $grid-stack-breakpoint) {
-			.col-no-stack > * { outline: 2px dotted #16a085 !important; }
+			.col-no-stack > * { outline: 2px dotted $markerColor--stack !important; }
 			.marker-indicator { 
-				background: #16a085 !important; 
+				background: $markerColor--stack !important; 
 				&:before { content: 'breakpoint: stack'; }
 			}
 		}

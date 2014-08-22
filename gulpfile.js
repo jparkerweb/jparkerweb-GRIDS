@@ -2,6 +2,7 @@
 // ===             Require                ===
 // ==========================================
 	var runSequence = require('run-sequence'),
+		browserSync = require('browser-sync'),
 		gulp = require('gulp');
 
 	var clean = require('gulp-clean'),
@@ -19,8 +20,30 @@
 		SCSS: 'scss/**/*.scss'
 	};
 	var destPaths = {
+		BASE: './',
 		CSS: './'
 	};
+// ==========================================
+
+
+
+// ==========================================
+// ===           Static server            ===
+// ==========================================
+	// setup our browser-sync server
+	gulp.task('browser-sync', function() {
+		browserSync({
+			server: {
+				baseDir: "./"
+			},
+			files: "*.{html,js}"
+		});
+	});
+	// reload
+	gulp.task('reload', function () {
+		console.log('browser-sync reload');
+		browserSync.reload();
+	});
 // ==========================================
 
 
@@ -47,7 +70,8 @@ gulp.task('sass', function (callback) {
 			.pipe(rubySass())
 			.pipe(autoprefixer('last 4 version'))
 			.pipe(csso())
-			.pipe(gulp.dest(destPaths.CSS));
+			.pipe(gulp.dest(destPaths.CSS))
+			.pipe(browserSync.reload({stream:true}));
 	});
 
 
@@ -57,9 +81,34 @@ gulp.task('sass', function (callback) {
 // -------------------------
 gulp.task('watch', function () {
 	gulp.watch(sourcePaths.SCSS, ['sass']);
+	gulp.watch(destPaths.BASE + '*.{html,js}', ['reload']);
 });
+
+
+
+
+// *************************
+// ** Gulp tasks meant to **
+// ** be run from command **
+// ** line                **
+// *************************
+// ** gulp OR gulp alldev **
+// *************************
+
 
 // -------------------------
 // --    task: default    --
 // -------------------------
 gulp.task('default', ['sass']);
+
+
+// -------------------------
+// --    task: alldev     --
+// -------------------------
+gulp.task('alldev', function (callback) {
+	runSequence(
+		'sass',
+		'watch',
+		'browser-sync',
+		callback);
+});

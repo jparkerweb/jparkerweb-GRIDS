@@ -4,22 +4,53 @@
 // -- http://jparkerweb.github.io/jparkerweb-grids/ --
 // ---------------------------------------------------
 
-$grid-width: 1264px; //px or %
-$grid-gutter-width: 10px; //px
 
-$grid-stack-breakpoint: 320px;
+// **************************
+// ** CONFIGURATION VALUES **
+// **************************
+// *********************************************************
+// maximum width of each grid row (should be in px, em, or rem)
+$grid-max-width:        1024px !default;
+// actual width of each grid row which is a percentage of
+// the maximum width above.  if you want a grid row to fill
+// the entire possible width, set this value to 100%
+// (value should be in pixels)
+$grid-width:            99% !default;
+// gutter width is the width between columns in a row
+// as well as the width to the left and right of each
+// row (should be in px, em, or rem)
+$grid-gutter-width:     10px !default;
 
-$grid-breakpoint-xxs: 380px;
-$grid-breakpoint-xs: 480px;
-$grid-breakpoint-s: 800px;
-$grid-breakpoint-m: 1024px;
-$grid-breakpoint-l: 1366px;
-$grid-breakpoint-xl: 1680px;
+// view-port width (breakpoint) to auto-stack all columns
+// (should be in px, em, or rem)
+$grid-stack-breakpoint: 360px !default;
+
+// view-port widths (breakpoints) allowing layout change
+// based on GRIDS class names (should be in px, em, or rem)
+$grid-breakpoint-xxs:   320px !default;
+$grid-breakpoint-xs:    480px !default;
+$grid-breakpoint-s:     568px !default;
+$grid-breakpoint-m:     768px !default;
+$grid-breakpoint-l:     880px !default;
+$grid-breakpoint-xl:    1000px !default;
+// *********************************************************
 
 
 // gridline and marker helpers
+//  [can be commented out if not users the helper toolset]
 @import "grids--gridlines-markers";
+// some optional utility classes
+//  [can be commented out if not using the utility classes]
+@import "grids--utility";
 
+
+
+
+// *********************************
+// *********************************
+// ** Do Not Edit Below This Line **
+// *********************************
+// *********************************
 
 $col-1: 1 / 12 * 100%;
 $col-2: 2 / 12 * 100%;
@@ -44,7 +75,8 @@ $col-12: 12 / 12 * 100%;
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
-	max-width: $grid-width;
+	max-width: $grid-max-width;
+	width: $grid-width;
 	padding-left: $grid-gutter-width;
 	&:after {
 		display: table;

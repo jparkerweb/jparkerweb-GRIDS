@@ -1,0 +1,47 @@
+// ---------------------------------
+// -- jparkerweb-GRIDS Framework  --
+// ---------------------------------------------------
+// -- http://jparkerweb.github.io/jparkerweb-grids/ --
+// ---------------------------------------------------
+
+
+// ------------------------------
+// -- optional utility classes --
+// -------------------------------------------------
+// -- feel free to modify/extend below. the grid  --
+// -- framework is not dependent on these claess. --
+// -- this file is only included as these classes --
+// -- were useful while writing the docs and demo --
+// -- for GRIDS                                   --
+// -------------------------------------------------
+
+
+// scale images, as each fluid column is resized
+.grids-img {
+	max-width: 100%;
+	height: auto;
+}
+// scale images, as each fluid column is resized
+//  [disply it as a block element]
+.grids-img-block {
+	@extend .grids-img;
+	display: block;
+}
+
+// text align properties
+.grids-align-left { text-align: left; }
+.grids-align-center { text-align: center; }
+.grids-align-right { text-align: right; }
+
+// float element to the left
+.grids-float-left { 
+	float: left; 
+	margin-right: $grid-gutter-width; 
+	margin-bottom: $grid-gutter-width; 
+}
+// float element to the right
+.grids-float-right { 
+	float: right; 
+	margin-left: $grid-gutter-width; 
+	margin-bottom: $grid-gutter-width; 
+}
