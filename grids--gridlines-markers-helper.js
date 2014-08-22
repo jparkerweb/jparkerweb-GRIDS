@@ -31,13 +31,17 @@ $( document ).ready(function() {
 			</div> \
 		</div> \
 		<!-- markers for grid --> \
-		<div class=\"marker marker--stack\"></div> \
-		<div class=\"marker marker--xxs\"></div> \
-		<div class=\"marker marker--xs\"></div> \
-		<div class=\"marker marker--s\"></div> \
-		<div class=\"marker marker--m\"></div> \
-		<div class=\"marker marker--l\"></div> \
-		<div class=\"marker marker--xl\"></div> \
+		<div class=\"markers\"> \
+			<div class=\"grid\"> \
+				<div class=\"marker marker--xl\"></div> \
+				<div class=\"marker marker--l\"></div> \
+				<div class=\"marker marker--m\"></div> \
+				<div class=\"marker marker--s\"></div> \
+				<div class=\"marker marker--xs\"></div> \
+				<div class=\"marker marker--xxs\"></div> \
+				<div class=\"marker marker--stack\"></div> \
+			</div> \
+		</div> \
 		<div class=\"marker-indicator\"></div> \
 		<!-- gridlines toggle --> \
 		<div class=\"gridlines-toggle\">gridlines</div> \
@@ -58,10 +62,10 @@ $( document ).ready(function() {
 
 	// bind markers toggle
 	$(".markers-toggle").on("click", function () {
-		$(".marker").toggle();
+		$(".markers").toggle();
 		$("body").toggleClass("show-marker-outlines");
 	});
 	// toggle off markers on page load
-	$(".marker").toggle();
+	$(".markers").toggle();
 	
 });

@@ -106,6 +106,7 @@
 			text-align: center;
 			font-size: 16px;
 			font-family: Inconsolata, sans-serif;
+			word-break: break-all;
 		}
 		.demo-display p {
 			text-align: left;
@@ -577,16 +578,21 @@
 			<div class="grid">
 				<div class="col-12">
 					<p>
-						GRIDS allows for the definition of six different Breakpoints (CSS Media Queries).  We have already gone over the most import and unique breakpoint, the <span class="keyword">stack point</span>.  Just like configuring the <span class="keyword">stack point</span>, all other breakpoints can be changed in the beginning of the <span class="keyword">grids.scss</span> source file.  See the default values for these breakpoints below:
+						GRIDS allows for the definition of seven different Breakpoints (CSS Media Queries).  We have already gone over the most import and unique breakpoint, the <span class="keyword">stack point</span>.  Just like configuring the <span class="keyword">stack point</span>, all other breakpoints can be changed in the beginning of the <span class="keyword">grids.scss</span> source file.  See the default values for these breakpoints below:
 					</p>
 					<pre class="code-block prettyprint nolinenums">
-$grid-stack-breakpoint: 500px;
+// view-port width (breakpoint) to auto-stack all columns
+// (should be in px, em, or rem)
+$grid-stack-breakpoint: 360px !default;
 
-$grid-breakpoint-xs: 568px;
-$grid-breakpoint-s: 720px;
-$grid-breakpoint-m: 944px;
-$grid-breakpoint-l: 1264px;
-$grid-breakpoint-xl: 1680px;
+// view-port widths (breakpoints) allowing layout change
+// based on GRIDS class names (should be in px, em, or rem)
+$grid-breakpoint-xxs:   320px !default;
+$grid-breakpoint-xs:    480px !default;
+$grid-breakpoint-s:     568px !default;
+$grid-breakpoint-m:     768px !default;
+$grid-breakpoint-l:     880px !default;
+$grid-breakpoint-xl:    1000px !default;
 </pre>
 					<p>
 						As you have probably already noticed, when the <span class="markers-toggle">markers</span> helper is enabled, each breakpoint line is overlayed on the screen, as well as a marker indicator bar along the bottom of the page which displays which breakpoint is currently being triggered (if any).
@@ -639,7 +645,7 @@ $grid-breakpoint-xl: 1680px;
 
 				<div class="col-12">
 					<p>
-						Our default base column class <span class="keyword">col-{number}</span> will always be used up until the <span class="keyword">stack</span> breakpoint is reached (unless the <span class="keyword">col-no-stack</span> is set on an element).  In addition, you can also specify one or all of the other breakpoint classes on an element.  To demonstrate this, examine the example grid below at each breakpoint (start wide and slowly resize your browser past each breakpoint).
+						Our default base column class <span class="keyword">col-{number}</span> will always be used up until the <span class="keyword">stack</span> breakpoint is reached (unless the <span class="keyword">col-no-stack</span> is set on an element).  In addition, you can also specify one or all of the other breakpoint classes on an element.  To demonstrate this, examine the example grid below at each breakpoint (slowly resize your browser past each breakpoint).
 					</p>
 				</div>
 			</div>
@@ -774,6 +780,21 @@ $grid-breakpoint-xl: 1680px;
 					<p>
 						Both the <span class="gridlines-toggle">gridlines</span> and <span class="markers-toggle">markers</span> are only inserted into the page if you include the helper javascript file (which you would leave out in production): <span class="keyword">grids--gridlines-markers-helper.js</span>
 					</p>
+				</div>
+			</div>
+
+
+		</section>
+
+
+		<!-- Section: Optional Utility Classes -->
+		<section class="tutorial-section--utility demo-display">
+			<div class="grid"><div class="col-12 section-title">Optional Utility Classes</div></div>
+			<!-- fluid images -->
+			<div class="grid">
+				<div class="col-push-2 col-8 col-push-s-0 col-s-12 grids-align-center">
+					<img src="demo-img.jpg" class="grids-img">
+					<div>I need a cup of Coffee</div>
 				</div>
 			</div>
 		</section>
