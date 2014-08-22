@@ -32,6 +32,7 @@ $( document ).ready(function() {
 		</div> \
 		<!-- markers for grid --> \
 		<div class=\"marker marker--stack\"></div> \
+		<div class=\"marker marker--xxs\"></div> \
 		<div class=\"marker marker--xs\"></div> \
 		<div class=\"marker marker--s\"></div> \
 		<div class=\"marker marker--m\"></div> \
