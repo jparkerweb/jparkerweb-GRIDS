@@ -7,6 +7,7 @@
 
 	var clean = require('gulp-clean'),
 		rubySass = require('gulp-ruby-sass'),
+		gulpFilter = require('gulp-filter'),
 		autoprefixer = require('gulp-autoprefixer'),
 		csso = require('gulp-csso');
 // ==========================================
@@ -60,14 +61,17 @@ gulp.task('sass', function (callback) {
 	// clean our build path
 	gulp.task('clean-sass', function () {  
 		return gulp.src([
-				destPaths.CSS + '/*.css'
+				destPaths.CSS + '/*.{css,css\.map}'
 			], {read: false})
 			.pipe(clean());
 	});
 	// task: compile SASS to CSS and AutoPrefix
 	gulp.task('build-sass', function () {
+		var filter = gulpFilter(['**/*.css']);
+
 		return gulp.src(sourcePaths.SCSS)
-			.pipe(rubySass())
+			.pipe(rubySass({sourcemap: false}))
+			.pipe(filter)
 			.pipe(autoprefixer('last 4 version'))
 			.pipe(csso())
 			.pipe(gulp.dest(destPaths.CSS))

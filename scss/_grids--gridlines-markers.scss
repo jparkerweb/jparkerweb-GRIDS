@@ -7,7 +7,8 @@
 @import url(http://fonts.googleapis.com/css?family=Inconsolata);
 $font--inconsolata: 'Inconsolata', arial, sans-serif;
 
-html, body { height: 100%; }
+html { height: 100%; }
+body { min-height: 100%; }
 
 
 // this file is only used to define helper
@@ -35,10 +36,24 @@ $showMarkers: true !default;
 // will set the body & html to have a left and right
 // padding/margin of zero
 $showGridlines: true !default;
+
 // background for each gridline column
 $gridlineBackground: #ddd !default;
+
 // opacity for each gridline column
 $gridlineOpacity: 0.4 !default;
+
+// marker colors for breakpoints
+$markerColor--stack: #16a085;
+$markerColor--xxs: #30BDF4;
+$markerColor--xs: #c0392b;
+$markerColor--s: #FF6600;
+$markerColor--m: #3498db;
+$markerColor--l: #27ae60;
+$markerColor--xl: #f1c40f;
+
+// outline color for columns that have inner markers enabled
+$innerMarkerOutlineColor: #ddd;
 // ***************************************************
 
 
@@ -81,7 +96,6 @@ $gridlineOpacity: 0.4 !default;
 		border-color: #30BDF4;
 	}
 }
-
 .gridlines-toggle {
 	@extend %toggle-button;
 	@if $showGridlines == false { display: none; }
@@ -111,9 +125,10 @@ $gridlineOpacity: 0.4 !default;
 	}
 }
 
-//-----------------------------
-// -- markers helper classes --
-//-----------------------------
+
+//-------------------------------
+// -- viewport display classes --
+//-------------------------------
 .viewportDisplay { display: none; }
 body.show-marker-outlines {
 	.viewportDisplay {
@@ -133,20 +148,10 @@ body.show-marker-outlines {
 	}
 }
 
+
 //-----------------------------
 // -- markers helper classes --
 //-----------------------------
-
-// colors
-$markerColor--stack: #16a085;
-$markerColor--xxs: #30BDF4;
-$markerColor--xs: #c0392b;
-$markerColor--s: #FF6600;
-$markerColor--m: #3498db;
-$markerColor--l: #27ae60;
-$markerColor--xl: #f1c40f;
-
-// classes
 .markers-toggle {
 	@extend %toggle-button;
 	@if $showMarkers == false { display: none; }
@@ -316,59 +321,9 @@ $markerColor--xl: #f1c40f;
 }
 
 
-// // inner col markers **FIX**
-// .innerMarkers { display: none; }
-// .col-1, .col-2, .col-3, 
-// .col-4, .col-5, .col-6,
-// .col-7, .col-8, .col-9, 
-// .col-10, .col-11 {
-// 	@media (min-width: $grid-stack-breakpoint + 1) {
-// 		.innerMarkers {
-// 			display: block;
-// 			position: absolute;
-// 			height: 100%;
-// 			width: 100%;
-// 			overflow: hidden;
-// 		}
-// 		[class*='innerMarker-'] {
-// 			position: absolute;
-// 			height: 100%;
-// 			width: 1px;
-// 		}
-// 	}
-// }
-// @for $i from 1 through 12 {
-// 	.col-#{$i} { 
-// 		@media (min-width: $grid-stack-breakpoint + 1) {
-// 			.innerMarkers .innerMarker-xxs {
-// 				margin-left: (($grid-breakpoint-xxs) * ($i/12) - ($grid-gutter-width));
-// 				background: $markerColor--xxs;
-// 			}
-// 			.innerMarkers .innerMarker-xs {
-// 				margin-left: (($grid-breakpoint-xs) * ($i/12) - ($grid-gutter-width));
-// 				background: $markerColor--xs;
-// 			}
-// 			.innerMarkers .innerMarker-s {
-// 				margin-left: (($grid-breakpoint-s) * ($i/12) - ($grid-gutter-width));
-// 				background: $markerColor--s;
-// 			}
-// 			.innerMarkers .innerMarker-m {
-// 				margin-left: (($grid-breakpoint-m) * ($i/12) - ($grid-gutter-width));
-// 				background: $markerColor--m;
-// 			}
-// 			.innerMarkers .innerMarker-l {
-// 				margin-left: (($grid-breakpoint-l) * ($i/12) - ($grid-gutter-width));
-// 				background: $markerColor--l;
-// 			}
-// 			.innerMarkers .innerMarker-xl {
-// 				margin-left: (($grid-breakpoint-xl) * ($i/12)) - ($grid-gutter-width);
-// 				background: $markerColor--xl;
-// 			}
-// 		}
-//   	}
-// }
-
-
+// ------------------------------
+// -- marker indicator classes --
+// ------------------------------
 .marker-indicator {
 	position: fixed;
 	display: block;
@@ -388,59 +343,157 @@ $markerColor--xl: #f1c40f;
 		top: -5px;
 	}
 }
+
+
 // -------------------------------------------
 // -- column outlines for marker thresholds --
 // -------------------------------------------
 @if $showMarkers == true {
 	body.show-marker-outlines {
 		@media (max-width: $grid-breakpoint-xl) {
-			[class*='col-xl-'] > * { outline: 2px solid $markerColor--xl !important; }
+			[class*='col-xl-']:after {
+				position: absolute;
+				top: 0;
+				left: 0;
+				outline: 2px solid $markerColor--xl !important;
+				content: '';
+				width: calc(100% - #{$grid-gutter-width});
+				height: calc(100% - #{$grid-gutter-width});
+			 }
 			.marker-indicator { 
 				background: $markerColor--xl !important;
-				&:before { content: 'breakpoint: XL'; }
+				&:before { content: 'breakpoint: XL' + ' (' + $grid-breakpoint-xl + ')'; }
 			}
 		}
 		@media (max-width: $grid-breakpoint-l) {
-			[class*='col-l-'] > * { outline: 2px solid $markerColor--l !important; }
+			[class*='col-l-']:after {
+				position: absolute;
+				top: 0;
+				left: 0;
+				outline: 2px solid $markerColor--l !important;
+				content: '';
+				width: calc(100% - #{$grid-gutter-width});
+				height: calc(100% - #{$grid-gutter-width});
+			 }
 			.marker-indicator { 
 				background: $markerColor--l !important;
-				&:before { content: 'breakpoint: L'; }
+				&:before { content: 'breakpoint: L' + ' (' + $grid-breakpoint-l + ')'; }
 			}
 		}
 		@media (max-width: $grid-breakpoint-m) {
-			[class*='col-m-'] > * { outline: 2px solid $markerColor--m !important; }
+			[class*='col-m-']:after {
+				position: absolute;
+				top: 0;
+				left: 0;
+				outline: 2px solid $markerColor--m !important;
+				content: '';
+				width: calc(100% - #{$grid-gutter-width});
+				height: calc(100% - #{$grid-gutter-width});
+			 }
 			.marker-indicator { 
 				background: $markerColor--m !important;
-				&:before { content: 'breakpoint: M'; } 
+				&:before { content: 'breakpoint: M' + ' (' + $grid-breakpoint-m + ')'; }
 			}
 		}
 		@media (max-width: $grid-breakpoint-s) {
-			[class*='col-s-'] > * { outline: 2px solid $markerColor--s !important; }
+			[class*='col-s-']:after {
+				position: absolute;
+				top: 0;
+				left: 0;
+				outline: 2px solid $markerColor--s !important;
+				content: '';
+				width: calc(100% - #{$grid-gutter-width});
+				height: calc(100% - #{$grid-gutter-width});
+			 }
 			.marker-indicator { 
 				background: $markerColor--s !important; 
-				&:before { content: 'breakpoint: S'; }
+				&:before { content: 'breakpoint: S' + ' (' + $grid-breakpoint-s + ')'; }
 			}
 		}
 		@media (max-width: $grid-breakpoint-xs) {
-			[class*='col-xs-'] > * { outline: 2px solid $markerColor--xs !important; }
+			[class*='col-xs-']:after {
+				position: absolute;
+				top: 0;
+				left: 0;
+				outline: 2px solid $markerColor--xs !important;
+				content: '';
+				width: calc(100% - #{$grid-gutter-width});
+				height: calc(100% - #{$grid-gutter-width});
+			 }
 			.marker-indicator { 
 				background: $markerColor--xs !important; 
-				&:before { content: 'breakpoint: XS'; }
+				&:before { content: 'breakpoint: XS' + ' (' + $grid-breakpoint-xs + ')'; }
 			}
 		}
 		@media (max-width: $grid-breakpoint-xxs) {
-			[class*='col-xxs-'] > * { outline: 2px solid $markerColor--xxs !important; }
+			[class*='col-xxs-']:after {
+				position: absolute;
+				top: 0;
+				left: 0;
+				outline: 2px solid $markerColor--xxs !important;
+				content: '';
+				width: calc(100% - #{$grid-gutter-width});
+				height: calc(100% - #{$grid-gutter-width});
+			 }
 			.marker-indicator { 
 				background: $markerColor--xxs !important; 
-				&:before { content: 'breakpoint: XXS'; }
+				&:before { content: 'breakpoint: XXS' + ' (' + $grid-breakpoint-xxs + ')'; }
 			}
 		}
 		@media (max-width: $grid-stack-breakpoint) {
-			.col-no-stack > * { outline: 2px dotted $markerColor--stack !important; }
+			.col-no-stack:after {
+				position: absolute;
+				top: 0;
+				left: 0;
+				outline: 2px solid $markerColor--stack !important;
+				content: '';
+				width: calc(100% - #{$grid-gutter-width});
+				height: calc(100% - #{$grid-gutter-width});
+			 }
 			.marker-indicator { 
 				background: $markerColor--stack !important; 
-				&:before { content: 'breakpoint: stack'; }
+				&:before { content: 'breakpoint: stack' + ' (' + $grid-stack-breakpoint + ')'; }
 			}
+		}
+	}
+}
+
+
+// ---------------------------------
+// -- inner column marker classes --
+// ---------------------------------
+.innerMarkers { display: none; }
+.col-1, .col-2, .col-3, 
+.col-4, .col-5, .col-6,
+.col-7, .col-8, .col-9, 
+.col-10, .col-11 {
+	@media (min-width: $grid-stack-breakpoint + 1) {
+		.innerMarkers {
+			display: block;
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			overflow: hidden;
+			[class*='innerMarker-'] {
+				position: absolute;
+				height: calc(100% - #{$grid-gutter-width});
+				width: 1px;
+			}
+			.innerMarker-outline {
+				outline: 1px solid $innerMarkerOutlineColor;
+				position: absolute;
+				top: 1px;
+				left: 1px;				
+				content: '';
+				width: calc(100% - #{$grid-gutter-width});
+				height: calc(100% - #{$grid-gutter-width});
+			}
+			.innerMarker-xxs { background: $markerColor--xxs; }
+			.innerMarker-xs { background: $markerColor--xs; }
+			.innerMarker-s { background: $markerColor--s; }
+			.innerMarker-m { background: $markerColor--m; }
+			.innerMarker-l { background: $markerColor--l; }
+			.innerMarker-xl { background: $markerColor--xl; }
 		}
 	}
 }

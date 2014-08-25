@@ -9,24 +9,20 @@
 // ** CONFIGURATION VALUES **
 // **************************
 // *********************************************************
-// maximum width of each grid row (should be in px, em, or rem)
-$grid-max-width:        1024px !default;
-// actual width of each grid row which is a percentage of
-// the maximum width above.  if you want a grid row to fill
-// the entire possible width, set this value to 100%
-// (value should be in pixels)
-$grid-width:            100% !default;
+// maximum width of each grid row (should be in px)
+$grid-width:        1024px !default;
+
 // gutter width is the width between columns in a row
 // as well as the width to the left and right of each
-// row (should be in px, em, or rem)
-$grid-gutter-width:     20px !default;
+// row (should be in px)
+$grid-gutter-width:     15px !default;
 
 // view-port width (breakpoint) to auto-stack all columns
-// (should be in px, em, or rem)
+// (should be in px)
 $grid-stack-breakpoint: 360px !default;
 
 // view-port widths (breakpoints) allowing layout change
-// based on GRIDS class names (should be in px, em, or rem)
+// based on GRIDS class names (should be in px)
 $grid-breakpoint-xxs:   320px !default;
 $grid-breakpoint-xs:    480px !default;
 $grid-breakpoint-s:     568px !default;
@@ -75,8 +71,7 @@ $col-12: 12 / 12 * 100%;
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
-	max-width: $grid-max-width;
-	width: $grid-width;
+	max-width: $grid-width;
 	padding-left: $grid-gutter-width;
 	&:after {
 		display: table;
