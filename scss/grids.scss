@@ -15,11 +15,11 @@ $grid-max-width:        1024px !default;
 // the maximum width above.  if you want a grid row to fill
 // the entire possible width, set this value to 100%
 // (value should be in pixels)
-$grid-width:            99% !default;
+$grid-width:            100% !default;
 // gutter width is the width between columns in a row
 // as well as the width to the left and right of each
 // row (should be in px, em, or rem)
-$grid-gutter-width:     10px !default;
+$grid-gutter-width:     20px !default;
 
 // view-port width (breakpoint) to auto-stack all columns
 // (should be in px, em, or rem)

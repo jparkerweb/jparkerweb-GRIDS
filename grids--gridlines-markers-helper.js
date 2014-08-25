@@ -6,6 +6,37 @@
 
 $( document ).ready(function() {
 
+	// markup to display viewport size in top left corner of page
+	var viewportDisplay = " \
+		<div id=\"viewportDisplay\" class=\"viewportDisplay\"></div> \
+	";
+	// update viewport display value
+	function updateViewportDisplay(selector) {
+		var viewportDisplayValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+		$(selector).html("vp: " + viewportDisplayValue + "px");
+	}
+
+	// // inner col markers **FIX**
+	// var innerColMarkers = " \
+	// 	<div class=\"innerMarkers\"> \
+	// 		<div class=\"innerMarker-xxs\"></div> \
+	// 		<div class=\"innerMarker-xs\"></div> \
+	// 		<div class=\"innerMarker-s\"></div> \
+	// 		<div class=\"innerMarker-m\"></div> \
+	// 		<div class=\"innerMarker-l\"></div> \
+	// 		<div class=\"innerMarker-xl\"></div> \
+	// 	</div> \
+	// ";
+	// // insert/remove col markers **FIX**
+	// $("[class*=col-]").on("click", function () {
+	// 	if ($(this).find(".innerMarkers").length > 0) {
+	// 		$(this).find(".innerMarkers").remove();
+	// 	}
+	// 	else {
+	// 		$(this).prepend(innerColMarkers);
+	// 	}
+	// });
+
 	// define markup require to render Gridline & Marker Helper elements
 	var gridlinesAndMarkers = " \
 		<!-- \
@@ -50,6 +81,8 @@ $( document ).ready(function() {
 		<!-- ******************************************************************* --> \
 	";
 
+	// insert Viewport display element
+	$("body").append(viewportDisplay);
 	// insert Gridline and Marker elements
 	$("body").append(gridlinesAndMarkers);
 
@@ -67,5 +100,12 @@ $( document ).ready(function() {
 	});
 	// toggle off markers on page load
 	$(".markers").toggle();
+
+	// set initial viewport display value
+	updateViewportDisplay("#viewportDisplay");
+	// brid browser resize to update viewport display value
+	$(window).on("resize", function () {
+		updateViewportDisplay("#viewportDisplay");
+	});
 	
 });

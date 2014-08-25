@@ -114,6 +114,28 @@ $gridlineOpacity: 0.4 !default;
 //-----------------------------
 // -- markers helper classes --
 //-----------------------------
+.viewportDisplay { display: none; }
+body.show-marker-outlines {
+	.viewportDisplay {
+		@if $showMarkers == false { display: none; }
+		display: inline-block;
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		z-index: 10;
+		padding: 4px 8px;
+		background: black;
+		color: white;
+		font-size: 12px;
+		text-align: center;
+		min-width: 70px;
+		border-radius: 0 0 10px 0;
+	}
+}
+
+//-----------------------------
+// -- markers helper classes --
+//-----------------------------
 
 // colors
 $markerColor--stack: #16a085;
@@ -151,16 +173,11 @@ $markerColor--xl: #f1c40f;
 	}
 }
 .markers {
-	@if $showMarkers == false { display: none; }
-	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;	
+	@if $showMarkers == false { display: none; }	
 	.grid { height: 100%; }
 	.marker {
 		@if $showMarkers == false { display: none; }
-		position: absolute;
+		position: fixed;
 		top: -2px;
 		bottom: 0;
 		width: 1px;
@@ -297,6 +314,60 @@ $markerColor--xl: #f1c40f;
 		}
 	}
 }
+
+
+// // inner col markers **FIX**
+// .innerMarkers { display: none; }
+// .col-1, .col-2, .col-3, 
+// .col-4, .col-5, .col-6,
+// .col-7, .col-8, .col-9, 
+// .col-10, .col-11 {
+// 	@media (min-width: $grid-stack-breakpoint + 1) {
+// 		.innerMarkers {
+// 			display: block;
+// 			position: absolute;
+// 			height: 100%;
+// 			width: 100%;
+// 			overflow: hidden;
+// 		}
+// 		[class*='innerMarker-'] {
+// 			position: absolute;
+// 			height: 100%;
+// 			width: 1px;
+// 		}
+// 	}
+// }
+// @for $i from 1 through 12 {
+// 	.col-#{$i} { 
+// 		@media (min-width: $grid-stack-breakpoint + 1) {
+// 			.innerMarkers .innerMarker-xxs {
+// 				margin-left: (($grid-breakpoint-xxs) * ($i/12) - ($grid-gutter-width));
+// 				background: $markerColor--xxs;
+// 			}
+// 			.innerMarkers .innerMarker-xs {
+// 				margin-left: (($grid-breakpoint-xs) * ($i/12) - ($grid-gutter-width));
+// 				background: $markerColor--xs;
+// 			}
+// 			.innerMarkers .innerMarker-s {
+// 				margin-left: (($grid-breakpoint-s) * ($i/12) - ($grid-gutter-width));
+// 				background: $markerColor--s;
+// 			}
+// 			.innerMarkers .innerMarker-m {
+// 				margin-left: (($grid-breakpoint-m) * ($i/12) - ($grid-gutter-width));
+// 				background: $markerColor--m;
+// 			}
+// 			.innerMarkers .innerMarker-l {
+// 				margin-left: (($grid-breakpoint-l) * ($i/12) - ($grid-gutter-width));
+// 				background: $markerColor--l;
+// 			}
+// 			.innerMarkers .innerMarker-xl {
+// 				margin-left: (($grid-breakpoint-xl) * ($i/12)) - ($grid-gutter-width);
+// 				background: $markerColor--xl;
+// 			}
+// 		}
+//   	}
+// }
+
 
 .marker-indicator {
 	position: fixed;
