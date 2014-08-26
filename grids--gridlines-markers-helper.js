@@ -133,17 +133,32 @@ $( document ).ready(function() {
 
 	// bind gridlines toggle
 	$(".gridlines-toggle").on("click", function () {
-		$(".gridlines").toggle();
-		$(".gridlines-toggle").toggleClass("toggle-button--active");
+		var viewportValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+		var stackBreakpoint = parseInt($(".marker.marker--stack").css("margin-left"));
+		if (viewportValue > stackBreakpoint) {
+			$(".gridlines").toggle();
+			$(".gridlines-toggle").toggleClass("toggle-button--active");
+		}
+		else {
+			showGridsNotification("\"Gridlines\" overlay is only available for browser widths greater than the \"stack\" breakpoint (" + stackBreakpoint + "px).  Increase the size of your browser to enable this.", 4000);
+		}		
 	});
 	// toggle off gridlines on page load
 	$(".gridlines").toggle();
 
 	// bind markers toggle
 	$(".markers-toggle").on("click", function () {
-		$(".markers").toggle();
-		$(".markers-toggle").toggleClass("toggle-button--active");
-		$("body").toggleClass("show-marker-outlines");
+		var viewportValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+		var stackBreakpoint = parseInt($(".marker.marker--stack").css("margin-left"));
+
+		if (viewportValue > stackBreakpoint) {
+			$(".markers").toggle();
+			$(".markers-toggle").toggleClass("toggle-button--active");
+			$("body").toggleClass("show-marker-outlines");
+		}
+		else {
+			showGridsNotification("Breakpoint \"marker\" overlays are only available for browser widths greater than the \"stack\" breakpoint (" + stackBreakpoint + "px).  Increase the size of your browser to enable this.", 4000);
+		}
 	});
 
 	// bind notification for markers
@@ -178,22 +193,30 @@ $( document ).ready(function() {
 
 	// bind toggle button
 	$(".col-markers-toggle").on("click", function() {
-		$(".innerMarkers").toggle();
-		$(".col-markers-toggle").toggleClass("toggle-button--active");
+		var viewportValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+		var stackBreakpoint = parseInt($(".marker.marker--stack").css("margin-left"));
+		if (viewportValue > stackBreakpoint) {
+			$(".innerMarkers").toggle();
+			$(".col-markers-toggle").toggleClass("toggle-button--active");
+		}
+		else {
+			showGridsNotification("\"Column Markers\" are only available for browser widths greater than the \"stack\" breakpoint (" + stackBreakpoint + "px).  Increase the size of your browser to enable this.", 4000);
+		}		
 	});
 
 	// bind the insert/remove of inner col markers
 	// to click event of each columns
 	$("[class*=col-]").on("click", function () {
-		var isInnerColMarkersEnabled = ($(".col-markers-toggle.toggle-button--active").length > 0);
+		var isGridlinesCol = ($(this).parents(".gridlines").length > 0);
 
-		if (isInnerColMarkersEnabled) {
-			var isGridlinesCol = ($(this).parents(".gridlines").length > 0);
-			var isNestedGrid = ($(this).parents(".grid").length > 1);
-			if(isGridlinesCol) {
-				showGridsNotification("The gridlines overlay is active, to toggle them off click the \"gridlines\" button in the bottom left corner.", 5500);
-			}
-			else {
+		if(isGridlinesCol) {
+			showGridsNotification("The gridlines overlay is active, to toggle them off click the \"gridlines\" button in the bottom left corner.", 5500);
+		}
+		else {
+			var isInnerColMarkersEnabled = ($(".col-markers-toggle.toggle-button--active").length > 0);
+
+			if (isInnerColMarkersEnabled) {
+				var isNestedGrid = ($(this).parents(".grid").length > 1);
 				if(!isNestedGrid) {
 					var hasInnerMarkers = ($(this).find(".innerMarkers").length > 0);
 					if (hasInnerMarkers) {
