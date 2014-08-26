@@ -5,22 +5,83 @@
 // ---------------------------------------------------
 
 $( document ).ready(function() {
+	// *************************
+	// ***** Notifications *****
+	// *************************
+	// define markup for the notification box
+	var gridsNotificationsMarkup = "<div id=\"gridsNotification\" class=\"grids-notification\"></div>";
+	// insert markup into the page
+	$("body").append(gridsNotificationsMarkup);
+
+	// set varibale for accessing the notification block
+	var $gridsNotification = $("#gridsNotification");
+	var gridsNotificationTimeouts = [];
+
+	// show notification
+	function showGridsNotification(message, timeToShow) {
+		// clear and existing notifications
+		for (var i = 0; i < gridsNotificationTimeouts.length; i++) {
+		    clearTimeout(gridsNotificationTimeouts[i]);
+		}
+		gridsNotificationTimeouts = [];		
+
+		$gridsNotification
+			.html(message)
+			.removeClass("grids-notification--slide-off-right")
+			.addClass("grids-notification--show");
+
+		gridsNotificationTimeouts.push(
+			setTimeout(function() {
+				$gridsNotification.addClass("grids-notification--slide-off-right");
+				gridsNotificationTimeouts.push(
+					setTimeout(function() {
+						$gridsNotification.removeClass("grids-notification--show grids-notification--slide-off-right");
+					}, 300)
+				);
+			}, timeToShow)
+		);
+	} 
+
+	// bind clicking of notifiction to clear itself
+	$("#gridsNotification").on("click", function () {
+		$gridsNotification.removeClass("grids-notification--show grids-notification--slide-off-right");
+	});
+	// *************************
+
+
 
 	// ****************************
 	// ***** Viewport Display *****
 	// ****************************
 	// markup to display viewport size in top left corner of page
 	var viewportDisplay = "<div id=\"viewportDisplay\" class=\"viewportDisplay\"></div>";
+	// insert Viewport display element
+	$("body").append(viewportDisplay);
+
 	// update viewport display value
 	function updateViewportDisplay(selector) {
 		var viewportDisplayValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 		$(selector).html("vp: " + viewportDisplayValue + "px");
 	}
+	// bind notification message
+	$("#viewportDisplay").on("click", function() {
+		showGridsNotification("The viewport helper in the top left corner displays the current \"viewport\" of your browser window.", 4000);
+	});
+
+	// set initial viewport display value
+	updateViewportDisplay("#viewportDisplay");
+	// bind browser resize to update viewport display value
+	$(window).on("resize", function () {
+		updateViewportDisplay("#viewportDisplay");
+	});	
 	// ****************************
 
 
 
-	// ****************************
+	// *********************************
+	// ***** Gridlines and Markers *****
+	// *********************************
+
 	// define markup require to render Gridline & Marker Helper elements
 	var gridlinesAndMarkers = " " +
 		"<!-- " +
@@ -62,17 +123,18 @@ $( document ).ready(function() {
 		"<div class=\"gridlines-toggle\">gridlines</div> " +
 		"<!-- markers toggle --> " +
 		"<div class=\"markers-toggle\">markers</div>	" +
+		"<!-- col markers toggle --> " +
+		"<div class=\"col-markers-toggle\">col-markers</div>	" +
 		"<!-- ******************************************************************* --> " +
 	" ";
 
-	// insert Viewport display element
-	$("body").append(viewportDisplay);
 	// insert Gridline and Marker elements
 	$("body").append(gridlinesAndMarkers);
 
 	// bind gridlines toggle
 	$(".gridlines-toggle").on("click", function () {
 		$(".gridlines").toggle();
+		$(".gridlines-toggle").toggleClass("toggle-button--active");
 	});
 	// toggle off gridlines on page load
 	$(".gridlines").toggle();
@@ -80,18 +142,22 @@ $( document ).ready(function() {
 	// bind markers toggle
 	$(".markers-toggle").on("click", function () {
 		$(".markers").toggle();
+		$(".markers-toggle").toggleClass("toggle-button--active");
 		$("body").toggleClass("show-marker-outlines");
 	});
+
+	// bind notification for markers
+	$(".markers .marker").on("click", function() {
+		showGridsNotification("Markers overlay a visual line showing each \"breapoint\" value defined in your GRIDS configuration.", 4000);
+	});
+	// bind notification for marker indicator
+	$(".marker-indicator").on("click", function() {
+		showGridsNotification("The breakpoint indicator bar on the bottom of the page displays the current \"breakpoint\" that is trigged in the GRIDS framework.", 4000);
+	});
+
 	// toggle off markers on page load
 	$(".markers").toggle();
-
-	// set initial viewport display value
-	updateViewportDisplay("#viewportDisplay");
-	// brid browser resize to update viewport display value
-	$(window).on("resize", function () {
-		updateViewportDisplay("#viewportDisplay");
-	});
-	
+	// *********************************
 
 
 
@@ -110,22 +176,49 @@ $( document ).ready(function() {
 		"	<div class=\"innerMarker-xl\"></div> " +
 		"</div> ";
 
-	// insert/remove col markers
-	$("[class*=col-]").on("click", function () {
-		if ($(this).find(".innerMarkers").length > 0) {
-			$(this).find(".innerMarkers").remove();
-		}
-		else {
-			$(this).prepend(innerColMarkers);
+	// bind toggle button
+	$(".col-markers-toggle").on("click", function() {
+		$(".innerMarkers").toggle();
+		$(".col-markers-toggle").toggleClass("toggle-button--active");
+	});
 
-			var className = $(this).attr("class");
-			if (className.match(/col\-[0-9]{1,2}/)) {
-				var size = className.match(/col\-([0-9]{1,2})/, '$1');
-				setInnerMarkerOffsets(this, size[1]);
+	// bind the insert/remove of inner col markers
+	// to click event of each columns
+	$("[class*=col-]").on("click", function () {
+		var isInnerColMarkersEnabled = ($(".col-markers-toggle.toggle-button--active").length > 0);
+
+		if (isInnerColMarkersEnabled) {
+			var isGridlinesCol = ($(this).parents(".gridlines").length > 0);
+			var isNestedGrid = ($(this).parents(".grid").length > 1);
+			if(isGridlinesCol) {
+				showGridsNotification("The gridlines overlay is active, to toggle them off click the \"gridlines\" button in the bottom left corner.", 5500);
+			}
+			else {
+				if(!isNestedGrid) {
+					var hasInnerMarkers = ($(this).find(".innerMarkers").length > 0);
+					if (hasInnerMarkers) {
+						// remove existing inner markers
+						$(this).find(".innerMarkers").remove();
+					}
+					else {
+						// add inner markers
+						$(this).prepend(innerColMarkers);
+
+						// set the inner marker left offset for
+						// each breakpoint based on the clicked 
+						// col size
+						var className = $(this).attr("class");
+						if (className.match(/col\-[0-9]{1,2}/)) {
+							var size = className.match(/col\-([0-9]{1,2})/, '$1');
+							setInnerMarkerOffsets(this, size[1]);
+						}
+					}
+				}
 			}
 		}
 	});
 
+	// if a scrollbar exists return its calculated width
 	function getScrollbarWidth() {
 		var pageHasScrollbar = ($(document).height() > $(window).height());
 		if (pageHasScrollbar) {
@@ -147,11 +240,13 @@ $( document ).ready(function() {
 		}
 	}
 	
+	// return the current grid's gutter width
 	function getGutterWidth() {
 		var gutter = parseInt($(".grid").last().css("padding-left"));
 		return gutter;
 	}
 
+	// return the current grid's breakpoints
 	function getGridBreakpoints() {
 		var gridBreakpoints = {
 			XL: parseInt($(".marker.marker--xl").css("margin-left")),
@@ -168,6 +263,7 @@ $( document ).ready(function() {
 	var gridGutterWidth = getGutterWidth();
 	var gridBreakpoints = getGridBreakpoints();
 
+	// set the inner marker offsets per passed in col width (1-12)
 	function setInnerMarkerOffsets(selector, size) {
 		var leftXL, leftL, leftM, leftS, leftXS, leftXXS;
 
