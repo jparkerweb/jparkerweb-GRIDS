@@ -78,7 +78,7 @@ $innerMarkerOutlineColor: #ddd;
 // -- gridlines helper classes --
 // ------------------------------
 %toggle-button {
-	min-width: 92px;
+	min-width: 110px;
 	background: #30BDF4;	
 	border: 1px solid darken(#30BDF4, 20%);
 	color: white;
@@ -91,16 +91,16 @@ $innerMarkerOutlineColor: #ddd;
 	letter-spacing: 2px;
 	line-height: 1.38;
 	transition: all 200ms ease;
-	&:hover { 
+	&.toggle-button--active {
 		background: darken(#30BDF4, 20%);
-		border-color: #30BDF4;
+		border-color: #30BDF4;		
 	}
 }
 .gridlines-toggle {
 	@extend %toggle-button;
 	@if $showGridlines == false { display: none; }
 	position: fixed;
-	bottom: 55px;
+	bottom: 85px;
 	left: 5px;
 	z-index: 10;
 }
@@ -111,7 +111,7 @@ $innerMarkerOutlineColor: #ddd;
 	right: 0;
 	bottom: 0;
 	left: 0;
-	.grid, [class*='col-'] { height: 100%; }
+	.grid, [class*='col-'] { height: 100%; cursor: pointer; }
 	.gridlines--col {
 		background: $gridlineBackground;
 		opacity: $gridlineOpacity;
@@ -145,6 +145,7 @@ body.show-marker-outlines {
 		text-align: center;
 		min-width: 70px;
 		border-radius: 0 0 10px 0;
+		cursor: pointer;
 	}
 }
 
@@ -156,7 +157,7 @@ body.show-marker-outlines {
 	@extend %toggle-button;
 	@if $showMarkers == false { display: none; }
 	position: fixed;
-	bottom: 25px;
+	bottom: 55px;
 	left: 5px;
 	z-index: 10;
 }
@@ -196,15 +197,17 @@ body.show-marker-outlines {
 			text-align: center;
 			font-size: 18px;
 			font-family: $font--inconsolata;
+			cursor: pointer;
 		}
 		&:after {
-				display: block;
-				position: relative;
-				content: '';
-				border-style: solid;
-				height: 0px;
-				width: 0px;
-				top: -2px;
+			display: block;
+			position: relative;
+			content: '';
+			border-style: solid;
+			height: 0px;
+			width: 0px;
+			top: -2px;
+			cursor: pointer;
 		}
 		&.marker--stack {
 			z-index: 10;
@@ -333,6 +336,7 @@ body.show-marker-outlines {
 	z-index: 10;
 	background: transparent;
 	text-align: center;
+	cursor: pointer;
 	&:before { 
 		color: white; 
 		content: ''; 
@@ -462,11 +466,19 @@ body.show-marker-outlines {
 // ---------------------------------
 // -- inner column marker classes --
 // ---------------------------------
+.col-markers-toggle {
+	@extend %toggle-button;
+	@if $showMarkers == false { display: none; }
+	position: fixed;
+	bottom: 25px;
+	left: 5px;
+	z-index: 10;
+}
 .innerMarkers { display: none; }
 .col-1, .col-2, .col-3, 
 .col-4, .col-5, .col-6,
 .col-7, .col-8, .col-9, 
-.col-10, .col-11 {
+.col-10, .col-11, .col-12 {
 	@media (min-width: $grid-stack-breakpoint + 1) {
 		.innerMarkers {
 			display: block;
@@ -495,5 +507,44 @@ body.show-marker-outlines {
 			.innerMarker-l { background: $markerColor--l; }
 			.innerMarker-xl { background: $markerColor--xl; }
 		}
+	}
+}
+
+
+
+// --------------------------------
+// -- grids notification classes --
+// --------------------------------
+.grids-notification {
+	transition: all 200ms ease;
+	position: fixed;
+	top: 0;
+	right: 0;
+	max-width: 300px;
+	margin: 5px 5px 0 0;
+	border-radius: 3px;
+	background: darken(#30BDF4, 20%);
+	color: #FFF;
+	font-family: $font--inconsolata;
+	font-size: 16px;
+	font-weight: 300;
+	line-height: 1.2;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	padding: 0;
+	border: 0;
+	opacity: 0;
+	cursor: pointer;
+	z-index: 20;
+	&.grids-notification--show {
+		padding: 10px;
+		border: 1px solid #f2f2f2;
+		width: auto;
+		height: auto;
+		opacity: 1;
+	}
+	&.grids-notification--slide-off-right {
+		right: -400px;
 	}
 }
