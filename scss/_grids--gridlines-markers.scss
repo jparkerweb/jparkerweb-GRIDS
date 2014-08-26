@@ -211,7 +211,7 @@ body.show-marker-outlines {
 		}
 		&.marker--stack {
 			z-index: 10;
-			margin-left: $grid-stack-breakpoint;
+			margin-left: $grid-breakpoint-stack;
 			background: $markerColor--stack;
 			&:before {
 				content: 'stack';
@@ -444,7 +444,7 @@ body.show-marker-outlines {
 				&:before { content: 'breakpoint: XXS' + ' (' + $grid-breakpoint-xxs + ')'; }
 			}
 		}
-		@media (max-width: $grid-stack-breakpoint) {
+		@media (max-width: $grid-breakpoint-stack) {
 			.col-no-stack:after {
 				position: absolute;
 				top: 0;
@@ -456,7 +456,7 @@ body.show-marker-outlines {
 			 }
 			.marker-indicator { 
 				background: $markerColor--stack !important; 
-				&:before { content: 'breakpoint: stack' + ' (' + $grid-stack-breakpoint + ')'; }
+				&:before { content: 'breakpoint: stack' + ' (' + $grid-breakpoint-stack + ')'; }
 			}
 		}
 	}
@@ -479,7 +479,7 @@ body.show-marker-outlines {
 .col-4, .col-5, .col-6,
 .col-7, .col-8, .col-9, 
 .col-10, .col-11, .col-12 {
-	@media (min-width: $grid-stack-breakpoint + 1) {
+	@media (min-width: $grid-breakpoint-stack + 1) {
 		.innerMarkers {
 			display: block;
 			position: absolute;

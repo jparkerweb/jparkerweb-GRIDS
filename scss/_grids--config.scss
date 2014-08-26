@@ -1,0 +1,32 @@
+// ---------------------------------
+// -- jparkerweb-GRIDS Framework  --
+// ---------------------------------------------------
+// -- http://jparkerweb.github.io/jparkerweb-grids/ --
+// ---------------------------------------------------
+
+
+// **************************
+// ** CONFIGURATION VALUES **
+// **************************
+// *********************************************************
+// maximum width of each grid row (should be in px)
+$grid-width:        1024px !default;
+
+// gutter width is the width between columns in a row
+// as well as the width to the left and right of each
+// row (should be in px)
+$grid-gutter-width:     15px !default;
+
+// view-port width (breakpoint) to auto-stack all columns
+// (should be in px)
+$grid-breakpoint-stack: 360px !default;
+
+// view-port widths (breakpoints) allowing layout change
+// based on GRIDS class names (should be in px)
+$grid-breakpoint-xxs:   320px !default;
+$grid-breakpoint-xs:    480px !default;
+$grid-breakpoint-s:     568px !default;
+$grid-breakpoint-m:     768px !default;
+$grid-breakpoint-l:     880px !default;
+$grid-breakpoint-xl:    1000px !default;
+// *********************************************************

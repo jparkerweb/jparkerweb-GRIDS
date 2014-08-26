@@ -4,7 +4,7 @@
 // -- http://jparkerweb.github.io/jparkerweb-grids/ --
 // ---------------------------------------------------
 
-$( document ).ready(function() {
+$(document).ready(function() {
 	// *************************
 	// ***** Notifications *****
 	// *************************
@@ -58,21 +58,26 @@ $( document ).ready(function() {
 	// insert Viewport display element
 	$("body").append(viewportDisplay);
 
+	// declare vaiable for global viewport
+	var viewportDisplayValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 	// update viewport display value
-	function updateViewportDisplay(selector) {
-		var viewportDisplayValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-		$(selector).html("vp: " + viewportDisplayValue + "px");
+	function updateViewportDisplay(selector, html) {
+		$(selector).html(html);
 	}
+	// set initial viewport display value
+	updateViewportDisplay("#viewportDisplay", "vp: " + viewportDisplayValue + "px");
+
 	// bind notification message
 	$("#viewportDisplay").on("click", function() {
 		showGridsNotification("The viewport helper in the top left corner displays the current \"viewport\" of your browser window.", 4000);
 	});
 
-	// set initial viewport display value
-	updateViewportDisplay("#viewportDisplay");
 	// bind browser resize to update viewport display value
 	$(window).on("resize", function () {
-		updateViewportDisplay("#viewportDisplay");
+		viewportDisplayValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+		updateViewportDisplay("#viewportDisplay", "vp: " + viewportDisplayValue + "px");
+		// **TODO: update col markers on breakpoints
+		console.log(gridBreakpoints);
 	});	
 	// ****************************
 
