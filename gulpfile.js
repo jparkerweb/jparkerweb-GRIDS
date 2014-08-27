@@ -9,7 +9,8 @@
 		rubySass = require('gulp-ruby-sass'),
 		gulpFilter = require('gulp-filter'),
 		autoprefixer = require('gulp-autoprefixer'),
-		csso = require('gulp-csso');
+		csso = require('gulp-csso'),
+		uglify = require('gulp-uglify');
 // ==========================================
 
 
@@ -18,11 +19,13 @@
 // ===         setup Path variables       ===
 // ==========================================
 	var sourcePaths = {
-		SCSS: 'scss/**/*.scss'
+		SCSS: 'src/scss/**/*.scss',
+		JS: 'src/js/**/*.js'
 	};
 	var destPaths = {
 		BASE: './',
-		CSS: './'
+		CSS: './',
+		JS: './'
 	};
 // ==========================================
 
@@ -61,7 +64,7 @@ gulp.task('sass', function (callback) {
 	// clean our build path
 	gulp.task('clean-sass', function () {  
 		return gulp.src([
-				destPaths.CSS + '/*.{css,css\.map}'
+				destPaths.CSS + '*.{css,css\.map}'
 			], {read: false})
 			.pipe(clean());
 	});
@@ -81,11 +84,39 @@ gulp.task('sass', function (callback) {
 
 
 // -------------------------
+// --    task: Scripts    --
+// -------------------------
+gulp.task('scripts', function (callback) {
+	runSequence(
+		'clean-scripts',
+		'build-scripts',
+		callback);
+});
+	// clean our build path
+	gulp.task('clean-scripts', function () {  
+		return gulp.src([
+				'!' + destPaths.JS + 'gulpfile.js', 
+				'!' + destPaths.JS + 'prettify.js', 
+				destPaths.JS + '*.{js,js\.map}'
+			], {read: false})
+			.pipe(clean());
+	});
+	// task: build scripts
+	gulp.task('build-scripts', function () {
+		return gulp.src([sourcePaths.JS])
+			.pipe(uglify())
+			.pipe(gulp.dest(destPaths.JS));
+	});
+
+
+
+// -------------------------
 // --     task: watch     --
 // -------------------------
 gulp.task('watch', function () {
 	gulp.watch(sourcePaths.SCSS, ['sass']);
-	gulp.watch(destPaths.BASE + '*.{html,js}', ['reload']);
+	gulp.watch(sourcePaths.JS, ['scripts', browserSync.reload]);
+	gulp.watch(destPaths.BASE + '*.{html}', ['reload']);
 });
 
 
@@ -103,7 +134,7 @@ gulp.task('watch', function () {
 // -------------------------
 // --    task: default    --
 // -------------------------
-gulp.task('default', ['sass']);
+gulp.task('default', ['sass', 'scripts']);
 
 
 // -------------------------
@@ -112,6 +143,7 @@ gulp.task('default', ['sass']);
 gulp.task('alldev', function (callback) {
 	runSequence(
 		'sass',
+		'scripts',
 		'watch',
 		'browser-sync',
 		callback);

@@ -353,6 +353,15 @@ body.show-marker-outlines {
 // -- column outlines for marker thresholds --
 // -------------------------------------------
 @if $showMarkers == true {
+	// set "gridsCurrentBreakpoint" element width to allow us to grab the current breakpoint via javascript
+	#gridsCurrentBreakpoint { display: none; width: 0;}
+	@media (max-width: $grid-breakpoint-xl) { #gridsCurrentBreakpoint {width: $grid-breakpoint-xl;} }
+	@media (max-width: $grid-breakpoint-l) { #gridsCurrentBreakpoint {width: $grid-breakpoint-l;} }
+	@media (max-width: $grid-breakpoint-m) { #gridsCurrentBreakpoint {width: $grid-breakpoint-m;} }
+	@media (max-width: $grid-breakpoint-s) { #gridsCurrentBreakpoint {width: $grid-breakpoint-s;} }
+	@media (max-width: $grid-breakpoint-xs) { #gridsCurrentBreakpoint {width: $grid-breakpoint-xs;} }
+	@media (max-width: $grid-breakpoint-xxs) { #gridsCurrentBreakpoint {width: $grid-breakpoint-xxs;} }
+
 	body.show-marker-outlines {
 		@media (max-width: $grid-breakpoint-xl) {
 			[class*='col-xl-']:after {
