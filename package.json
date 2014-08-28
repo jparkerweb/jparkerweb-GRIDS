@@ -1,9 +1,9 @@
 {
-  "name": "jparkerweb-grids",
-  "version": "0.0.5",
+  "name": "jparkerweb-GRIDS",
+  "version": "0.0.8",
   "private": true,
-  "description": "Simple Fluid Grid Framework",
-  "homepage": "http://jparkerweb.github.io/jparkerweb-grids/",
+  "description": "GRIDS is a user-friendly framework compatible with the numerous devices we encounter daily. This tool-kit features various view-port and size configurations, twelve fluid-width columns, gridline overlays and breakpoint markers to aid in page layout.",
+  "homepage": "http://jparkerweb.github.io/jparkerweb-GRIDS/",
   "author": "Justin Parker",
   "license": "MIT",
   "devDependencies": {

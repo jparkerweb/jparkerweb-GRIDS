@@ -1,7 +1,7 @@
 // ---------------------------------
 // -- jparkerweb-GRIDS Framework  --
 // ---------------------------------------------------
-// -- http://jparkerweb.github.io/jparkerweb-grids/ --
+// -- http://jparkerweb.github.io/jparkerweb-GRIDS/ --
 // ---------------------------------------------------
 
 $(document).ready(function() {
@@ -149,17 +149,17 @@ $(document).ready(function() {
 			$("body").toggleClass("show-marker-outlines");
 		}
 		else {
-			showGridsNotification("Breakpoint \"marker\" overlays are only available for browser widths greater than the \"stack\" breakpoint (" + stackBreakpoint + "px).  Increase the size of your browser to enable this.", 4000);
+			showGridsNotification("Breakpoint \"marker\" overlays are only available for browser widths greater than the \"stack\" breakpoint (" + stackBreakpoint + "px).  Increase the size of your browser to enable this.", 8000);
 		}
 	});
 
 	// bind notification for markers
 	$(".markers .marker").on("click", function() {
-		showGridsNotification("Markers overlay a visual line showing each \"breapoint\" value defined in your GRIDS configuration.", 4000);
+		showGridsNotification("Markers overlay a visual line showing each \"breapoint\" value defined in your GRIDS configuration.", 8000);
 	});
 	// bind notification for marker indicator
 	$(".marker-indicator").on("click", function() {
-		showGridsNotification("The breakpoint indicator bar on the bottom of the page displays the current \"breakpoint\" that is trigged in the GRIDS framework.", 4000);
+		showGridsNotification("The breakpoint indicator bar on the bottom of the page displays the current \"breakpoint\" that is trigged in the GRIDS framework.", 8000);
 	});
 
 	// toggle off markers on page load
@@ -192,7 +192,7 @@ $(document).ready(function() {
 			$(".col-markers-toggle").toggleClass("toggle-button--active");
 		}
 		else {
-			showGridsNotification("\"Column Markers\" are only available for browser widths greater than the \"stack\" breakpoint (" + stackBreakpoint + "px).  Increase the size of your browser to enable this.", 4000);
+			showGridsNotification("\"Column Markers\" are only available for browser widths greater than the \"stack\" breakpoint (" + stackBreakpoint + "px).  Increase the size of your browser to enable this.", 8000);
 		}		
 	});
 
@@ -202,7 +202,7 @@ $(document).ready(function() {
 		var isGridlinesCol = ($(this).parents(".gridlines").length > 0);
 
 		if(isGridlinesCol) {
-			showGridsNotification("The gridlines overlay is active, to toggle them off click the \"gridlines\" button in the bottom left corner.", 5500);
+			showGridsNotification("The gridlines overlay is active, to toggle them off click the \"gridlines\" button in the bottom left corner.", 6000);
 		}
 		else {
 			var isInnerColMarkersEnabled = ($(".col-markers-toggle.toggle-button--active").length > 0),
@@ -385,7 +385,7 @@ $(document).ready(function() {
 
 	// bind notification message
 	$("#viewportDisplay").on("click", function() {
-		showGridsNotification("The viewport helper in the top left corner displays the current \"viewport\" of your browser window.", 4000);
+		showGridsNotification("The viewport helper in the top left corner displays the current \"viewport\" of your browser window.", 6000);
 	});
 
 	// bind browser resize to update viewport display value

@@ -1,7 +1,7 @@
 // ---------------------------------
 // -- jparkerweb-GRIDS Framework  --
 // ---------------------------------------------------
-// -- http://jparkerweb.github.io/jparkerweb-grids/ --
+// -- http://jparkerweb.github.io/jparkerweb-GRIDS/ --
 // ---------------------------------------------------
 
 
@@ -22,53 +22,32 @@
 }
 
 // scale images, as each fluid column is resized
-.grids-img {
+.grids-content--img {
+	float: none;
 	max-width: 100%;
 	height: auto;
 }
 // scale images, as each fluid column is resized
 //  [disply it as a block element]
-.grids-img-block {
-	@extend .grids-img;
+.grids-content--img-block {
+	@extend .grids-content--img;
 	display: block;
 }
 
 // text align properties
-.grids-align-left { text-align: left; }
-.grids-align-center { text-align: center; }
-.grids-align-right { text-align: right; }
+.grids-content--align-left { text-align: left; }
+.grids-content--align-center { text-align: center; }
+.grids-content--align-right { text-align: right; }
 
 // float element to the left
-.grids-float-left { 
+.grids-content--float-left { 
 	float: left; 
 	margin-right: $grid-gutter-width; 
 	margin-bottom: $grid-gutter-width; 
 }
 // float element to the right
-.grids-float-right { 
+.grids-content--float-right { 
 	float: right; 
 	margin-left: $grid-gutter-width; 
 	margin-bottom: $grid-gutter-width; 
 }
-
-// padding
-.grids-padding-top { padding-top: 10px; }
-.grids-padding-top-2x { padding-top: 25px; }
-.grids-padding-top-3x { padding-top: 50px; }
-.grids-padding-bottom { padding-bottom: 10px; }
-.grids-padding-bottom-2x { padding-bottom: 25px; }
-.grids-padding-bottom-3x { padding-bottom: 50px; }
-.grids-padding-left { padding-left: 10px; }
-.grids-padding-left-2x { padding-left: 25px; }
-.grids-padding-left-3x { padding-left: 50px; }
-.grids-padding-right { padding-right: 10px; }
-.grids-padding-right-2x { padding-right: 25px; }
-.grids-padding-right-3x { padding-right: 50px; }
-
-// margin
-.grids-margin-top { margin-top: 10px; }
-.grids-margin-top-2x { margin-top: 25px; }
-.grids-margin-top-3x { margin-top: 50px; }
-.grids-margin-bottom { margin-bottom: 10px; }
-.grids-margin-bottom-2x { margin-bottom: 25px; }
-.grids-margin-bottom-3x { margin-bottom: 50px; }

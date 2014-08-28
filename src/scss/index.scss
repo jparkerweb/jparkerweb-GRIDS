@@ -133,6 +133,10 @@ header {
 		content: '';
 	}
 }
+.section-sub-title {
+	font-size: 22px;
+	font-weight: 400;	
+}
 .keyword {
 	font-family: Inconsolata, sans-serif;
 	background: #f9f9f9;
@@ -153,25 +157,14 @@ header {
 	border: 1px solid #ddd;
 	border-radius: 2px;
 }
-.class-types {
-	list-style: none;
-	li {
-		margin-bottom: 10px;
-	}
-	.class-type {
-		width: 70px;
-		display: inline-block;
-		color: #2980b9;
-		font-weight: 400;
-	}
+.class-type {
+	color: #2980b9;
+	font-weight: 400;
 }
 
 footer {
 	font-size: 14px;
-	text-align: center;
-	margin-top: 30px;
 	color: #777;
-	margin-bottom: 30px;
 	a {
 		text-decoration: none;
 		padding: 0 0 0 10px;
@@ -217,11 +210,3 @@ pre.prettyprint.nolinenums {
 	padding: 5px 20px;
 }
 /* ----------------------------- */
-
-/* helper classes */
-.margin-top {
-	margin-top: 25px;
-}
-.margin-top-2x {
-	margin-top: 50px;
-}

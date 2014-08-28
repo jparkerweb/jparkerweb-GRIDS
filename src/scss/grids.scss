@@ -1,7 +1,7 @@
 // ---------------------------------
 // -- jparkerweb-GRIDS Framework  --
 // ---------------------------------------------------
-// -- http://jparkerweb.github.io/jparkerweb-grids/ --
+// -- http://jparkerweb.github.io/jparkerweb-GRIDS/ --
 // ---------------------------------------------------
 
 
@@ -60,6 +60,125 @@ $col-12: 12 / 12 * 100%;
 		content: '';
 		clear: both;
 	}
+	
+	// optional top/bottom margin and padding for grid row
+	&.grid-padding-top { padding-top: $grid-optional-margin-padding-size; }
+	&.grid-padding-top-2x { padding-top: $grid-optional-margin-padding-size-2x; }
+	&.grid-padding-top-3x { padding-top: $grid-optional-margin-padding-size-3x; }
+	&.grid-padding-bottom { padding-bottom: $grid-optional-margin-padding-size; }
+	&.grid-padding-bottom-2x { padding-bottom: $grid-optional-margin-padding-size-2x; }
+	&.grid-padding-bottom-3x { padding-bottom: $grid-optional-margin-padding-size-3x; }
+	&.grid-margin-top { margin-top: $grid-optional-margin-padding-size; }
+	&.grid-margin-top-2x { margin-top: $grid-optional-margin-padding-size-2x; }
+	&.grid-margin-top-3x { margin-top: $grid-optional-margin-padding-size-3x; }
+	&.grid-margin-bottom { margin-bottom: $grid-optional-margin-padding-size; }
+	&.grid-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
+	&.grid-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
+	// optional top/bottom margin and padding for grid row at breakpoint stack
+	@media (max-width: $grid-breakpoint-stack) {
+		&.grid-padding-top-stack { padding-top: $grid-optional-margin-padding-size; }
+		&.grid-padding-top-2x-stack { padding-top: $grid-optional-margin-padding-size-2x; }
+		&.grid-padding-top-3x-stack { padding-top: $grid-optional-margin-padding-size-3x; }
+		&.grid-padding-bottom-stack { padding-bottom: $grid-optional-margin-padding-size; }
+		&.grid-padding-bottom-2x-stack { padding-bottom: $grid-optional-margin-padding-size-2x; }
+		&.grid-padding-bottom-3x-stack { padding-bottom: $grid-optional-margin-padding-size-3x; }
+		&.grid-margin-top-stack { margin-top: $grid-optional-margin-padding-size; }
+		&.grid-margin-top-2x-stack { margin-top: $grid-optional-margin-padding-size-2x; }
+		&.grid-margin-top-3x-stack { margin-top: $grid-optional-margin-padding-size-3x; }
+		&.grid-margin-bottom-stack { margin-bottom: $grid-optional-margin-padding-size; }
+		&.grid-margin-bottom-2x-stack { margin-bottom: $grid-optional-margin-padding-size-2x; }
+		&.grid-margin-bottom-3x-stack { margin-bottom: $grid-optional-margin-padding-size-3x; }
+	}
+	// optional top/bottom margin and padding for grid row at breakpoint xl
+	@media (max-width: $grid-breakpoint-xl) {
+		&.grid-padding-top-xl { padding-top: $grid-optional-margin-padding-size; }
+		&.grid-padding-top-2x-xl { padding-top: $grid-optional-margin-padding-size-2x; }
+		&.grid-padding-top-3x-xl { padding-top: $grid-optional-margin-padding-size-3x; }
+		&.grid-padding-bottom-xl { padding-bottom: $grid-optional-margin-padding-size; }
+		&.grid-padding-bottom-2x-xl { padding-bottom: $grid-optional-margin-padding-size-2x; }
+		&.grid-padding-bottom-3x-xl { padding-bottom: $grid-optional-margin-padding-size-3x; }
+		&.grid-margin-top-xl { margin-top: $grid-optional-margin-padding-size; }
+		&.grid-margin-top-2x-xl { margin-top: $grid-optional-margin-padding-size-2x; }
+		&.grid-margin-top-3x-xl { margin-top: $grid-optional-margin-padding-size-3x; }
+		&.grid-margin-bottom-xl { margin-bottom: $grid-optional-margin-padding-size; }
+		&.grid-margin-bottom-2x-xl { margin-bottom: $grid-optional-margin-padding-size-2x; }
+		&.grid-margin-bottom-3x-xl { margin-bottom: $grid-optional-margin-padding-size-3x; }
+	}
+	// optional top/bottom margin and padding for grid row at breakpoint l
+	@media (max-width: $grid-breakpoint-l) {
+		&.grid-padding-top-l { padding-top: $grid-optional-margin-padding-size; }
+		&.grid-padding-top-2x-l { padding-top: $grid-optional-margin-padding-size-2x; }
+		&.grid-padding-top-3x-l { padding-top: $grid-optional-margin-padding-size-3x; }
+		&.grid-padding-bottom-l { padding-bottom: $grid-optional-margin-padding-size; }
+		&.grid-padding-bottom-2x-l { padding-bottom: $grid-optional-margin-padding-size-2x; }
+		&.grid-padding-bottom-3x-l { padding-bottom: $grid-optional-margin-padding-size-3x; }
+		&.grid-margin-top-l { margin-top: $grid-optional-margin-padding-size; }
+		&.grid-margin-top-2x-l { margin-top: $grid-optional-margin-padding-size-2x; }
+		&.grid-margin-top-3x-l { margin-top: $grid-optional-margin-padding-size-3x; }
+		&.grid-margin-bottom-l { margin-bottom: $grid-optional-margin-padding-size; }
+		&.grid-margin-bottom-2x-l { margin-bottom: $grid-optional-margin-padding-size-2x; }
+		&.grid-margin-bottom-3x-l { margin-bottom: $grid-optional-margin-padding-size-3x; }
+	}
+	// optional top/bottom margin and padding for grid row at breakpoint m
+	@media (max-width: $grid-breakpoint-m) {
+		&.grid-padding-top-m { padding-top: $grid-optional-margin-padding-size; }
+		&.grid-padding-top-2x-m { padding-top: $grid-optional-margin-padding-size-2x; }
+		&.grid-padding-top-3x-m { padding-top: $grid-optional-margin-padding-size-3x; }
+		&.grid-padding-bottom-m { padding-bottom: $grid-optional-margin-padding-size; }
+		&.grid-padding-bottom-2x-m { padding-bottom: $grid-optional-margin-padding-size-2x; }
+		&.grid-padding-bottom-3x-m { padding-bottom: $grid-optional-margin-padding-size-3x; }
+		&.grid-margin-top-m { margin-top: $grid-optional-margin-padding-size; }
+		&.grid-margin-top-2x-m { margin-top: $grid-optional-margin-padding-size-2x; }
+		&.grid-margin-top-3x-m { margin-top: $grid-optional-margin-padding-size-3x; }
+		&.grid-margin-bottom-m { margin-bottom: $grid-optional-margin-padding-size; }
+		&.grid-margin-bottom-2x-m { margin-bottom: $grid-optional-margin-padding-size-2x; }
+		&.grid-margin-bottom-3x-m { margin-bottom: $grid-optional-margin-padding-size-3x; }
+	}
+	// optional top/bottom margin and padding for grid row at breakpoint s
+	@media (max-width: $grid-breakpoint-s) {
+		&.grid-padding-top-s { padding-top: $grid-optional-margin-padding-size; }
+		&.grid-padding-top-2x-s { padding-top: $grid-optional-margin-padding-size-2x; }
+		&.grid-padding-top-3x-s { padding-top: $grid-optional-margin-padding-size-3x; }
+		&.grid-padding-bottom-s { padding-bottom: $grid-optional-margin-padding-size; }
+		&.grid-padding-bottom-2x-s { padding-bottom: $grid-optional-margin-padding-size-2x; }
+		&.grid-padding-bottom-3x-s { padding-bottom: $grid-optional-margin-padding-size-3x; }
+		&.grid-margin-top-s { margin-top: $grid-optional-margin-padding-size; }
+		&.grid-margin-top-2x-s { margin-top: $grid-optional-margin-padding-size-2x; }
+		&.grid-margin-top-3x-s { margin-top: $grid-optional-margin-padding-size-3x; }
+		&.grid-margin-bottom-s { margin-bottom: $grid-optional-margin-padding-size; }
+		&.grid-margin-bottom-2x-s { margin-bottom: $grid-optional-margin-padding-size-2x; }
+		&.grid-margin-bottom-3x-s { margin-bottom: $grid-optional-margin-padding-size-3x; }
+	}
+	// optional top/bottom margin and padding for grid row at breakpoint xs
+	@media (max-width: $grid-breakpoint-xs) {
+		&.grid-padding-top-xs { padding-top: $grid-optional-margin-padding-size; }
+		&.grid-padding-top-2x-xs { padding-top: $grid-optional-margin-padding-size-2x; }
+		&.grid-padding-top-3x-xs { padding-top: $grid-optional-margin-padding-size-3x; }
+		&.grid-padding-bottom-xs { padding-bottom: $grid-optional-margin-padding-size; }
+		&.grid-padding-bottom-2x-xs { padding-bottom: $grid-optional-margin-padding-size-2x; }
+		&.grid-padding-bottom-3x-xs { padding-bottom: $grid-optional-margin-padding-size-3x; }
+		&.grid-margin-top-xs { margin-top: $grid-optional-margin-padding-size; }
+		&.grid-margin-top-2x-xs { margin-top: $grid-optional-margin-padding-size-2x; }
+		&.grid-margin-top-3x-xs { margin-top: $grid-optional-margin-padding-size-3x; }
+		&.grid-margin-bottom-xs { margin-bottom: $grid-optional-margin-padding-size; }
+		&.grid-margin-bottom-2x-xs { margin-bottom: $grid-optional-margin-padding-size-2x; }
+		&.grid-margin-bottom-3x-xs { margin-bottom: $grid-optional-margin-padding-size-3x; }
+	}
+	// optional top/bottom margin and padding for grid row at breakpoint xxs
+	@media (max-width: $grid-breakpoint-xxs) {
+		&.grid-padding-top-xxs { padding-top: $grid-optional-margin-padding-size; }
+		&.grid-padding-top-2x-xxs { padding-top: $grid-optional-margin-padding-size-2x; }
+		&.grid-padding-top-3x-xxs { padding-top: $grid-optional-margin-padding-size-3x; }
+		&.grid-padding-bottom-xxs { padding-bottom: $grid-optional-margin-padding-size; }
+		&.grid-padding-bottom-2x-xxs { padding-bottom: $grid-optional-margin-padding-size-2x; }
+		&.grid-padding-bottom-3x-xxs { padding-bottom: $grid-optional-margin-padding-size-3x; }
+		&.grid-margin-top-xxs { margin-top: $grid-optional-margin-padding-size; }
+		&.grid-margin-top-2x-xxs { margin-top: $grid-optional-margin-padding-size-2x; }
+		&.grid-margin-top-3x-xxs { margin-top: $grid-optional-margin-padding-size-3x; }
+		&.grid-margin-bottom-xxs { margin-bottom: $grid-optional-margin-padding-size; }
+		&.grid-margin-bottom-2x-xxs { margin-bottom: $grid-optional-margin-padding-size-2x; }
+		&.grid-margin-bottom-3x-xxs { margin-bottom: $grid-optional-margin-padding-size-3x; }
+	}
 
 	.col-0 { display: none; }
 	.col-1 { width: $col-1; display: block; }
@@ -94,7 +213,7 @@ $col-12: 12 / 12 * 100%;
 		position: relative;
 		vertical-align: top;
 		padding-right: $grid-gutter-width;
-		padding-bottom: $grid-gutter-width;
+		padding-bottom: $grid-vertical-spacing;
 		&:last-of-type {
 			padding-right: $grid-gutter-width;
 		}
@@ -104,12 +223,29 @@ $col-12: 12 / 12 * 100%;
 		@media (max-width: $grid-breakpoint-stack) {
 			width: 100%;
 			margin-left: 0;
+			padding-bottom: $grid-vertical-spacing-stack;
+			// optional top/bottom margin and padding
+			&.col-padding-top-stack { padding-top: $grid-optional-margin-padding-size; }
+			&.col-padding-top-2x-stack { padding-top: $grid-optional-margin-padding-size-2x; }
+			&.col-padding-top-3x-stack { padding-top: $grid-optional-margin-padding-size-3x; }
+			&.col-padding-bottom-stack { padding-bottom: $grid-optional-margin-padding-size; }
+			&.col-padding-bottom-2x-stack { padding-bottom: $grid-optional-margin-padding-size-2x; }
+			&.col-padding-bottom-3x-stack { padding-bottom: $grid-optional-margin-padding-size-3x; }
+			&.col-margin-top-stack { margin-top: $grid-optional-margin-padding-size; }
+			&.col-margin-top-2x-stack { margin-top: $grid-optional-margin-padding-size-2x; }
+			&.col-margin-top-3x-stack { margin-top: $grid-optional-margin-padding-size-3x; }
+			&.col-margin-bottom-stack { margin-bottom: $grid-optional-margin-padding-size; }
+			&.col-margin-bottom-2x-stack { margin-bottom: $grid-optional-margin-padding-size-2x; }
+			&.col-margin-bottom-3x-stack { margin-bottom: $grid-optional-margin-padding-size-3x; }
 		}
 	}
 
 	// at breakpoints
 	@media (max-width: $grid-breakpoint-xl) {
-		[class*='col-xl-'] { float: left; }
+		[class*='col-xl-'] { 
+			float: left;
+			padding-bottom: $grid-vertical-spacing-xl; 
+		}
 		.col-xl-0 { display: none; }
 		.col-xl-1 { width: $col-1; display: block; }
 		.col-xl-2 { width: $col-2; display: block; }
@@ -135,10 +271,26 @@ $col-12: 12 / 12 * 100%;
 		.col-push-xl-9 { margin-left: $col-9; }
 		.col-push-xl-10 { margin-left: $col-10; }
 		.col-push-xl-11 { margin-left: $col-11; }
-		.col-push-xl-12 { margin-left: $col-12; }		
+		.col-push-xl-12 { margin-left: $col-12; }
+		// optional top/bottom margin and padding
+		.col-padding-top-xl { padding-top: $grid-optional-margin-padding-size; }
+		.col-padding-top-2x-xl { padding-top: $grid-optional-margin-padding-size-2x; }
+		.col-padding-top-3x-xl { padding-top: $grid-optional-margin-padding-size-3x; }
+		.col-padding-bottom-xl { padding-bottom: $grid-optional-margin-padding-size; }
+		.col-padding-bottom-2x-xl { padding-bottom: $grid-optional-margin-padding-size-2x; }
+		.col-padding-bottom-3x-xl { padding-bottom: $grid-optional-margin-padding-size-3x; }
+		.col-margin-top-xl { margin-top: $grid-optional-margin-padding-size; }
+		.col-margin-top-2x-xl { margin-top: $grid-optional-margin-padding-size-2x; }
+		.col-margin-top-3x-xl { margin-top: $grid-optional-margin-padding-size-3x; }
+		.col-margin-bottom-xl { margin-bottom: $grid-optional-margin-padding-size; }
+		.col-margin-bottom-2x-xl { margin-bottom: $grid-optional-margin-padding-size-2x; }
+		.col-margin-bottom-3x-xl { margin-bottom: $grid-optional-margin-padding-size-3x; }
 	}
 	@media (max-width: $grid-breakpoint-l) {
-		[class*='col-l-'] { float: left; }
+		[class*='col-l-'] { 
+			float: left; 
+			padding-bottom: $grid-vertical-spacing-l;
+		}
 		.col-l-0 { display: none; }
 		.col-l-1 { width: $col-1; display: block; }
 		.col-l-2 { width: $col-2; display: block; }
@@ -164,10 +316,26 @@ $col-12: 12 / 12 * 100%;
 		.col-push-l-9 { margin-left: $col-9; }
 		.col-push-l-10 { margin-left: $col-10; }
 		.col-push-l-11 { margin-left: $col-11; }
-		.col-push-l-12 { margin-left: $col-12; }		
+		.col-push-l-12 { margin-left: $col-12; }
+		// optional top/bottom margin and padding
+		.col-padding-top-l { padding-top: $grid-optional-margin-padding-size; }
+		.col-padding-top-2x-l { padding-top: $grid-optional-margin-padding-size-2x; }
+		.col-padding-top-3x-l { padding-top: $grid-optional-margin-padding-size-3x; }
+		.col-padding-bottom-l { padding-bottom: $grid-optional-margin-padding-size; }
+		.col-padding-bottom-2x-l { padding-bottom: $grid-optional-margin-padding-size-2x; }
+		.col-padding-bottom-3x-l { padding-bottom: $grid-optional-margin-padding-size-3x; }
+		.col-margin-top-l { margin-top: $grid-optional-margin-padding-size; }
+		.col-margin-top-2x-l { margin-top: $grid-optional-margin-padding-size-2x; }
+		.col-margin-top-3x-l { margin-top: $grid-optional-margin-padding-size-3x; }
+		.col-margin-bottom-l { margin-bottom: $grid-optional-margin-padding-size; }
+		.col-margin-bottom-2x-l { margin-bottom: $grid-optional-margin-padding-size-2x; }
+		.col-margin-bottom-3x-l { margin-bottom: $grid-optional-margin-padding-size-3x; }		
 	}
 	@media (max-width: $grid-breakpoint-m) {
-		[class*='col-m-'] { float: left; }
+		[class*='col-m-'] { 
+			float: left;
+			padding-bottom: $grid-vertical-spacing-m;
+		}
 		.col-m-0 { display: none; }
 		.col-m-1 { width: $col-1; display: block; }
 		.col-m-2 { width: $col-2; display: block; }
@@ -193,10 +361,26 @@ $col-12: 12 / 12 * 100%;
 		.col-push-m-9 { margin-left: $col-9; }
 		.col-push-m-10 { margin-left: $col-10; }
 		.col-push-m-11 { margin-left: $col-11; }
-		.col-push-m-12 { margin-left: $col-12; }		
+		.col-push-m-12 { margin-left: $col-12; }
+		// optional top/bottom margin and padding
+		.col-padding-top-m { padding-top: $grid-optional-margin-padding-size; }
+		.col-padding-top-2x-m { padding-top: $grid-optional-margin-padding-size-2x; }
+		.col-padding-top-3x-m { padding-top: $grid-optional-margin-padding-size-3x; }
+		.col-padding-bottom-m { padding-bottom: $grid-optional-margin-padding-size; }
+		.col-padding-bottom-2x-m { padding-bottom: $grid-optional-margin-padding-size-2x; }
+		.col-padding-bottom-3x-m { padding-bottom: $grid-optional-margin-padding-size-3x; }
+		.col-margin-top-m { margin-top: $grid-optional-margin-padding-size; }
+		.col-margin-top-2x-m { margin-top: $grid-optional-margin-padding-size-2x; }
+		.col-margin-top-3x-m { margin-top: $grid-optional-margin-padding-size-3x; }
+		.col-margin-bottom-m { margin-bottom: $grid-optional-margin-padding-size; }
+		.col-margin-bottom-2x-m { margin-bottom: $grid-optional-margin-padding-size-2x; }
+		.col-margin-bottom-3x-m { margin-bottom: $grid-optional-margin-padding-size-3x; }		
 	}
 	@media (max-width: $grid-breakpoint-s) {
-		[class*='col-s-'] { float: left; }
+		[class*='col-s-'] { 
+			float: left;
+			padding-bottom: $grid-vertical-spacing-s;
+		}
 		.col-s-0 { display: none; }
 		.col-s-1 { width: $col-1; display: block; }
 		.col-s-2 { width: $col-2; display: block; }
@@ -222,10 +406,26 @@ $col-12: 12 / 12 * 100%;
 		.col-push-s-9 { margin-left: $col-9; }
 		.col-push-s-10 { margin-left: $col-10; }
 		.col-push-s-11 { margin-left: $col-11; }
-		.col-push-s-12 { margin-left: $col-12; }			
+		.col-push-s-12 { margin-left: $col-12; }
+		// optional top/bottom margin and padding
+		.col-padding-top-s { padding-top: $grid-optional-margin-padding-size; }
+		.col-padding-top-2x-s { padding-top: $grid-optional-margin-padding-size-2x; }
+		.col-padding-top-3x-s { padding-top: $grid-optional-margin-padding-size-3x; }
+		.col-padding-bottom-s { padding-bottom: $grid-optional-margin-padding-size; }
+		.col-padding-bottom-2x-s { padding-bottom: $grid-optional-margin-padding-size-2x; }
+		.col-padding-bottom-3x-s { padding-bottom: $grid-optional-margin-padding-size-3x; }
+		.col-margin-top-s { margin-top: $grid-optional-margin-padding-size; }
+		.col-margin-top-2x-s { margin-top: $grid-optional-margin-padding-size-2x; }
+		.col-margin-top-3x-s { margin-top: $grid-optional-margin-padding-size-3x; }
+		.col-margin-bottom-s { margin-bottom: $grid-optional-margin-padding-size; }
+		.col-margin-bottom-2x-s { margin-bottom: $grid-optional-margin-padding-size-2x; }
+		.col-margin-bottom-3x-s { margin-bottom: $grid-optional-margin-padding-size-3x; }		
 	}
 	@media (max-width: $grid-breakpoint-xs) {
-		[class*='col-xs-'] { float: left; }
+		[class*='col-xs-'] { 
+			float: left;
+			padding-bottom: $grid-vertical-spacing-xs;
+		}
 		.col-xs-0 { display: none; }
 		.col-xs-1 { width: $col-1; display: block; }
 		.col-xs-2 { width: $col-2; display: block; }
@@ -252,9 +452,25 @@ $col-12: 12 / 12 * 100%;
 		.col-push-xs-10 { margin-left: $col-10; }
 		.col-push-xs-11 { margin-left: $col-11; }
 		.col-push-xs-12 { margin-left: $col-12; }
+		// optional top/bottom margin and padding
+		.col-padding-top-xs { padding-top: $grid-optional-margin-padding-size; }
+		.col-padding-top-2x-xs { padding-top: $grid-optional-margin-padding-size-2x; }
+		.col-padding-top-3x-xs { padding-top: $grid-optional-margin-padding-size-3x; }
+		.col-padding-bottom-xs { padding-bottom: $grid-optional-margin-padding-size; }
+		.col-padding-bottom-2x-xs { padding-bottom: $grid-optional-margin-padding-size-2x; }
+		.col-padding-bottom-3x-xs { padding-bottom: $grid-optional-margin-padding-size-3x; }
+		.col-margin-top-xs { margin-top: $grid-optional-margin-padding-size; }
+		.col-margin-top-2x-xs { margin-top: $grid-optional-margin-padding-size-2x; }
+		.col-margin-top-3x-xs { margin-top: $grid-optional-margin-padding-size-3x; }
+		.col-margin-bottom-xs { margin-bottom: $grid-optional-margin-padding-size; }
+		.col-margin-bottom-2x-xs { margin-bottom: $grid-optional-margin-padding-size-2x; }
+		.col-margin-bottom-3x-xs { margin-bottom: $grid-optional-margin-padding-size-3x; }		
 	}
 	@media (max-width: $grid-breakpoint-xxs) {
-		[class*='col-xxs-'] { float: left; }
+		[class*='col-xxs-'] { 
+			float: left;
+			padding-bottom: $grid-vertical-spacing-xxs;
+		}
 		.col-xxs-0 { display: none; }
 		.col-xxs-1 { width: $col-1; display: block; }
 		.col-xxs-2 { width: $col-2; display: block; }
@@ -281,6 +497,19 @@ $col-12: 12 / 12 * 100%;
 		.col-push-xxs-10 { margin-left: $col-10; }
 		.col-push-xxs-11 { margin-left: $col-11; }
 		.col-push-xxs-12 { margin-left: $col-12; }
+		// optional top/bottom margin and padding
+		.col-padding-top-xxs { padding-top: $grid-optional-margin-padding-size; }
+		.col-padding-top-2x-xxs { padding-top: $grid-optional-margin-padding-size-2x; }
+		.col-padding-top-3x-xxs { padding-top: $grid-optional-margin-padding-size-3x; }
+		.col-padding-bottom-xxs { padding-bottom: $grid-optional-margin-padding-size; }
+		.col-padding-bottom-2x-xxs { padding-bottom: $grid-optional-margin-padding-size-2x; }
+		.col-padding-bottom-3x-xxs { padding-bottom: $grid-optional-margin-padding-size-3x; }
+		.col-margin-top-xxs { margin-top: $grid-optional-margin-padding-size; }
+		.col-margin-top-2x-xxs { margin-top: $grid-optional-margin-padding-size-2x; }
+		.col-margin-top-3x-xxs { margin-top: $grid-optional-margin-padding-size-3x; }
+		.col-margin-bottom-xxs { margin-bottom: $grid-optional-margin-padding-size; }
+		.col-margin-bottom-2x-xxs { margin-bottom: $grid-optional-margin-padding-size-2x; }
+		.col-margin-bottom-3x-xxs { margin-bottom: $grid-optional-margin-padding-size-3x; }		
 	}
 }
 // ---------------------------

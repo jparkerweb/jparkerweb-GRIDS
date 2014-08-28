@@ -1,7 +1,7 @@
 // ---------------------------------
 // -- jparkerweb-GRIDS Framework  --
 // ---------------------------------------------------
-// -- http://jparkerweb.github.io/jparkerweb-grids/ --
+// -- http://jparkerweb.github.io/jparkerweb-GRIDS/ --
 // ---------------------------------------------------
 
 
@@ -14,19 +14,48 @@ $grid-width:        1024px !default;
 
 // gutter width is the width between columns in a row
 // as well as the width to the left and right of each
-// row (should be in px)
-$grid-gutter-width:     15px !default;
+// row (value should be in px)
+$grid-gutter-width:     10px !default;
+// veritcal spacing is the vertical space between grid
+// rows. this is applied by adding a padding-bottom.
+// the defualt is to use the same size as the gutter.
+// (value should be in px)
+$grid-vertical-spacing:	$grid-gutter-width;
+// optionaly you can specify different vertical spacing
+// for all grids at different breakpoints.  the default
+// is to use the same vertical spacing for all breakpoints
+// (value should be in px)
+$grid-vertical-spacing-stack: $grid-vertical-spacing;
+$grid-vertical-spacing-xxs: $grid-vertical-spacing;
+$grid-vertical-spacing-xs: $grid-vertical-spacing;
+$grid-vertical-spacing-s: $grid-vertical-spacing;
+$grid-vertical-spacing-m: $grid-vertical-spacing;
+$grid-vertical-spacing-l: $grid-vertical-spacing;
+$grid-vertical-spacing-xl: $grid-vertical-spacing;
 
 // view-port width (breakpoint) to auto-stack all columns
-// (should be in px)
-$grid-breakpoint-stack: 360px !default;
-
+// (value should be in px)
+$grid-breakpoint-stack: 420px !default;
 // view-port widths (breakpoints) allowing layout change
-// based on GRIDS class names (should be in px)
-$grid-breakpoint-xxs:   320px !default;
+// based on GRIDS class names (value should be in px)
+$grid-breakpoint-xxs:   360px !default;
 $grid-breakpoint-xs:    480px !default;
 $grid-breakpoint-s:     568px !default;
 $grid-breakpoint-m:     768px !default;
 $grid-breakpoint-l:     880px !default;
 $grid-breakpoint-xl:    1000px !default;
+
+
+// optional top/bottom margin and padding size units
+// that can be applied to specified columns or grid row
+// per breakpoint (see docs for more info).
+//  example1: col-padding-top-2x-s
+//    (will apply defined top padding to the specified
+//     column at breakpoint s)
+//  example2: grid-margin-bottom-3x-m
+//    (will apply defined bottom margin to the specified
+//     grid row at breakpoint m)
+$grid-optional-margin-padding-size: 10px !default;
+$grid-optional-margin-padding-size-2x: 25px !default;
+$grid-optional-margin-padding-size-3x: 50px !default;
 // *********************************************************

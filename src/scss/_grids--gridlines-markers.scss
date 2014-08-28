@@ -1,7 +1,7 @@
 // ---------------------------------
 // -- jparkerweb-GRIDS Framework  --
 // ---------------------------------------------------
-// -- http://jparkerweb.github.io/jparkerweb-grids/ --
+// -- http://jparkerweb.github.io/jparkerweb-GRIDS/ --
 // ---------------------------------------------------
 
 @import url(http://fonts.googleapis.com/css?family=Inconsolata);
@@ -233,11 +233,13 @@ body.show-marker-outlines {
 				left: -0.94em;
 				background: $markerColor--xxs;
 				padding: 2px 4px;
+				@if $grid-breakpoint-stack == $grid-breakpoint-xxs { top: 25px; }
 			}
 			&:after {
 				border-color: $markerColor--xxs transparent;
 				border-width: .35em .99em 0 .99em;
 				left: -.95em;
+				@if $grid-breakpoint-stack == $grid-breakpoint-xxs { top: 25px; }
 			}
 		}
 		&.marker--xs {
@@ -249,11 +251,13 @@ body.show-marker-outlines {
 				left: -0.68em;
 				background: $markerColor--xs;
 				padding: 2px 4px;
+				@if $grid-breakpoint-stack == $grid-breakpoint-xs { top: 25px; }
 			}
 			&:after {
 				border-color: $markerColor--xs transparent;
 				border-width: .4em .73em 0 .73em;
 				left: -0.68em;
+				@if $grid-breakpoint-stack == $grid-breakpoint-xs { top: 25px; }
 			}
 		}
 		&.marker--s {
@@ -264,12 +268,14 @@ body.show-marker-outlines {
 				content: 'S';
 				left: -0.45em;
 				background: $markerColor--s;
-				padding: 2px 4px;      
+				padding: 2px 4px;
+				@if $grid-breakpoint-stack == $grid-breakpoint-s { top: 25px; }  
 			}
 			&:after {
 				border-color: $markerColor--s transparent;
 				border-width: .3em .49em 0 .5em;
 				left: -0.45em;
+				@if $grid-breakpoint-stack == $grid-breakpoint-s { top: 25px; }
 			}		
 		}  
 		&.marker--m {
@@ -280,12 +286,14 @@ body.show-marker-outlines {
 				content: 'M';
 				left: -0.45em;
 				background: $markerColor--m;
-				padding: 2px 4px;      
+				padding: 2px 4px;
+				@if $grid-breakpoint-stack == $grid-breakpoint-m { top: 25px; }
 			}
 			&:after {
 				border-color: $markerColor--m transparent;
 				border-width: .3em .49em 0 .5em;
 				left: -0.45em;
+				@if $grid-breakpoint-stack == $grid-breakpoint-m { top: 25px; }
 			}			
 		}  
 		&.marker--l {
@@ -296,12 +304,14 @@ body.show-marker-outlines {
 				content: 'L';
 				left: -0.45em;
 				background: $markerColor--l;
-				padding: 2px 4px;      
+				padding: 2px 4px;
+				@if $grid-breakpoint-stack == $grid-breakpoint-l { top: 25px; }
 			}
 			&:after {
 				border-color: $markerColor--l transparent;
 				border-width: .3em .49em 0 .5em;
 				left: -0.45em;
+				@if $grid-breakpoint-stack == $grid-breakpoint-l { top: 25px; }
 			}			
 		}
 		&.marker--xl {
@@ -312,12 +322,14 @@ body.show-marker-outlines {
 				content: 'XL';
 				left: -0.68em;
 				background: $markerColor--xl;
-				padding: 2px 4px;      
+				padding: 2px 4px;
+				@if $grid-breakpoint-stack == $grid-breakpoint-xl { top: 25px; }
 			}
 			&:after {
 				border-color: $markerColor--xl transparent;
 				border-width: .4em .73em 0 .73em;
 				left: -0.68em;
+				@if $grid-breakpoint-stack == $grid-breakpoint-xl { top: 25px; }
 			}
 		}
 	}
