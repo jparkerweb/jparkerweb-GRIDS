@@ -12,14 +12,14 @@
     <!-- // =================================
          // == jparkerweb-GRIDS Framework  ==
          // ===================================================
-         // == http://jparkerweb.github.io/jparkerweb=grids/ ==
+         // == http://jparkerweb.github.io/jparkerweb-GRIDS/ ==
          // ===================================================	 -->
 	<link rel="stylesheet" href="grids.css">
 </head>
 
 <body>
 	<header>
-		<div class="grid grids-padding-top-2x grids-padding-bottom-2x">
+		<div class="grid grid-padding-top-2x grid-padding-bottom-2x">
 			<div class="col-4 col-m-12 logo">
 				<span class="subtitle">jparkerweb</span>
 				<span class="title">GRIDS</span>
@@ -493,59 +493,58 @@ $grid-breakpoint-xl:    1000px !default;
 					<p>
 						With this knowledge in place, the combination of classes and different breakpoint will allow you to setup a vast array of layouts.  Below is a quick reference of each:
 					</p>
-					<p>
-						<ul class="class-types">
-							<li>
-								<!-- base -->
-								<span class="class-type">base </span>
-								<span class="keyword">.col-push-{0-12}</span>
-								<span class="keyword">.col-{0-12}</span>
-							</li>
-							<li>
-								<!-- extra large -->
-								<span class="class-type">xl </span>
-								<span class="keyword">.col-push-xl-{0-12}</span>
-								<span class="keyword">.col-xl-{0-12}</span>
-							</li>
-							<li>
-								<!-- large -->
-								<span class="class-type">l </span>
-								<span class="keyword">.col-push-l-{0-12}</span>
-								<span class="keyword">.col-l-{0-12}</span>
-							</li>
-							<li>
-								<!-- medium -->
-								<span class="class-type">m </span>
-								<span class="keyword">.col-push-m-{0-12}</span>
-								<span class="keyword">.col-m-{0-12}</span>
-							</li>
-							<li>
-								<!-- small -->
-								<span class="class-type">s </span>
-								<span class="keyword">.col-push-s-{0-12}</span>
-								<span class="keyword">.col-s-{0-12}</span>
-							</li>
-							<li>
-								<!-- extra small -->
-								<span class="class-type">xs </span>
-								<span class="keyword">.col-push-xs-{0-12}</span>
-								<span class="keyword">.col-xs-{0-12}</span>
-							</li>
-							<li>
-								<!-- extra extra small -->
-								<span class="class-type">xxs </span>
-								<span class="keyword">.col-push-xxs-{0-12}</span>
-								<span class="keyword">.col-xxs-{0-12}</span>
-							</li>
-							<li>
-								<!-- stack -->
-								<span class="class-type">stack </span>
-								<span class="keyword">.col-no-stack</span>
-							</li>
-						</ul>
-					</p>
 				</div>
 			</div>
+			<!-- class legend -->
+			<aside>
+				<!-- base -->
+				<div class="grid grid-margin-bottom-2x-s">
+					<div class="col-push-1 col-2"><span class="class-type">base</span></div>
+					<div class="col-3 col-l-4 col-m-5 col-s-9"><span class="keyword">.col-push-{0-12}</span></div>
+					<div class="col-4 col-push-s-3 col-s-9"><span class="keyword">.col-{0-12}</span></div>
+				</div>
+				<!-- xl -->
+				<div class="grid grid-margin-bottom-2x-s">
+					<div class="col-push-1 col-2"><span class="class-type">xl</span></div>
+					<div class="col-3 col-l-4 col-m-5 col-s-9"><span class="keyword">.col-push-xl-{0-12}</span></div>
+					<div class="col-4 col-push-s-3 col-s-9"><span class="keyword">.col-xl-{0-12}</span></div>
+				</div>
+				<!-- l -->
+				<div class="grid grid-margin-bottom-2x-s">
+					<div class="col-push-1 col-2"><span class="class-type">l</span></div>
+					<div class="col-3 col-l-4 col-m-5 col-s-9"><span class="keyword">.col-push-l-{0-12}</span></div>
+					<div class="col-4 col-push-s-3 col-s-9"><span class="keyword">.col-l-{0-12}</span></div>
+				</div>
+				<!-- m -->
+				<div class="grid grid-margin-bottom-2x-s">
+					<div class="col-push-1 col-2"><span class="class-type">m</span></div>
+					<div class="col-3 col-l-4 col-m-5 col-s-9"><span class="keyword">.col-push-m-{0-12}</span></div>
+					<div class="col-4 col-push-s-3 col-s-9"><span class="keyword">.col-m-{0-12}</span></div>
+				</div>
+				<!-- s -->
+				<div class="grid grid-margin-bottom-2x-s">
+					<div class="col-push-1 col-2"><span class="class-type">s</span></div>
+					<div class="col-3 col-l-4 col-m-5 col-s-9"><span class="keyword">.col-push-s-{0-12}</span></div>
+					<div class="col-4 col-push-s-3 col-s-9"><span class="keyword">.col-s-{0-12}</span></div>
+				</div>
+				<!-- xs -->
+				<div class="grid grid-margin-bottom-2x-s">
+					<div class="col-push-1 col-2"><span class="class-type">xs</span></div>
+					<div class="col-3 col-l-4 col-m-5 col-s-9"><span class="keyword">.col-push-xs-{0-12}</span></div>
+					<div class="col-4 col-push-s-3 col-s-9"><span class="keyword">.col-xs-{0-12}</span></div>
+				</div>
+				<!-- xxs -->
+				<div class="grid grid-margin-bottom-2x-s">
+					<div class="col-push-1 col-2"><span class="class-type">xxs</span></div>
+					<div class="col-3 col-l-4 col-m-5 col-s-9"><span class="keyword">.col-push-xxs-{0-12}</span></div>
+					<div class="col-4 col-push-s-3 col-s-9"><span class="keyword">.col-xxs-{0-12}</span></div>
+				</div>
+				<!-- stack -->
+				<div class="grid">
+					<div class="col-push-1 col-2"><span class="class-type">stack</span></div>
+					<div class="col-3 col-l-4 col-m-5 col-s-9"><span class="keyword">.col-no-stack</span></div>
+				</div>
+			</aside>
 		</section>
 
 
@@ -567,20 +566,38 @@ $grid-breakpoint-xl:    1000px !default;
 		<!-- Section: Optional Utility Classes -->
 		<section class="tutorial-section--utility demo-display">
 			<div class="grid"><div class="col-12 section-title">Optional Utility Classes</div></div>
+			<!-- reference list -->
+			<div class="grid">
+				<div class="col-12"><span class="section-sub-title">Top/Bottom Margin and Padding</span></div>
+				<div class="col-12">
+					<span class="keyword">{grid/col}-{margin/padding}-{top/bottom}</span>
+				</div>
+				<div class="col-12">
+					<span class="keyword">{grid/col}-{margin/padding}-{top/bottom}-{2x/3x}</span>
+				</div>
+				<div class="col-12">
+					<span class="keyword">{grid/col}-{margin/padding}-{top/bottom}-{breakpoint}</span>
+				</div>
+				<div class="col-12">
+					<span class="keyword">{grid/col}-{margin/padding}-{top/bottom}-{breakpoint}-{2x/3x}</span>
+				</div>
+			</div>
 			<!-- fluid images -->
 			<div class="grid">
-				<div class="col-push-2 col-8 col-push-s-0 col-s-12 grids-align-center">
-					<img src="demo-img.jpg" class="grids-img">
-					<div>I need a cup of Coffee</div>
+				<div class="col-12 grids-content--align-center">
+					<img src="demo-img.jpg" class="grids-content--img">
 				</div>
+				<div class="col-12 grids-content--align-center">I need a cup of Coffee</div>
 			</div>
 		</section>
 	</main>
 
 
-	<footer>
-		<span>Inspired by: </span>
-		<a href="http://css-tricks.com/dont-overthink-it-grids/" target="_blank">Dont-Overthink-it-Grids</a>
+	<footer class="grid grid-margin-top-3x">
+		<div class="col-12 grids-content--align-center">
+			Inspired by: 
+			<a href="http://css-tricks.com/dont-overthink-it-grids/" target="_blank">Dont-Overthink-it-Grids</a>
+		</div>
 	</footer>
 
 	<!-- jquery -->
