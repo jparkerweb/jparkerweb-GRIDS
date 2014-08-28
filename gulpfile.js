@@ -39,8 +39,7 @@
 		browserSync({
 			server: {
 				baseDir: "./"
-			},
-			files: "*.{html,js}"
+			}
 		});
 	});
 	// reload
@@ -115,8 +114,8 @@ gulp.task('scripts', function (callback) {
 // -------------------------
 gulp.task('watch', function () {
 	gulp.watch(sourcePaths.SCSS, ['sass']);
-	gulp.watch(sourcePaths.JS, ['scripts', browserSync.reload]);
-	gulp.watch(destPaths.BASE + '*.{html}', ['reload']);
+	gulp.watch(sourcePaths.JS, ['scripts', 'reload']);
+	gulp.watch(destPaths.BASE + '*.html', ['reload']);
 });
 
 

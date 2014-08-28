@@ -64,18 +64,18 @@ $(document).ready(function() {
 		"<!-- gridlines --> " +
 		"<div class=\"gridlines\"> " +
 		"	<div class=\"grid\"> " +
-		"		<div class=\"col-1\"><div class=\"gridlines--col\">1</div></div> " +
-		"		<div class=\"col-1\"><div class=\"gridlines--col\">2</div></div> " +
-		"		<div class=\"col-1\"><div class=\"gridlines--col\">3</div></div> " +
-		"		<div class=\"col-1\"><div class=\"gridlines--col\">4</div></div> " +
-		"		<div class=\"col-1\"><div class=\"gridlines--col\">5</div></div> " +
-		"		<div class=\"col-1\"><div class=\"gridlines--col\">6</div></div> " +
-		"		<div class=\"col-1\"><div class=\"gridlines--col\">7</div></div> " +
-		"		<div class=\"col-1\"><div class=\"gridlines--col\">8</div></div> " +
-		"		<div class=\"col-1\"><div class=\"gridlines--col\">9</div></div> " +
-		"		<div class=\"col-1\"><div class=\"gridlines--col\">10</div></div> " +
-		"		<div class=\"col-1\"><div class=\"gridlines--col\">11</div></div> " +
-		"		<div class=\"col-1\"><div class=\"gridlines--col\">12</div></div> " +
+		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">1</div></div> " +
+		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">2</div></div> " +
+		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">3</div></div> " +
+		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">4</div></div> " +
+		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">5</div></div> " +
+		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">6</div></div> " +
+		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">7</div></div> " +
+		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">8</div></div> " +
+		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">9</div></div> " +
+		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">10</div></div> " +
+		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">11</div></div> " +
+		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">12</div></div> " +
 		"	</div> " +
 		"</div> " +
 		"<!-- markers for grid --> " +
@@ -110,13 +110,13 @@ $(document).ready(function() {
 	$(".gridlines-toggle").on("click", function () {
 		var viewportValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 		var stackBreakpoint = parseInt($(".marker.marker--stack").css("margin-left"));
-		if (viewportValue > stackBreakpoint) {
+		// if (viewportValue > stackBreakpoint) {
 			$(".gridlines").toggle();
 			$(".gridlines-toggle").toggleClass("toggle-button--active");
-		}
-		else {
-			showGridsNotification("\"Gridlines\" overlay is only available for browser widths greater than the \"stack\" breakpoint (" + stackBreakpoint + "px).  Increase the size of your browser to enable this.", 4000);
-		}		
+		// }
+		// else {
+		// 	showGridsNotification("\"Gridlines\" overlay is only available for browser widths greater than the \"stack\" breakpoint (" + stackBreakpoint + "px).  Increase the size of your browser to enable this.", 4000);
+		// }		
 	});
 	// toggle off gridlines on page load
 	$(".gridlines").toggle();
@@ -268,7 +268,7 @@ $(document).ready(function() {
 		var gridsCurrentBreakpoint = $("#gridsCurrentBreakpoint").width();
 		viewportDisplayValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 		
-		// update all cols
+		// update default cols
 		$grid.find("[class*=col-]").each(function() {
 			// set the inner marker left offset for
 			// each breakpoint based on the clicked 
@@ -304,10 +304,22 @@ $(document).ready(function() {
 				}
 			}
 		}
+
+		// update all col line styles
+		for (var prop in gridBreakpoints) {
+			// set the breakpoint string character (xl, l, m, s, xs, xxs)
+			var breakpointCharacter = prop.toLowerCase();
+
+			$grid.find("[class*=col-" + breakpointCharacter + "-] .innerMarker-" + breakpointCharacter).each(function(){
+				$(this).css({ "border-right-width" : "3px", "border-right-style" : "dotted" });
+			});
+		}
 	}	
 	// set the inner marker offsets per passed in col width (1-12)
 	function setInnerMarkerOffsets(selector, size) {
-		var leftXL, leftL, leftM, leftS, leftXS, leftXXS;
+		var borderWidth = "1px",
+			borderStyle = "solid",
+			leftXL, leftL, leftM, leftS, leftXS, leftXXS;
 
 		leftXL = ((gridBreakpoints.XL - gridGutterWidth - pageScrollbarWidth) * (size/12)) - gridGutterWidth;
 		leftL = ((gridBreakpoints.L - gridGutterWidth - pageScrollbarWidth) * (size/12) - gridGutterWidth);
@@ -318,12 +330,12 @@ $(document).ready(function() {
 
 		var $innerMarkers = $(selector).find(".innerMarkers");
 		
-		$innerMarkers.find(".innerMarker-xl").css("margin-left", leftXL);
-		$innerMarkers.find(".innerMarker-l").css("margin-left", leftL);
-		$innerMarkers.find(".innerMarker-m").css("margin-left", leftM);
-		$innerMarkers.find(".innerMarker-s").css("margin-left", leftS);
-		$innerMarkers.find(".innerMarker-xs").css("margin-left", leftXS);
-		$innerMarkers.find(".innerMarker-xxs").css("margin-left", leftXXS);
+		$innerMarkers.find(".innerMarker-xl").css({ "margin-left" : leftXL, "border-right-width" : borderWidth, "border-right-style" : borderStyle });
+		$innerMarkers.find(".innerMarker-l").css({ "margin-left" : leftL, "border-right-width" : borderWidth, "border-right-style" : borderStyle });
+		$innerMarkers.find(".innerMarker-m").css({ "margin-left" : leftM, "border-right-width" : borderWidth, "border-right-style" : borderStyle });
+		$innerMarkers.find(".innerMarker-s").css({ "margin-left" : leftS, "border-right-width" : borderWidth, "border-right-style" : borderStyle });
+		$innerMarkers.find(".innerMarker-xs").css({ "margin-left" : leftXS, "border-right-width" : borderWidth, "border-right-style" : borderStyle });
+		$innerMarkers.find(".innerMarker-xxs").css({ "margin-left" : leftXXS, "border-right-width" : borderWidth, "border-right-style" : borderStyle });
 	}
 	// ****************************	
 
