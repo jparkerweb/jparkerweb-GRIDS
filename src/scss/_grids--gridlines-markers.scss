@@ -513,7 +513,6 @@ body.show-marker-outlines {
 			overflow: hidden;
 			[class*='innerMarker-'] {
 				position: absolute;
-				height: calc(100% - #{$grid-gutter-width});
 				width: 1px;
 				border-right: 1px solid;
 			}
@@ -524,8 +523,6 @@ body.show-marker-outlines {
 				top: 1px;
 				left: 1px;				
 				content: '';
-				width: calc(100% - #{$grid-gutter-width});
-				height: calc(100% - #{$grid-gutter-width});
 			}
 			.innerMarker-xxs { border-color: $markerColor--xxs; }
 			.innerMarker-xs { border-color: $markerColor--xs; }
