@@ -5,6 +5,25 @@
 // ---------------------------------------------------
 
 $(document).ready(function() {
+	// *********************************
+	// ***** jQuery RegEx Selector *****
+	// *********************************
+	//http://james.padolsey.com/javascript/regex-selector-for-jquery/
+	jQuery.expr[':'].regex = function(elem, index, match) {
+	var matchParams = match[3].split(','),
+	validLabels = /^(data|css):/,
+	attr = {
+		method: matchParams[0].match(validLabels) ? matchParams[0].split(':')[0] : 'attr',
+		property: matchParams.shift().replace(validLabels,'')
+	},
+	regexFlags = 'ig',
+	regex = new RegExp(matchParams.join('').replace(/^\s+|\s+$/g,''), regexFlags);
+	return regex.test(jQuery(elem)[attr.method](attr.property));
+	}	
+	// *********************************
+
+
+
 	// *************************
 	// ***** Notifications *****
 	// *************************
@@ -18,7 +37,9 @@ $(document).ready(function() {
 	var gridsNotificationTimeouts = [];
 
 	// show notification
-	function showGridsNotification(message, timeToShow) {
+	function showGridsNotification(message, timeToShow, bgColor) {
+		bgColor = typeof bgColor !== 'undefined' ? bgColor : '#2980b9';
+
 		// clear and existing notifications
 		for (var i = 0; i < gridsNotificationTimeouts.length; i++) {
 		    clearTimeout(gridsNotificationTimeouts[i]);
@@ -27,6 +48,7 @@ $(document).ready(function() {
 
 		$gridsNotification
 			.html(message)
+			.css("background", bgColor)
 			.removeClass("grids-notification--slide-off-right")
 			.addClass("grids-notification--show");
 
@@ -90,6 +112,8 @@ $(document).ready(function() {
 		"		<div class=\"marker marker--stack\"></div> " +
 		"	</div> " +
 		"</div> " +
+		"<!-- current grid position --> " +
+		"<div id=\"gridsCurrentGridPosition\" class=\"grid\" style=\"visibility:hidden;\"></div> " +
 		"<!-- current breakpoint --> " +
 		"<div id=\"gridsCurrentBreakpoint\"></div> " +
 		"<!-- marker indicator --> " +
@@ -107,16 +131,9 @@ $(document).ready(function() {
 	$("body").append(gridlinesAndMarkers);
 
 	// bind gridlines toggle
-	$(".gridlines-toggle").on("click", function () {
-		var viewportValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-		var stackBreakpoint = parseInt($(".marker.marker--stack").css("margin-left"));
-		// if (viewportValue > stackBreakpoint) {
-			$(".gridlines").toggle();
-			$(".gridlines-toggle").toggleClass("toggle-button--active");
-		// }
-		// else {
-		// 	showGridsNotification("\"Gridlines\" overlay is only available for browser widths greater than the \"stack\" breakpoint (" + stackBreakpoint + "px).  Increase the size of your browser to enable this.", 4000);
-		// }		
+	$(".gridlines-toggle").on("click", function () {		
+		$(".gridlines").toggle();
+		$(".gridlines-toggle").toggleClass("toggle-button--active");		
 	});
 	// toggle off gridlines on page load
 	$(".gridlines").toggle();
@@ -181,30 +198,38 @@ $(document).ready(function() {
 
 	// bind the insert/remove of inner col markers
 	// to click event of each columns
-	$("[class*=col-]").on("click", function () {
+	$(":regex(class,col\\-[0-9])").on("click", function () {
 		var isGridlinesCol = ($(this).parents(".gridlines").length > 0);
 
 		if(isGridlinesCol) {
 			showGridsNotification("The gridlines overlay is active, to toggle them off click the \"gridlines\" button in the bottom left corner.", 5500);
 		}
 		else {
-			var isInnerColMarkersEnabled = ($(".col-markers-toggle.toggle-button--active").length > 0);
+			var isInnerColMarkersEnabled = ($(".col-markers-toggle.toggle-button--active").length > 0),
+				gridlinesLeftPosition = $("#gridsCurrentGridPosition").position().left,
+				thisGridLeftPosition = $(this).parent(".grid").position().left,
+				isGridPositionValid = (thisGridLeftPosition === gridlinesLeftPosition);
 
 			if (isInnerColMarkersEnabled) {
 				var isNestedGrid = ($(this).parents(".grid").length > 1);
 				if(!isNestedGrid) {
-					var hasInnerMarkers = ($(this).find(".innerMarkers").length > 0);
-					if (hasInnerMarkers) {
-						// remove existing inner markers
-						$(this).find(".innerMarkers").remove();
+					if(isGridPositionValid) {
+						var hasInnerMarkers = ($(this).find(".innerMarkers").length > 0);
+						if (hasInnerMarkers) {
+							// remove existing inner markers
+							$(this).find(".innerMarkers").remove();
+						}
+						else {
+							// add inner markers
+							$(this).prepend(innerColMarkers);
+
+							// set the inner marker left offset for
+							// each breakpoint based on col size
+							updateColMarkers();
+						}
 					}
 					else {
-						// add inner markers
-						$(this).prepend(innerColMarkers);
-
-						// set the inner marker left offset for
-						// each breakpoint based on col size
-						updateColMarkers();
+						showGridsNotification("Can not show column markers for this element because its \"grid\" row width is not the same as your configured GRIDS width.  This is usual due to nesing a grid inside of an element that has left or right padding/margin.  If extra padding or margin is needed it is advised to do this within the colum where your content resides and not outside of the grid row itself.", 40000, "#c0392b");
 					}
 				}
 			}

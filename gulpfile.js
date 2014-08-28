@@ -6,6 +6,7 @@
 		gulp = require('gulp');
 
 	var clean = require('gulp-clean'),
+		gulpif = require('gulp-if'),
 		rubySass = require('gulp-ruby-sass'),
 		gulpFilter = require('gulp-filter'),
 		autoprefixer = require('gulp-autoprefixer'),
@@ -28,6 +29,14 @@
 		JS: './'
 	};
 // ==========================================
+
+
+
+// =========================================
+// ===           Enviro Variables        ===
+// =========================================
+	var minify = true;  // this is set to false when running the "alldev" task
+// =========================================
 
 
 
@@ -75,7 +84,7 @@ gulp.task('sass', function (callback) {
 			.pipe(rubySass({sourcemap: false}))
 			.pipe(filter)
 			.pipe(autoprefixer('last 4 version'))
-			.pipe(csso())
+			.pipe(gulpif(minify, csso()))
 			.pipe(gulp.dest(destPaths.CSS))
 			.pipe(browserSync.reload({stream:true}));
 	});
@@ -103,7 +112,7 @@ gulp.task('scripts', function (callback) {
 	// task: build scripts
 	gulp.task('build-scripts', function () {
 		return gulp.src([sourcePaths.JS])
-			.pipe(uglify())
+			.pipe(gulpif(minify, uglify()))
 			.pipe(gulp.dest(destPaths.JS));
 	});
 
@@ -140,6 +149,7 @@ gulp.task('default', ['sass', 'scripts']);
 // --    task: alldev     --
 // -------------------------
 gulp.task('alldev', function (callback) {
+	minify = false;
 	runSequence(
 		'sass',
 		'scripts',
