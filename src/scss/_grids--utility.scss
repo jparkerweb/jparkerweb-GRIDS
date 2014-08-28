@@ -9,43 +9,76 @@
 // -- Optional Utility classes --
 // -------------------------------------------------
 // -- Feel free to modify/extend below. The GRIDS --
-// -- framework is not dependent on these claess. --
-// -- This file is only included as these classes --
-// -- were useful while writing the docs and demo --
+// -- framework is not dependent on these classes --
+// -- This file is only included as they were     --
+// -- useful while writing the docs and turorial  --
 // -- for GRIDS                                   --
 // -------------------------------------------------
 
 
-// breakpoint mixin
+// ----------------------
+// -- breakpoint mixin --
+// ----------------------------------------------------
+// -- to easily extend your GRIDS defined brekpoints --
+// -- into your site's scss, simply include this     --
+// -- utility class and the config in your scss:     --
+// --    @import "grids--config";                    --
+// --    @import "grids--utility";                   --
+// -- you can now create breakpoint rules for your   --
+// -- site that are aligned with your grid:          --
+// --    .some-site-class {                          --
+// --      @include breakpoint($grid-breakpoint-m) { --
+// --        background: red;                        --
+// --      }                                         --
+// --    }                                           -- 
+// ----------------------------------------------------
 @mixin breakpoint($point) {
 	@media (max-width: $point) { @content; }
 }
 
-// scale images, as each fluid column is resized
+
+// ------------
+// -- images --
+// ------------
+// ---------------------------------------------------
+// -- scale images, as each fluid column is resized --
+// ---------------------------------------------------
 .grids-content--img {
 	float: none;
 	max-width: 100%;
 	height: auto;
 }
-// scale images, as each fluid column is resized
-//  [disply it as a block element]
+// ---------------------------------------------------
+// -- scale images, as each fluid column is resized --
+// -- [disply it as a block element]                --
+// ---------------------------------------------------
 .grids-content--img-block {
 	@extend .grids-content--img;
 	display: block;
 }
 
-// text align properties
+
+// ---------------------------
+// -- text align properties --
+// ---------------------------
 .grids-content--align-left { text-align: left; }
 .grids-content--align-center { text-align: center; }
 .grids-content--align-right { text-align: right; }
 
-// float element to the left
+
+// ------------
+// -- floats --
+// -------------------------------
+// -- float element to the left --
+// -------------------------------
 .grids-content--float-left { 
 	float: left; 
 	margin-right: $grid-gutter-width; 
 	margin-bottom: $grid-gutter-width; 
 }
-// float element to the right
+// --------------------------------
+// -- float element to the right --
+// --------------------------------
 .grids-content--float-right { 
 	float: right; 
 	margin-left: $grid-gutter-width; 

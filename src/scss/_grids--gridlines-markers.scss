@@ -11,12 +11,14 @@ html { height: 100%; }
 body { min-height: 100%; }
 
 
-// this file is only used to define helper
-// classes for showing gridlines and breakpoint
-// markers while you are developing/laying out
-// your page.  to enable this toolkit make sure to
-// include the "grids--gridlines-markers-helper.js"
-// file in the bottom of your page (requires jQuery)
+// =======================================================
+// == This file is only used to define helper           ==
+// == classes for showing gridlines and breakpoint      ==
+// == markers while you are developing/laying out       ==
+// == your page.  To enable this toolkit make sure to   ==
+// == include the "grids--gridlines-markers-helper.js"  ==
+// == file in the bottom of your page (requires jQuery) ==
+// =======================================================
 
 
 // **************************
@@ -59,11 +61,12 @@ $innerMarkerOutlineColor: #ddd;
 
 
 
-// *********************************
-// *********************************
-// ** Do Not Edit Below This Line **
-// *********************************
-// *********************************
+
+// **********************************
+// **********************************
+// ** Do Not Edit Below This Line! **
+// **********************************
+// **********************************
 
 // lineup gridlines with page content
 @if $showGridlines == true {
@@ -126,9 +129,9 @@ $innerMarkerOutlineColor: #ddd;
 }
 
 
-//-------------------------------
+// ------------------------------
 // -- viewport display classes --
-//-------------------------------
+// ------------------------------
 .viewportDisplay { display: none; }
 body.show-marker-outlines {
 	.viewportDisplay {
@@ -150,9 +153,9 @@ body.show-marker-outlines {
 }
 
 
-//-----------------------------
+// ----------------------------
 // -- markers helper classes --
-//-----------------------------
+// ----------------------------
 .markers-toggle {
 	@extend %toggle-button;
 	@if $showMarkers == false { display: none; }
