@@ -120,6 +120,25 @@ $col-12: 12 / 12 * 100%;
 		&.grid-margin-bottom-2x-stack { margin-bottom: $grid-optional-margin-padding-size-2x; }
 		&.grid-margin-bottom-3x-stack { margin-bottom: $grid-optional-margin-padding-size-3x; }
 	}
+	// optional top/bottom margin and padding for grid row at breakpoint xxl
+	@media (max-width: $grid-breakpoint-xxl) {
+		&.grid-padding-top-xxl-0 { padding-top: 0; }
+		&.grid-padding-top-xxl { padding-top: $grid-optional-margin-padding-size; }
+		&.grid-padding-top-2x-xxl { padding-top: $grid-optional-margin-padding-size-2x; }
+		&.grid-padding-top-3x-xxl { padding-top: $grid-optional-margin-padding-size-3x; }
+		&.grid-padding-bottom-xxl-0 { padding-bottom: 0; }
+		&.grid-padding-bottom-xxl { padding-bottom: $grid-optional-margin-padding-size; }
+		&.grid-padding-bottom-2x-xxl { padding-bottom: $grid-optional-margin-padding-size-2x; }
+		&.grid-padding-bottom-3x-xxl { padding-bottom: $grid-optional-margin-padding-size-3x; }
+		&.grid-margin-top-xxl-0 { margin-top: 0; }
+		&.grid-margin-top-xxl { margin-top: $grid-optional-margin-padding-size; }
+		&.grid-margin-top-2x-xxl { margin-top: $grid-optional-margin-padding-size-2x; }
+		&.grid-margin-top-3x-xxl { margin-top: $grid-optional-margin-padding-size-3x; }
+		&.grid-margin-bottom-xxl-0 { margin-bottom: 0; }
+		&.grid-margin-bottom-xxl { margin-bottom: $grid-optional-margin-padding-size; }
+		&.grid-margin-bottom-2x-xxl { margin-bottom: $grid-optional-margin-padding-size-2x; }
+		&.grid-margin-bottom-3x-xxl { margin-bottom: $grid-optional-margin-padding-size-3x; }
+	}
 	// optional top/bottom margin and padding for grid row at breakpoint xl
 	@media (max-width: $grid-breakpoint-xl) {
 		&.grid-padding-top-xl-0 { padding-top: 0; }
@@ -291,12 +310,20 @@ $col-12: 12 / 12 * 100%;
 	.col-margin-bottom { margin-bottom: $grid-optional-margin-padding-size; }
 	.col-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
 	.col-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }	
-
+}
+.grid:not(.grid-nostack) {
 	// stack em' at our stack breakboint
-	[class*='col-']:not(.col-no-stack) {
+	[class*='col-']:not(.col-nostack) {
 		@media (max-width: $grid-breakpoint-stack) {
 			width: 100%;
 			margin-left: 0;
+		}
+	}
+}
+.grid {
+	// stack breakboint
+	[class*='col-']:not(.col-nostack) {
+		@media (max-width: $grid-breakpoint-stack) {	
 			padding-bottom: $grid-vertical-spacing-stack;
 			// optional top/bottom margin and padding
 			&.col-padding-top-stack-0 { padding-top: 0; }
@@ -319,6 +346,55 @@ $col-12: 12 / 12 * 100%;
 	}
 
 	// at breakpoints
+	@media (max-width: $grid-breakpoint-xxl) {
+		[class*='col-xxl-'] { 
+			float: left;
+			padding-bottom: $grid-vertical-spacing-xxl; 
+		}
+		.col-xxl-0 { display: none; }
+		.col-xxl-1 { width: $col-1; display: block; }
+		.col-xxl-2 { width: $col-2; display: block; }
+		.col-xxl-3 { width: $col-3; display: block; }
+		.col-xxl-4 { width: $col-4; display: block; }
+		.col-xxl-5 { width: $col-5; display: block; }
+		.col-xxl-6 { width: $col-6; display: block; }
+		.col-xxl-7 { width: $col-7; display: block; }
+		.col-xxl-8 { width: $col-8; display: block; }
+		.col-xxl-9 { width: $col-9; display: block; }
+		.col-xxl-10 { width: $col-10; display: block; }
+		.col-xxl-11 { width: $col-11; display: block; }
+		.col-xxl-12 { width: $col-12; display: block; }
+		.col-push-xxl-0 { margin-left: 0; }
+		.col-push-xxl-1 { margin-left: $col-1; }
+		.col-push-xxl-2 { margin-left: $col-2; }
+		.col-push-xxl-3 { margin-left: $col-3; }
+		.col-push-xxl-4 { margin-left: $col-4; }
+		.col-push-xxl-5 { margin-left: $col-5; }
+		.col-push-xxl-6 { margin-left: $col-6; }
+		.col-push-xxl-7 { margin-left: $col-7; }
+		.col-push-xxl-8 { margin-left: $col-8; }
+		.col-push-xxl-9 { margin-left: $col-9; }
+		.col-push-xxl-10 { margin-left: $col-10; }
+		.col-push-xxl-11 { margin-left: $col-11; }
+		.col-push-xxl-12 { margin-left: $col-12; }
+		// optional top/bottom margin and padding
+		.col-padding-top-xxl-0 { padding-top: 0; }
+		.col-padding-top-xxl { padding-top: $grid-optional-margin-padding-size; }
+		.col-padding-top-2x-xxl { padding-top: $grid-optional-margin-padding-size-2x; }
+		.col-padding-top-3x-xxl { padding-top: $grid-optional-margin-padding-size-3x; }
+		.col-padding-bottom-xxl-0 { padding-bottom: 0; }
+		.col-padding-bottom-xxl { padding-bottom: $grid-optional-margin-padding-size; }
+		.col-padding-bottom-2x-xxl { padding-bottom: $grid-optional-margin-padding-size-2x; }
+		.col-padding-bottom-3x-xxl { padding-bottom: $grid-optional-margin-padding-size-3x; }
+		.col-margin-top-xxl-0 { margin-top: 0; }
+		.col-margin-top-xxl { margin-top: $grid-optional-margin-padding-size; }
+		.col-margin-top-2x-xxl { margin-top: $grid-optional-margin-padding-size-2x; }
+		.col-margin-top-3x-xxl { margin-top: $grid-optional-margin-padding-size-3x; }
+		.col-margin-bottom-xxl-0 { margin-bottom: 0; }
+		.col-margin-bottom-xxl { margin-bottom: $grid-optional-margin-padding-size; }
+		.col-margin-bottom-2x-xxl { margin-bottom: $grid-optional-margin-padding-size-2x; }
+		.col-margin-bottom-3x-xxl { margin-bottom: $grid-optional-margin-padding-size-3x; }
+	}
 	@media (max-width: $grid-breakpoint-xl) {
 		[class*='col-xl-'] { 
 			float: left;
@@ -612,6 +688,58 @@ $col-12: 12 / 12 * 100%;
 		.col-margin-bottom-xxs { margin-bottom: $grid-optional-margin-padding-size; }
 		.col-margin-bottom-2x-xxs { margin-bottom: $grid-optional-margin-padding-size-2x; }
 		.col-margin-bottom-3x-xxs { margin-bottom: $grid-optional-margin-padding-size-3x; }		
+	}
+}
+
+.grid {
+	// reverse display order of columns
+	&.grid-reverse { 
+		[class*=col-] { float: right; }
+	}
+	&.grid-unreverse {
+		[class*=col-] { float: left; }
+	}
+	@media (max-width: $grid-breakpoint-xxl) {
+		// revserse/unreverse display order of columns at xxl xxl
+		&.grid-reverse-xxl [class*=col-] { float: right; }
+		&.grid-unreverse-xxl [class*=col-] { float: left; }
+	}
+	@media (max-width: $grid-breakpoint-xl) {
+		// revserse/unreverse display order of columns at xl xl
+		&.grid-reverse-xl [class*=col-] { float: right; }
+		&.grid-unreverse-xl [class*=col-] { float: left; }
+	}
+	@media (max-width: $grid-breakpoint-l) {
+		// revserse/unreverse display order of columns at l
+		&.grid-reverse-l [class*=col-] { float: right; }
+		&.grid-unreverse-l [class*=col-] { float: left; }
+	}
+	@media (max-width: $grid-breakpoint-m) {
+		// revserse/unreverse display order of columns at m
+		&.grid-reverse-m [class*=col-] { float: right; }
+		&.grid-unreverse-m [class*=col-] { float: left; }
+	}
+	@media (max-width: $grid-breakpoint-s) {
+		// revserse/unreverse display order of columns at s
+		&.grid-reverse-s [class*=col-] { float: right; }
+		&.grid-unreverse-s [class*=col-] { float: left; }
+	}
+	@media (max-width: $grid-breakpoint-xs) {
+		// revserse/unreverse display order of columns at xs
+		&.grid-reverse-xs [class*=col-] { float: right; }
+		&.grid-unreverse-xs [class*=col-] { float: left; }
+	}
+	@media (max-width: $grid-breakpoint-xxs) {
+		// revserse/unreverse display order of columns at xxs
+		&.grid-reverse-xxs [class*=col-] { float: right; }
+		&.grid-unreverse-xxs [class*=col-] { float: left; }
+	}
+	@media (max-width: $grid-breakpoint-stack) {
+		// revserse/unreverse display order of columns at xxs
+		&.grid-reverse-nostack [class*=col-] { float: right; }
+		&.grid-unreverse-nostack [class*=col-] { float: left; }
+		// no stack all columns in grid row
+		&.grid-nostack [class*=col-] { float: left; }
 	}
 }
 // ---------------------------

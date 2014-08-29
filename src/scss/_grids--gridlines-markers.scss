@@ -50,9 +50,10 @@ $markerColor--stack: #16a085;
 $markerColor--xxs: #30BDF4;
 $markerColor--xs: #c0392b;
 $markerColor--s: #FF6600;
-$markerColor--m: #3498db;
+$markerColor--m: #f1c40f;
 $markerColor--l: #27ae60;
-$markerColor--xl: #f1c40f;
+$markerColor--xl: #3498db;
+$markerColor--xxl: #8e44ad;
 
 // outline color for columns that have inner markers enabled
 $innerMarkerOutlineColor: #ddd;
@@ -221,11 +222,53 @@ body.show-marker-outlines {
 				left: -1.5em;
 				background: $markerColor--stack;
 				padding: 2px 4px;
+				$distance: ($grid-breakpoint-stack - $grid-breakpoint-xxs);
+				@if ($distance <= 43px) and ($distance >= 0px) { top: 25px; }
+				@if ($distance < 0) and ($distance > -43px) { top: 25px; }
+				$distance: ($grid-breakpoint-stack - $grid-breakpoint-xs);
+				@if ($distance <= 43px) and ($distance >= 0px) { top: 25px; }
+				@if ($distance < 0) and ($distance > -43px) { top: 25px; }
+				$distance: ($grid-breakpoint-stack - $grid-breakpoint-s);
+				@if ($distance <= 43px) and ($distance >= 0px) { top: 25px; }
+				@if ($distance < 0) and ($distance > -43px) { top: 25px; }
+				$distance: ($grid-breakpoint-stack - $grid-breakpoint-m);
+				@if ($distance <= 43px) and ($distance >= 0px) { top: 25px; }
+				@if ($distance < 0) and ($distance > -43px) { top: 25px; }
+				$distance: ($grid-breakpoint-stack - $grid-breakpoint-l);
+				@if ($distance <= 43px) and ($distance >= 0px) { top: 25px; }
+				@if ($distance < 0) and ($distance > -43px) { top: 25px; }
+				$distance: ($grid-breakpoint-stack - $grid-breakpoint-xl);
+				@if ($distance <= 43px) and ($distance >= 0px) { top: 25px; }
+				@if ($distance < 0) and ($distance > -43px) { top: 25px; }
+				$distance: ($grid-breakpoint-stack - $grid-breakpoint-xxl);
+				@if ($distance <= 43px) and ($distance >= 0px) { top: 25px; }
+				@if ($distance < 0) and ($distance > -43px) { top: 25px; }
 			}
 			&:after {
 				border-color: $markerColor--stack transparent;
 				border-width: 0.4em 1.5em 0 1.5em;
 				left: -1.5em;
+				$distance: ($grid-breakpoint-stack - $grid-breakpoint-xxs);
+				@if ($distance <= 43px) and ($distance >= 0px) { top: 25px; }
+				@if ($distance < 0) and ($distance > -43px) { top: 25px; }
+				$distance: ($grid-breakpoint-stack - $grid-breakpoint-xs);
+				@if ($distance <= 43px) and ($distance >= 0px) { top: 25px; }
+				@if ($distance < 0) and ($distance > -43px) { top: 25px; }
+				$distance: ($grid-breakpoint-stack - $grid-breakpoint-s);
+				@if ($distance <= 43px) and ($distance >= 0px) { top: 25px; }
+				@if ($distance < 0) and ($distance > -43px) { top: 25px; }
+				$distance: ($grid-breakpoint-stack - $grid-breakpoint-m);
+				@if ($distance <= 43px) and ($distance >= 0px) { top: 25px; }
+				@if ($distance < 0) and ($distance > -43px) { top: 25px; }
+				$distance: ($grid-breakpoint-stack - $grid-breakpoint-l);
+				@if ($distance <= 43px) and ($distance >= 0px) { top: 25px; }
+				@if ($distance < 0) and ($distance > -43px) { top: 25px; }
+				$distance: ($grid-breakpoint-stack - $grid-breakpoint-xl);
+				@if ($distance <= 43px) and ($distance >= 0px) { top: 25px; }
+				@if ($distance < 0) and ($distance > -43px) { top: 25px; }
+				$distance: ($grid-breakpoint-stack - $grid-breakpoint-xxl);
+				@if ($distance <= 43px) and ($distance >= 0px) { top: 25px; }
+				@if ($distance < 0) and ($distance > -43px) { top: 25px; }
 			}				
 		}
 		&.marker--xxs {
@@ -236,13 +279,11 @@ body.show-marker-outlines {
 				left: -0.94em;
 				background: $markerColor--xxs;
 				padding: 2px 4px;
-				@if $grid-breakpoint-stack == $grid-breakpoint-xxs { top: 25px; }
 			}
 			&:after {
 				border-color: $markerColor--xxs transparent;
 				border-width: .35em .99em 0 .99em;
-				left: -.95em;
-				@if $grid-breakpoint-stack == $grid-breakpoint-xxs { top: 25px; }
+				left: -.94em;
 			}
 		}
 		&.marker--xs {
@@ -254,13 +295,11 @@ body.show-marker-outlines {
 				left: -0.68em;
 				background: $markerColor--xs;
 				padding: 2px 4px;
-				@if $grid-breakpoint-stack == $grid-breakpoint-xs { top: 25px; }
 			}
 			&:after {
 				border-color: $markerColor--xs transparent;
 				border-width: .4em .73em 0 .73em;
 				left: -0.68em;
-				@if $grid-breakpoint-stack == $grid-breakpoint-xs { top: 25px; }
 			}
 		}
 		&.marker--s {
@@ -271,14 +310,12 @@ body.show-marker-outlines {
 				content: 'S';
 				left: -0.45em;
 				background: $markerColor--s;
-				padding: 2px 4px;
-				@if $grid-breakpoint-stack == $grid-breakpoint-s { top: 25px; }  
+				padding: 2px 4px;  
 			}
 			&:after {
 				border-color: $markerColor--s transparent;
 				border-width: .3em .49em 0 .5em;
 				left: -0.45em;
-				@if $grid-breakpoint-stack == $grid-breakpoint-s { top: 25px; }
 			}		
 		}  
 		&.marker--m {
@@ -290,13 +327,11 @@ body.show-marker-outlines {
 				left: -0.45em;
 				background: $markerColor--m;
 				padding: 2px 4px;
-				@if $grid-breakpoint-stack == $grid-breakpoint-m { top: 25px; }
 			}
 			&:after {
 				border-color: $markerColor--m transparent;
 				border-width: .3em .49em 0 .5em;
 				left: -0.45em;
-				@if $grid-breakpoint-stack == $grid-breakpoint-m { top: 25px; }
 			}			
 		}  
 		&.marker--l {
@@ -308,13 +343,11 @@ body.show-marker-outlines {
 				left: -0.45em;
 				background: $markerColor--l;
 				padding: 2px 4px;
-				@if $grid-breakpoint-stack == $grid-breakpoint-l { top: 25px; }
 			}
 			&:after {
 				border-color: $markerColor--l transparent;
 				border-width: .3em .49em 0 .5em;
 				left: -0.45em;
-				@if $grid-breakpoint-stack == $grid-breakpoint-l { top: 25px; }
 			}			
 		}
 		&.marker--xl {
@@ -326,13 +359,27 @@ body.show-marker-outlines {
 				left: -0.68em;
 				background: $markerColor--xl;
 				padding: 2px 4px;
-				@if $grid-breakpoint-stack == $grid-breakpoint-xl { top: 25px; }
 			}
 			&:after {
 				border-color: $markerColor--xl transparent;
 				border-width: .4em .73em 0 .73em;
 				left: -0.68em;
-				@if $grid-breakpoint-stack == $grid-breakpoint-xl { top: 25px; }
+			}
+		}
+		&.marker--xxl {
+			z-index: 10;
+			margin-left: $grid-breakpoint-xxl;
+			background: $markerColor--xxl;
+			&:before {
+				content: 'XXL';
+				left: -0.94em;
+				background: $markerColor--xxl;
+				padding: 2px 4px;
+			}
+			&:after {
+				border-color: $markerColor--xxl transparent;
+				border-width: .35em .99em 0 .99em;
+				left: -.94em;
 			}
 		}
 	}
@@ -370,6 +417,7 @@ body.show-marker-outlines {
 @if $showMarkers == true {
 	// set "gridsCurrentBreakpoint" element width to allow us to grab the current breakpoint via javascript
 	#gridsCurrentBreakpoint { display: none; width: 0;}
+	@media (max-width: $grid-breakpoint-xxl) { #gridsCurrentBreakpoint {width: $grid-breakpoint-xxl;} }
 	@media (max-width: $grid-breakpoint-xl) { #gridsCurrentBreakpoint {width: $grid-breakpoint-xl;} }
 	@media (max-width: $grid-breakpoint-l) { #gridsCurrentBreakpoint {width: $grid-breakpoint-l;} }
 	@media (max-width: $grid-breakpoint-m) { #gridsCurrentBreakpoint {width: $grid-breakpoint-m;} }
@@ -378,6 +426,21 @@ body.show-marker-outlines {
 	@media (max-width: $grid-breakpoint-xxs) { #gridsCurrentBreakpoint {width: $grid-breakpoint-xxs;} }
 
 	body.show-marker-outlines {
+		@media (max-width: $grid-breakpoint-xxl) {
+			[class*='col-xxl-']:after {
+				position: absolute;
+				top: 0;
+				left: 0;
+				outline: 2px solid $markerColor--xxl !important;
+				content: '';
+				width: calc(100% - #{$grid-gutter-width});
+				height: calc(100% - #{$grid-gutter-width});
+			 }
+			.marker-indicator { 
+				background: $markerColor--xxl !important;
+				&:before { content: 'breakpoint: XXL' + ' (' + $grid-breakpoint-xxl + ')'; }
+			}
+		}
 		@media (max-width: $grid-breakpoint-xl) {
 			[class*='col-xl-']:after {
 				position: absolute;
@@ -469,7 +532,7 @@ body.show-marker-outlines {
 			}
 		}
 		@media (max-width: $grid-breakpoint-stack) {
-			.col-no-stack:after {
+			.col-nostack:after {
 				position: absolute;
 				top: 0;
 				left: 0;
@@ -478,7 +541,7 @@ body.show-marker-outlines {
 				width: calc(100% - #{$grid-gutter-width});
 				height: calc(100% - #{$grid-gutter-width});
 			 }
-			 .gridlines .col-no-stack:after { outline: 0 !important; }
+			 .gridlines .col-nostack:after { outline: 0 !important; }
 			.marker-indicator { 
 				background: $markerColor--stack !important; 
 				&:before { content: 'breakpoint: stack' + ' (' + $grid-breakpoint-stack + ')'; }
@@ -530,6 +593,7 @@ body.show-marker-outlines {
 			.innerMarker-m { border-color: $markerColor--m; }
 			.innerMarker-l { border-color: $markerColor--l; }
 			.innerMarker-xl { border-color: $markerColor--xl; }
+			.innerMarker-xxl { border-color: $markerColor--xxl; }
 		}
 	}
 }

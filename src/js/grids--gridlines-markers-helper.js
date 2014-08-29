@@ -86,23 +86,24 @@ $(document).ready(function() {
 		"<!-- gridlines --> " +
 		"<div class=\"gridlines\"> " +
 		"	<div class=\"grid\"> " +
-		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">1</div></div> " +
-		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">2</div></div> " +
-		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">3</div></div> " +
-		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">4</div></div> " +
-		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">5</div></div> " +
-		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">6</div></div> " +
-		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">7</div></div> " +
-		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">8</div></div> " +
-		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">9</div></div> " +
-		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">10</div></div> " +
-		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">11</div></div> " +
-		"		<div class=\"col-1 col-no-stack\"><div class=\"gridlines--col\">12</div></div> " +
+		"		<div class=\"col-1 col-nostack\"><div class=\"gridlines--col\">1</div></div> " +
+		"		<div class=\"col-1 col-nostack\"><div class=\"gridlines--col\">2</div></div> " +
+		"		<div class=\"col-1 col-nostack\"><div class=\"gridlines--col\">3</div></div> " +
+		"		<div class=\"col-1 col-nostack\"><div class=\"gridlines--col\">4</div></div> " +
+		"		<div class=\"col-1 col-nostack\"><div class=\"gridlines--col\">5</div></div> " +
+		"		<div class=\"col-1 col-nostack\"><div class=\"gridlines--col\">6</div></div> " +
+		"		<div class=\"col-1 col-nostack\"><div class=\"gridlines--col\">7</div></div> " +
+		"		<div class=\"col-1 col-nostack\"><div class=\"gridlines--col\">8</div></div> " +
+		"		<div class=\"col-1 col-nostack\"><div class=\"gridlines--col\">9</div></div> " +
+		"		<div class=\"col-1 col-nostack\"><div class=\"gridlines--col\">10</div></div> " +
+		"		<div class=\"col-1 col-nostack\"><div class=\"gridlines--col\">11</div></div> " +
+		"		<div class=\"col-1 col-nostack\"><div class=\"gridlines--col\">12</div></div> " +
 		"	</div> " +
 		"</div> " +
 		"<!-- markers for grid --> " +
 		"<div class=\"markers\"> " +
 		"	<div class=\"grid\"> " +
+		"		<div class=\"marker marker--xxl\"></div> " +
 		"		<div class=\"marker marker--xl\"></div> " +
 		"		<div class=\"marker marker--l\"></div> " +
 		"		<div class=\"marker marker--m\"></div> " +
@@ -181,6 +182,7 @@ $(document).ready(function() {
 		"	<div class=\"innerMarker-m\"></div> " +
 		"	<div class=\"innerMarker-l\"></div> " +
 		"	<div class=\"innerMarker-xl\"></div> " +
+		"	<div class=\"innerMarker-xxl\"></div> " +
 		"</div> ";
 
 	// bind toggle button
@@ -267,6 +269,7 @@ $(document).ready(function() {
 	// return the current grid's breakpoints
 	function getGridBreakpoints() {
 		var gridBreakpoints = {
+			XXL: parseInt($(".marker.marker--xxl").css("margin-left")),
 			XL: parseInt($(".marker.marker--xl").css("margin-left")),
 			L: parseInt($(".marker.marker--l").css("margin-left")),
 			M: parseInt($(".marker.marker--m").css("margin-left")),
@@ -309,7 +312,7 @@ $(document).ready(function() {
 		if (gridsCurrentBreakpoint > 0) {
 			var breakpointCharacter;
 			for (var prop in gridBreakpoints) {
-				// set the breakpoint string character (xl, l, m, s, xs, xxs)
+				// set the breakpoint string character (xxl, xl, l, m, s, xs, xxs)
 				breakpointCharacter = prop.toLowerCase();
 
 				// for each matched breakpoint column set its inner markers
@@ -332,7 +335,7 @@ $(document).ready(function() {
 
 		// update all col line styles
 		for (var prop in gridBreakpoints) {
-			// set the breakpoint string character (xl, l, m, s, xs, xxs)
+			// set the breakpoint string character (xxl, xl, l, m, s, xs, xxs)
 			var breakpointCharacter = prop.toLowerCase();
 
 			$grid.find("[class*=col-" + breakpointCharacter + "-] .innerMarker-" + breakpointCharacter).each(function(){
@@ -344,8 +347,9 @@ $(document).ready(function() {
 	function setInnerMarkerOffsets(selector, size) {
 		var borderWidth = "1px",
 			borderStyle = "solid",
-			leftXL, leftL, leftM, leftS, leftXS, leftXXS;
+			leftXXL, leftXL, leftL, leftM, leftS, leftXS, leftXXS;
 
+		leftXXL = ((gridBreakpoints.XXL - gridGutterWidth - pageScrollbarWidth) * (size/12)) - gridGutterWidth;
 		leftXL = ((gridBreakpoints.XL - gridGutterWidth - pageScrollbarWidth) * (size/12)) - gridGutterWidth;
 		leftL = ((gridBreakpoints.L - gridGutterWidth - pageScrollbarWidth) * (size/12) - gridGutterWidth);
 		leftM = ((gridBreakpoints.M - gridGutterWidth - pageScrollbarWidth) * (size/12) - gridGutterWidth);
@@ -358,6 +362,7 @@ $(document).ready(function() {
 		var $innerMarkers = $(selector).find(".innerMarkers");
 		
 		$innerMarkers.find(".innerMarker-outline").css({ "width" : outlineWidth, "height" : outlineHeight });
+		$innerMarkers.find(".innerMarker-xxl").css({ "margin-left" : leftXXL, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
 		$innerMarkers.find(".innerMarker-xl").css({ "margin-left" : leftXL, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
 		$innerMarkers.find(".innerMarker-l").css({ "margin-left" : leftL, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
 		$innerMarkers.find(".innerMarker-m").css({ "margin-left" : leftM, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
