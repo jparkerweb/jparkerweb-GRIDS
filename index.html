@@ -303,24 +303,24 @@
 			<div class="grid grids-padding-top-2x">
 				<div class="col-12">
 					<p>
-						There may be situations where you do NOT want to stack columns.  This is done by adding the <span class="keyword">col-no-stack</span> class to the columns that should ignore the "stack point".  Using the previous two column example, now we will add the <span class="keyword">col-no-stack</span> class to each column.  After resizing the browser to trigger the <span class="keyword">stack</span> break point, notice the two columns still remain side by side.
+						There may be situations where you do NOT want to stack columns.  This is done by adding the <span class="keyword">col-nostack</span> class to the columns that should ignore the "stack point".  Using the previous two column example, now we will add the <span class="keyword">col-nostack</span> class to each column.  After resizing the browser to trigger the <span class="keyword">stack</span> break point, notice the two columns still remain side by side.
 					</p>
 					<p>
-						It is easy to see which columns have the <span class="keyword">col-no-stack</span> class applied to them when you have the <span class="markers-toggle">markers</span> helper tool enabled (each <span class="keyword">col-no-stack</span> column will have a green dotted outline displayed aroud it when triggered).
+						It is easy to see which columns have the <span class="keyword">col-nostack</span> class applied to them when you have the <span class="markers-toggle">markers</span> helper tool enabled (each <span class="keyword">col-nostack</span> column will have a green dotted outline displayed aroud it when triggered).
 					</p>
 				</div>
 			</div>
 			<div class="grid">
-				<div class="col-6 col-no-stack"><div class="content">.col-6 .col-no-stack</div></div>
-				<div class="col-6 col-no-stack"><div class="content">.col-6 .col-no-stack</div></div>
+				<div class="col-6 col-nostack"><div class="content">.col-6 .col-nostack</div></div>
+				<div class="col-6 col-nostack"><div class="content">.col-6 .col-nostack</div></div>
 			</div>
 			<div class="grid">
 				<div class="col-12">
 					<pre class="code-block prettyprint linenums">
-&lt;!-- columns will not stack due to the &quot;col-no-stack&quot; class --&gt;
+&lt;!-- columns will not stack due to the &quot;col-nostack&quot; class --&gt;
 &lt;div class=&quot;grid&quot;&gt;
-  &lt;div class=&quot;col-6 col-no-stack&quot;&gt;.col-6 .col-no-stack&lt;/div&gt;
-  &lt;div class=&quot;col-6 col-no-stack&quot;&gt;.col-6 .col-no-stack&lt;/div&gt;
+  &lt;div class=&quot;col-6 col-nostack&quot;&gt;.col-6 .col-nostack&lt;/div&gt;
+  &lt;div class=&quot;col-6 col-nostack&quot;&gt;.col-6 .col-nostack&lt;/div&gt;
 &lt;/div&gt;
 </pre>
 				</div>
@@ -328,19 +328,19 @@
 
 			<div class="grid">
 				<p class="col-12">
-					The "stack point" only applies to columns that do NOT have the <span class="keyword">col-no-stack</span> class applied to them.  In other words, if we only apply the <span class="keyword">col-no-stack</span> class to the first column in our example, the second column will inherit the stack properties.  At the <span class="keyword">stack</span> breakpoint, the second column will have a width of 100% and push itself to the next line in order to fit within the page.
+					The "stack point" only applies to columns that do NOT have the <span class="keyword">col-nostack</span> class applied to them.  In other words, if we only apply the <span class="keyword">col-nostack</span> class to the first column in our example, the second column will inherit the stack properties.  At the <span class="keyword">stack</span> breakpoint, the second column will have a width of 100% and push itself to the next line in order to fit within the page.
 				</p>
 			</div>
 			<div class="grid">
-				<div class="col-6 col-no-stack"><div class="content">.col-6 .col-no-stack</div></div>
+				<div class="col-6 col-nostack"><div class="content">.col-6 .col-nostack</div></div>
 				<div class="col-6"><div class="content">.col-6</div></div>
 			</div>
 			<div class="grid">
 				<div class="col-12">
 					<pre class="code-block prettyprint linenums">
-&lt;!-- &quot;col-no-stack&quot; only applied to the first column; the second column will stack (width: 100%) --&gt;
+&lt;!-- &quot;col-nostack&quot; only applied to the first column; the second column will stack (width: 100%) --&gt;
 &lt;div class=&quot;grid&quot;&gt;
-  &lt;div class=&quot;col-6 col-no-stack&quot;&gt;.col-6 .col-no-stack&lt;/div&gt;
+  &lt;div class=&quot;col-6 col-nostack&quot;&gt;.col-6 .col-nostack&lt;/div&gt;
   &lt;div class=&quot;col-6&quot;&gt;.col-6&lt;/div&gt;
 &lt;/div&gt;
 </pre>
@@ -422,19 +422,19 @@ $grid-breakpoint-xl:    1000px !default;
 
 				<div class="col-12">
 					<p>
-						Our default base column class <span class="keyword">col-{number}</span> will always be used up until the <span class="keyword">stack</span> breakpoint is reached (unless the <span class="keyword">col-no-stack</span> is set on an element).  In addition, you can also specify one or all of the other breakpoint classes on an element.  To demonstrate this, examine the example grid below at each breakpoint (slowly resize your browser past each breakpoint).
+						Our default base column class <span class="keyword">col-{number}</span> will always be used up until the <span class="keyword">stack</span> breakpoint is reached (unless the <span class="keyword">col-nostack</span> is set on an element).  In addition, you can also specify one or all of the other breakpoint classes on an element.  To demonstrate this, examine the example grid below at each breakpoint (slowly resize your browser past each breakpoint).
 					</p>
 				</div>
 			</div>
 			<div class="grid">
-				<div class="col-push-1 col-11 col-push-xl-2 col-xl-10 col-push-l-3 col-l-9 col-push-m-4 col-m-8 col-push-s-5 col-s-7 col-push-xs-6 col-xs-6 col-no-stack"><div class="content">.col-push-1 .col-11 .col-push-xl-2 .col-xl-10 .col-push-l-3 .col-l-9 .col-push-m-4 .col-m-8 .col-push-s-5 .col-s-7 .col-push-xs-6 .col-xs-6 .col-no-stack</div></div>
+				<div class="col-push-1 col-11 col-push-xl-2 col-xl-10 col-push-l-3 col-l-9 col-push-m-4 col-m-8 col-push-s-5 col-s-7 col-push-xs-6 col-xs-6 col-nostack"><div class="content">.col-push-1 .col-11 .col-push-xl-2 .col-xl-10 .col-push-l-3 .col-l-9 .col-push-m-4 .col-m-8 .col-push-s-5 .col-s-7 .col-push-xs-6 .col-xs-6 .col-nostack</div></div>
 			</div>
 			<div class="grid">
 				<div class="col-12">
 					<pre class="code-block prettyprint linenums">
 &lt;!-- column with differnt spans and pushes defined at every breakpoint --&gt;
 &lt;div class=&quot;grid&quot;&gt;
-  &lt;div class=&quot;col-push-1 col-11 col-push-xl-2 col-xl-10 col-push-l-3 col-l-9 col-push-m-4 col-m-8 col-push-s-5 col-s-7 col-push-xs-6 col-xs-6 col-no-stack&quot;&gt;.col-push-1 .col-11 .col-push-xl-2 .col-xl-10 .col-push-l-3 .col-l-9 .col-push-m-4 .col-m-8 .col-push-s-5 .col-s-7 .col-push-xs-6 .col-xs-6 .col-no-stack&lt;/div&gt;
+  &lt;div class=&quot;col-push-1 col-11 col-push-xl-2 col-xl-10 col-push-l-3 col-l-9 col-push-m-4 col-m-8 col-push-s-5 col-s-7 col-push-xs-6 col-xs-6 col-nostack&quot;&gt;.col-push-1 .col-11 .col-push-xl-2 .col-xl-10 .col-push-l-3 .col-l-9 .col-push-m-4 .col-m-8 .col-push-s-5 .col-s-7 .col-push-xs-6 .col-xs-6 .col-nostack&lt;/div&gt;
 &lt;/div&gt;
 </pre>
 				</div>
@@ -498,51 +498,51 @@ $grid-breakpoint-xl:    1000px !default;
 			<!-- class legend -->
 			<aside>
 				<!-- base -->
-				<div class="grid grid-margin-bottom-2x-s">
-					<div class="col-push-1 col-2"><span class="class-type">base</span></div>
-					<div class="col-3 col-l-4 col-m-5 col-s-9"><span class="keyword">.col-push-{0-12}</span></div>
-					<div class="col-4 col-push-s-3 col-s-9"><span class="keyword">.col-{0-12}</span></div>
+				<div class="grid grid-nostack">
+					<div class="col-push-1 col-2 col-push-xs-0"><span class="class-type">base</span></div>
+					<div class="col-3 col-l-4 col-s-5 col-xs-10"><span class="keyword">.col-push-{0-12}</span></div>
+					<div class="col-4 col-s-4 col-push-xs-2 col-xs-10"><span class="keyword">.col-{0-12}</span></div>
 				</div>
 				<!-- xl -->
-				<div class="grid grid-margin-bottom-2x-s">
-					<div class="col-push-1 col-2"><span class="class-type">xl</span></div>
-					<div class="col-3 col-l-4 col-m-5 col-s-9"><span class="keyword">.col-push-xl-{0-12}</span></div>
-					<div class="col-4 col-push-s-3 col-s-9"><span class="keyword">.col-xl-{0-12}</span></div>
+				<div class="grid grid-nostack">
+					<div class="col-push-1 col-2 col-push-xs-0"><span class="class-type">xl</span></div>
+					<div class="col-3 col-l-4 col-s-5 col-xs-10"><span class="keyword">.col-push-xl-{0-12}</span></div>
+					<div class="col-4 col-s-4 col-push-xs-2 col-xs-10"><span class="keyword">.col-xl-{0-12}</span></div>
 				</div>
 				<!-- l -->
-				<div class="grid grid-margin-bottom-2x-s">
-					<div class="col-push-1 col-2"><span class="class-type">l</span></div>
-					<div class="col-3 col-l-4 col-m-5 col-s-9"><span class="keyword">.col-push-l-{0-12}</span></div>
-					<div class="col-4 col-push-s-3 col-s-9"><span class="keyword">.col-l-{0-12}</span></div>
+				<div class="grid grid-nostack">
+					<div class="col-push-1 col-2 col-push-xs-0"><span class="class-type">l</span></div>
+					<div class="col-3 col-l-4 col-s-5 col-xs-10"><span class="keyword">.col-push-l-{0-12}</span></div>
+					<div class="col-4 col-s-4 col-push-xs-2 col-xs-10"><span class="keyword">.col-l-{0-12}</span></div>
 				</div>
 				<!-- m -->
-				<div class="grid grid-margin-bottom-2x-s">
-					<div class="col-push-1 col-2"><span class="class-type">m</span></div>
-					<div class="col-3 col-l-4 col-m-5 col-s-9"><span class="keyword">.col-push-m-{0-12}</span></div>
-					<div class="col-4 col-push-s-3 col-s-9"><span class="keyword">.col-m-{0-12}</span></div>
+				<div class="grid grid-nostack">
+					<div class="col-push-1 col-2 col-push-xs-0"><span class="class-type">m</span></div>
+					<div class="col-3 col-l-4 col-s-5 col-xs-10"><span class="keyword">.col-push-m-{0-12}</span></div>
+					<div class="col-4 col-s-4 col-push-xs-2 col-xs-10"><span class="keyword">.col-m-{0-12}</span></div>
 				</div>
 				<!-- s -->
-				<div class="grid grid-margin-bottom-2x-s">
-					<div class="col-push-1 col-2"><span class="class-type">s</span></div>
-					<div class="col-3 col-l-4 col-m-5 col-s-9"><span class="keyword">.col-push-s-{0-12}</span></div>
-					<div class="col-4 col-push-s-3 col-s-9"><span class="keyword">.col-s-{0-12}</span></div>
+				<div class="grid grid-nostack">
+					<div class="col-push-1 col-2 col-push-xs-0"><span class="class-type">s</span></div>
+					<div class="col-3 col-l-4 col-s-5 col-xs-10"><span class="keyword">.col-push-s-{0-12}</span></div>
+					<div class="col-4 col-s-4 col-push-xs-2 col-xs-10"><span class="keyword">.col-s-{0-12}</span></div>
 				</div>
 				<!-- xs -->
-				<div class="grid grid-margin-bottom-2x-s">
-					<div class="col-push-1 col-2"><span class="class-type">xs</span></div>
-					<div class="col-3 col-l-4 col-m-5 col-s-9"><span class="keyword">.col-push-xs-{0-12}</span></div>
-					<div class="col-4 col-push-s-3 col-s-9"><span class="keyword">.col-xs-{0-12}</span></div>
+				<div class="grid grid-nostack">
+					<div class="col-push-1 col-2 col-push-xs-0"><span class="class-type">xs</span></div>
+					<div class="col-3 col-l-4 col-s-5 col-xs-10"><span class="keyword">.col-push-xs-{0-12}</span></div>
+					<div class="col-4 col-s-4 col-push-xs-2 col-xs-10"><span class="keyword">.col-xs-{0-12}</span></div>
 				</div>
 				<!-- xxs -->
-				<div class="grid grid-margin-bottom-2x-s">
-					<div class="col-push-1 col-2"><span class="class-type">xxs</span></div>
-					<div class="col-3 col-l-4 col-m-5 col-s-9"><span class="keyword">.col-push-xxs-{0-12}</span></div>
-					<div class="col-4 col-push-s-3 col-s-9"><span class="keyword">.col-xxs-{0-12}</span></div>
+				<div class="grid grid-nostack">
+					<div class="col-push-1 col-2 col-push-xs-0"><span class="class-type">xxs</span></div>
+					<div class="col-3 col-l-4 col-s-5 col-xs-10"><span class="keyword">.col-push-xxs-{0-12}</span></div>
+					<div class="col-4 col-s-4 col-push-xs-2 col-xs-10"><span class="keyword">.col-xxs-{0-12}</span></div>
 				</div>
 				<!-- stack -->
-				<div class="grid">
-					<div class="col-push-1 col-2"><span class="class-type">stack</span></div>
-					<div class="col-3 col-l-4 col-m-5 col-s-9"><span class="keyword">.col-no-stack</span></div>
+				<div class="grid grid-nostack">
+					<div class="col-push-1 col-2 col-push-xs-0"><span class="class-type">stack</span></div>
+					<div class="col-3 col-l-4 col-s-5 col-xs-10"><span class="keyword">.col-nostack</span></div>
 				</div>
 			</aside>
 		</section>
@@ -578,6 +578,18 @@ $grid-breakpoint-xl:    1000px !default;
 				</div>
 				<div class="col-12">
 					<span class="keyword">{grid/col}-{margin/padding}-{top/bottom}-{breakpoint}-{2x/3x}</span>
+				</div>
+				<div class="col-12">
+					<span class="keyword">grid-nostack</span>
+				</div>
+				<div class="col-12">
+					<span class="keyword">grid-{reverse/unreverse}</span>
+				</div>
+				<div class="col-12">
+					<span class="keyword">grid-{reverse/unreverse}-{breakpoint}</span>
+				</div>
+				<div class="col-12">
+					<span class="keyword">grid-{reverse/unreverse}-nostack</span>
 				</div>
 			</div>
 			<!-- fluid images -->
