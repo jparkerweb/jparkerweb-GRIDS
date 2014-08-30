@@ -217,6 +217,7 @@ body.show-marker-outlines {
 			z-index: 10;
 			margin-left: $grid-breakpoint-stack;
 			background: $markerColor--stack;
+			&:hover { z-index: 20; }
 			&:before {
 				content: 'stack';
 				left: -1.5em;
@@ -274,6 +275,7 @@ body.show-marker-outlines {
 		&.marker--xxs {
 			margin-left: $grid-breakpoint-xxs;
 			background: $markerColor--xxs;
+			&:hover { z-index: 20; }
 			&:before {
 				content: 'XXS';
 				left: -0.94em;
@@ -290,6 +292,7 @@ body.show-marker-outlines {
 			z-index: 10;
 			margin-left: $grid-breakpoint-xs;
 			background: $markerColor--xs;
+			&:hover { z-index: 20; }
 			&:before {
 				content: 'XS';
 				left: -0.68em;
@@ -306,6 +309,7 @@ body.show-marker-outlines {
 			z-index: 10;
 			margin-left: $grid-breakpoint-s;
 			background: $markerColor--s;
+			&:hover { z-index: 20; }
 			&:before {
 				content: 'S';
 				left: -0.45em;
@@ -322,6 +326,7 @@ body.show-marker-outlines {
 			z-index: 10;
 			margin-left: $grid-breakpoint-m;
 			background: $markerColor--m;
+			&:hover { z-index: 20; }
 			&:before {
 				content: 'M';
 				left: -0.45em;
@@ -338,6 +343,7 @@ body.show-marker-outlines {
 			z-index: 10;
 			margin-left: $grid-breakpoint-l;
 			background: $markerColor--l;
+			&:hover { z-index: 20; }
 			&:before {
 				content: 'L';
 				left: -0.45em;
@@ -354,6 +360,7 @@ body.show-marker-outlines {
 			z-index: 10;
 			margin-left: $grid-breakpoint-xl;
 			background: $markerColor--xl;
+			&:hover { z-index: 20; }
 			&:before {
 				content: 'XL';
 				left: -0.68em;
@@ -370,6 +377,7 @@ body.show-marker-outlines {
 			z-index: 10;
 			margin-left: $grid-breakpoint-xxl;
 			background: $markerColor--xxl;
+			&:hover { z-index: 20; }
 			&:before {
 				content: 'XXL';
 				left: -0.94em;
@@ -384,6 +392,7 @@ body.show-marker-outlines {
 		}
 	}
 }
+
 
 
 // ------------------------------
@@ -587,6 +596,7 @@ body.show-marker-outlines {
 				left: 1px;				
 				content: '';
 			}
+			.innerMarker-stack { border-color: $markerColor--stack; }
 			.innerMarker-xxs { border-color: $markerColor--xxs; }
 			.innerMarker-xs { border-color: $markerColor--xs; }
 			.innerMarker-s { border-color: $markerColor--s; }
@@ -594,6 +604,7 @@ body.show-marker-outlines {
 			.innerMarker-l { border-color: $markerColor--l; }
 			.innerMarker-xl { border-color: $markerColor--xl; }
 			.innerMarker-xxl { border-color: $markerColor--xxl; }
+			.innerMarker--dotted { cursor: crosshair; }
 		}
 	}
 }
@@ -634,5 +645,22 @@ body.show-marker-outlines {
 	}
 	&.grids-notification--slide-off-right {
 		right: -400px;
+	}
+	.grids-notification--title {
+		font-weight: 400;
+		margin-bottom: 10px;
+		padding-bottom: 2px;
+		border-bottom: 1px solid #b2b2b2;
+	}
+	.grids-notification--keyword {
+		padding: 2px 4px;
+		border-radius: 3px;
+		background: #333;
+		color: white;
+		font-weight: 400;
+	}
+	.grids-notification--modifier {
+		@extend .grids-notification--keyword;
+		margin-top: 3px;
 	}
 }

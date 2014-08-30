@@ -10,16 +10,16 @@ $(document).ready(function() {
 	// *********************************
 	//http://james.padolsey.com/javascript/regex-selector-for-jquery/
 	jQuery.expr[':'].regex = function(elem, index, match) {
-	var matchParams = match[3].split(','),
-	validLabels = /^(data|css):/,
-	attr = {
-		method: matchParams[0].match(validLabels) ? matchParams[0].split(':')[0] : 'attr',
-		property: matchParams.shift().replace(validLabels,'')
-	},
-	regexFlags = 'ig',
-	regex = new RegExp(matchParams.join('').replace(/^\s+|\s+$/g,''), regexFlags);
-	return regex.test(jQuery(elem)[attr.method](attr.property));
-	}	
+		var matchParams = match[3].split(','),
+			validLabels = /^(data|css):/,
+			attr = {
+				method: matchParams[0].match(validLabels) ? matchParams[0].split(':')[0] : 'attr',
+				property: matchParams.shift().replace(validLabels,'')
+			},
+			regexFlags = 'ig',
+			regex = new RegExp(matchParams.join('').replace(/^\s+|\s+$/g,''), regexFlags);
+		return regex.test(jQuery(elem)[attr.method](attr.property));
+	};
 	// *********************************
 
 
@@ -37,12 +37,13 @@ $(document).ready(function() {
 	var gridsNotificationTimeouts = [];
 
 	// show notification
-	function showGridsNotification(message, timeToShow, bgColor) {
+	function showGridsNotification(message, timeToShow, bgColor, hook) {
 		bgColor = typeof bgColor !== 'undefined' ? bgColor : '#2980b9';
+		hook = typeof hook !== 'undefined' ? hook : '';
 
 		// clear and existing notifications
 		for (var i = 0; i < gridsNotificationTimeouts.length; i++) {
-		    clearTimeout(gridsNotificationTimeouts[i]);
+			clearTimeout(gridsNotificationTimeouts[i]);
 		}
 		gridsNotificationTimeouts = [];		
 
@@ -50,14 +51,17 @@ $(document).ready(function() {
 			.html(message)
 			.css("background", bgColor)
 			.removeClass("grids-notification--slide-off-right")
-			.addClass("grids-notification--show");
+			.addClass("grids-notification--show")
+			.attr("data-hook", hook);
 
 		gridsNotificationTimeouts.push(
 			setTimeout(function() {
 				$gridsNotification.addClass("grids-notification--slide-off-right");
 				gridsNotificationTimeouts.push(
 					setTimeout(function() {
-						$gridsNotification.removeClass("grids-notification--show grids-notification--slide-off-right");
+						$gridsNotification
+							.removeClass("grids-notification--show grids-notification--slide-off-right")
+							.attr("data-hook", "");					
 					}, 300)
 				);
 			}, timeToShow)
@@ -66,7 +70,9 @@ $(document).ready(function() {
 
 	// bind clicking of notifiction to clear itself
 	$("#gridsNotification").on("click", function () {
-		$gridsNotification.removeClass("grids-notification--show grids-notification--slide-off-right");
+		$gridsNotification
+			.removeClass("grids-notification--show grids-notification--slide-off-right")
+			.attr("data-hook", "");
 	});
 	// *************************
 
@@ -156,7 +162,9 @@ $(document).ready(function() {
 
 	// bind notification for markers
 	$(".markers .marker").on("click", function() {
-		showGridsNotification("Markers overlay a visual line showing each \"breapoint\" value defined in your GRIDS configuration.", 8000);
+		var breapointValue = $(this).css("margin-left");
+		var breakpointColor = $(this).css("background-color");
+		showGridsNotification("clicked breakpoint is at: <span class=\"grids-notification--keyword\">" + breapointValue + "</span><br><br>Breakpoint \"markers\" overlay a visual line on the page, showing each \"breapoint\" value defined in your GRIDS configuration.", 8000, breakpointColor);
 	});
 	// bind notification for marker indicator
 	$(".marker-indicator").on("click", function() {
@@ -176,6 +184,7 @@ $(document).ready(function() {
 	var innerColMarkers = " " +
 		"<div class=\"innerMarkers\"> " +
 		"	<div class=\"innerMarker-outline\"></div> " +
+		"	<div class=\"innerMarker-stack\"></div> " +
 		"	<div class=\"innerMarker-xxs\"></div> " +
 		"	<div class=\"innerMarker-xs\"></div> " +
 		"	<div class=\"innerMarker-s\"></div> " +
@@ -275,7 +284,8 @@ $(document).ready(function() {
 			M: parseInt($(".marker.marker--m").css("margin-left")),
 			S: parseInt($(".marker.marker--s").css("margin-left")),
 			XS: parseInt($(".marker.marker--xs").css("margin-left")),
-			XXS: parseInt($(".marker.marker--xxs").css("margin-left"))
+			XXS: parseInt($(".marker.marker--xxs").css("margin-left")),
+			Stack: parseInt($(".marker.marker--stack").css("margin-left"))
 		};
 		return gridBreakpoints;
 	}
@@ -320,8 +330,8 @@ $(document).ready(function() {
 					var className = $(this).attr("class");
 					var regExPattern = "col\\-" + breakpointCharacter + "\\-[0-9]{1,2}";
 					if (className.match(regExPattern)) {
-						regExPattern = "col\\-" + breakpointCharacter + "\\-([0-9]{1,2})", '$1';
-						var size = className.match(regExPattern);
+						regExPattern = "col\\-" + breakpointCharacter + "\\-([0-9]{1,2})";
+						var size = className.match(regExPattern, '$1');
 						setInnerMarkerOffsets(this, size[1]);
 					}
 				});
@@ -338,8 +348,36 @@ $(document).ready(function() {
 			// set the breakpoint string character (xxl, xl, l, m, s, xs, xxs)
 			var breakpointCharacter = prop.toLowerCase();
 
-			$grid.find("[class*=col-" + breakpointCharacter + "-] .innerMarker-" + breakpointCharacter).each(function(){
-				$(this).css({ "border-right-width" : "3px", "border-right-style" : "dotted" });
+			$grid.find("[class*=col-]").each(function(){
+				var markIt = false;
+				var allClasses = $(this).attr("class");
+				// remove "margin" from class names to avoid false match on "m" breakpiont
+				allClasses = allClasses.replace("-margin","");
+				// if on stack breakpoint character, rename nostack to stack to ensure match
+				if (breakpointCharacter == "stack") {
+					allClasses = allClasses.replace("-nostack","-stack");
+				}
+				allClasses = allClasses.split(" ");
+				
+				for (var i in allClasses) {
+					if (allClasses[i].indexOf("-" + breakpointCharacter) > -1) { 
+						markIt = true; 
+					}
+				}
+
+				if(markIt) {
+					$(this).find(".innerMarker-" + breakpointCharacter).each(function(){
+						var breakpointColor = $(this).css("border-right-color");
+						$(this)
+							.addClass("innerMarker--dotted")
+							.css({ "border-right-width" : "3px", "border-right-style" : "dotted" })
+							.attr({
+								"data-bp-name" : breakpointCharacter,
+								"data-bp-value" : gridBreakpoints[prop],
+								"data-bp-color" : breakpointColor
+							});
+					});
+				}
 			});
 		}
 	}	
@@ -347,6 +385,7 @@ $(document).ready(function() {
 	function setInnerMarkerOffsets(selector, size) {
 		var borderWidth = "1px",
 			borderStyle = "solid",
+			borderStyleStack = "dashed",
 			leftXXL, leftXL, leftL, leftM, leftS, leftXS, leftXXS;
 
 		leftXXL = ((gridBreakpoints.XXL - gridGutterWidth - pageScrollbarWidth) * (size/12)) - gridGutterWidth;
@@ -356,9 +395,10 @@ $(document).ready(function() {
 		leftS = ((gridBreakpoints.S - gridGutterWidth - pageScrollbarWidth) * (size/12) - gridGutterWidth);
 		leftXS = ((gridBreakpoints.XS - gridGutterWidth - pageScrollbarWidth) * (size/12) - gridGutterWidth);
 		leftXXS = ((gridBreakpoints.XXS - gridGutterWidth - pageScrollbarWidth) * (size/12) - gridGutterWidth);
+		leftStack = ((gridBreakpoints.Stack - gridGutterWidth - pageScrollbarWidth) * (size/12) - gridGutterWidth);
 
 		var outlineWidth = $(selector).width(),
-		    outlineHeight = $(selector).height();
+			outlineHeight = $(selector).height();
 		var $innerMarkers = $(selector).find(".innerMarkers");
 		
 		$innerMarkers.find(".innerMarker-outline").css({ "width" : outlineWidth, "height" : outlineHeight });
@@ -369,7 +409,45 @@ $(document).ready(function() {
 		$innerMarkers.find(".innerMarker-s").css({ "margin-left" : leftS, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
 		$innerMarkers.find(".innerMarker-xs").css({ "margin-left" : leftXS, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
 		$innerMarkers.find(".innerMarker-xxs").css({ "margin-left" : leftXXS, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
+		$innerMarkers.find(".innerMarker-stack").css({ "margin-left" : leftStack, "border-right-width" : borderWidth, "border-right-style" : borderStyleStack, "height" : outlineHeight });
 	}
+	// bind modifier notification
+	$("body").on("mouseenter", ".innerMarker--dotted", function() {
+		var className = $(this).parent().parent().attr("class");
+		if ($(this).hasClass("innerMarker-s")) {
+			// this is small breakpoint so we need to remove stack to avoid false positive
+			className = className.replace("-nostack", "");
+		}
+		if ($(this).hasClass("innerMarker-stack")) {
+			// this is stack breakpoint so we need to temp rename nostack to stack for nostack matches
+			className = className.replace("-nostack", "-stack");
+		}
+		var allClasses = className.split(" ");
+		var classes = "";
+		var bpName = $(this).attr("data-bp-name");
+		var bpValue = $(this).attr("data-bp-value");
+		var bpColor = $(this).attr("data-bp-color");
+
+		for(var prop in allClasses) {
+			if(allClasses[prop].indexOf("-" + bpName) > -1) {
+				classes = classes + "<div class=\"grids-notification--modifier\">" + allClasses[prop].replace("-stack", "-nostack") + "</div>";
+			}
+		}
+
+		var message = "<div class=\"grids-notification--title\">Column Breakpoint Modifier(s)</div>" +
+			"Breakpoint: <span class=\"grids-notification--keyword\">" + bpName.toUpperCase() + " (" + bpValue + "px)</span><br>" +
+			"Breakpoint classes: " + classes;
+		showGridsNotification(message, 7000, bpColor, "innerMarkerModifier");
+	});
+	// dismis modifier notification
+	$("body").on("mouseleave", ".innerMarker--dotted", function() {
+		var hook = $gridsNotification.attr("data-hook");
+		if (hook) {
+			$gridsNotification
+				.removeClass("grids-notification--show grids-notification--slide-off-right")
+				.attr("data-hook", "");
+		}
+	});
 	// ****************************	
 
 
