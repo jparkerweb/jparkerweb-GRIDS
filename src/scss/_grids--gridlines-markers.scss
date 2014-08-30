@@ -54,7 +54,8 @@ $markerColor--m: #f1c40f;
 $markerColor--l: #27ae60;
 $markerColor--xl: #3498db;
 $markerColor--xxl: #8e44ad;
-
+// marker color for default (no breakpoint)
+$markerColor--default: #7f8c8d;
 // outline color for columns that have inner markers enabled
 $innerMarkerOutlineColor: #ddd;
 // ***************************************************
@@ -595,6 +596,11 @@ body.show-marker-outlines {
 				top: 1px;
 				left: 1px;				
 				content: '';
+			}
+			.innerMarker-default { 
+				border-color: $markerColor--default;
+				cursor: crosshair;
+				left: 0;
 			}
 			.innerMarker-stack { border-color: $markerColor--stack; }
 			.innerMarker-xxs { border-color: $markerColor--xxs; }

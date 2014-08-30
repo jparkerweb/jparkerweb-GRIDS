@@ -184,6 +184,7 @@ $(document).ready(function() {
 	var innerColMarkers = " " +
 		"<div class=\"innerMarkers\"> " +
 		"	<div class=\"innerMarker-outline\"></div> " +
+		"	<div class=\"innerMarker-default\"></div> " +
 		"	<div class=\"innerMarker-stack\"></div> " +
 		"	<div class=\"innerMarker-xxs\"></div> " +
 		"	<div class=\"innerMarker-xs\"></div> " +
@@ -402,6 +403,7 @@ $(document).ready(function() {
 		var $innerMarkers = $(selector).find(".innerMarkers");
 		
 		$innerMarkers.find(".innerMarker-outline").css({ "width" : outlineWidth, "height" : outlineHeight });
+		$innerMarkers.find(".innerMarker-default").css({ "margin-left" : "0px", "border-right-width" : "2px", "border-right-style" : "solid", "height" : outlineHeight });
 		$innerMarkers.find(".innerMarker-xxl").css({ "margin-left" : leftXXL, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
 		$innerMarkers.find(".innerMarker-xl").css({ "margin-left" : leftXL, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
 		$innerMarkers.find(".innerMarker-l").css({ "margin-left" : leftL, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
@@ -412,35 +414,58 @@ $(document).ready(function() {
 		$innerMarkers.find(".innerMarker-stack").css({ "margin-left" : leftStack, "border-right-width" : borderWidth, "border-right-style" : borderStyleStack, "height" : outlineHeight });
 	}
 	// bind modifier notification
-	$("body").on("mouseenter", ".innerMarker--dotted", function() {
+	$("body").on("mouseenter", ".innerMarker--dotted, .innerMarker-default", function() {
 		var className = $(this).parent().parent().attr("class");
-		if ($(this).hasClass("innerMarker-s")) {
-			// this is small breakpoint so we need to remove stack to avoid false positive
-			className = className.replace("-nostack", "");
-		}
-		if ($(this).hasClass("innerMarker-stack")) {
-			// this is stack breakpoint so we need to temp rename nostack to stack for nostack matches
-			className = className.replace("-nostack", "-stack");
-		}
-		var allClasses = className.split(" ");
-		var classes = "";
-		var bpName = $(this).attr("data-bp-name");
-		var bpValue = $(this).attr("data-bp-value");
-		var bpColor = $(this).attr("data-bp-color");
+		// if default marker, filter out all breakpoint classes
+		if ($(this).hasClass("innerMarker-default")) {
+			var regExPattern = /col-[0-9]{1,2}|col-push-[0-9]{1,2}|col-(margin|padding)-(top|bottom)-{0,1}(2x|3x)|col-(margin|padding)-(top|bottom)(?!-)/g;
+			var allClasses = className.match(regExPattern);
+			//debugger;
+			var classes = "";
+			var bpName = "Default";
+			var bpColor = $(this).css("border-right-color");
 
-		for(var prop in allClasses) {
-			if(allClasses[prop].indexOf("-" + bpName) > -1) {
-				classes = classes + "<div class=\"grids-notification--modifier\">" + allClasses[prop].replace("-stack", "-nostack") + "</div>";
+			// collect default class names
+			for(var prop in allClasses) {
+				classes = classes + "<div class=\"grids-notification--modifier\">" + allClasses[prop] + "</div>";
 			}
+
+			var message = "<div class=\"grids-notification--title\">Default Column Properties</div>" +
+				"Breakpoint: <span class=\"grids-notification--keyword\">None</span><br>" +
+				"Default classes: " + classes;			
+		}
+		// breakpoint marker
+		else {
+			if ($(this).hasClass("innerMarker-s")) {
+				// this is small breakpoint so we need to remove stack to avoid false positive
+				className = className.replace("-nostack", "");
+			}
+			if ($(this).hasClass("innerMarker-stack")) {
+				// this is stack breakpoint so we need to temp rename nostack to stack for nostack matches
+				className = className.replace("-nostack", "-stack");
+			}
+			var allClasses = className.split(" ");
+			var classes = "";
+			var bpName = $(this).attr("data-bp-name");
+			var bpValue = $(this).attr("data-bp-value");
+			var bpColor = $(this).attr("data-bp-color");
+
+			// collect breakpoint class names
+			for(var prop in allClasses) {
+				if(allClasses[prop].indexOf("-" + bpName) > -1) {
+					classes = classes + "<div class=\"grids-notification--modifier\">" + allClasses[prop].replace("-stack", "-nostack") + "</div>";
+				}
+			}
+
+			var message = "<div class=\"grids-notification--title\">Column Breakpoint Modifier(s)</div>" +
+				"Breakpoint: <span class=\"grids-notification--keyword\">" + bpName.toUpperCase() + " (" + bpValue + "px)</span><br>" +
+				"Breakpoint classes: " + classes;
 		}
 
-		var message = "<div class=\"grids-notification--title\">Column Breakpoint Modifier(s)</div>" +
-			"Breakpoint: <span class=\"grids-notification--keyword\">" + bpName.toUpperCase() + " (" + bpValue + "px)</span><br>" +
-			"Breakpoint classes: " + classes;
 		showGridsNotification(message, 7000, bpColor, "innerMarkerModifier");
 	});
 	// dismis modifier notification
-	$("body").on("mouseleave", ".innerMarker--dotted", function() {
+	$("body").on("mouseleave", ".innerMarker--dotted, .innerMarker-default", function() {
 		var hook = $gridsNotification.attr("data-hook");
 		if (hook) {
 			$gridsNotification
