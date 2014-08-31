@@ -107,16 +107,26 @@ $(document).ready(function() {
 		"	</div> " +
 		"</div> " +
 		"<!-- markers for grid --> " +
+		"<div class=\"markersFlow\">" +
+		"	<div class=\"markersFlow--stack\"></div>" +
+		"	<div class=\"markersFlow--xxs\"></div>" +
+		"	<div class=\"markersFlow--xs\"></div>" +
+		"	<div class=\"markersFlow--s\"></div>" +
+		"	<div class=\"markersFlow--m\"></div>" +
+		"	<div class=\"markersFlow--l\"></div>" +
+		"	<div class=\"markersFlow--xl\"></div>" +
+		"	<div class=\"markersFlow--xxl\"></div>" +
+		"</div>" +
 		"<div class=\"markers\"> " +
 		"	<div class=\"grid\"> " +
-		"		<div class=\"marker marker--xxl\"></div> " +
-		"		<div class=\"marker marker--xl\"></div> " +
-		"		<div class=\"marker marker--l\"></div> " +
-		"		<div class=\"marker marker--m\"></div> " +
-		"		<div class=\"marker marker--s\"></div> " +
-		"		<div class=\"marker marker--xs\"></div> " +
-		"		<div class=\"marker marker--xxs\"></div> " +
-		"		<div class=\"marker marker--stack\"></div> " +
+		"		<div class=\"marker marker--xxl\" data-flow=\"markersFlow--xxl\" data-name=\"XXL\"></div> " +
+		"		<div class=\"marker marker--xl\" data-flow=\"markersFlow--xl\" data-name=\"XL\" ></div> " +
+		"		<div class=\"marker marker--l\" data-flow=\"markersFlow--l\" data-name=\"L\" ></div> " +
+		"		<div class=\"marker marker--m\" data-flow=\"markersFlow--m\" data-name=\"M\" ></div> " +
+		"		<div class=\"marker marker--s\" data-flow=\"markersFlow--s\" data-name=\"S\" ></div> " +
+		"		<div class=\"marker marker--xs\" data-flow=\"markersFlow--xs\" data-name=\"XS\" ></div> " +
+		"		<div class=\"marker marker--xxs\" data-flow=\"markersFlow--xxs\" data-name=\"XXS\" ></div> " +
+		"		<div class=\"marker marker--stack\" data-flow=\"markersFlow--stack\" data-name=\"STACK\" ></div> " +
 		"	</div> " +
 		"</div> " +
 		"<!-- current grid position --> " +
@@ -164,7 +174,22 @@ $(document).ready(function() {
 	$(".markers .marker").on("click", function() {
 		var breapointValue = $(this).css("margin-left");
 		var breakpointColor = $(this).css("background-color");
-		showGridsNotification("clicked breakpoint is at: <span class=\"grids-notification--keyword\">" + breapointValue + "</span><br><br>Breakpoint \"markers\" overlay a visual line on the page, showing each \"breapoint\" value defined in your GRIDS configuration.", 8000, breakpointColor);
+		var breakpointName = $(this).attr("data-name");
+		showGridsNotification("<span class=\"grids-notification--keyword\">" + breakpointName + "</span> breakpoint is at: <span class=\"grids-notification--keyword\">" + breapointValue + "</span><br><br>Breakpoint \"markers\" overlay a visual line on the page, showing each \"breapoint\" value defined in your GRIDS configuration.", 8000, breakpointColor);
+	});
+	// bind breakpoint shading for markers hover
+	$(".markers .marker").on("mouseenter", function(event){
+		// on show marker flow if mouse is near our :before & :after elements (not the line itself)
+		if (event.screenY <= 115) {
+			var offsetWidth = $(this).offset().left;
+			var bgColor = $(this).css("background-color");
+			var markersFlow = "." + $(this).attr("data-flow");
+			$(markersFlow).css({ "width" : offsetWidth, "height" : "100%" });
+		}
+	});
+	$(".markers .marker").on("mouseleave", function(){
+		var markersFlow = "." + $(this).attr("data-flow");
+		$(markersFlow).css({ "width" : "0px", "height" : "0px" });
 	});
 	// bind notification for marker indicator
 	$(".marker-indicator").on("click", function() {

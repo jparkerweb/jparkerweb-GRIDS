@@ -560,6 +560,42 @@ body.show-marker-outlines {
 	}
 }
 
+.markersFlow {
+	@if $showMarkers == false { display: none; }
+	[class^=markersFlow--] {
+		opacity: .3;
+		position: fixed;
+		height: 0px;
+		width: 0px;
+		left: 0;
+		top: 0;
+	}
+	.markersFlow--stack {	
+		background-color: $markerColor--stack;
+	}
+	.markersFlow--xxs {	
+		background-color: $markerColor--xxs;
+	}
+	.markersFlow--xs {	
+		background-color: $markerColor--xs;
+	}
+	.markersFlow--s {	
+		background-color: $markerColor--s;
+	}
+	.markersFlow--m {	
+		background-color: $markerColor--m;
+	}
+	.markersFlow--l {	
+		background-color: $markerColor--l;
+	}
+	.markersFlow--xl {	
+		background-color: $markerColor--xl;
+	}
+	.markersFlow--xxl {	
+		background-color: $markerColor--xxl;
+	}
+}
+
 
 // ---------------------------------
 // -- inner column marker classes --
