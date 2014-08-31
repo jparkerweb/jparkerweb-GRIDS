@@ -147,132 +147,6 @@ $(document).ready(function() {
 	// insert Gridline and Marker elements
 	$("body").append(gridlinesAndMarkers);
 
-	// bind gridlines toggle
-	$(".gridlines-toggle").on("click", function () {		
-		$(".gridlines").toggle();
-		$(".gridlines-toggle").toggleClass("toggle-button--active");		
-	});
-	// toggle off gridlines on page load
-	$(".gridlines").toggle();
-
-	// bind markers toggle
-	$(".markers-toggle").on("click", function () {
-		var viewportValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-		var stackBreakpoint = parseInt($(".marker.marker--stack").css("margin-left"));
-
-		if (viewportValue > stackBreakpoint) {
-			$(".markers").toggle();
-			$(".markers-toggle").toggleClass("toggle-button--active");
-			$("body").toggleClass("show-marker-outlines");
-		}
-		else {
-			showGridsNotification("Breakpoint \"marker\" overlays are only available for browser widths greater than the \"stack\" breakpoint (" + stackBreakpoint + "px).  Increase the size of your browser to enable this.", 8000);
-		}
-	});
-
-	// bind notification for markers
-	$(".markers .marker").on("click", function() {
-		var breapointValue = $(this).css("margin-left");
-		var breakpointColor = $(this).css("background-color");
-		var breakpointName = $(this).attr("data-name");
-		showGridsNotification("<span class=\"grids-notification--keyword\">" + breakpointName + "</span> breakpoint is at: <span class=\"grids-notification--keyword\">" + breapointValue + "</span><br><br>Breakpoint \"markers\" overlay a visual line on the page, showing each \"breapoint\" value defined in your GRIDS configuration.", 8000, breakpointColor);
-	});
-	// bind breakpoint shading for markers hover
-	$(".markers .marker").on("mouseenter", function(event){
-		// on show marker flow if mouse is near our :before & :after elements (not the line itself)
-		if (event.screenY <= 115) {
-			var offsetWidth = $(this).offset().left;
-			var bgColor = $(this).css("background-color");
-			var markersFlow = "." + $(this).attr("data-flow");
-			$(markersFlow).css({ "width" : offsetWidth, "height" : "100%" });
-		}
-	});
-	$(".markers .marker").on("mouseleave", function(){
-		var markersFlow = "." + $(this).attr("data-flow");
-		$(markersFlow).css({ "width" : "0px", "height" : "0px" });
-	});
-	// bind notification for marker indicator
-	$(".marker-indicator").on("click", function() {
-		showGridsNotification("The breakpoint indicator bar on the bottom of the page displays the current \"breakpoint\" that is trigged in the GRIDS framework.", 8000);
-	});
-
-	// toggle off markers on page load
-	$(".markers").toggle();
-	// *********************************
-
-
-
-	// *****************************
-	// ***** Inner Col Markers *****
-	// *****************************
-	// inner col markers
-	var innerColMarkers = " " +
-		"<div class=\"innerMarkers\"> " +
-		"	<div class=\"innerMarker-outline\"></div> " +
-		"	<div class=\"innerMarker-default\"></div> " +
-		"	<div class=\"innerMarker-stack\"></div> " +
-		"	<div class=\"innerMarker-xxs\"></div> " +
-		"	<div class=\"innerMarker-xs\"></div> " +
-		"	<div class=\"innerMarker-s\"></div> " +
-		"	<div class=\"innerMarker-m\"></div> " +
-		"	<div class=\"innerMarker-l\"></div> " +
-		"	<div class=\"innerMarker-xl\"></div> " +
-		"	<div class=\"innerMarker-xxl\"></div> " +
-		"</div> ";
-
-	// bind toggle button
-	$(".col-markers-toggle").on("click", function() {
-		var viewportValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-		var stackBreakpoint = parseInt($(".marker.marker--stack").css("margin-left"));
-		if (viewportValue > stackBreakpoint) {
-			$(".innerMarkers").toggle();
-			$(".col-markers-toggle").toggleClass("toggle-button--active");
-		}
-		else {
-			showGridsNotification("\"Column Markers\" are only available for browser widths greater than the \"stack\" breakpoint (" + stackBreakpoint + "px).  Increase the size of your browser to enable this.", 8000);
-		}		
-	});
-
-	// bind the insert/remove of inner col markers
-	// to click event of each columns
-	$(":regex(class,col\\-[0-9])").on("click", function () {
-		var isGridlinesCol = ($(this).parents(".gridlines").length > 0);
-
-		if(isGridlinesCol) {
-			showGridsNotification("The gridlines overlay is active, to toggle them off click the \"gridlines\" button in the bottom left corner.", 6000);
-		}
-		else {
-			var isInnerColMarkersEnabled = ($(".col-markers-toggle.toggle-button--active").length > 0),
-				gridlinesLeftPosition = $("#gridsCurrentGridPosition").position().left,
-				thisGridLeftPosition = $(this).parent(".grid").position().left,
-				isGridPositionValid = (thisGridLeftPosition === gridlinesLeftPosition);
-
-			if (isInnerColMarkersEnabled) {
-				var isNestedGrid = ($(this).parents(".grid").length > 1);
-				if(!isNestedGrid) {
-					if(isGridPositionValid) {
-						var hasInnerMarkers = ($(this).find(".innerMarkers").length > 0);
-						if (hasInnerMarkers) {
-							// remove existing inner markers
-							$(this).find(".innerMarkers").remove();
-						}
-						else {
-							// add inner markers
-							$(this).prepend(innerColMarkers);
-
-							// set the inner marker left offset for
-							// each breakpoint based on col size
-							updateColMarkers();
-						}
-					}
-					else {
-						showGridsNotification("Can not show column markers for this element because its \"grid\" row width is not the same as your configured GRIDS width.  This is usual due to nesing a grid inside of an element that has left or right padding/margin.  If extra padding or margin is needed it is advised to do this within the colum where your content resides and not outside of the grid row itself.", 40000, "#c0392b");
-					}
-				}
-			}
-		}
-	});
-
 	// if a scrollbar exists return its calculated width
 	function getScrollbarWidth() {
 		var pageHasScrollbar = ($(document).height() > $(window).height());
@@ -303,15 +177,25 @@ $(document).ready(function() {
 
 	// return the current grid's breakpoints
 	function getGridBreakpoints() {
+		var XXL, XL, L, M, S, XS, XXS, Stack;
+		XXL = $(".marker.marker--xxl").css("display") !== "none" ? parseInt($(".marker.marker--xxl").css("margin-left")) : 0;
+		XL = $(".marker.marker--xl").css("display") !== "none" ? parseInt($(".marker.marker--xl").css("margin-left")) : 0;
+		L = $(".marker.marker--l").css("display") !== "none" ? parseInt($(".marker.marker--l").css("margin-left")) : 0;
+		M = $(".marker.marker--m").css("display") !== "none" ? parseInt($(".marker.marker--m").css("margin-left")) : 0;
+		S = $(".marker.marker--s").css("display") !== "none" ? parseInt($(".marker.marker--s").css("margin-left")) : 0;
+		XS = $(".marker.marker--xs").css("display") !== "none" ? parseInt($(".marker.marker--xs").css("margin-left")) : 0;
+		XXS = $(".marker.marker--xxs").css("display") !== "none" ? parseInt($(".marker.marker--xxs").css("margin-left")) : 0;
+		Stack = $(".marker.marker--stack").css("display") !== "none" ? parseInt($(".marker.marker--stack").css("margin-left")) : 0;
+
 		var gridBreakpoints = {
-			XXL: parseInt($(".marker.marker--xxl").css("margin-left")),
-			XL: parseInt($(".marker.marker--xl").css("margin-left")),
-			L: parseInt($(".marker.marker--l").css("margin-left")),
-			M: parseInt($(".marker.marker--m").css("margin-left")),
-			S: parseInt($(".marker.marker--s").css("margin-left")),
-			XS: parseInt($(".marker.marker--xs").css("margin-left")),
-			XXS: parseInt($(".marker.marker--xxs").css("margin-left")),
-			Stack: parseInt($(".marker.marker--stack").css("margin-left"))
+			XXL: XXL,
+			XL: XL,
+			L: L,
+			M: M,
+			S: S,
+			XS: XS,
+			XXS: XXS,
+			Stack: Stack
 		};
 		return gridBreakpoints;
 	}
@@ -320,6 +204,147 @@ $(document).ready(function() {
 	var gridGutterWidth = getGutterWidth();
 	var gridBreakpoints = getGridBreakpoints();
 
+	// remove unneeded toolbox elements (if any breakpoints are disabled)
+	for (var prop in gridBreakpoints) {
+		if(gridBreakpoints[prop] === 0){
+			$(".markersFlow--" + prop.toLowerCase()).remove();
+			$(".marker.marker--" + prop.toLowerCase()).remove();
+			delete gridBreakpoints[prop];
+		}
+	}
+
+
+	// bind gridlines toggle
+	$(".gridlines-toggle").on("click", function () {		
+		$(".gridlines").toggle();
+		$(".gridlines-toggle").toggleClass("toggle-button--active");		
+	});
+	// toggle off gridlines on page load
+	$(".gridlines").toggle();
+
+	// bind markers toggle
+	$(".markers-toggle").on("click", function () {
+		var viewportValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+		var stackBreakpoint = parseInt($(".marker.marker--stack").css("margin-left"));
+
+		if (viewportValue > stackBreakpoint || isNaN(stackBreakpoint)) {
+			$(".markers").toggle();
+			$(".markers-toggle").toggleClass("toggle-button--active");
+			$("body").toggleClass("show-marker-outlines");
+		}
+		else {
+			showGridsNotification("Breakpoint \"marker\" overlays are only available for browser widths greater than the \"stack\" breakpoint (" + stackBreakpoint + "px).  Increase the size of your browser to enable this.", 8000);
+		}
+	});
+
+	// bind notification for markers
+	$(".markers .marker").on("click", function() {
+		var breapointValue = $(this).css("margin-left");
+		var breakpointColor = $(this).css("background-color");
+		var breakpointName = $(this).attr("data-name");
+		showGridsNotification("<span class=\"grids-notification--keyword\">" + breakpointName + "</span> breakpoint is at: <span class=\"grids-notification--keyword\">" + breapointValue + "</span><br><br>Breakpoint \"markers\" overlay a visual line on the page, showing each \"breapoint\" value defined in your GRIDS configuration.", 8000, breakpointColor);
+	});
+	// bind breakpoint shading for markers hover
+	$(".markers .marker").on("mouseenter", function(event){
+		// on show marker flow if mouse is near our :before & :after elements (not the line itself)
+		if (event.screenY <= 140) {
+			var offsetWidth = $(this).offset().left;
+			var bgColor = $(this).css("background-color");
+			var markersFlow = "." + $(this).attr("data-flow");
+			$(markersFlow).css({ "width" : offsetWidth, "height" : "100%" });
+		}
+	});
+	$(".markers .marker").on("mouseleave", function(){
+		var markersFlow = "." + $(this).attr("data-flow");
+		$(markersFlow).css({ "width" : "0px", "height" : "0px" });
+	});
+	// bind notification for marker indicator
+	$(".marker-indicator").on("click", function() {
+		showGridsNotification("The breakpoint indicator bar on the bottom of the page displays the current \"breakpoint\" that is trigged in the GRIDS framework.", 8000);
+	});
+
+	// toggle off markers on page load
+	$(".markers").toggle();
+	// *********************************
+
+
+
+	// *****************************
+	// ***** Inner Col Markers *****
+	// *****************************
+	// inner col markers
+	function getInnerColMarksHTML() {
+		var innerColMarkers;
+		innerColMarkers = "<div class=\"innerMarkers\">" +
+			"	<div class=\"innerMarker-outline\"></div>" +
+			"	<div class=\"innerMarker-default\"></div>";
+		for (var prop in gridBreakpoints) {
+			innerColMarkers = innerColMarkers + "	<div class=\"innerMarker-" + prop.toLowerCase() + "\"></div>";
+		}
+		innerColMarkers = innerColMarkers + "</div>";
+		return innerColMarkers;
+	}
+	var innerColMarkers = getInnerColMarksHTML();
+
+	// bind toggle button
+	$(".col-markers-toggle").on("click", function() {
+		var viewportValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+		var stackBreakpoint = parseInt($(".marker.marker--stack").css("margin-left"));
+
+		if (viewportValue > stackBreakpoint || isNaN(stackBreakpoint)) {
+			$(".innerMarkers").toggle();
+			$(".col-markers-toggle").toggleClass("toggle-button--active");
+		}
+		else {
+			showGridsNotification("\"Column Markers\" are only available for browser widths greater than the \"stack\" breakpoint (" + stackBreakpoint + "px).  Increase the size of your browser to enable this.", 8000);
+		}		
+	});
+
+	// bind the insert/remove of inner col markers
+	// to click event of each columns
+	$(":regex(class,col\\-[0-9])").on("click", function () {
+		var isGridlinesCol = ($(this).parents(".gridlines").length > 0);
+
+		if(isGridlinesCol) {
+			showGridsNotification("The gridlines overlay is active, to toggle them off click the \"gridlines\" button in the bottom left corner.", 6000);
+		}
+		else {
+			var isInnerColMarkersEnabled = ($(".col-markers-toggle.toggle-button--active").length > 0);
+
+			if (isInnerColMarkersEnabled) {
+				var gridlinesLeftPosition = $("#gridsCurrentGridPosition").position().left,
+					thisGridLeftPosition = $(this).parent(".grid").position().left,
+					isGridPositionValid = (thisGridLeftPosition === gridlinesLeftPosition),
+					thisGridPaddingLeft = parseInt($(this).parent(".grid").css("padding-left")),
+					thisGridPaddingRight = parseInt($(this).parent(".grid").css("padding-right")),
+					isGridRowPaddingValid = ( thisGridPaddingRight === 0 && thisGridPaddingLeft === gridGutterWidth ),
+					isNestedGrid = ($(this).parents(".grid").length > 1);
+
+				if(!isNestedGrid) {
+					if(isGridPositionValid && isGridRowPaddingValid) {
+						var hasInnerMarkers = ($(this).find(".innerMarkers").length > 0);
+						if (hasInnerMarkers) {
+							// remove existing inner markers
+							$(this).find(".innerMarkers").remove();
+						}
+						else {
+							// add inner markers
+							$(this).prepend(innerColMarkers);
+
+							// set the inner marker left offset for
+							// each breakpoint based on col size
+							updateColMarkers();
+						}
+					}
+					else {
+						var errorMessage;
+						errorMessage = "Can not show column markers for this element because its \"grid\" row width is not the same as your configured GRIDS width.  This is usual due to nesing a grid inside of an element that has left or right padding/margin OR changing the grid row's padding using an external style.  If extra padding or margin is needed it is advised to do this within the colum where your content resides and not outside of the grid row itself.<br><br>Grid rows should only contain the <span class=\"grids-notification--keyword\">.grid</span> class or one of the other .grid- utility classes.";
+						showGridsNotification(errorMessage, 40000, "#c0392b");
+					}
+				}
+			}
+		}
+	});
 
 	// bind after browser resize to update col markers
 	$(window).resize(function () {
@@ -441,21 +466,22 @@ $(document).ready(function() {
 	// bind modifier notification
 	$("body").on("mouseenter", ".innerMarker--dotted, .innerMarker-default", function() {
 		var className = $(this).parent().parent().attr("class");
+		var allClasses, classes, bpName, bpValue, bpColor, message; 
+
 		// if default marker, filter out all breakpoint classes
 		if ($(this).hasClass("innerMarker-default")) {
 			var regExPattern = /col-[0-9]{1,2}|col-push-[0-9]{1,2}|col-(margin|padding)-(top|bottom)-{0,1}(2x|3x)|col-(margin|padding)-(top|bottom)(?!-)/g;
-			var allClasses = className.match(regExPattern);
-			//debugger;
-			var classes = "";
-			var bpName = "Default";
-			var bpColor = $(this).css("border-right-color");
+			allClasses = className.match(regExPattern);
+			classes = "";
+			bpName = "Default";
+			bpColor = $(this).css("border-right-color");
 
 			// collect default class names
 			for(var prop in allClasses) {
 				classes = classes + "<div class=\"grids-notification--modifier\">" + allClasses[prop] + "</div>";
 			}
 
-			var message = "<div class=\"grids-notification--title\">Default Column Properties</div>" +
+			message = "<div class=\"grids-notification--title\">Default Column Properties</div>" +
 				"Breakpoint: <span class=\"grids-notification--keyword\">None</span><br>" +
 				"Default classes: " + classes;			
 		}
@@ -469,11 +495,11 @@ $(document).ready(function() {
 				// this is stack breakpoint so we need to temp rename nostack to stack for nostack matches
 				className = className.replace("-nostack", "-stack");
 			}
-			var allClasses = className.split(" ");
-			var classes = "";
-			var bpName = $(this).attr("data-bp-name");
-			var bpValue = $(this).attr("data-bp-value");
-			var bpColor = $(this).attr("data-bp-color");
+			allClasses = className.split(" ");
+			classes = "";
+			bpName = $(this).attr("data-bp-name");
+			bpValue = $(this).attr("data-bp-value");
+			bpColor = $(this).attr("data-bp-color");
 
 			// collect breakpoint class names
 			for(var prop in allClasses) {
@@ -482,7 +508,7 @@ $(document).ready(function() {
 				}
 			}
 
-			var message = "<div class=\"grids-notification--title\">Column Breakpoint Modifier(s)</div>" +
+			message = "<div class=\"grids-notification--title\">Column Breakpoint Modifier</div>" +
 				"Breakpoint: <span class=\"grids-notification--keyword\">" + bpName.toUpperCase() + " (" + bpValue + "px)</span><br>" +
 				"Breakpoint classes: " + classes;
 		}

@@ -58,6 +58,14 @@ $markerColor--xxl: #8e44ad;
 $markerColor--default: #7f8c8d;
 // outline color for columns that have inner markers enabled
 $innerMarkerOutlineColor: #ddd;
+
+// starting z-index of GRIDS toolkit
+// (default is 0 assuming your page elements
+// are not using a z-index.)  If you are
+// using a z-index on your page, set the below
+// value to something higher than any of your
+// own z-indexes.
+$startingZ-Index: 0 !default;
 // ***************************************************
 
 
@@ -107,7 +115,7 @@ $innerMarkerOutlineColor: #ddd;
 	position: fixed;
 	bottom: 85px;
 	left: 5px;
-	z-index: 10;
+	z-index: $startingZ-Index + 30;
 }
 .gridlines {
 	@if $showGridlines == false { display: none; }
@@ -142,7 +150,7 @@ body.show-marker-outlines {
 		position: fixed;
 		top: 0px;
 		left: 0px;
-		z-index: 10;
+		z-index: $startingZ-Index + 30;
 		padding: 4px 8px;
 		background: black;
 		color: white;
@@ -164,7 +172,7 @@ body.show-marker-outlines {
 	position: fixed;
 	bottom: 55px;
 	left: 5px;
-	z-index: 10;
+	z-index: $startingZ-Index + 30;
 }
 .markers-background {
 	@if $showMarkers == false { display: none; }
@@ -193,7 +201,6 @@ body.show-marker-outlines {
 		bottom: 0;
 		width: 1px;
 		font-size: 18px;
-		z-index: 10;
 		&:before {
 			top: -2px;
 			position: relative;
@@ -214,11 +221,13 @@ body.show-marker-outlines {
 			top: -2px;
 			cursor: pointer;
 		}
+		// bp: stack
 		&.marker--stack {
-			z-index: 10;
+			@if $grid-breakpoint-stack == 0 { display: none; }
+			z-index: $startingZ-Index + 17;
 			margin-left: $grid-breakpoint-stack;
 			background: $markerColor--stack;
-			&:hover { z-index: 20; }
+			&:hover { z-index: $startingZ-Index + 21; }
 			&:before {
 				content: 'stack';
 				left: -1.5em;
@@ -273,10 +282,13 @@ body.show-marker-outlines {
 				@if ($distance < 0) and ($distance > -43px) { top: 25px; }
 			}				
 		}
+		// bp: xxs
 		&.marker--xxs {
+			@if $grid-breakpoint-xxs == 0 { display: none; }
+			z-index: $startingZ-Index + 18;
 			margin-left: $grid-breakpoint-xxs;
 			background: $markerColor--xxs;
-			&:hover { z-index: 20; }
+			&:hover { z-index: $startingZ-Index + 21; }
 			&:before {
 				content: 'XXS';
 				left: -0.94em;
@@ -289,11 +301,13 @@ body.show-marker-outlines {
 				left: -.94em;
 			}
 		}
+		// bp: xs
 		&.marker--xs {
-			z-index: 10;
+			@if $grid-breakpoint-xs == 0 { display: none; }
+			z-index: $startingZ-Index + 19;
 			margin-left: $grid-breakpoint-xs;
 			background: $markerColor--xs;
-			&:hover { z-index: 20; }
+			&:hover { z-index: $startingZ-Index + 21; }
 			&:before {
 				content: 'XS';
 				left: -0.68em;
@@ -306,11 +320,13 @@ body.show-marker-outlines {
 				left: -0.68em;
 			}
 		}
+		// bp: s
 		&.marker--s {
-			z-index: 10;
+			@if $grid-breakpoint-s == 0 { display: none; }
+			z-index: $startingZ-Index + 20;
 			margin-left: $grid-breakpoint-s;
 			background: $markerColor--s;
-			&:hover { z-index: 20; }
+			&:hover { z-index: $startingZ-Index + 21; }
 			&:before {
 				content: 'S';
 				left: -0.45em;
@@ -322,12 +338,14 @@ body.show-marker-outlines {
 				border-width: .3em .49em 0 .5em;
 				left: -0.45em;
 			}		
-		}  
+		} 
+		// bp: m
 		&.marker--m {
-			z-index: 10;
+			@if $grid-breakpoint-m == 0 { display: none; }
+			z-index: $startingZ-Index + 20;
 			margin-left: $grid-breakpoint-m;
 			background: $markerColor--m;
-			&:hover { z-index: 20; }
+			&:hover { z-index: $startingZ-Index + 21; }
 			&:before {
 				content: 'M';
 				left: -0.45em;
@@ -339,12 +357,14 @@ body.show-marker-outlines {
 				border-width: .3em .49em 0 .5em;
 				left: -0.45em;
 			}			
-		}  
+		}
+		// bp: l
 		&.marker--l {
-			z-index: 10;
+			@if $grid-breakpoint-l == 0 { display: none; }
+			z-index: $startingZ-Index + 20;
 			margin-left: $grid-breakpoint-l;
 			background: $markerColor--l;
-			&:hover { z-index: 20; }
+			&:hover { z-index: $startingZ-Index + 21; }
 			&:before {
 				content: 'L';
 				left: -0.45em;
@@ -357,11 +377,13 @@ body.show-marker-outlines {
 				left: -0.45em;
 			}			
 		}
+		// bp: xl
 		&.marker--xl {
-			z-index: 10;
+			@if $grid-breakpoint-xl == 0 { display: none; }
+			z-index: $startingZ-Index + 19;
 			margin-left: $grid-breakpoint-xl;
 			background: $markerColor--xl;
-			&:hover { z-index: 20; }
+			&:hover { z-index: $startingZ-Index + 21; }
 			&:before {
 				content: 'XL';
 				left: -0.68em;
@@ -374,11 +396,13 @@ body.show-marker-outlines {
 				left: -0.68em;
 			}
 		}
+		// bp: xxl
 		&.marker--xxl {
-			z-index: 10;
+			@if $grid-breakpoint-xxl == 0 { display: none; }
+			z-index: $startingZ-Index + 18;
 			margin-left: $grid-breakpoint-xxl;
 			background: $markerColor--xxl;
-			&:hover { z-index: 20; }
+			&:hover { z-index: $startingZ-Index + 21; }
 			&:before {
 				content: 'XXL';
 				left: -0.94em;
@@ -405,7 +429,7 @@ body.show-marker-outlines {
 	width: 100%;
 	bottom: 0;
 	height: 20px;
-	z-index: 10;
+	z-index: $startingZ-Index + 10;
 	background: transparent;
 	text-align: center;
 	cursor: pointer;
@@ -436,125 +460,149 @@ body.show-marker-outlines {
 	@media (max-width: $grid-breakpoint-xxs) { #gridsCurrentBreakpoint {width: $grid-breakpoint-xxs;} }
 
 	body.show-marker-outlines {
-		@media (max-width: $grid-breakpoint-xxl) {
-			[class*='col-xxl-']:after {
-				position: absolute;
-				top: 0;
-				left: 0;
-				outline: 2px solid $markerColor--xxl !important;
-				content: '';
-				width: calc(100% - #{$grid-gutter-width});
-				height: calc(100% - #{$grid-gutter-width});
-			 }
-			.marker-indicator { 
-				background: $markerColor--xxl !important;
-				&:before { content: 'breakpoint: XXL' + ' (' + $grid-breakpoint-xxl + ')'; }
+		// bp: xxl
+		@if $grid-breakpoint-xxl > 0 {
+			@media (max-width: $grid-breakpoint-xxl) {
+				[class*='col-xxl-']:after {
+					position: absolute;
+					top: 0;
+					left: 0;
+					outline: 2px solid $markerColor--xxl !important;
+					content: '';
+					width: calc(100% - #{$grid-gutter-width});
+					height: calc(100% - #{$grid-gutter-width});
+				 }
+				.marker-indicator { 
+					background: $markerColor--xxl !important;
+					&:before { content: 'breakpoint: XXL' + ' (' + $grid-breakpoint-xxl + ')'; }
+				}
 			}
 		}
-		@media (max-width: $grid-breakpoint-xl) {
-			[class*='col-xl-']:after {
-				position: absolute;
-				top: 0;
-				left: 0;
-				outline: 2px solid $markerColor--xl !important;
-				content: '';
-				width: calc(100% - #{$grid-gutter-width});
-				height: calc(100% - #{$grid-gutter-width});
-			 }
-			.marker-indicator { 
-				background: $markerColor--xl !important;
-				&:before { content: 'breakpoint: XL' + ' (' + $grid-breakpoint-xl + ')'; }
+		// bp: xl
+		@if $grid-breakpoint-xl > 0 {
+			@media (max-width: $grid-breakpoint-xl) {
+				[class*='col-xl-']:after {
+					position: absolute;
+					top: 0;
+					left: 0;
+					outline: 2px solid $markerColor--xl !important;
+					content: '';
+					width: calc(100% - #{$grid-gutter-width});
+					height: calc(100% - #{$grid-gutter-width});
+				 }
+				.marker-indicator { 
+					background: $markerColor--xl !important;
+					&:before { content: 'breakpoint: XL' + ' (' + $grid-breakpoint-xl + ')'; }
+				}
 			}
 		}
-		@media (max-width: $grid-breakpoint-l) {
-			[class*='col-l-']:after {
-				position: absolute;
-				top: 0;
-				left: 0;
-				outline: 2px solid $markerColor--l !important;
-				content: '';
-				width: calc(100% - #{$grid-gutter-width});
-				height: calc(100% - #{$grid-gutter-width});
-			 }
-			.marker-indicator { 
-				background: $markerColor--l !important;
-				&:before { content: 'breakpoint: L' + ' (' + $grid-breakpoint-l + ')'; }
+		// bp: l
+		@if $grid-breakpoint-l > 0 {
+			@media (max-width: $grid-breakpoint-l) {
+				[class*='col-l-']:after {
+					position: absolute;
+					top: 0;
+					left: 0;
+					outline: 2px solid $markerColor--l !important;
+					content: '';
+					width: calc(100% - #{$grid-gutter-width});
+					height: calc(100% - #{$grid-gutter-width});
+				 }
+				.marker-indicator { 
+					background: $markerColor--l !important;
+					&:before { content: 'breakpoint: L' + ' (' + $grid-breakpoint-l + ')'; }
+				}
 			}
 		}
-		@media (max-width: $grid-breakpoint-m) {
-			[class*='col-m-']:after {
-				position: absolute;
-				top: 0;
-				left: 0;
-				outline: 2px solid $markerColor--m !important;
-				content: '';
-				width: calc(100% - #{$grid-gutter-width});
-				height: calc(100% - #{$grid-gutter-width});
-			 }
-			.marker-indicator { 
-				background: $markerColor--m !important;
-				&:before { content: 'breakpoint: M' + ' (' + $grid-breakpoint-m + ')'; }
+		// bp: m
+		@if $grid-breakpoint-m > 0 {
+			@media (max-width: $grid-breakpoint-m) {
+				[class*='col-m-']:after {
+					position: absolute;
+					top: 0;
+					left: 0;
+					outline: 2px solid $markerColor--m !important;
+					content: '';
+					width: calc(100% - #{$grid-gutter-width});
+					height: calc(100% - #{$grid-gutter-width});
+				 }
+				.marker-indicator { 
+					background: $markerColor--m !important;
+					&:before { content: 'breakpoint: M' + ' (' + $grid-breakpoint-m + ')'; }
+				}
 			}
 		}
-		@media (max-width: $grid-breakpoint-s) {
-			[class*='col-s-']:after {
-				position: absolute;
-				top: 0;
-				left: 0;
-				outline: 2px solid $markerColor--s !important;
-				content: '';
-				width: calc(100% - #{$grid-gutter-width});
-				height: calc(100% - #{$grid-gutter-width});
-			 }
-			.marker-indicator { 
-				background: $markerColor--s !important; 
-				&:before { content: 'breakpoint: S' + ' (' + $grid-breakpoint-s + ')'; }
+		// bp: s
+		@if $grid-breakpoint-s > 0 {
+			@media (max-width: $grid-breakpoint-s) {
+				[class*='col-s-']:after {
+					position: absolute;
+					top: 0;
+					left: 0;
+					outline: 2px solid $markerColor--s !important;
+					content: '';
+					width: calc(100% - #{$grid-gutter-width});
+					height: calc(100% - #{$grid-gutter-width});
+				 }
+				.marker-indicator { 
+					background: $markerColor--s !important; 
+					&:before { content: 'breakpoint: S' + ' (' + $grid-breakpoint-s + ')'; }
+				}
 			}
 		}
-		@media (max-width: $grid-breakpoint-xs) {
-			[class*='col-xs-']:after {
-				position: absolute;
-				top: 0;
-				left: 0;
-				outline: 2px solid $markerColor--xs !important;
-				content: '';
-				width: calc(100% - #{$grid-gutter-width});
-				height: calc(100% - #{$grid-gutter-width});
-			 }
-			.marker-indicator { 
-				background: $markerColor--xs !important; 
-				&:before { content: 'breakpoint: XS' + ' (' + $grid-breakpoint-xs + ')'; }
+		// bp: xs
+		@if $grid-breakpoint-xs > 0 {
+			@media (max-width: $grid-breakpoint-xs) {
+				[class*='col-xs-']:after {
+					position: absolute;
+					top: 0;
+					left: 0;
+					outline: 2px solid $markerColor--xs !important;
+					content: '';
+					width: calc(100% - #{$grid-gutter-width});
+					height: calc(100% - #{$grid-gutter-width});
+				 }
+				.marker-indicator { 
+					background: $markerColor--xs !important; 
+					&:before { content: 'breakpoint: XS' + ' (' + $grid-breakpoint-xs + ')'; }
+				}
 			}
 		}
-		@media (max-width: $grid-breakpoint-xxs) {
-			[class*='col-xxs-']:after {
-				position: absolute;
-				top: 0;
-				left: 0;
-				outline: 2px solid $markerColor--xxs !important;
-				content: '';
-				width: calc(100% - #{$grid-gutter-width});
-				height: calc(100% - #{$grid-gutter-width});
-			 }
-			.marker-indicator { 
-				background: $markerColor--xxs !important; 
-				&:before { content: 'breakpoint: XXS' + ' (' + $grid-breakpoint-xxs + ')'; }
+		// bp: xxs
+		@if $grid-breakpoint-xxs > 0 {
+			@media (max-width: $grid-breakpoint-xxs) {
+				[class*='col-xxs-']:after {
+					position: absolute;
+					top: 0;
+					left: 0;
+					outline: 2px solid $markerColor--xxs !important;
+					content: '';
+					width: calc(100% - #{$grid-gutter-width});
+					height: calc(100% - #{$grid-gutter-width});
+				 }
+				.marker-indicator { 
+					background: $markerColor--xxs !important; 
+					&:before { content: 'breakpoint: XXS' + ' (' + $grid-breakpoint-xxs + ')'; }
+				}
 			}
 		}
-		@media (max-width: $grid-breakpoint-stack) {
-			.col-nostack:after {
-				position: absolute;
-				top: 0;
-				left: 0;
-				outline: 2px dotted $markerColor--stack !important;
-				content: '';
-				width: calc(100% - #{$grid-gutter-width});
-				height: calc(100% - #{$grid-gutter-width});
-			 }
-			 .gridlines .col-nostack:after { outline: 0 !important; }
-			.marker-indicator { 
-				background: $markerColor--stack !important; 
-				&:before { content: 'breakpoint: stack' + ' (' + $grid-breakpoint-stack + ')'; }
+		// bp: stack
+		@if $grid-breakpoint-stack > 0 {
+			@media (max-width: $grid-breakpoint-stack) {
+				.col-nostack:after {
+					position: absolute;
+					top: 0;
+					left: 0;
+					outline: 2px dotted $markerColor--stack !important;
+					content: '';
+					width: calc(100% - #{$grid-gutter-width});
+					height: calc(100% - #{$grid-gutter-width});
+				 }
+				 .gridlines .col-nostack:after { outline: 0 !important; }
+				.marker-indicator { 
+					background: $markerColor--stack !important; 
+					&:before { content: 'breakpoint: stack' + ' (' + $grid-breakpoint-stack + ')'; }
+				}
 			}
 		}
 	}
@@ -570,29 +618,53 @@ body.show-marker-outlines {
 		left: 0;
 		top: 0;
 	}
-	.markersFlow--stack {	
-		background-color: $markerColor--stack;
+	// bp: stack
+	@if $grid-breakpoint-stack > 0 {
+		.markersFlow--stack {	
+			background-color: $markerColor--stack;
+		}
 	}
-	.markersFlow--xxs {	
-		background-color: $markerColor--xxs;
+	// bp: xxs
+	@if $grid-breakpoint-xxs > 0 {
+		.markersFlow--xxs {	
+			background-color: $markerColor--xxs;
+		}
 	}
-	.markersFlow--xs {	
-		background-color: $markerColor--xs;
+	// bp: xs
+	@if $grid-breakpoint-xs > 0 {
+		.markersFlow--xs {	
+			background-color: $markerColor--xs;
+		}
 	}
-	.markersFlow--s {	
-		background-color: $markerColor--s;
+	// bp: s
+	@if $grid-breakpoint-s > 0 {
+		.markersFlow--s {	
+			background-color: $markerColor--s;
+		}
 	}
-	.markersFlow--m {	
-		background-color: $markerColor--m;
+	// bp: m
+	@if $grid-breakpoint-m > 0 {
+		.markersFlow--m {	
+			background-color: $markerColor--m;
+		}
 	}
-	.markersFlow--l {	
-		background-color: $markerColor--l;
+	// bp: l
+	@if $grid-breakpoint-l > 0 {
+		.markersFlow--l {	
+			background-color: $markerColor--l;
+		}
 	}
-	.markersFlow--xl {	
-		background-color: $markerColor--xl;
+	// bp: xl
+	@if $grid-breakpoint-xl > 0 {
+		.markersFlow--xl {	
+			background-color: $markerColor--xl;
+		}
 	}
-	.markersFlow--xxl {	
-		background-color: $markerColor--xxl;
+	// bp: xxl
+	@if $grid-breakpoint-xxl > 0 {
+		.markersFlow--xxl {	
+			background-color: $markerColor--xxl;
+		}
 	}
 }
 
@@ -606,48 +678,47 @@ body.show-marker-outlines {
 	position: fixed;
 	bottom: 25px;
 	left: 5px;
-	z-index: 10;
+	z-index: $startingZ-Index + 30;
 }
 .innerMarkers { display: none; }
 .col-1, .col-2, .col-3, 
 .col-4, .col-5, .col-6,
 .col-7, .col-8, .col-9, 
 .col-10, .col-11, .col-12 {
-	@media (min-width: $grid-breakpoint-stack + 1) {
-		.innerMarkers {
-			display: block;
+	.innerMarkers {
+		display: block;
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		overflow: hidden;
+		z-index: $startingZ-Index + 22;
+		[class*='innerMarker-'] {
 			position: absolute;
-			height: 100%;
-			width: 100%;
-			overflow: hidden;
-			[class*='innerMarker-'] {
-				position: absolute;
-				width: 1px;
-				border-right: 1px solid;
-			}
-			.innerMarker-outline {
-				outline: 1px solid $innerMarkerOutlineColor;
-				border: 0;
-				position: absolute;
-				top: 1px;
-				left: 1px;				
-				content: '';
-			}
-			.innerMarker-default { 
-				border-color: $markerColor--default;
-				cursor: crosshair;
-				left: 0;
-			}
-			.innerMarker-stack { border-color: $markerColor--stack; }
-			.innerMarker-xxs { border-color: $markerColor--xxs; }
-			.innerMarker-xs { border-color: $markerColor--xs; }
-			.innerMarker-s { border-color: $markerColor--s; }
-			.innerMarker-m { border-color: $markerColor--m; }
-			.innerMarker-l { border-color: $markerColor--l; }
-			.innerMarker-xl { border-color: $markerColor--xl; }
-			.innerMarker-xxl { border-color: $markerColor--xxl; }
-			.innerMarker--dotted { cursor: crosshair; }
+			width: 1px;
+			border-right: 1px solid;
 		}
+		.innerMarker-outline {
+			outline: 1px solid $innerMarkerOutlineColor;
+			border: 0;
+			position: absolute;
+			top: 1px;
+			left: 1px;				
+			content: '';
+		}
+		.innerMarker-default { 
+			border-color: $markerColor--default;
+			cursor: crosshair;
+			left: 0;
+		}
+		@if $grid-breakpoint-stack > 0 { .innerMarker-stack { border-color: $markerColor--stack; } }
+		@if $grid-breakpoint-xxs > 0 { .innerMarker-xxs { border-color: $markerColor--xxs; } }
+		@if $grid-breakpoint-xs > 0 { .innerMarker-xs { border-color: $markerColor--xs; } }
+		@if $grid-breakpoint-s > 0 { .innerMarker-s { border-color: $markerColor--s; } }
+		@if $grid-breakpoint-m > 0 { .innerMarker-m { border-color: $markerColor--m; } }
+		@if $grid-breakpoint-l > 0 { .innerMarker-l { border-color: $markerColor--l; } }
+		@if $grid-breakpoint-xl > 0 { .innerMarker-xl { border-color: $markerColor--xl; } }
+		@if $grid-breakpoint-xxl > 0 { .innerMarker-xxl { border-color: $markerColor--xxl; } }
+		.innerMarker--dotted { cursor: crosshair; }
 	}
 }
 
@@ -677,7 +748,7 @@ body.show-marker-outlines {
 	border: 0;
 	opacity: 0;
 	cursor: pointer;
-	z-index: 20;
+	z-index: $startingZ-Index + 25;
 	&.grids-notification--show {
 		padding: 10px;
 		border: 1px solid #f2f2f2;

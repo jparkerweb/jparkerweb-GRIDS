@@ -35,17 +35,18 @@ $grid-vertical-spacing-xl: $grid-vertical-spacing;
 $grid-vertical-spacing-xxl: $grid-vertical-spacing;
 
 // view-port width (breakpoint) to auto-stack all columns
-// (value should be in px)
-$grid-breakpoint-stack: 420px !default;
+// (value should be in px).  Set to 0 to disable.
+$grid-breakpoint-stack: 415px !default;
 // view-port widths (breakpoints) allowing layout change
-// based on GRIDS class names (value should be in px)
+// based on GRIDS class names (value should be in px).
+// If you want to disable a breakpoint set its value to 0.
 $grid-breakpoint-xxs:   480px !default;
-$grid-breakpoint-xs:    500px !default;
+$grid-breakpoint-xs:    520px !default;
 $grid-breakpoint-s:     568px !default;
 $grid-breakpoint-m:     620px !default;
 $grid-breakpoint-l:     768px !default;
 $grid-breakpoint-xl:    880px !default;
-$grid-breakpoint-xxl:    950px !default;
+$grid-breakpoint-xxl:    0;//950px !default;
 
 
 // optional top/bottom margin and padding size units
