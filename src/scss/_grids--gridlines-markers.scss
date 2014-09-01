@@ -464,7 +464,7 @@ body.show-marker-outlines {
 		// bp: xxl
 		@if $grid-breakpoint-xxl > 0 {
 			@media (max-width: $grid-breakpoint-xxl) {
-				[class*='col-xxl-']:after {
+				.grid > [class*='col-'][class*='-xxl']:after {
 					position: absolute;
 					top: 0;
 					left: 0;
@@ -482,7 +482,7 @@ body.show-marker-outlines {
 		// bp: xl
 		@if $grid-breakpoint-xl > 0 {
 			@media (max-width: $grid-breakpoint-xl) {
-				[class*='col-xl-']:after {
+				.grid > [class*='col-'][class*='-xl']:after {
 					position: absolute;
 					top: 0;
 					left: 0;
@@ -500,7 +500,7 @@ body.show-marker-outlines {
 		// bp: l
 		@if $grid-breakpoint-l > 0 {
 			@media (max-width: $grid-breakpoint-l) {
-				[class*='col-l-']:after {
+				.grid > [class*='col-'][class*='-l']:after {
 					position: absolute;
 					top: 0;
 					left: 0;
@@ -518,7 +518,7 @@ body.show-marker-outlines {
 		// bp: m
 		@if $grid-breakpoint-m > 0 {
 			@media (max-width: $grid-breakpoint-m) {
-				[class*='col-m-']:after {
+				.grid > [class*='col-'][class*='-m']:after {
 					position: absolute;
 					top: 0;
 					left: 0;
@@ -536,7 +536,7 @@ body.show-marker-outlines {
 		// bp: s
 		@if $grid-breakpoint-s > 0 {
 			@media (max-width: $grid-breakpoint-s) {
-				[class*='col-s-']:after {
+				.grid > [class*='col-'][class*='-s']:not[class*='-stack']:after {
 					position: absolute;
 					top: 0;
 					left: 0;
@@ -554,7 +554,7 @@ body.show-marker-outlines {
 		// bp: xs
 		@if $grid-breakpoint-xs > 0 {
 			@media (max-width: $grid-breakpoint-xs) {
-				[class*='col-xs-']:after {
+				.grid > [class*='col-'][class*='-xs']:after {
 					position: absolute;
 					top: 0;
 					left: 0;
@@ -572,7 +572,7 @@ body.show-marker-outlines {
 		// bp: xxs
 		@if $grid-breakpoint-xxs > 0 {
 			@media (max-width: $grid-breakpoint-xxs) {
-				[class*='col-xxs-']:after {
+				.grid > [class*='col-'][class*='-xxs']:after {
 					position: absolute;
 					top: 0;
 					left: 0;
@@ -595,6 +595,15 @@ body.show-marker-outlines {
 					top: 0;
 					left: 0;
 					outline: 2px dotted $markerColor--stack !important;
+					content: '';
+					width: calc(100% - #{$grid-gutter-width});
+					height: calc(100% - #{$grid-gutter-width});
+				 }
+				.grid > [class*='col-'][class*='-stack']:after {
+					position: absolute;
+					top: 0;
+					left: 0;
+					outline: 2px solid $markerColor--stack !important;
 					content: '';
 					width: calc(100% - #{$grid-gutter-width});
 					height: calc(100% - #{$grid-gutter-width});
@@ -710,6 +719,10 @@ body.show-marker-outlines {
 			border-color: $markerColor--default;
 			cursor: crosshair;
 			left: 0;
+			&:hover {
+				border-left-width: 3px;
+				border-left-style: solid;
+			}
 		}
 		@if $grid-breakpoint-stack > 0 { .innerMarker-stack { border-color: $markerColor--stack; } }
 		@if $grid-breakpoint-xxs > 0 { .innerMarker-xxs { border-color: $markerColor--xxs; } }
@@ -719,7 +732,14 @@ body.show-marker-outlines {
 		@if $grid-breakpoint-l > 0 { .innerMarker-l { border-color: $markerColor--l; } }
 		@if $grid-breakpoint-xl > 0 { .innerMarker-xl { border-color: $markerColor--xl; } }
 		@if $grid-breakpoint-xxl > 0 { .innerMarker-xxl { border-color: $markerColor--xxl; } }
-		.innerMarker--dotted { cursor: crosshair; }
+		.innerMarker--dotted { 
+			cursor: crosshair;
+			&:hover {
+				border-right-style: solid !important;
+				border-left-width: 2px;
+				border-left-style: solid;
+			}
+		}
 	}
 }
 

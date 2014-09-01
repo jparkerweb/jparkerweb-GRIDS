@@ -61,9 +61,9 @@
 // ---------------------------
 // -- text align properties --
 // ---------------------------
-.grids-content--align-left { text-align: left; }
-.grids-content--align-center { text-align: center; }
-.grids-content--align-right { text-align: right; }
+.grids-content--alignleft { text-align: left; }
+.grids-content--aligncenter { text-align: center; }
+.grids-content--alignright { text-align: right; }
 
 
 // ------------
@@ -71,7 +71,7 @@
 // -------------------------------
 // -- float element to the left --
 // -------------------------------
-.grids-content--float-left { 
+.grids-content--floatleft { 
 	float: left; 
 	margin-right: $grid-gutter-width; 
 	margin-bottom: $grid-gutter-width; 
@@ -79,7 +79,7 @@
 // --------------------------------
 // -- float element to the right --
 // --------------------------------
-.grids-content--float-right { 
+.grids-content--floatright { 
 	float: right; 
 	margin-left: $grid-gutter-width; 
 	margin-bottom: $grid-gutter-width; 

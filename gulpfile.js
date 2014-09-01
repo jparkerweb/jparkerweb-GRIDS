@@ -11,6 +11,7 @@
 		gulpFilter = require('gulp-filter'),
 		autoprefixer = require('gulp-autoprefixer'),
 		csso = require('gulp-csso'),
+		webpack = require('gulp-webpack'),
 		uglify = require('gulp-uglify');
 // ==========================================
 
@@ -112,6 +113,9 @@ gulp.task('scripts', function (callback) {
 	// task: build scripts
 	gulp.task('build-scripts', function () {
 		return gulp.src([sourcePaths.JS])
+			.pipe(webpack({
+				output: { filename: "grids-toolbox.js" }
+			}))
 			.pipe(gulpif(minify, uglify()))
 			.pipe(gulp.dest(destPaths.JS));
 	});

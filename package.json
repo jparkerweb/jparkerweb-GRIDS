@@ -16,6 +16,7 @@
     "gulp-if": "^1.2.4",
     "gulp-ruby-sass": "^0.7.1",
     "gulp-uglify": "^0.3.2",
-    "run-sequence": "^0.3.6"
+    "run-sequence": "^0.3.6",
+    "gulp-webpack": "^0.3.0"
   }
 }

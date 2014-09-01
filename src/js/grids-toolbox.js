@@ -23,6 +23,7 @@ $(document).ready(function() {
 	// *********************************
 
 
+
 	// *************************
 	// ***** Notifications *****
 	// *************************
@@ -409,6 +410,10 @@ $(document).ready(function() {
 				if (breakpointCharacter == "stack") {
 					allClasses = allClasses.replace("-nostack","-stack");
 				}
+				// if on "s" breakpoint character, rename to stack to Xstack to no false positives are found
+				if (breakpointCharacter == "s") {
+					allClasses = allClasses.replace("-stack","-Xstack");
+				}
 				allClasses = allClasses.split(" ");
 				
 				for (var i in allClasses) {
@@ -422,7 +427,10 @@ $(document).ready(function() {
 						var breakpointColor = $(this).css("border-right-color");
 						$(this)
 							.addClass("innerMarker--dotted")
-							.css({ "border-right-width" : "3px", "border-right-style" : "dotted" })
+							.css({ 
+								"border-right-width" : "3px", 
+								"border-right-style" : "dotted" 
+							})
 							.attr({
 								"data-bp-name" : breakpointCharacter,
 								"data-bp-value" : gridBreakpoints[prop],
@@ -472,7 +480,7 @@ $(document).ready(function() {
 
 		// if default marker, filter out all breakpoint classes
 		if ($(this).hasClass("innerMarker-default")) {
-			var regExPattern = /col-[0-9]{1,2}|col-push-[0-9]{1,2}|col-(newline|Xnewline|throwright|Xthrowright)|col-(margin|padding)-(top|bottom)-{0,1}(2x|3x)|col-(margin|padding)-(top|bottom)(?!-)/g;
+			var regExPattern = /col-[0-9]{1,2}|col-push-[0-9]{1,2}|col-(newline|Xnewline|throwright|Xthrowright)(?!-)|col-(margin|padding)-(top|bottom)-{0,1}(2x|3x)(?!-)|col-(margin|padding)-(top|bottom)(?!-)/g;
 			allClasses = className.match(regExPattern);
 			classes = "";
 			bpName = "Default";
@@ -492,10 +500,11 @@ $(document).ready(function() {
 			if ($(this).hasClass("innerMarker-s")) {
 				// this is small breakpoint so we need to remove stack to avoid false positive
 				className = className.replace("-nostack", "");
+				className = className.replace("-stack", "");
 			}
 			if ($(this).hasClass("innerMarker-stack")) {
 				// this is stack breakpoint so we need to temp rename nostack to stack for nostack matches
-				className = className.replace("-nostack", "-stack");
+				className = className.replace("-nostack", "-stackXno");
 			}
 			allClasses = className.split(" ");
 			classes = "";
@@ -506,7 +515,7 @@ $(document).ready(function() {
 			// collect breakpoint class names
 			for(var prop in allClasses) {
 				if(allClasses[prop].indexOf("-" + bpName) > -1) {
-					classes = classes + "<div class=\"grids-notification--modifier\">" + allClasses[prop].replace("-stack", "-nostack") + "</div>";
+					classes = classes + "<div class=\"grids-notification--modifier\">" + allClasses[prop].replace("-stackXno", "-nostack") + "</div>";
 				}
 			}
 
@@ -515,7 +524,7 @@ $(document).ready(function() {
 				"Breakpoint classes: " + classes;
 		}
 
-		showGridsNotification(message, 7000, bpColor, "innerMarkerModifier");
+		showGridsNotification(message, 8000, bpColor, "innerMarkerModifier");
 	});
 	// dismiss modifier notification
 	$("body").on("mouseleave", ".innerMarker--dotted, .innerMarker-default", function() {
@@ -558,7 +567,7 @@ $(document).ready(function() {
 	$(window).on("resize", function () {
 		// update viewport display value
 		viewportDisplayValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-		updateViewportDisplay("#viewportDisplay", "vp: " + viewportDisplayValue + "px");
+		updateViewportDisplay("vp: " + viewportDisplayValue + "px");
 		
 		// dismiss any open notifications
 		$("#gridsNotification")
