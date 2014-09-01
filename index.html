@@ -66,7 +66,7 @@
 				<p class="col-12">Next, lets create a grid that has two elements, that when combined, will take up the whole row.  Note, that to span the entire grid width/row, the sum of the columns must equal 12.  We will use <span class="keyword">col-3</span> and <span class="keyword">col-9</span> (3 + 9 is 12 total columns</p>
 			</div>
 			<div class="grid">
-				<div class="col-3"><div class="content">.col-3</div></div>
+				<div class="col-3 col-throwright col-Xthrowright col-newline col-Xnewline"><div class="content">.col-3</div></div>
 				<div class="col-9"><div class="content">.col-9</div></div>
 			</div>
 			<div class="grid">
@@ -583,13 +583,25 @@ $grid-breakpoint-xl:    1000px !default;
 					<span class="keyword">grid-nostack</span>
 				</div>
 				<div class="col-12">
-					<span class="keyword">grid-{reverse/unreverse}</span>
+					<span class="keyword">grid-{reverse/Xreverse}</span>
 				</div>
 				<div class="col-12">
-					<span class="keyword">grid-{reverse/unreverse}-{breakpoint}</span>
+					<span class="keyword">grid-{reverse/Xreverse}-{breakpoint}</span>
 				</div>
 				<div class="col-12">
-					<span class="keyword">grid-{reverse/unreverse}-nostack</span>
+					<span class="keyword">grid-{reverse/Xreverse}-nostack</span>
+				</div>
+				<div class="col-12">
+					<span class="keyword">col-{newline/Xnewline}</span>
+				</div>
+				<div class="col-12">
+					<span class="keyword">col-{newline/Xnewline}-{breakpoint}</span>
+				</div>
+				<div class="col-12">
+					<span class="keyword">col-{throwright/Xthrowright}</span>
+				</div>
+				<div class="col-12">
+					<span class="keyword">col-{throwright/Xthrowright}-{breakpoint}</span>
 				</div>
 			</div>
 			<!-- fluid images -->
