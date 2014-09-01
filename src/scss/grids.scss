@@ -326,6 +326,10 @@ $col-12: 12 / 12 * 100%;
 	.col-push-10 { margin-left: $col-10; }
 	.col-push-11 { margin-left: $col-11; }
 	.col-push-12 { margin-left: $col-12; }
+	// force col to new line (clear floats)
+	.col-newline { clear: both; }
+	// float col to right
+	.col-throwright { float: right; }
 	// optional top/bottom margin and padding
 	.col-padding-top-0 { padding-top: 0; }
 	.col-padding-top { padding-top: $grid-optional-margin-padding-size; }
@@ -416,6 +420,12 @@ $col-12: 12 / 12 * 100%;
 			.col-push-xxl-10 { margin-left: $col-10; }
 			.col-push-xxl-11 { margin-left: $col-11; }
 			.col-push-xxl-12 { margin-left: $col-12; }
+			// force col to new line (clear floats)
+			.col-newline-xxl { clear: both; }
+			.col-Xnewline-xxl { clear: none; }
+			// float col to right
+			.col-throwright-xxl { float: right; }
+			.col-Xthrowright-xxl { float: left; }
 			// optional top/bottom margin and padding
 			.col-padding-top-xxl-0 { padding-top: 0; }
 			.col-padding-top-xxl { padding-top: $grid-optional-margin-padding-size; }
@@ -468,6 +478,12 @@ $col-12: 12 / 12 * 100%;
 			.col-push-xl-10 { margin-left: $col-10; }
 			.col-push-xl-11 { margin-left: $col-11; }
 			.col-push-xl-12 { margin-left: $col-12; }
+			// force col to new line (clear floats)
+			.col-newline-xl { clear: both; }
+			.col-Xnewline-xl { clear: none; }
+			// float col to right
+			.col-throwright-xl { float: right; }
+			.col-Xthrowright-xl { float: left; }			
 			// optional top/bottom margin and padding
 			.col-padding-top-xl-0 { padding-top: 0; }
 			.col-padding-top-xl { padding-top: $grid-optional-margin-padding-size; }
@@ -520,6 +536,12 @@ $col-12: 12 / 12 * 100%;
 			.col-push-l-10 { margin-left: $col-10; }
 			.col-push-l-11 { margin-left: $col-11; }
 			.col-push-l-12 { margin-left: $col-12; }
+			// force col to new line (clear floats)
+			.col-newline-l { clear: both; }
+			.col-Xnewline-l { clear: none; }
+			// float col to right
+			.col-throwright-l { float: right; }
+			.col-Xthrowright-l { float: left; }			
 			// optional top/bottom margin and padding
 			.col-padding-top-l-0 { padding-top: 0; }
 			.col-padding-top-l { padding-top: $grid-optional-margin-padding-size; }
@@ -572,6 +594,12 @@ $col-12: 12 / 12 * 100%;
 			.col-push-m-10 { margin-left: $col-10; }
 			.col-push-m-11 { margin-left: $col-11; }
 			.col-push-m-12 { margin-left: $col-12; }
+			// force col to new line (clear floats)
+			.col-newline-m { clear: both; }
+			.col-Xnewline-m { clear: none; }
+			// float col to right
+			.col-throwright-m { float: right; }
+			.col-Xthrowright-m { float: left; }			
 			// optional top/bottom margin and padding
 			.col-padding-top-m-0 { padding-top: 0; }
 			.col-padding-top-m { padding-top: $grid-optional-margin-padding-size; }
@@ -624,6 +652,12 @@ $col-12: 12 / 12 * 100%;
 			.col-push-s-10 { margin-left: $col-10; }
 			.col-push-s-11 { margin-left: $col-11; }
 			.col-push-s-12 { margin-left: $col-12; }
+			// force col to new line (clear floats)
+			.col-newline-s { clear: both; }
+			.col-Xnewline-s { clear: none; }
+			// float col to right
+			.col-throwright-s { float: right; }
+			.col-Xthrowright-s { float: left; }			
 			// optional top/bottom margin and padding
 			.col-padding-top-s-0 { padding-top: 0; }
 			.col-padding-top-s { padding-top: $grid-optional-margin-padding-size; }
@@ -676,6 +710,12 @@ $col-12: 12 / 12 * 100%;
 			.col-push-xs-10 { margin-left: $col-10; }
 			.col-push-xs-11 { margin-left: $col-11; }
 			.col-push-xs-12 { margin-left: $col-12; }
+			// force col to new line (clear floats)
+			.col-newline-xs { clear: both; }
+			.col-Xnewline-xs { clear: none; }
+			// float col to right
+			.col-throwright-xs { float: right; }
+			.col-Xthrowright-xs { float: left; }			
 			// optional top/bottom margin and padding
 			.col-padding-top-xs-0 { padding-top: 0; }
 			.col-padding-top-xs { padding-top: $grid-optional-margin-padding-size; }
@@ -728,6 +768,12 @@ $col-12: 12 / 12 * 100%;
 			.col-push-xxs-10 { margin-left: $col-10; }
 			.col-push-xxs-11 { margin-left: $col-11; }
 			.col-push-xxs-12 { margin-left: $col-12; }
+			// force col to new line (clear floats)
+			.col-newline-xxs { clear: both; }
+			.col-Xnewline-xxs { clear: none; }
+			// float col to right
+			.col-throwright-xxs { float: right; }
+			.col-Xthrowright-xxs { float: left; }			
 			// optional top/bottom margin and padding
 			.col-padding-top-xxs-0 { padding-top: 0; }
 			.col-padding-top-xxs { padding-top: $grid-optional-margin-padding-size; }
@@ -754,15 +800,12 @@ $col-12: 12 / 12 * 100%;
 	&.grid-reverse { 
 		[class*=col-] { float: right; }
 	}
-	&.grid-unreverse {
-		[class*=col-] { float: left; }
-	}
 	// bp: XXL
 	@if $grid-breakpoint-xxl > 0 {
 		@media (max-width: $grid-breakpoint-xxl) {
 			// revserse/unreverse display order of columns at xxl xxl
 			&.grid-reverse-xxl [class*=col-] { float: right; }
-			&.grid-unreverse-xxl [class*=col-] { float: left; }
+			&.grid-Xreverse-xxl [class*=col-] { float: left; }
 		}
 	}
 	// bp: xl
@@ -770,7 +813,7 @@ $col-12: 12 / 12 * 100%;
 		@media (max-width: $grid-breakpoint-xl) {
 			// revserse/unreverse display order of columns at xl xl
 			&.grid-reverse-xl [class*=col-] { float: right; }
-			&.grid-unreverse-xl [class*=col-] { float: left; }
+			&.grid-Xreverse-xl [class*=col-] { float: left; }
 		}
 	}
 	// bp: l
@@ -778,7 +821,7 @@ $col-12: 12 / 12 * 100%;
 		@media (max-width: $grid-breakpoint-l) {
 			// revserse/unreverse display order of columns at l
 			&.grid-reverse-l [class*=col-] { float: right; }
-			&.grid-unreverse-l [class*=col-] { float: left; }
+			&.grid-Xreverse-l [class*=col-] { float: left; }
 		}
 	}
 	// bp: m
@@ -786,7 +829,7 @@ $col-12: 12 / 12 * 100%;
 		@media (max-width: $grid-breakpoint-m) {
 			// revserse/unreverse display order of columns at m
 			&.grid-reverse-m [class*=col-] { float: right; }
-			&.grid-unreverse-m [class*=col-] { float: left; }
+			&.grid-Xreverse-m [class*=col-] { float: left; }
 		}
 	}
 	// bp: s
@@ -794,7 +837,7 @@ $col-12: 12 / 12 * 100%;
 		@media (max-width: $grid-breakpoint-s) {
 			// revserse/unreverse display order of columns at s
 			&.grid-reverse-s [class*=col-] { float: right; }
-			&.grid-unreverse-s [class*=col-] { float: left; }
+			&.grid-Xreverse-s [class*=col-] { float: left; }
 		}
 	}
 	// bp: xs
@@ -802,7 +845,7 @@ $col-12: 12 / 12 * 100%;
 		@media (max-width: $grid-breakpoint-xs) {
 			// revserse/unreverse display order of columns at xs
 			&.grid-reverse-xs [class*=col-] { float: right; }
-			&.grid-unreverse-xs [class*=col-] { float: left; }
+			&.grid-Xreverse-xs [class*=col-] { float: left; }
 		}
 	}
 	// bp: xxs
@@ -810,7 +853,7 @@ $col-12: 12 / 12 * 100%;
 		@media (max-width: $grid-breakpoint-xxs) {
 			// revserse/unreverse display order of columns at xxs
 			&.grid-reverse-xxs [class*=col-] { float: right; }
-			&.grid-unreverse-xxs [class*=col-] { float: left; }
+			&.grid-Xreverse-xxs [class*=col-] { float: left; }
 		}
 	}
 	// bp: stack
@@ -818,7 +861,7 @@ $col-12: 12 / 12 * 100%;
 		@media (max-width: $grid-breakpoint-stack) {
 			// revserse/unreverse display order of columns at xxs
 			&.grid-reverse-nostack [class*=col-] { float: right; }
-			&.grid-unreverse-nostack [class*=col-] { float: left; }
+			&.grid-Xreverse-nostack [class*=col-] { float: left; }
 			// no stack all columns in grid row
 			&.grid-nostack [class*=col-] { float: left; }
 		}

@@ -23,7 +23,6 @@ $(document).ready(function() {
 	// *********************************
 
 
-
 	// *************************
 	// ***** Notifications *****
 	// *************************
@@ -71,7 +70,7 @@ $(document).ready(function() {
 	// bind clicking of notifiction to clear itself
 	$("#gridsNotification").on("click", function () {
 		$gridsNotification
-			.removeClass("grids-notification--show grids-notification--slide-off-right")
+			.addClass("grids-notification--slide-off-right")
 			.attr("data-hook", "");
 	});
 	// *************************
@@ -204,7 +203,7 @@ $(document).ready(function() {
 	var gridGutterWidth = getGutterWidth();
 	var gridBreakpoints = getGridBreakpoints();
 
-	// remove unneeded toolbox elements (if any breakpoints are disabled)
+	// remove unneeded toolbox html elements (if any breakpoints are disabled)
 	for (var prop in gridBreakpoints) {
 		if(gridBreakpoints[prop] === 0){
 			$(".markersFlow--" + prop.toLowerCase()).remove();
@@ -233,7 +232,7 @@ $(document).ready(function() {
 			$("body").toggleClass("show-marker-outlines");
 		}
 		else {
-			showGridsNotification("Breakpoint \"marker\" overlays are only available for browser widths greater than the \"stack\" breakpoint (" + stackBreakpoint + "px).  Increase the size of your browser to enable this.", 8000);
+			showGridsNotification("Breakpoint \"marker\" tabs are only available for browser widths greater than the \"stack\" breakpoint (" + stackBreakpoint + "px).  Increase the size of your browser to enable this.", 8000);
 		}
 	});
 
@@ -242,25 +241,27 @@ $(document).ready(function() {
 		var breapointValue = $(this).css("margin-left");
 		var breakpointColor = $(this).css("background-color");
 		var breakpointName = $(this).attr("data-name");
-		showGridsNotification("<span class=\"grids-notification--keyword\">" + breakpointName + "</span> breakpoint is at: <span class=\"grids-notification--keyword\">" + breapointValue + "</span><br><br>Breakpoint \"markers\" overlay a visual line on the page, showing each \"breapoint\" value defined in your GRIDS configuration.", 8000, breakpointColor);
+		showGridsNotification("<span class=\"grids-notification--keyword\">" + breakpointName + "</span> breakpoint is at: <span class=\"grids-notification--keyword\">" + breapointValue + "</span><br><br>Breakpoint \"markers\" afix color-coded tabs along the top of the page, showing each \"breapoint\" value defined in your GRIDS configuration.  Clicking a tab will show its defined value here.<br><br>To trigger this viewport in your GRIDS framework simply resize your browser window to be smaller than this breakpoint.", 12000, breakpointColor);
 	});
-	// bind breakpoint shading for markers hover
+	// bind markers mouseenter for breakpoint shading
 	$(".markers .marker").on("mouseenter", function(event){
 		// on show marker flow if mouse is near our :before & :after elements (not the line itself)
-		if (event.screenY <= 140) {
+		//if (event.screenY <= 140) {
 			var offsetWidth = $(this).offset().left;
 			var bgColor = $(this).css("background-color");
 			var markersFlow = "." + $(this).attr("data-flow");
 			$(markersFlow).css({ "width" : offsetWidth, "height" : "100%" });
-		}
+		//}
 	});
+	// bink markers mouseleave to hide breakpoint shading
 	$(".markers .marker").on("mouseleave", function(){
 		var markersFlow = "." + $(this).attr("data-flow");
 		$(markersFlow).css({ "width" : "0px", "height" : "0px" });
 	});
 	// bind notification for marker indicator
 	$(".marker-indicator").on("click", function() {
-		showGridsNotification("The breakpoint indicator bar on the bottom of the page displays the current \"breakpoint\" that is trigged in the GRIDS framework.", 8000);
+		var bpColor = $(this).css("background-color");
+		showGridsNotification("The breakpoint indicator bar on the bottom of the page displays the current \"breakpoint\" name and value that is trigged in the GRIDS framework.", 8000, bpColor);
 	});
 
 	// toggle off markers on page load
@@ -463,6 +464,7 @@ $(document).ready(function() {
 		$innerMarkers.find(".innerMarker-xxs").css({ "margin-left" : leftXXS, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
 		$innerMarkers.find(".innerMarker-stack").css({ "margin-left" : leftStack, "border-right-width" : borderWidth, "border-right-style" : borderStyleStack, "height" : outlineHeight });
 	}
+
 	// bind modifier notification
 	$("body").on("mouseenter", ".innerMarker--dotted, .innerMarker-default", function() {
 		var className = $(this).parent().parent().attr("class");
@@ -470,7 +472,7 @@ $(document).ready(function() {
 
 		// if default marker, filter out all breakpoint classes
 		if ($(this).hasClass("innerMarker-default")) {
-			var regExPattern = /col-[0-9]{1,2}|col-push-[0-9]{1,2}|col-(margin|padding)-(top|bottom)-{0,1}(2x|3x)|col-(margin|padding)-(top|bottom)(?!-)/g;
+			var regExPattern = /col-[0-9]{1,2}|col-push-[0-9]{1,2}|col-(newline|Xnewline|throwright|Xthrowright)|col-(margin|padding)-(top|bottom)-{0,1}(2x|3x)|col-(margin|padding)-(top|bottom)(?!-)/g;
 			allClasses = className.match(regExPattern);
 			classes = "";
 			bpName = "Default";
@@ -515,12 +517,12 @@ $(document).ready(function() {
 
 		showGridsNotification(message, 7000, bpColor, "innerMarkerModifier");
 	});
-	// dismis modifier notification
+	// dismiss modifier notification
 	$("body").on("mouseleave", ".innerMarker--dotted, .innerMarker-default", function() {
 		var hook = $gridsNotification.attr("data-hook");
 		if (hook) {
 			$gridsNotification
-				.removeClass("grids-notification--show grids-notification--slide-off-right")
+				.addClass("grids-notification--slide-off-right")
 				.attr("data-hook", "");
 		}
 	});
@@ -539,21 +541,29 @@ $(document).ready(function() {
 	// declare vaiable for global viewport
 	var viewportDisplayValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 	// update viewport display value
-	function updateViewportDisplay(selector, html) {
-		$(selector).html(html);
+	function updateViewportDisplay(html) {
+		$("#viewportDisplay").html(html);
 	}
 	// set initial viewport display value
-	updateViewportDisplay("#viewportDisplay", "vp: " + viewportDisplayValue + "px");
+	updateViewportDisplay("vp: " + viewportDisplayValue + "px");
 
 	// bind notification message
 	$("#viewportDisplay").on("click", function() {
-		showGridsNotification("The viewport helper in the top left corner displays the current \"viewport\" of your browser window.", 6000);
+		var bpColor = $(this).css("background-color");
+		showGridsNotification("The viewport indicator in the top left corner of the page displays the current <span class=\"grids-notification--keyword\">viewport</span> of your browser window.", 6000, bpColor);
 	});
 
-	// bind browser resize to update viewport display value
+	// bind browser resize to update viewport display value and dismiss
+	// any open notifications
 	$(window).on("resize", function () {
+		// update viewport display value
 		viewportDisplayValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 		updateViewportDisplay("#viewportDisplay", "vp: " + viewportDisplayValue + "px");
+		
+		// dismiss any open notifications
+		$("#gridsNotification")
+			.addClass("grids-notification--slide-off-right")
+			.attr("data-hook", "");
 	});	
 	// ****************************	
 });

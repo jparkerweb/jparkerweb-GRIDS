@@ -199,7 +199,8 @@ body.show-marker-outlines {
 		position: fixed;
 		top: -2px;
 		bottom: 0;
-		width: 1px;
+		width: 0;
+		&:hover { width: 1px; }
 		font-size: 18px;
 		&:before {
 			top: -2px;
