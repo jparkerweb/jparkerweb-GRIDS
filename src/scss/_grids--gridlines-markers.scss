@@ -590,7 +590,7 @@ body.show-marker-outlines {
 		// bp: stack
 		@if $grid-breakpoint-stack > 0 {
 			@media (max-width: $grid-breakpoint-stack) {
-				.col-nostack:after {
+				.grid > [class*='col-'][class*='-nostack']:after {
 					position: absolute;
 					top: 0;
 					left: 0;
