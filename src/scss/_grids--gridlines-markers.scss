@@ -25,10 +25,13 @@ body { min-height: 100%; }
 // ** CONFIGURATION VALUES **
 // **************************
 // ***************************************************
+// set to true if you want to show the reference guide
+$showCheatSheet: true !default;
+
 // set to true if you want to show your breakpoint
-// markers (xs, s, m, l). helpful when defining
-// your layout and testing the variation of 
-// col-(xs, s, m, l)-*
+// markers (stack, xxs, xs, s, m, l, xl, xxl). helpful when
+// defining your layout and testing the variation of 
+// col-(xxs, xs, s, m, l, xl, xxl)-*, etc.
 $showMarkers: true !default;
 
 // set to true if you want to overlay the defined
@@ -87,9 +90,6 @@ $startingZ-Index: 0 !default;
 }
 
 
-// ------------------------------
-// -- gridlines helper classes --
-// ------------------------------
 %toggle-button {
 	min-width: 110px;
 	background: #30BDF4;	
@@ -101,7 +101,7 @@ $startingZ-Index: 0 !default;
 	padding: 2px 0;
 	border-radius: 3px;
 	text-align: center;
-	letter-spacing: 2px;
+	letter-spacing: 1px;
 	line-height: 1.38;
 	transition: all 200ms ease;
 	&.toggle-button--active {
@@ -109,6 +109,87 @@ $startingZ-Index: 0 !default;
 		border-color: #30BDF4;		
 	}
 }
+
+
+// -----------------
+// -- cheat sheet --
+// -----------------
+.cheat-sheet-toggle {
+	@extend %toggle-button;
+	@if $showCheatSheet == false { display: none; }
+	position: fixed;
+	bottom: 115px;
+	left: 5px;
+	z-index: $startingZ-Index + 30;
+}
+.cheat-sheet--canvas {
+	opacity: 1;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: #2980b9;
+	background-image: linear-gradient(109deg, #2980b9 0%, #16a085 100%);
+	text-align: center;
+	z-index: $startingZ-Index + 40;
+	transition: all 400ms ease;
+	transform: translateZ(0);
+	&.cheat-sheet--canvas--hidden { background: white; opacity: 0; top: -100%; bottom: 100%; }
+	&:before {
+		content: '';
+		display: inline-block;
+		height: 100%;
+		vertical-align: middle;
+		margin-right: -.25em;
+	}
+	.cheat-sheet--wrapper {
+		display: inline-block;
+		position: relative;
+		vertical-align: middle;
+		text-align: left;
+		padding: 35px 15px 20px;
+		background: white;
+		border-radius: 5px;
+		font-weight: 400;
+		color: #222;
+		max-width: 90%;
+		max-height: 90%;
+		overflow: hidden;
+		.cheat-sheet--dismiss {
+			position: absolute;
+			display: inline-block;
+			top: 5px;
+			right: 5px;
+			color: white;
+			font-size: 12px;
+			font-weight: 600;
+			padding: 2px 6px;
+			border-radius: 3px;
+			cursor: pointer;
+			background: #c0392b;
+			&:hover { background-color: darken(#c0392b, 10%);}
+		}
+		.cheat-sheet--content {
+			width: 100%;
+			overflow-y: scroll;
+		}
+		.cheat-sheet--keyword {
+			font-family: Inconsolata, sans-serif;
+			background: #f9f9f9;
+			color: #2c3e50;
+			padding: 2px 4px;
+			border: 1px solid #ddd;
+			border-radius: 2px;
+			line-height: 1.38;
+		}
+	}
+}
+
+
+// ------------------------------
+// -- gridlines helper classes --
+// ------------------------------
 .gridlines-toggle {
 	@extend %toggle-button;
 	@if $showGridlines == false { display: none; }
@@ -750,6 +831,7 @@ body.show-marker-outlines {
 // --------------------------------
 .grids-notification {
 	transition: all 200ms ease;
+	transform: translateZ(0);
 	position: fixed;
 	top: 0;
 	right: 0;

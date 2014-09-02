@@ -133,19 +133,133 @@ $(document).ready(function() {
 		"<div id=\"gridsCurrentGridPosition\" class=\"grid\" style=\"visibility:hidden;\"></div> " +
 		"<!-- current breakpoint --> " +
 		"<div id=\"gridsCurrentBreakpoint\"></div> " +
-		"<!-- marker indicator --> " +
-		"<div class=\"marker-indicator\"></div> " +
+		"<!-- cheat sheet --> " +
+		"<div class=\"cheat-sheet-toggle\">cheat sheet</div> " +
+		"<div class=\"cheat-sheet--canvas cheat-sheet--canvas--hidden\"> " +
+		"	<div class=\"cheat-sheet--wrapper\"> " +
+		"		<span class=\"cheat-sheet--dismiss\">X</span>" +
+		"		<div class=\"cheat-sheet--content\">" +
+		"			<aside>" +
+		"				<!-- base -->" +
+		"				<div class=\"grid grid-nostack\">" +
+		"					<div class=\"col-push-1 col-2 col-xs-push-0\"><span>base</span></div>" +
+		"					<div class=\"col-3 col-l-4 col-s-5 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-push-{0-12}</span></div>" +
+		"					<div class=\"col-4 col-s-4 col-xs-push-2 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-{0-12}</span></div>" +
+		"				</div>" +
+		"				<!-- xl -->" +
+		"				<div class=\"grid grid-nostack\">" +
+		"					<div class=\"col-push-1 col-2 col-xs-push-0\"><span>xl</span></div>" +
+		"					<div class=\"col-3 col-l-4 col-s-5 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-push-xl-{0-12}</span></div>" +
+		"					<div class=\"col-4 col-s-4 col-xs-push-2 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-xl-{0-12}</span></div>" +
+		"				</div>" +
+		"				<!-- l -->" +
+		"				<div class=\"grid grid-nostack\">" +
+		"					<div class=\"col-push-1 col-2 col-xs-push-0\"><span>l</span></div>" +
+		"					<div class=\"col-3 col-l-4 col-s-5 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-push-l-{0-12}</span></div>" +
+		"					<div class=\"col-4 col-s-4 col-xs-push-2 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-l-{0-12}</span></div>" +
+		"				</div>" +
+		"				<!-- m -->" +
+		"				<div class=\"grid grid-nostack\">" +
+		"					<div class=\"col-push-1 col-2 col-xs-push-0\"><span>m</span></div>" +
+		"					<div class=\"col-3 col-l-4 col-s-5 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-push-m-{0-12}</span></div>" +
+		"					<div class=\"col-4 col-s-4 col-xs-push-2 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-m-{0-12}</span></div>" +
+		"				</div>" +
+		"				<!-- s -->" +
+		"				<div class=\"grid grid-nostack\">" +
+		"					<div class=\"col-push-1 col-2 col-xs-push-0\"><span>s</span></div>" +
+		"					<div class=\"col-3 col-l-4 col-s-5 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-push-s-{0-12}</span></div>" +
+		"					<div class=\"col-4 col-s-4 col-xs-push-2 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-s-{0-12}</span></div>" +
+		"				</div>" +
+		"				<!-- xs -->" +
+		"				<div class=\"grid grid-nostack\">" +
+		"					<div class=\"col-push-1 col-2 col-xs-push-0\"><span>xs</span></div>" +
+		"					<div class=\"col-3 col-l-4 col-s-5 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-xs-push-{0-12}</span></div>" +
+		"					<div class=\"col-4 col-s-4 col-xs-push-2 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-xs-{0-12}</span></div>" +
+		"				</div>" +
+		"				<!-- xxs -->" +
+		"				<div class=\"grid grid-nostack\">" +
+		"					<div class=\"col-push-1 col-2 col-xs-push-0\"><span>xxs</span></div>" +
+		"					<div class=\"col-3 col-l-4 col-s-5 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-push-xxs-{0-12}</span></div>" +
+		"					<div class=\"col-4 col-s-4 col-xs-push-2 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-xxs-{0-12}</span></div>" +
+		"				</div>" +
+		"				<!-- stack -->" +
+		"				<div class=\"grid grid-nostack\">" +
+		"					<div class=\"col-push-1 col-2 col-xs-push-0\"><span>stack</span></div>" +
+		"					<div class=\"col-3 col-l-4 col-s-5 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-nostack</span></div>" +
+		"				</div>" +
+		"			</aside>" +		
+		"			<div class=\"grid\">" +
+		"				<div class=\"col-12\">" +
+		"					<span class=\"cheat-sheet--keyword\">{grid/col}-{margin/padding}-{top/bottom}</span>" +
+		"				</div>" +
+		"				<div class=\"col-12\">" +
+		"					<span class=\"cheat-sheet--keyword\">{grid/col}-{margin/padding}-{top/bottom}-{2x/3x}</span>" +
+		"				</div>" +
+		"				<div class=\"col-12\">" +
+		"					<span class=\"cheat-sheet--keyword\">{grid/col}-{margin/padding}-{top/bottom}-{breakpoint}</span>" +
+		"				</div>" +
+		"				<div class=\"col-12\">" +
+		"					<span class=\"cheat-sheet--keyword\">{grid/col}-{margin/padding}-{top/bottom}-{breakpoint}-{2x/3x}</span>" +
+		"				</div>" +
+		"				<div class=\"col-12\">" +
+		"					<span class=\"cheat-sheet--keyword\">grid-nostack</span>" +
+		"				</div>" +
+		"				<div class=\"col-12\">" +
+		"					<span class=\"cheat-sheet--keyword\">grid-{reverse/Xreverse}</span>" +
+		"				</div>" +
+		"				<div class=\"col-12\">" +
+		"					<span class=\"cheat-sheet--keyword\">grid-{reverse/Xreverse}-{breakpoint}</span>" +
+		"				</div>" +
+		"				<div class=\"col-12\">" +
+		"					<span class=\"cheat-sheet--keyword\">grid-{reverse/Xreverse}-nostack</span>" +
+		"				</div>" +
+		"				<div class=\"col-12\">" +
+		"					<span class=\"cheat-sheet--keyword\">col-{newline/Xnewline}</span>" +
+		"				</div>" +
+		"				<div class=\"col-12\">" +
+		"					<span class=\"cheat-sheet--keyword\">col-{newline/Xnewline}-{breakpoint}</span>" +
+		"				</div>" +
+		"				<div class=\"col-12\">" +
+		"					<span class=\"cheat-sheet--keyword\">col-{throwright/Xthrowright}</span>" +
+		"				</div>" +
+		"				<div class=\"col-12\">" +
+		"					<span class=\"cheat-sheet--keyword\">col-{throwright/Xthrowright}-{breakpoint}</span>" +
+		"				</div>" +
+		"			</div>" +
+		"		</div>" +
+		"	</div> " +
+		"</div> " +
 		"<!-- gridlines toggle --> " +
 		"<div class=\"gridlines-toggle\">gridlines</div> " +
 		"<!-- markers toggle --> " +
 		"<div class=\"markers-toggle\">markers</div>	" +
 		"<!-- col markers toggle --> " +
 		"<div class=\"col-markers-toggle\">col-markers</div>	" +
+		"<!-- marker indicator --> " +
+		"<div class=\"marker-indicator\"></div> " +
 		"<!-- ******************************************************************* --> " +
 	" ";
 
 	// insert Gridline and Marker elements
 	$("body").append(gridlinesAndMarkers);
+
+	// bind cheet sheet button
+	$(".cheat-sheet-toggle").on("click", function(){
+		var wrapperHeight = parseInt($(".cheat-sheet--wrapper").height()),
+			wrapperBottomPadding = parseInt($(".cheat-sheet--wrapper").css("padding-bottom")),
+			contentHeight = wrapperHeight - wrapperBottomPadding; 
+		$(".cheat-sheet--content").height(contentHeight);
+
+		$(".cheat-sheet--canvas").removeClass("cheat-sheet--canvas--hidden");
+	});
+	// bind cheat sheet dismiss
+	$(".cheat-sheet--dismiss, .cheat-sheet--canvas").on("click", function(event) {
+		var targetDismissButton = $(event.target).hasClass("cheat-sheet--dismiss"); 
+		var targetCanvas = $(event.target).hasClass("cheat-sheet--canvas"); 
+		if (targetDismissButton || targetCanvas) {
+			$(".cheat-sheet--canvas").addClass("cheat-sheet--canvas--hidden");
+		}
+	});
 
 	// if a scrollbar exists return its calculated width
 	function getScrollbarWidth() {
@@ -381,9 +495,9 @@ $(document).ready(function() {
 				// for each matched breakpoint column set its inner markers
 				$grid.find("[class*=col-" + breakpointCharacter + "-]").each(function() {
 					var className = $(this).attr("class");
-					var regExPattern = "col\\-" + breakpointCharacter + "\\-[0-9]{1,2}";
+					var regExPattern = "col\\-" + breakpointCharacter + "\\-[0-9]{1,2}(?!-)";
 					if (className.match(regExPattern)) {
-						regExPattern = "col\\-" + breakpointCharacter + "\\-([0-9]{1,2})";
+						regExPattern = "col\\-" + breakpointCharacter + "\\-([0-9]{1,2})(?!-)";
 						var size = className.match(regExPattern, '$1');
 						setInnerMarkerOffsets(this, size[1]);
 					}
@@ -404,8 +518,10 @@ $(document).ready(function() {
 			$grid.find("[class*=col-]").each(function(){
 				var markIt = false;
 				var allClasses = $(this).attr("class");
-				// remove "margin" from class names to avoid false match on "m" breakpiont
-				allClasses = allClasses.replace("-margin","");
+				// if on "m" breakpoint remove "margin" from class names to avoid false match
+				if (breakpointCharacter == "m") {
+					allClasses = allClasses.replace("-margin","");
+				}
 				// if on stack breakpoint character, rename nostack to stack to ensure match
 				if (breakpointCharacter == "stack") {
 					allClasses = allClasses.replace("-nostack","-stack");
@@ -480,7 +596,7 @@ $(document).ready(function() {
 
 		// if default marker, filter out all breakpoint classes
 		if ($(this).hasClass("innerMarker-default")) {
-			var regExPattern = /col-[0-9]{1,2}|col-push-[0-9]{1,2}|col-(newline|Xnewline|throwright|Xthrowright)(?!-)|col-(margin|padding)-(top|bottom)-{0,1}(2x|3x)(?!-)|col-(margin|padding)-(top|bottom)(?!-)/g;
+			var regExPattern = /col-[0-9]{1,2}|col-push-[0-9]{1,2}|col-(newline|Xnewline|throwright|Xthrowright)(?!-)|col-(margin|padding)-(top|bottom)-(0x|1x|2x|3x)(?!-)/g;
 			allClasses = className.match(regExPattern);
 			classes = "";
 			bpName = "Default";
@@ -514,7 +630,7 @@ $(document).ready(function() {
 
 			// collect breakpoint class names
 			for(var prop in allClasses) {
-				if(allClasses[prop].indexOf("-" + bpName) > -1) {
+				if(allClasses[prop].indexOf("col-" + bpName) > -1) {
 					classes = classes + "<div class=\"grids-notification--modifier\">" + allClasses[prop].replace("-stackXno", "-nostack") + "</div>";
 				}
 			}
