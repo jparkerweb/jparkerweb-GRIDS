@@ -24,7 +24,7 @@
 				<span class="subtitle">jparkerweb</span>
 				<span class="title">GRIDS</span>
 			</div>
-			<div class="col-push-1 col-7 col-push-m-0 col-m-12">
+			<div class="col-push-1 col-7 col-m-push-0 col-m-12">
 				<p class="description">GRIDS is a user-friendly framework compatible with the numerous devices we encounter daily.  This tool-kit features various view-port and size configurations, twelve fluid-width columns, gridline overlays and breakpoint markers to aid in page layout.</p>
 				<div class="call-to-action">
 					<a class="btn-download" href="https://github.com/jparkerweb/jparkerweb-grids/archive/master.zip">Download</a>
@@ -407,7 +407,7 @@ $grid-breakpoint-xl:    1000px !default;
 			</div>
 			<div class="grid">
 				<div class="col-6 col-m-3"><div class="content">.col-6 .col-m-3</div></div>
-				<div class="col-6 col-push-m-6 col-m-3"><div class="content">.col-6 .col-push-m-6 .col-m-3</div></div>
+				<div class="col-6 col-m-push-6 col-m-3"><div class="content">.col-6 .col-m-push-6 .col-m-3</div></div>
 			</div>
 			<div class="grid">
 				<div class="col-12">
@@ -415,7 +415,7 @@ $grid-breakpoint-xl:    1000px !default;
 &lt;!-- shrink columns to span 3 at medium breakpoint and push the second over by 6 --&gt;
 &lt;div class=&quot;grid&quot;&gt;
   &lt;div class=&quot;col-6 col-m-3&quot;&gt;.col-6 .col-m-3&lt;/div&gt;
-  &lt;div class=&quot;col-6 col-push-m-6 col-m-3&quot;&gt;.col-6 .col-push-m-6 .col-m-3&lt;/div&gt;
+  &lt;div class=&quot;col-6 col-m-push-6 col-m-3&quot;&gt;.col-6 .col-m-push-6 .col-m-3&lt;/div&gt;
 &lt;/div&gt;
 </pre>
 				</div>
@@ -427,14 +427,14 @@ $grid-breakpoint-xl:    1000px !default;
 				</div>
 			</div>
 			<div class="grid">
-				<div class="col-push-1 col-11 col-push-xl-2 col-xl-10 col-push-l-3 col-l-9 col-push-m-4 col-m-8 col-push-s-5 col-s-7 col-push-xs-6 col-xs-6 col-nostack"><div class="content">.col-push-1 .col-11 .col-push-xl-2 .col-xl-10 .col-push-l-3 .col-l-9 .col-push-m-4 .col-m-8 .col-push-s-5 .col-s-7 .col-push-xs-6 .col-xs-6 .col-nostack</div></div>
+				<div class="col-push-1 col-11 col-xl-push-2 col-xl-10 col-l-push-3 col-l-9 col-m-push-4 col-m-8 col-s-push-5 col-s-7 col-xs-push-6 col-xs-6 col-nostack"><div class="content">.col-push-1 .col-11 .col-xl-push-2 .col-xl-10 .col-l-push-3 .col-l-9 .col-m-push-4 .col-m-8 .col-s-push-5 .col-s-7 .col-xs-push-6 .col-xs-6 .col-nostack</div></div>
 			</div>
 			<div class="grid">
 				<div class="col-12">
 					<pre class="code-block prettyprint linenums">
 &lt;!-- column with differnt spans and pushes defined at every breakpoint --&gt;
 &lt;div class=&quot;grid&quot;&gt;
-  &lt;div class=&quot;col-push-1 col-11 col-push-xl-2 col-xl-10 col-push-l-3 col-l-9 col-push-m-4 col-m-8 col-push-s-5 col-s-7 col-push-xs-6 col-xs-6 col-nostack&quot;&gt;.col-push-1 .col-11 .col-push-xl-2 .col-xl-10 .col-push-l-3 .col-l-9 .col-push-m-4 .col-m-8 .col-push-s-5 .col-s-7 .col-push-xs-6 .col-xs-6 .col-nostack&lt;/div&gt;
+  &lt;div class=&quot;col-push-1 col-11 col-xl-push-2 col-xl-10 col-l-push-3 col-l-9 col-m-push-4 col-m-8 col-s-push-5 col-s-7 col-xs-push-6 col-xs-6 col-nostack&quot;&gt;.col-push-1 .col-11 .col-xl-push-2 .col-xl-10 .col-l-push-3 .col-l-9 .col-m-push-4 .col-m-8 .col-s-push-5 .col-s-7 .col-xs-push-6 .col-xs-6 .col-nostack&lt;/div&gt;
 &lt;/div&gt;
 </pre>
 				</div>
@@ -472,7 +472,7 @@ $grid-breakpoint-xl:    1000px !default;
 			</div>
 			<div class="grid">
 				<div class="col-5"><div class="content">.col-5</div></div>
-				<div class="col-push-2 col-5 col-push-m-0"><div class="content">.col-push-2 .col-5 .col-push-m-0</div></div>
+				<div class="col-push-2 col-5 col-m-push-0"><div class="content">.col-push-2 .col-5 .col-m-push-0</div></div>
 			</div>
 			<div class="grid">
 				<div class="col-12">
@@ -480,7 +480,7 @@ $grid-breakpoint-xl:    1000px !default;
 &lt;!-- the second column&#039;s push value is removed at the medium breakpoint --&gt;
 &lt;div class=&quot;grid&quot;&gt;
   &lt;div class=&quot;col-5&quot;&gt;&lt;div class=&quot;content&quot;&gt;.col-5&lt;/div&gt;&lt;/div&gt;
-  &lt;div class=&quot;col-push-2 col-5 col-push-m-0&quot;&gt;&lt;div class=&quot;content&quot;&gt;.col-push-2 .col-5 .col-push-m-0&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;col-push-2 col-5 col-m-push-0&quot;&gt;&lt;div class=&quot;content&quot;&gt;.col-push-2 .col-5 .col-m-push-0&lt;/div&gt;&lt;/div&gt;
 &lt;/div&gt;
 </pre>
 				</div>
@@ -499,49 +499,49 @@ $grid-breakpoint-xl:    1000px !default;
 			<aside>
 				<!-- base -->
 				<div class="grid grid-nostack">
-					<div class="col-push-1 col-2 col-push-xs-0"><span class="class-type">base</span></div>
+					<div class="col-push-1 col-2 col-xs-push-0"><span class="class-type">base</span></div>
 					<div class="col-3 col-l-4 col-s-5 col-xs-10"><span class="keyword">.col-push-{0-12}</span></div>
-					<div class="col-4 col-s-4 col-push-xs-2 col-xs-10"><span class="keyword">.col-{0-12}</span></div>
+					<div class="col-4 col-s-4 col-xs-push-2 col-xs-10"><span class="keyword">.col-{0-12}</span></div>
 				</div>
 				<!-- xl -->
 				<div class="grid grid-nostack">
-					<div class="col-push-1 col-2 col-push-xs-0"><span class="class-type">xl</span></div>
-					<div class="col-3 col-l-4 col-s-5 col-xs-10"><span class="keyword">.col-push-xl-{0-12}</span></div>
-					<div class="col-4 col-s-4 col-push-xs-2 col-xs-10"><span class="keyword">.col-xl-{0-12}</span></div>
+					<div class="col-push-1 col-2 col-xs-push-0"><span class="class-type">xl</span></div>
+					<div class="col-3 col-l-4 col-s-5 col-xs-10"><span class="keyword">.col-xl-push-{0-12}</span></div>
+					<div class="col-4 col-s-4 col-xs-push-2 col-xs-10"><span class="keyword">.col-xl-{0-12}</span></div>
 				</div>
 				<!-- l -->
 				<div class="grid grid-nostack">
-					<div class="col-push-1 col-2 col-push-xs-0"><span class="class-type">l</span></div>
-					<div class="col-3 col-l-4 col-s-5 col-xs-10"><span class="keyword">.col-push-l-{0-12}</span></div>
-					<div class="col-4 col-s-4 col-push-xs-2 col-xs-10"><span class="keyword">.col-l-{0-12}</span></div>
+					<div class="col-push-1 col-2 col-xs-push-0"><span class="class-type">l</span></div>
+					<div class="col-3 col-l-4 col-s-5 col-xs-10"><span class="keyword">.col-l-push-{0-12}</span></div>
+					<div class="col-4 col-s-4 col-xs-push-2 col-xs-10"><span class="keyword">.col-l-{0-12}</span></div>
 				</div>
 				<!-- m -->
 				<div class="grid grid-nostack">
-					<div class="col-push-1 col-2 col-push-xs-0"><span class="class-type">m</span></div>
-					<div class="col-3 col-l-4 col-s-5 col-xs-10"><span class="keyword">.col-push-m-{0-12}</span></div>
-					<div class="col-4 col-s-4 col-push-xs-2 col-xs-10"><span class="keyword">.col-m-{0-12}</span></div>
+					<div class="col-push-1 col-2 col-xs-push-0"><span class="class-type">m</span></div>
+					<div class="col-3 col-l-4 col-s-5 col-xs-10"><span class="keyword">.col-m-push-{0-12}</span></div>
+					<div class="col-4 col-s-4 col-xs-push-2 col-xs-10"><span class="keyword">.col-m-{0-12}</span></div>
 				</div>
 				<!-- s -->
 				<div class="grid grid-nostack">
-					<div class="col-push-1 col-2 col-push-xs-0"><span class="class-type">s</span></div>
-					<div class="col-3 col-l-4 col-s-5 col-xs-10"><span class="keyword">.col-push-s-{0-12}</span></div>
-					<div class="col-4 col-s-4 col-push-xs-2 col-xs-10"><span class="keyword">.col-s-{0-12}</span></div>
+					<div class="col-push-1 col-2 col-xs-push-0"><span class="class-type">s</span></div>
+					<div class="col-3 col-l-4 col-s-5 col-xs-10"><span class="keyword">.col-s-push-{0-12}</span></div>
+					<div class="col-4 col-s-4 col-xs-push-2 col-xs-10"><span class="keyword">.col-s-{0-12}</span></div>
 				</div>
 				<!-- xs -->
 				<div class="grid grid-nostack">
-					<div class="col-push-1 col-2 col-push-xs-0"><span class="class-type">xs</span></div>
-					<div class="col-3 col-l-4 col-s-5 col-xs-10"><span class="keyword">.col-push-xs-{0-12}</span></div>
-					<div class="col-4 col-s-4 col-push-xs-2 col-xs-10"><span class="keyword">.col-xs-{0-12}</span></div>
+					<div class="col-push-1 col-2 col-xs-push-0"><span class="class-type">xs</span></div>
+					<div class="col-3 col-l-4 col-s-5 col-xs-10"><span class="keyword">.col-xs-push-{0-12}</span></div>
+					<div class="col-4 col-s-4 col-xs-push-2 col-xs-10"><span class="keyword">.col-xs-{0-12}</span></div>
 				</div>
 				<!-- xxs -->
 				<div class="grid grid-nostack">
-					<div class="col-push-1 col-2 col-push-xs-0"><span class="class-type">xxs</span></div>
-					<div class="col-3 col-l-4 col-s-5 col-xs-10"><span class="keyword">.col-push-xxs-{0-12}</span></div>
-					<div class="col-4 col-s-4 col-push-xs-2 col-xs-10"><span class="keyword">.col-xxs-{0-12}</span></div>
+					<div class="col-push-1 col-2 col-xs-push-0"><span class="class-type">xxs</span></div>
+					<div class="col-3 col-l-4 col-s-5 col-xs-10"><span class="keyword">.col-xxs-push-{0-12}</span></div>
+					<div class="col-4 col-s-4 col-xs-push-2 col-xs-10"><span class="keyword">.col-xxs-{0-12}</span></div>
 				</div>
 				<!-- stack -->
 				<div class="grid grid-nostack">
-					<div class="col-push-1 col-2 col-push-xs-0"><span class="class-type">stack</span></div>
+					<div class="col-push-1 col-2 col-xs-push-0"><span class="class-type">stack</span></div>
 					<div class="col-3 col-l-4 col-s-5 col-xs-10"><span class="keyword">.col-nostack</span></div>
 				</div>
 			</aside>
@@ -568,40 +568,34 @@ $grid-breakpoint-xl:    1000px !default;
 			<div class="grid">
 				<div class="col-12"><span class="section-sub-title">Top/Bottom Margin and Padding</span></div>
 				<div class="col-12">
-					<span class="keyword">{grid/col}-{margin/padding}-{top/bottom}</span>
+					<span class="keyword">{grid/col}-{margin/padding}-{top/bottom}-{0x/1x/2x/3x}</span>
 				</div>
 				<div class="col-12">
-					<span class="keyword">{grid/col}-{margin/padding}-{top/bottom}-{2x/3x}</span>
-				</div>
-				<div class="col-12">
-					<span class="keyword">{grid/col}-{margin/padding}-{top/bottom}-{breakpoint}</span>
-				</div>
-				<div class="col-12">
-					<span class="keyword">{grid/col}-{margin/padding}-{top/bottom}-{breakpoint}-{2x/3x}</span>
+					<span class="keyword">{grid/col}-{breakpoint}-{margin/padding}-{top/bottom}-{0x/1x/2x/3x}</span>
 				</div>
 				<div class="col-12">
 					<span class="keyword">grid-nostack</span>
 				</div>
 				<div class="col-12">
-					<span class="keyword">grid-{reverse/Xreverse}</span>
+					<span class="keyword">grid-reverse</span>
 				</div>
 				<div class="col-12">
-					<span class="keyword">grid-{reverse/Xreverse}-{breakpoint}</span>
+					<span class="keyword">grid-{breakpoint}-{reverse/Xreverse}</span>
 				</div>
 				<div class="col-12">
-					<span class="keyword">grid-{reverse/Xreverse}-nostack</span>
+					<span class="keyword">grid-nostack-{reverse/Xreverse}</span>
 				</div>
 				<div class="col-12">
 					<span class="keyword">col-{newline/Xnewline}</span>
 				</div>
 				<div class="col-12">
-					<span class="keyword">col-{newline/Xnewline}-{breakpoint}</span>
+					<span class="keyword">col-{breakpoint}-{newline/Xnewline}</span>
 				</div>
 				<div class="col-12">
 					<span class="keyword">col-{throwright/Xthrowright}</span>
 				</div>
 				<div class="col-12">
-					<span class="keyword">col-{throwright/Xthrowright}-{breakpoint}</span>
+					<span class="keyword">col-{breakpoint}-{throwright/Xthrowright}</span>
 				</div>
 			</div>
 			<!-- fluid images -->
@@ -613,7 +607,7 @@ $grid-breakpoint-xl:    1000px !default;
 			</div>
 			<!-- test -->
 			<div class="grid">
-				<div class="col-3 col-margin-bottom-xl-3x"><div class="content">col-3 col-margin-bottom-xl-3x</div></div>
+				<div class="col-3 col-xl-margin-bottom-3x"><div class="content">col-3 col-margin-bottom-xl-3x</div></div>
 			</div>
 		</section>
 	</main>
