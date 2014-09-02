@@ -94,7 +94,7 @@ gulp.task('sass', function (callback) {
 		return gulp.src(sourcePaths.SCSS)
 			.pipe(rubySass({sourcemap: false}))
 			.pipe(filter)
-			.pipe(autoprefixer('last 4 version'))
+			.pipe(autoprefixer('last 4 versions'))
 			.pipe(gulpif(minify, csso()))
 			.pipe(header(banner, { pkg : pkg } ))			
 			.pipe(gulp.dest(destPaths.CSS))

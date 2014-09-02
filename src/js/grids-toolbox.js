@@ -630,7 +630,7 @@ $(document).ready(function() {
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Breakpoint Column Modifiers:</span></div>" +
 		"	<div class=\"col-9 col-m-12\">" +
 		"     <span class=\"cheat-sheet--keyword\">.col-[breakpoint]-[0-12]</span>" +
-		"     <div class=\"cheat-sheet--caption\"><span class=\"cheat-sheet--keyword\">[breakpoint]</span> = <span class=\"cheat-sheet--attention2\">xxl</span>, <span class=\"cheat-sheet--attention2\">xxl</span>, <span class=\"cheat-sheet--attention2\">l</span>, <span class=\"cheat-sheet--attention2\">m</span>, <span class=\"cheat-sheet--attention2\">s</span>, <span class=\"cheat-sheet--attention2\">xs</span>, <span class=\"cheat-sheet--attention2\">xxs</span></div>" +
+		"     <div class=\"cheat-sheet--caption\"><span class=\"cheat-sheet--keyword\">[<span class=\"cheat-sheet--attention2\">breakpoint</span>]</span> = <span class=\"cheat-sheet--attention2\">xxl</span>, <span class=\"cheat-sheet--attention2\">xxl</span>, <span class=\"cheat-sheet--attention2\">l</span>, <span class=\"cheat-sheet--attention2\">m</span>, <span class=\"cheat-sheet--attention2\">s</span>, <span class=\"cheat-sheet--attention2\">xs</span>, <span class=\"cheat-sheet--attention2\">xxs</span></div>" +
 		"   </div>" +
 		"</div>" +
 		"<div class=\"grid\">" +

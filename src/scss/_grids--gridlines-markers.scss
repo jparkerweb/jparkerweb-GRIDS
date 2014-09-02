@@ -6,11 +6,13 @@
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600);
 @import url(http://fonts.googleapis.com/css?family=Inconsolata);
-@import url(http://fonts.googleapis.com/css?family=Nunito:300);
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:400,700);
+//@import url(http://fonts.googleapis.com/css?family=Nunito:300);
 
 $font--inconsolata: 'Inconsolata', arial, sans-serif;
 $font--open-sans: 'Open Sans', sans-serif;
-$font--nunito: Nunito, 'open sans', sans-serif;
+$font--source-code-pro: 'Source Code Pro', 'Inconsolata', arial, sans-serif ;
+//$font--nunito: Nunito, 'open sans', sans-serif;
 
 html { height: 100%; }
 body { min-height: 100%; }
@@ -157,6 +159,7 @@ $startingZ-Index: 0 !default;
 		padding: 35px 15px 20px;
 		background: white;
 		border-radius: 5px;
+		font-family: $font--open-sans;
 		font-weight: 400;
 		color: #222;
 		max-width: 90%;
@@ -165,12 +168,13 @@ $startingZ-Index: 0 !default;
 		.cheat-sheet--dismiss {
 			position: absolute;
 			display: inline-block;
-			top: 5px;
-			right: 5px;
+			top: 7px;
+			right: 7px;
 			color: white;
+			font-family: $font--source-code-pro;
 			font-size: 12px;
 			font-weight: 600;
-			padding: 2px 6px;
+			padding: 3px 8px;
 			border-radius: 3px;
 			cursor: pointer;
 			background: #c0392b;
@@ -180,7 +184,6 @@ $startingZ-Index: 0 !default;
 			width: 100%;
 			font-size: 1.8em;
 			font-weight: 300;
-			font-family: $font--nunito;
 			text-align: center;
 			position: relative;
 			top: -25px;
@@ -194,13 +197,12 @@ $startingZ-Index: 0 !default;
 		.cheat-sheet--label {
 			color: #2980b9;
 			font-weight: 600;
-			font-family: $font--nunito;
 		}
 		.cheat-sheet--keyword {
 			font-family: Inconsolata, sans-serif;
 			font-size: 18px;
 			background: #f9f9f9;
-			color: #2c3e50;
+			color: #2980B9;
 			padding: 2px 4px;
 			border: 1px solid #ddd;
 			border-radius: 2px;
