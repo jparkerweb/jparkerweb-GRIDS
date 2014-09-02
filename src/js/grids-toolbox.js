@@ -133,102 +133,6 @@ $(document).ready(function() {
 		"<div id=\"gridsCurrentGridPosition\" class=\"grid\" style=\"visibility:hidden;\"></div> " +
 		"<!-- current breakpoint --> " +
 		"<div id=\"gridsCurrentBreakpoint\"></div> " +
-		"<!-- cheat sheet --> " +
-		"<div class=\"cheat-sheet-toggle\">cheat sheet</div> " +
-		"<div class=\"cheat-sheet--canvas cheat-sheet--canvas--hidden\"> " +
-		"	<div class=\"cheat-sheet--wrapper\"> " +
-		"		<span class=\"cheat-sheet--dismiss\">X</span>" +
-		"		<div class=\"cheat-sheet--content\">" +
-		"			<aside>" +
-		"				<!-- base -->" +
-		"				<div class=\"grid grid-nostack\">" +
-		"					<div class=\"col-push-1 col-2 col-xs-push-0\"><span>base</span></div>" +
-		"					<div class=\"col-3 col-l-4 col-s-5 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-push-{0-12}</span></div>" +
-		"					<div class=\"col-4 col-s-4 col-xs-push-2 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-{0-12}</span></div>" +
-		"				</div>" +
-		"				<!-- xl -->" +
-		"				<div class=\"grid grid-nostack\">" +
-		"					<div class=\"col-push-1 col-2 col-xs-push-0\"><span>xl</span></div>" +
-		"					<div class=\"col-3 col-l-4 col-s-5 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-push-xl-{0-12}</span></div>" +
-		"					<div class=\"col-4 col-s-4 col-xs-push-2 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-xl-{0-12}</span></div>" +
-		"				</div>" +
-		"				<!-- l -->" +
-		"				<div class=\"grid grid-nostack\">" +
-		"					<div class=\"col-push-1 col-2 col-xs-push-0\"><span>l</span></div>" +
-		"					<div class=\"col-3 col-l-4 col-s-5 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-push-l-{0-12}</span></div>" +
-		"					<div class=\"col-4 col-s-4 col-xs-push-2 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-l-{0-12}</span></div>" +
-		"				</div>" +
-		"				<!-- m -->" +
-		"				<div class=\"grid grid-nostack\">" +
-		"					<div class=\"col-push-1 col-2 col-xs-push-0\"><span>m</span></div>" +
-		"					<div class=\"col-3 col-l-4 col-s-5 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-push-m-{0-12}</span></div>" +
-		"					<div class=\"col-4 col-s-4 col-xs-push-2 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-m-{0-12}</span></div>" +
-		"				</div>" +
-		"				<!-- s -->" +
-		"				<div class=\"grid grid-nostack\">" +
-		"					<div class=\"col-push-1 col-2 col-xs-push-0\"><span>s</span></div>" +
-		"					<div class=\"col-3 col-l-4 col-s-5 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-push-s-{0-12}</span></div>" +
-		"					<div class=\"col-4 col-s-4 col-xs-push-2 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-s-{0-12}</span></div>" +
-		"				</div>" +
-		"				<!-- xs -->" +
-		"				<div class=\"grid grid-nostack\">" +
-		"					<div class=\"col-push-1 col-2 col-xs-push-0\"><span>xs</span></div>" +
-		"					<div class=\"col-3 col-l-4 col-s-5 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-xs-push-{0-12}</span></div>" +
-		"					<div class=\"col-4 col-s-4 col-xs-push-2 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-xs-{0-12}</span></div>" +
-		"				</div>" +
-		"				<!-- xxs -->" +
-		"				<div class=\"grid grid-nostack\">" +
-		"					<div class=\"col-push-1 col-2 col-xs-push-0\"><span>xxs</span></div>" +
-		"					<div class=\"col-3 col-l-4 col-s-5 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-push-xxs-{0-12}</span></div>" +
-		"					<div class=\"col-4 col-s-4 col-xs-push-2 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-xxs-{0-12}</span></div>" +
-		"				</div>" +
-		"				<!-- stack -->" +
-		"				<div class=\"grid grid-nostack\">" +
-		"					<div class=\"col-push-1 col-2 col-xs-push-0\"><span>stack</span></div>" +
-		"					<div class=\"col-3 col-l-4 col-s-5 col-xs-10\"><span class=\"cheat-sheet--keyword\">.col-nostack</span></div>" +
-		"				</div>" +
-		"			</aside>" +		
-		"			<div class=\"grid\">" +
-		"				<div class=\"col-12\">" +
-		"					<span class=\"cheat-sheet--keyword\">{grid/col}-{margin/padding}-{top/bottom}</span>" +
-		"				</div>" +
-		"				<div class=\"col-12\">" +
-		"					<span class=\"cheat-sheet--keyword\">{grid/col}-{margin/padding}-{top/bottom}-{2x/3x}</span>" +
-		"				</div>" +
-		"				<div class=\"col-12\">" +
-		"					<span class=\"cheat-sheet--keyword\">{grid/col}-{margin/padding}-{top/bottom}-{breakpoint}</span>" +
-		"				</div>" +
-		"				<div class=\"col-12\">" +
-		"					<span class=\"cheat-sheet--keyword\">{grid/col}-{margin/padding}-{top/bottom}-{breakpoint}-{2x/3x}</span>" +
-		"				</div>" +
-		"				<div class=\"col-12\">" +
-		"					<span class=\"cheat-sheet--keyword\">grid-nostack</span>" +
-		"				</div>" +
-		"				<div class=\"col-12\">" +
-		"					<span class=\"cheat-sheet--keyword\">grid-{reverse/Xreverse}</span>" +
-		"				</div>" +
-		"				<div class=\"col-12\">" +
-		"					<span class=\"cheat-sheet--keyword\">grid-{reverse/Xreverse}-{breakpoint}</span>" +
-		"				</div>" +
-		"				<div class=\"col-12\">" +
-		"					<span class=\"cheat-sheet--keyword\">grid-{reverse/Xreverse}-nostack</span>" +
-		"				</div>" +
-		"				<div class=\"col-12\">" +
-		"					<span class=\"cheat-sheet--keyword\">col-{newline/Xnewline}</span>" +
-		"				</div>" +
-		"				<div class=\"col-12\">" +
-		"					<span class=\"cheat-sheet--keyword\">col-{newline/Xnewline}-{breakpoint}</span>" +
-		"				</div>" +
-		"				<div class=\"col-12\">" +
-		"					<span class=\"cheat-sheet--keyword\">col-{throwright/Xthrowright}</span>" +
-		"				</div>" +
-		"				<div class=\"col-12\">" +
-		"					<span class=\"cheat-sheet--keyword\">col-{throwright/Xthrowright}-{breakpoint}</span>" +
-		"				</div>" +
-		"			</div>" +
-		"		</div>" +
-		"	</div> " +
-		"</div> " +
 		"<!-- gridlines toggle --> " +
 		"<div class=\"gridlines-toggle\">gridlines</div> " +
 		"<!-- markers toggle --> " +
@@ -243,23 +147,6 @@ $(document).ready(function() {
 	// insert Gridline and Marker elements
 	$("body").append(gridlinesAndMarkers);
 
-	// bind cheet sheet button
-	$(".cheat-sheet-toggle").on("click", function(){
-		var wrapperHeight = parseInt($(".cheat-sheet--wrapper").height()),
-			wrapperBottomPadding = parseInt($(".cheat-sheet--wrapper").css("padding-bottom")),
-			contentHeight = wrapperHeight - wrapperBottomPadding; 
-		$(".cheat-sheet--content").height(contentHeight);
-
-		$(".cheat-sheet--canvas").removeClass("cheat-sheet--canvas--hidden");
-	});
-	// bind cheat sheet dismiss
-	$(".cheat-sheet--dismiss, .cheat-sheet--canvas").on("click", function(event) {
-		var targetDismissButton = $(event.target).hasClass("cheat-sheet--dismiss"); 
-		var targetCanvas = $(event.target).hasClass("cheat-sheet--canvas"); 
-		if (targetDismissButton || targetCanvas) {
-			$(".cheat-sheet--canvas").addClass("cheat-sheet--canvas--hidden");
-		}
-	});
 
 	// if a scrollbar exists return its calculated width
 	function getScrollbarWidth() {
@@ -691,4 +578,324 @@ $(document).ready(function() {
 			.attr("data-hook", "");
 	});	
 	// ****************************	
+
+
+	
+	// ***********************	
+	// ***** cheat sheet *****
+	// ***********************
+	var cheatSheetContent = "" +
+		"<!-- grid row -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Grid Row:</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid</span></div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"cheat-sheet--codeblock\">" +
+		"&lt;div class=&quot;<span class=\"cheat-sheet--attention\">grid</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"</pre>" +
+		"	</div>" +
+		"</div>	" +
+		"<!-- column -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Column:</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-[0-12]</span></div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"cheat-sheet--codeblock\">" +
+		"&lt;div class=&quot;grid&quot;&gt;\n" +
+		"  &lt;div class=&quot;<span class=\"cheat-sheet--attention\">col-6</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"&lt;/div&gt;\n" +
+		"</pre>" +
+		"	</div>" +
+		"</div>	" +
+		"<!-- push column -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Push Column:</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-push-[0-12]</span></div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"cheat-sheet--codeblock\">" +
+		"&lt;div class=&quot;grid&quot;&gt;\n" +
+		"  &lt;div class=&quot;<span class=\"cheat-sheet--attention\">col-push-3</span> col-6&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"&lt;/div&gt;\n" +
+		"</pre>" +
+		"	</div>" +
+		"</div>	" +
+		"<!-- Breakpoint Column Modifiers -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Breakpoint Column Modifiers:</span></div>" +
+		"	<div class=\"col-9 col-m-12\">" +
+		"     <span class=\"cheat-sheet--keyword\">.col-[breakpoint]-[0-12]</span>" +
+		"     <div class=\"cheat-sheet--caption\"><span class=\"cheat-sheet--keyword\">[breakpoint]</span> = <span class=\"cheat-sheet--attention2\">xxl</span>, <span class=\"cheat-sheet--attention2\">xxl</span>, <span class=\"cheat-sheet--attention2\">l</span>, <span class=\"cheat-sheet--attention2\">m</span>, <span class=\"cheat-sheet--attention2\">s</span>, <span class=\"cheat-sheet--attention2\">xs</span>, <span class=\"cheat-sheet--attention2\">xxs</span></div>" +
+		"   </div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"cheat-sheet--codeblock\">" +
+		"&lt;div class=&quot;grid&quot;&gt;\n" +
+		"  &lt;div class=&quot;col-12 <span class=\"cheat-sheet--attention\">col-xl-6</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"&lt;/div&gt;\n" +
+		"</pre>" +
+		"	</div>" +
+		"</div>	" +
+		"<!-- Breakpoint Push Column -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Breakpoint Push Column:</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-[breakpoint]-push-[0-12]</span></div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"cheat-sheet--codeblock\">" +
+		"&lt;div class=&quot;grid&quot;&gt;\n" +
+		"  &lt;div class=&quot;col-6 <span class=\"cheat-sheet--attention\">col-xl-push-3</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"&lt;/div&gt;\n" +
+		"</pre>" +
+		"	</div>" +
+		"</div>	" +
+		"<!-- Grid No Stack Modifier -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Grid No Stack Modifier:</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid-nostack</span></div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"cheat-sheet--codeblock\">" +
+		"&lt;div class=&quot;grid <span class=\"cheat-sheet--attention\">grid-nostack</span>&quot;&gt;&hellip;&lt;/div&gt;			" +
+		"</pre>" +
+		"	</div>" +
+		"</div>	" +
+		"<!-- Column No Stack Modifier -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Column No Stack Modifier:</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-nostack</span></div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"cheat-sheet--codeblock\">" +
+		"&lt;div class=&quot;grid&quot;&gt;\n" +
+		"  &lt;div class=&quot;col-4 <span class=\"cheat-sheet--attention\">col-nostack</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"  &lt;div class=&quot;col-8 <span class=\"cheat-sheet--attention\">col-nostack</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"&lt;/div&gt;		" +
+		"</pre>" +
+		"	</div>" +
+		"</div>	" +
+		"<!-- Grid Margin/Padding Modifiers -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Grid Margin/Padding Modifiers:</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid-[margin/padding]-[top/bottom]-[0x/1x/2x/3x]</span></div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"cheat-sheet--codeblock\">" +
+		"&lt;div class=&quot;grid <span class=\"cheat-sheet--attention\">grid-padding-top-2x</span> <span class=\"cheat-sheet--attention\">grid-margin-bottom-1x</span>&quot;&gt;&hellip;&lt;/div&gt;		" +
+		"</pre>" +
+		"	</div>" +
+		"</div>	" +
+		"<!-- Column Margin/Padding Modifiers -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Column Margin/Padding Modifiers:</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-[margin/padding]-[top/bottom]-[0x/1x/2x/3x]</span></div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"cheat-sheet--codeblock\">" +
+		"&lt;div class=&quot;grid&quot;&gt;\n" +
+		"  &lt;div class=&quot;col-12 <span class=\"cheat-sheet--attention\">col-padding-top-2x</span> <span class=\"cheat-sheet--attention\">col-padding-bottom-2x</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"&lt;/div&gt;		" +
+		"</pre>" +
+		"	</div>" +
+		"</div>	" +
+		"<!-- Grid Breakpoint Margin/Padding Modifiers -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Grid Breakpoint Margin/Padding Modifiers:</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid-[margin/padding]-[top/bottom]-[0x/1x/2x/3x]-[breakpoint]</span></div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"cheat-sheet--codeblock\">" +
+		"&lt;div class=&quot;grid <span class=\"cheat-sheet--attention\">grid-margin-top-3x-xxs</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"</pre>" +
+		"	</div>" +
+		"</div>	" +
+		"<!-- Column Breakpoint Margin/Padding Modifiers -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Column Breakpoint Margin/Padding Modifiers:</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-[margin/padding]-[top/bottom]-[0x/1x/2x/3x]-[breakpoint]</span></div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"cheat-sheet--codeblock\">" +
+		"&lt;div class=&quot;grid&quot;&gt;\n" +
+		"  &lt;div class=&quot;col-11 <span class=\"cheat-sheet--attention\">col-padding-bottom-1x-xxs</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"&lt;/div&gt;\n" +
+		"</pre>" +
+		"	</div>" +
+		"</div>	" +
+		"<!-- Grid Nostack Modifier -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Grid Nostack Modifier:</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid-nostack</span></div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"cheat-sheet--codeblock\">" +
+		"&lt;div class=&quot;grid <span class=\"cheat-sheet--attention\">grid-nostack</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"</pre>" +
+		"	</div>" +
+		"</div>	" +
+		"<!-- Column Nostack Modifer -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Column Nostack Modifer:</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-nostack</span></div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"cheat-sheet--codeblock\">" +
+		"&lt;div class=&quot;grid&quot;&gt;\n" +
+		"  &lt;div class=&quot;col-6 <span class=\"cheat-sheet--attention\">col-nostack</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"&lt;/div&gt;\n" +
+		"</pre>" +
+		"	</div>" +
+		"</div>	" +
+		"<!-- Grid Reverse Column Order -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Grid Reverse Column Order:</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid-reverse</span></div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"cheat-sheet--codeblock\">" +
+		"&lt;div class=&quot;grid <span class=\"cheat-sheet--attention\">grid-reverse</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"</pre>" +
+		"	</div>" +
+		"</div>	" +
+		"<!-- Grid Breakpoint Reverse / Unreverse -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Grid Breakpoint Reverse / Unreverse:</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid-[reverse/Xreverse]-[breakpoint]</span></div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"cheat-sheet--codeblock\">" +
+		"&lt;div class=&quot;grid grid-reverse <span class=\"cheat-sheet--attention\">grid-Xreverse-m</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"</pre>" +
+		"	</div>" +
+		"</div>	" +
+		"<!-- Grid Nostack AND Reverse / Unreverse -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Grid Nostack AND Reverse / Unreverse:</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid-[reverse/Xreverse]-nostack</span></div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"cheat-sheet--codeblock\">" +
+		"&lt;div class=&quot;grid <span class=\"cheat-sheet--attention\">grid-reverse-nostack</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"</pre>" +
+		"	</div>" +
+		"</div>	" +
+		"<!-- Column Throw Right Modifier -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Column Throw Right Modifier:</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-[throwright/Xthrowright]</span></div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"cheat-sheet--codeblock\">" +
+		"&lt;div class=&quot;grid&quot;&gt;\n" +
+		"  &lt;div class=&quot;col-3 <span class=\"cheat-sheet--attention\">col-throwright</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"  &lt;div class=&quot;col-9&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"&lt;/div&gt;\n" +
+		"</pre>" +
+		"	</div>" +
+		"</div>	" +
+		"<!-- Column Breakpoint Throw Right Modifier -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Column Breakpoint Throw Right Modifier:</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-[throwright/Xthrowright]-[breakpoint]</span></div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"cheat-sheet--codeblock\">" +
+		"&lt;div class=&quot;grid&quot;&gt;\n" +
+		"  &lt;div class=&quot;col-3 col-throwright <span class=\"cheat-sheet--attention\">col-Xthrowright-s</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"  &lt;div class=&quot;col-9&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"&lt;/div&gt;\n" +
+		"</pre>" +
+		"	</div>" +
+		"</div>	" +
+		"<!-- Column Newline Modifier -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Column Newline Modifier:</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-[newline/Xnewline]</span></div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"cheat-sheet--codeblock\">" +
+		"&lt;div class=&quot;grid&quot;&gt;\n" +
+		"  &lt;div class=&quot;col-3&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"  &lt;div class=&quot;col-9 <span class=\"cheat-sheet--attention\">col-newline</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"&lt;/div&gt;\n" +
+		"</pre>" +
+		"	</div>" +
+		"</div>	" +
+		"<!-- Column Breakpoint Newline Modifier -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Column Breakpoint Newline Modifier:</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-[newline/Xnewline]-[breakpoint]</span></div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"cheat-sheet--codeblock\">" +
+		"&lt;div class=&quot;grid&quot;&gt;\n" +
+		"  &lt;div class=&quot;col-3&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"  &lt;div class=&quot;col-9 col-newline <span class=\"cheat-sheet--attention\">col-Xnewline-xl</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"&lt;/div&gt;\n" +
+		"</pre>" +
+		"	</div>" +
+		"</div>	";
+
+	var cheatSheetHTML = "" +
+		"<!-- cheat sheet toggle --> " +
+		"<div class=\"cheat-sheet-toggle\">cheat sheet</div> " +
+		"<!-- cheat sheet markup -->" +
+		"<div class=\"cheat-sheet--canvas cheat-sheet--canvas--hidden\"> " +
+		"	<div class=\"cheat-sheet--wrapper\"> " +
+		"	<div class=\"cheat-sheet--title\">GRIDS Cheat Sheet</div>" +
+		"		<span class=\"cheat-sheet--dismiss\">X</span>" +
+		"		<div class=\"cheat-sheet--content\">" +
+		cheatSheetContent +
+		"		</div>" +
+		"	</div> " +
+		"</div> ";
+
+	$("body").append(cheatSheetHTML);
+
+	// bind cheet sheet button
+	$("body").on("click", ".cheat-sheet-toggle", function(){
+		var wrapperHeight = parseInt($(".cheat-sheet--wrapper").height()),
+			wrapperBottomPadding = parseInt($(".cheat-sheet--wrapper").css("padding-bottom")),
+			cheetSheetTitleHeight = parseInt($(".cheat-sheet--title").height()),
+			contentHeight = wrapperHeight - wrapperBottomPadding - cheetSheetTitleHeight; 
+		$(".cheat-sheet--content").height(contentHeight);
+
+		// show cheat sheet
+		$(".cheat-sheet--canvas").removeClass("cheat-sheet--canvas--hidden");
+		// remove scrollbar from main html doc to prevent scrolling it while viewing cheat sheet
+		$("body").css("overflow-y", "hidden");
+	});
+	// bind cheat sheet dismiss
+	$("body").on("click", ".cheat-sheet--dismiss, .cheat-sheet--canvas", function(event) {
+		var targetDismissButton = $(event.target).hasClass("cheat-sheet--dismiss"); 
+		var targetCanvas = $(event.target).hasClass("cheat-sheet--canvas"); 
+		if (targetDismissButton || targetCanvas) {
+			// hide cheat sheet
+			$(".cheat-sheet--canvas").addClass("cheat-sheet--canvas--hidden");
+			// restore scrollbar to main html doc
+			$("body").css("overflow-y", "auto");
+		}
+	});	
 });

@@ -12,7 +12,8 @@
 		autoprefixer = require('gulp-autoprefixer'),
 		csso = require('gulp-csso'),
 		webpack = require('gulp-webpack'),
-		uglify = require('gulp-uglify');
+		uglify = require('gulp-uglify'),
+		header = require('gulp-header');
 // ==========================================
 
 
@@ -37,6 +38,15 @@
 // ===           Enviro Variables        ===
 // =========================================
 	var minify = true;  // this is set to false when running the "alldev" task
+
+	var pkg = require('./package.json');
+	var banner = ['/**',
+		' * <%= pkg.name %> - <%= pkg.description %>',
+		' * @version v<%= pkg.version %>',
+		' * @link <%= pkg.homepage %>',
+		' * @license <%= pkg.license %>',
+		' */',
+		''].join('\n');
 // =========================================
 
 
@@ -86,6 +96,7 @@ gulp.task('sass', function (callback) {
 			.pipe(filter)
 			.pipe(autoprefixer('last 4 version'))
 			.pipe(gulpif(minify, csso()))
+			.pipe(header(banner, { pkg : pkg } ))			
 			.pipe(gulp.dest(destPaths.CSS))
 			.pipe(browserSync.reload({stream:true}));
 	});
@@ -117,6 +128,7 @@ gulp.task('scripts', function (callback) {
 				output: { filename: "grids-toolbox.js" }
 			}))
 			.pipe(gulpif(minify, uglify()))
+			.pipe(header(banner, { pkg : pkg } ))			
 			.pipe(gulp.dest(destPaths.JS));
 	});
 

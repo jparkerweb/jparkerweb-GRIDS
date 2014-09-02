@@ -4,8 +4,13 @@
 // -- http://jparkerweb.github.io/jparkerweb-GRIDS/ --
 // ---------------------------------------------------
 
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600);
 @import url(http://fonts.googleapis.com/css?family=Inconsolata);
+@import url(http://fonts.googleapis.com/css?family=Nunito:300);
+
 $font--inconsolata: 'Inconsolata', arial, sans-serif;
+$font--open-sans: 'Open Sans', sans-serif;
+$font--nunito: Nunito, 'open sans', sans-serif;
 
 html { height: 100%; }
 body { min-height: 100%; }
@@ -135,6 +140,7 @@ $startingZ-Index: 0 !default;
 	z-index: $startingZ-Index + 40;
 	transition: all 400ms ease;
 	transform: translateZ(0);
+	font-family: $font--open-sans;
 	&.cheat-sheet--canvas--hidden { background: white; opacity: 0; top: -100%; bottom: 100%; }
 	&:before {
 		content: '';
@@ -170,12 +176,29 @@ $startingZ-Index: 0 !default;
 			background: #c0392b;
 			&:hover { background-color: darken(#c0392b, 10%);}
 		}
+		.cheat-sheet--title {
+			width: 100%;
+			font-size: 1.8em;
+			font-weight: 300;
+			font-family: $font--nunito;
+			text-align: center;
+			position: relative;
+			top: -25px;
+			color: #27ae60;
+		}
 		.cheat-sheet--content {
 			width: 100%;
 			overflow-y: scroll;
+			padding-right: 5px;
+		}
+		.cheat-sheet--label {
+			color: #2980b9;
+			font-weight: 600;
+			font-family: $font--nunito;
 		}
 		.cheat-sheet--keyword {
 			font-family: Inconsolata, sans-serif;
+			font-size: 18px;
 			background: #f9f9f9;
 			color: #2c3e50;
 			padding: 2px 4px;
@@ -183,6 +206,27 @@ $startingZ-Index: 0 !default;
 			border-radius: 2px;
 			line-height: 1.38;
 		}
+		.cheat-sheet--caption {
+			padding-top: 5px;
+		}
+		.cheat-sheet--attention {
+			font-weight: 600;
+			color: #c0392b;
+		}
+		.cheat-sheet--attention2 {
+			font-weight: 400;
+			color: #d35400;
+		}
+		.cheat-sheet--codeblock {
+			color: #2c3e50;
+			padding: 10px;
+			border: 1px solid #DEDEDE;
+			overflow: auto;
+			margin: 0 0 20px;
+			display: inline-block;
+			background: #f9f9f9;
+			width: 100%;
+		}			
 	}
 }
 
@@ -864,11 +908,13 @@ body.show-marker-outlines {
 	}
 	.grids-notification--title {
 		font-weight: 400;
+		font-family: Nunito, 'open sans', sans-serif;
 		margin-bottom: 10px;
 		padding-bottom: 2px;
 		border-bottom: 1px solid #b2b2b2;
 	}
 	.grids-notification--keyword {
+		font-family: $font--inconsolata;
 		padding: 2px 4px;
 		border-radius: 3px;
 		background: #333;
