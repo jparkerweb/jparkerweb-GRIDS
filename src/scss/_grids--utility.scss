@@ -7,31 +7,40 @@
 
 // ------------------------------
 // -- Optional Utility classes --
-// -------------------------------------------------
-// -- Feel free to modify/extend below. The GRIDS --
-// -- framework is not dependent on these classes --
-// -- This file is only included as they were     --
-// -- useful while writing the docs and turorial  --
-// -- for GRIDS                                   --
-// -------------------------------------------------
+// --------------------------------------------------
+// -- Feel free to modify/extend below. The GRIDS  --
+// -- framework is not dependent on these classes. --
+// -- This file is only included as they were      --
+// -- useful while writing the docs and turorial   --
+// -- for GRIDS.                                   --
+// --------------------------------------------------
 
 
 // ----------------------
 // -- breakpoint mixin --
-// ----------------------------------------------------
-// -- to easily extend your GRIDS defined brekpoints --
-// -- into your site's scss, simply include this     --
-// -- utility class and the config in your scss:     --
-// --    @import "grids--config";                    --
-// --    @import "grids--utility";                   --
-// -- you can now create breakpoint rules for your   --
-// -- site that are aligned with your grid:          --
-// --    .some-site-class {                          --
-// --      @include breakpoint($grid-breakpoint-m) { --
-// --        background: red;                        --
-// --      }                                         --
-// --    }                                           -- 
-// ----------------------------------------------------
+// ------------------------------------------------------
+// -- To easily extend your GRIDS defined brekpoints   --
+// -- into your site's scss, simply include this       --
+// -- utility class and the config in your scss:       --
+// --    @import "grids--config";                      --
+// --    @import "grids--utility";                     --
+// -- You can now create breakpoint rules for your     --
+// -- site that are aligned with your grid:            --
+// --                                                  --
+// --    Example 1:                                    --
+// --    .some-site-class {                            --
+// --      @include breakpoint($grid-breakpoint-m) {   --
+// --        background: red;                          --
+// --      }                                           --
+// --    }                                             -- 
+// --                                                  --
+// --    Example 2:                                    --
+// --    .some-site-class2{                            --
+// --      @include breakpoint($grid-breakpoint-xxl) { --
+// --        font-size: 22px;                          --
+// --      }                                           --
+// --    }                                             -- 
+// ------------------------------------------------------
 @mixin breakpoint($point) {
 	@media (max-width: $point) { @content; }
 }
@@ -58,9 +67,9 @@
 }
 
 
-// ---------------------------
-// -- text align properties --
-// ---------------------------
+// ----------------------------------------
+// -- left/center/right align properties --
+// ----------------------------------------
 .grids-content--alignleft { text-align: left; }
 .grids-content--aligncenter { text-align: center; }
 .grids-content--alignright { text-align: right; }

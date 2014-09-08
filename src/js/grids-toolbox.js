@@ -136,7 +136,9 @@ $(document).ready(function() {
 		"<!-- gridlines toggle --> " +
 		"<div class=\"gridlines-toggle\">gridlines</div> " +
 		"<!-- markers toggle --> " +
-		"<div class=\"markers-toggle\">markers</div>	" +
+		"<div class=\"breakpoint-markers-toggle\">breakpoint markers</div>	" +
+		"<!-- grid row markers toggle --> " +
+		"<div class=\"grid-row-markers-toggle\">grid-row-markers</div>	" +
 		"<!-- col markers toggle --> " +
 		"<div class=\"col-markers-toggle\">col-markers</div>	" +
 		"<!-- marker indicator --> " +
@@ -224,14 +226,19 @@ $(document).ready(function() {
 	$(".gridlines").toggle();
 
 	// bind markers toggle
-	$(".markers-toggle").on("click", function () {
+	$(".breakpoint-markers-toggle").on("click", function () {
 		var viewportValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 		var stackBreakpoint = parseInt($(".marker.marker--stack").css("margin-left"));
 
 		if (viewportValue > stackBreakpoint || isNaN(stackBreakpoint)) {
 			$(".markers").toggle();
-			$(".markers-toggle").toggleClass("toggle-button--active");
+			$(".breakpoint-markers-toggle").toggleClass("toggle-button--active");
 			$("body").toggleClass("show-marker-outlines");
+			$(".grid-row-markers-toggle").toggleClass("breakpoint-markers-active");
+			$(".col-markers-toggle").toggleClass("breakpoint-markers-active");
+			$(this).toggleClass("breakpoint-markers-active");
+			$(".gridlines-toggle").toggleClass("breakpoint-markers-active");
+			$(".cheat-sheet-toggle").toggleClass("breakpoint-markers-active");
 		}
 		else {
 			showGridsNotification("Breakpoint \"marker\" tabs are only available for browser widths greater than the \"stack\" breakpoint (" + stackBreakpoint + "px).  Increase the size of your browser to enable this.", 8000);
@@ -272,9 +279,30 @@ $(document).ready(function() {
 
 
 
-	// *****************************
-	// ***** Inner Col Markers *****
-	// *****************************
+	// ****************************************
+	// ***** Grid Row / Inner Col Markers *****
+	// ****************************************
+	// grid row marker
+	function getGridMarkerHTML() {
+		var gridMarkerHTML;
+		gridMarkerHTML = "<div class=\"gridRowMarker\"></div>";
+		return gridMarkerHTML;
+	}
+	var gridRowMarker = getGridMarkerHTML();
+
+	// bind toggle button
+	$(".grid-row-markers-toggle").on("click", function() {
+		var viewportValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+		var stackBreakpoint = parseInt($(".marker.marker--stack").css("margin-left"));
+
+		if (viewportValue > stackBreakpoint || isNaN(stackBreakpoint)) {
+			$(".grid-row-markers-toggle").toggleClass("toggle-button--active");
+		}
+		else {
+			showGridsNotification("\"Grid Row Markers\" are only available for browser widths greater than the \"stack\" breakpoint (" + stackBreakpoint + "px).  Increase the size of your browser to enable this.", 8000);
+		}		
+	});	
+
 	// inner col markers
 	function getInnerColMarksHTML() {
 		var innerColMarkers;
@@ -341,7 +369,7 @@ $(document).ready(function() {
 				}
 				else {
 					var errorMessage;
-					errorMessage = "Can not show column markers for this element because its \"grid\" row width is not the same as your configured GRIDS width.  This is usual due to nesing a grid inside of an element that has left or right padding/margin OR changing the grid row's padding using an external style.  If extra padding or margin is needed it is advised to do this within the colum where your content resides and not outside of the grid row itself.<br><br>Grid rows should only contain the <span class=\"grids-notification--keyword\">.grid</span> class or one of the other .grid- utility classes.";
+					errorMessage = "Column markers can not be displayed for this element because its \"grid\" or \"column\" left/right padding has been altered. This is usual due to nesing a grid inside of an element that has left or right padding OR changing the grid row's padding using an external style.  If extra padding is needed it is advised to do this within the colum where your content resides and not outside of the grid row itself.<br><br>Grid rows and columns should only contain the classes defined in the GRIDS documentation.  Click the <span class=\"grids-notification--keyword\">cheat sheet</span> button in the bottom left corner to view all the classes available.";
 					showGridsNotification(errorMessage, 40000, "#c0392b");
 				}
 			}

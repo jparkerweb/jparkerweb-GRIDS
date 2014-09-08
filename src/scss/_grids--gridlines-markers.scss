@@ -98,7 +98,7 @@ $startingZ-Index: 0 !default;
 
 
 %toggle-button {
-	min-width: 110px;
+	min-width: 150px;
 	background: #30BDF4;	
 	border: 1px solid darken(#30BDF4, 20%);
 	color: white;
@@ -125,9 +125,12 @@ $startingZ-Index: 0 !default;
 	@extend %toggle-button;
 	@if $showCheatSheet == false { display: none; }
 	position: fixed;
-	bottom: 115px;
+	bottom: 125px;
 	left: 5px;
 	z-index: $startingZ-Index + 30;
+	&.breakpoint-markers-active {
+		bottom: 145px;
+	}	
 }
 .cheat-sheet--canvas {
 	opacity: 1;
@@ -240,9 +243,12 @@ $startingZ-Index: 0 !default;
 	@extend %toggle-button;
 	@if $showGridlines == false { display: none; }
 	position: fixed;
-	bottom: 85px;
+	bottom: 95px;
 	left: 5px;
 	z-index: $startingZ-Index + 30;
+	&.breakpoint-markers-active {
+		bottom: 115px;
+	}
 }
 .gridlines {
 	@if $showGridlines == false { display: none; }
@@ -290,16 +296,19 @@ body.show-marker-outlines {
 }
 
 
-// ----------------------------
-// -- markers helper classes --
-// ----------------------------
-.markers-toggle {
+// ---------------------------------------
+// -- breakpoint markers helper classes --
+// ---------------------------------------
+.breakpoint-markers-toggle {
 	@extend %toggle-button;
 	@if $showMarkers == false { display: none; }
 	position: fixed;
-	bottom: 55px;
+	bottom: 65px;
 	left: 5px;
 	z-index: $startingZ-Index + 30;
+	&.breakpoint-markers-active {
+		bottom: 85px;
+	}
 }
 .markers-background {
 	@if $showMarkers == false { display: none; }
@@ -588,6 +597,11 @@ body.show-marker-outlines {
 	@media (max-width: $grid-breakpoint-xxs) { #gridsCurrentBreakpoint {width: $grid-breakpoint-xxs;} }
 
 	body.show-marker-outlines {
+		// no breakpoint
+		.marker-indicator {
+			background: $markerColor--default !important;
+			&:before { content: 'no breakpoint currently triggered'; }
+		}
 		// bp: xxl
 		@if $grid-breakpoint-xxl > 0 {
 			@media (max-width: $grid-breakpoint-xxl) {
@@ -806,6 +820,21 @@ body.show-marker-outlines {
 }
 
 
+// -----------------------------
+// -- grid row marker classes --
+// -----------------------------
+.grid-row-markers-toggle {
+	@extend %toggle-button;
+	@if $showMarkers == false { display: none; }
+	position: fixed;
+	bottom: 5px;
+	left: 5px;
+	z-index: $startingZ-Index + 30;
+	&.breakpoint-markers-active {
+		bottom: 25px;
+	}	
+}
+
 // ---------------------------------
 // -- inner column marker classes --
 // ---------------------------------
@@ -813,9 +842,12 @@ body.show-marker-outlines {
 	@extend %toggle-button;
 	@if $showMarkers == false { display: none; }
 	position: fixed;
-	bottom: 25px;
+	bottom: 35px;
 	left: 5px;
 	z-index: $startingZ-Index + 30;
+	&.breakpoint-markers-active {
+		bottom: 55px;
+	}	
 }
 .innerMarkers { display: none; }
 .col-1, .col-2, .col-3, 
