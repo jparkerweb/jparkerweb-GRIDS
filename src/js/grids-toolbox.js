@@ -305,9 +305,8 @@ $(document).ready(function() {
 
 	// bind the insert/remove of inner col markers
 	// to click event of each columns
-	$(":regex(class,col\\-[0-9])").on("click", function () {
+	$(":regex(class,col\\-[0-9])").on("click", function (event) {
 		var isGridlinesCol = ($(this).parents(".gridlines").length > 0);
-
 		if(isGridlinesCol) {
 			showGridsNotification("The gridlines overlay is active, to toggle them off click the \"gridlines\" button in the bottom left corner.", 6000);
 		}
@@ -315,133 +314,152 @@ $(document).ready(function() {
 			var isInnerColMarkersEnabled = ($(".col-markers-toggle.toggle-button--active").length > 0);
 
 			if (isInnerColMarkersEnabled) {
-				var gridlinesLeftPosition = $("#gridsCurrentGridPosition").position().left,
-					thisGridLeftPosition = $(this).parent(".grid").position().left,
-					isGridPositionValid = (thisGridLeftPosition === gridlinesLeftPosition),
-					thisGridPaddingLeft = parseInt($(this).parent(".grid").css("padding-left")),
+				var thisGridPaddingLeft = parseInt($(this).parent(".grid").css("padding-left")),
 					thisGridPaddingRight = parseInt($(this).parent(".grid").css("padding-right")),
-					isGridRowPaddingValid = ( thisGridPaddingRight === 0 && thisGridPaddingLeft === gridGutterWidth ),
-					isNestedGrid = ($(this).parents(".grid").length > 1);
+					isGridRowPaddingValid = ( thisGridPaddingRight === 0 && thisGridPaddingLeft === gridGutterWidth );
 
-				if(!isNestedGrid) {
-					if(isGridPositionValid && isGridRowPaddingValid) {
-						var hasInnerMarkers = ($(this).find(".innerMarkers").length > 0);
-						if (hasInnerMarkers) {
-							// remove existing inner markers
-							$(this).find(".innerMarkers").remove();
-						}
-						else {
-							// add inner markers
-							$(this).prepend(innerColMarkers);
-
-							// set the inner marker left offset for
-							// each breakpoint based on col size
-							updateColMarkers();
-						}
+				var gridlinesPaddingLeft = parseInt($(".gridlines > .grid > .col-1:first").css("padding-left")),
+					gridlinesPaddingRight = parseInt($(".gridlines > .grid > .col-1:first").css("padding-right")),
+					thisColPaddingLeft = parseInt($(this).css("padding-left")),
+					thisColPaddingRight = parseInt($(this).css("padding-right")),
+					isColPaddingValid = (gridlinesPaddingLeft === thisColPaddingLeft && gridlinesPaddingRight === thisColPaddingRight);
+					
+				if (isGridRowPaddingValid && isColPaddingValid) {
+					var hasInnerMarkers = ($(this).find(".innerMarkers").length > 0);
+					if (hasInnerMarkers) {
+						// remove existing inner markers
+						$(this).find(".innerMarkers").remove();
 					}
 					else {
-						var errorMessage;
-						errorMessage = "Can not show column markers for this element because its \"grid\" row width is not the same as your configured GRIDS width.  This is usual due to nesing a grid inside of an element that has left or right padding/margin OR changing the grid row's padding using an external style.  If extra padding or margin is needed it is advised to do this within the colum where your content resides and not outside of the grid row itself.<br><br>Grid rows should only contain the <span class=\"grids-notification--keyword\">.grid</span> class or one of the other .grid- utility classes.";
-						showGridsNotification(errorMessage, 40000, "#c0392b");
+						// add inner markers
+						$(this).prepend(innerColMarkers);
+
+						// set the inner marker left offset for
+						// each breakpoint based on col size
+						updateColMarkers($(this));
 					}
+				}
+				else {
+					var errorMessage;
+					errorMessage = "Can not show column markers for this element because its \"grid\" row width is not the same as your configured GRIDS width.  This is usual due to nesing a grid inside of an element that has left or right padding/margin OR changing the grid row's padding using an external style.  If extra padding or margin is needed it is advised to do this within the colum where your content resides and not outside of the grid row itself.<br><br>Grid rows should only contain the <span class=\"grids-notification--keyword\">.grid</span> class or one of the other .grid- utility classes.";
+					showGridsNotification(errorMessage, 40000, "#c0392b");
 				}
 			}
 		}
+		event.stopPropagation(); //prevent bubble up of click event for nested cols
 	});
 
 	// bind after browser resize to update col markers
 	$(window).resize(function () {
-		clearTimeout(this.id);
-		this.id = setTimeout(updateColMarkers, 300);
+		var updateColMarkersId;
+		clearTimeout(updateColMarkersId);
+		updateColMarkersId = setTimeout(updateColMarkers, 300);
 	});
 	// update col markers
-	function updateColMarkers() {
-		var $grid = $(".grid");
-		var gridsCurrentBreakpoint = $("#gridsCurrentBreakpoint").width();
-		viewportDisplayValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-		
-		// update default cols
-		$grid.find("[class*=col-]").each(function() {
-			// set the inner marker left offset for
-			// each breakpoint based on the clicked 
-			// col size
-			var className = $(this).attr("class");
-			if (className.match(/col\-[0-9]{1,2}/)) {
-				var size = className.match(/col\-([0-9]{1,2})/, '$1');
-				setInnerMarkerOffsets(this, size[1]);
+	function updateColMarkers($this) {
+		var isInnerColMarkersEnabled = ($(".col-markers-toggle.toggle-button--active").length > 0);
+		if (isInnerColMarkersEnabled) {
+			var $grid;
+			var wasColClicked;
+			if($this) {
+				// only select grid for passed in col
+				$grid = $this.parent(".grid");
+				wasColClicked = true;
 			}
-		});
-
-		// update all breakpoint cols up to current breakpoint
-		if (gridsCurrentBreakpoint > 0) {
-			var breakpointCharacter;
-			for (var prop in gridBreakpoints) {
-				// set the breakpoint string character (xxl, xl, l, m, s, xs, xxs)
-				breakpointCharacter = prop.toLowerCase();
-
-				// for each matched breakpoint column set its inner markers
-				$grid.find("[class*=col-" + breakpointCharacter + "-]").each(function() {
+			else {
+				// get all grids that have col markers displayed
+				$grid = $(".grid:has(> [class*='col-'] > .innerMarkers)");
+					
+				if ($grid.length === 0) { return false; }
+			} 
+			var gridsCurrentBreakpoint = $("#gridsCurrentBreakpoint").width();
+			viewportDisplayValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+			
+			// update default cols
+			if (wasColClicked || gridsCurrentBreakpoint === 0) {
+				$grid.children(":regex(class,col\\-[0-9])").each(function() {
+					// set the inner marker left offset for
+					// each breakpoint based on the clicked 
+					// col size
 					var className = $(this).attr("class");
-					var regExPattern = "col\\-" + breakpointCharacter + "\\-[0-9]{1,2}(?!-)";
-					if (className.match(regExPattern)) {
-						regExPattern = "col\\-" + breakpointCharacter + "\\-([0-9]{1,2})(?!-)";
-						var size = className.match(regExPattern, '$1');
+					if (className.match(/col\-[0-9]{1,2}(?!-)/)) {
+						var size = className.match(/col\-([0-9]{1,2})(?!-)/, '$1');
 						setInnerMarkerOffsets(this, size[1]);
 					}
 				});
-
-				// if we have looped down to the current breakpoint stop (we are at the smallest needed)
-				if(gridBreakpoints[prop] == gridsCurrentBreakpoint) {
-					break;
-				}
 			}
-		}
 
-		// update all col line styles
-		for (var prop in gridBreakpoints) {
-			// set the breakpoint string character (xxl, xl, l, m, s, xs, xxs)
-			var breakpointCharacter = prop.toLowerCase();
+			// update all breakpoint cols up to current breakpoint
+			if (gridsCurrentBreakpoint > 0) {
+				var breakpointCharacter;
+				for (var prop in gridBreakpoints) {
+					// set the breakpoint string character (xxl, xl, l, m, s, xs, xxs)
+					breakpointCharacter = prop.toLowerCase();
 
-			$grid.find("[class*=col-]").each(function(){
-				var markIt = false;
-				var allClasses = $(this).attr("class");
-				// if on "m" breakpoint remove "margin" from class names to avoid false match
-				if (breakpointCharacter == "m") {
-					allClasses = allClasses.replace("-margin","");
-				}
-				// if on stack breakpoint character, rename nostack to stack to ensure match
-				if (breakpointCharacter == "stack") {
-					allClasses = allClasses.replace("-nostack","-stack");
-				}
-				// if on "s" breakpoint character, rename to stack to Xstack to no false positives are found
-				if (breakpointCharacter == "s") {
-					allClasses = allClasses.replace("-stack","-Xstack");
-				}
-				allClasses = allClasses.split(" ");
-				
-				for (var i in allClasses) {
-					if (allClasses[i].indexOf("-" + breakpointCharacter) > -1) { 
-						markIt = true; 
+					// for each matched breakpoint column set its inner markers
+					$grid.find("[class*=col-" + breakpointCharacter + "-]").each(function() {
+						var className = $(this).attr("class");
+						var regExPattern = "col\\-" + breakpointCharacter + "\\-[0-9]{1,2}(?!\\-)";
+						if (className.match(regExPattern)) {
+							regExPattern = "col\\-" + breakpointCharacter + "\\-([0-9]{1,2})(?!\\-)";
+							var size = className.match(regExPattern, '$1');
+							setInnerMarkerOffsets(this, size[1]);
+						}
+					});
+
+					// if we have looped down to the current breakpoint stop (we are at the smallest needed)
+					if(gridBreakpoints[prop] == gridsCurrentBreakpoint) {
+						break;
 					}
 				}
+			}
 
-				if(markIt) {
-					$(this).find(".innerMarker-" + breakpointCharacter).each(function(){
-						var breakpointColor = $(this).css("border-right-color");
-						$(this)
-							.addClass("innerMarker--dotted")
-							.css({ 
-								"border-right-width" : "3px", 
-								"border-right-style" : "dotted" 
-							})
-							.attr({
-								"data-bp-name" : breakpointCharacter,
-								"data-bp-value" : gridBreakpoints[prop],
-								"data-bp-color" : breakpointColor
-							});
-					});
-				}
-			});
+			// update all col line styles
+			for (var prop in gridBreakpoints) {
+				// set the breakpoint string character (xxl, xl, l, m, s, xs, xxs)
+				var breakpointCharacter = prop.toLowerCase();
+
+				$grid.find("[class*=col-]").each(function(){
+					var markIt = false;
+					var allClasses = $(this).attr("class");
+					// if on "m" breakpoint remove "margin" from class names to avoid false match
+					if (breakpointCharacter == "m") {
+						allClasses = allClasses.replace("-margin","");
+					}
+					// if on stack breakpoint character, rename nostack to stack to ensure match
+					if (breakpointCharacter == "stack") {
+						allClasses = allClasses.replace("-nostack","-stack");
+					}
+					// if on "s" breakpoint character, rename to stack to Xstack to no false positives are found
+					if (breakpointCharacter == "s") {
+						allClasses = allClasses.replace("-stack","-Xstack");
+					}
+					allClasses = allClasses.split(" ");
+					
+					for (var i in allClasses) {
+						if (allClasses[i].indexOf("-" + breakpointCharacter) > -1) { 
+							markIt = true; 
+						}
+					}
+
+					if(markIt) {
+						$(this).find(".innerMarker-" + breakpointCharacter).each(function(){
+							var breakpointColor = $(this).css("border-right-color");
+							$(this)
+								.addClass("innerMarker--dotted")
+								.css({ 
+									"border-right-width" : "3px", 
+									"border-right-style" : "dotted" 
+								})
+								.attr({
+									"data-bp-name" : breakpointCharacter,
+									"data-bp-value" : gridBreakpoints[prop],
+									"data-bp-color" : breakpointColor
+								});
+						});
+					}
+				});
+			}
 		}
 	}	
 	// set the inner marker offsets per passed in col width (1-12)
@@ -449,19 +467,21 @@ $(document).ready(function() {
 		var borderWidth = "1px",
 			borderStyle = "solid",
 			borderStyleStack = "dashed",
+			parentsOffsetW = ($(selector).parents('.grid:last').outerWidth() - $(selector).parents('.grid:first').outerWidth()),
 			leftXXL, leftXL, leftL, leftM, leftS, leftXS, leftXXS;
 
-		leftXXL = ((gridBreakpoints.XXL - gridGutterWidth - pageScrollbarWidth) * (size/12)) - gridGutterWidth;
-		leftXL = ((gridBreakpoints.XL - gridGutterWidth - pageScrollbarWidth) * (size/12)) - gridGutterWidth;
-		leftL = ((gridBreakpoints.L - gridGutterWidth - pageScrollbarWidth) * (size/12) - gridGutterWidth);
-		leftM = ((gridBreakpoints.M - gridGutterWidth - pageScrollbarWidth) * (size/12) - gridGutterWidth);
-		leftS = ((gridBreakpoints.S - gridGutterWidth - pageScrollbarWidth) * (size/12) - gridGutterWidth);
-		leftXS = ((gridBreakpoints.XS - gridGutterWidth - pageScrollbarWidth) * (size/12) - gridGutterWidth);
-		leftXXS = ((gridBreakpoints.XXS - gridGutterWidth - pageScrollbarWidth) * (size/12) - gridGutterWidth);
-		leftStack = ((gridBreakpoints.Stack - gridGutterWidth - pageScrollbarWidth) * (size/12) - gridGutterWidth);
+		leftXXL = ((gridBreakpoints.XXL - gridGutterWidth - pageScrollbarWidth - parentsOffsetW) * (size/12)) - gridGutterWidth;
+		leftXL = ((gridBreakpoints.XL - gridGutterWidth - pageScrollbarWidth - parentsOffsetW) * (size/12)) - gridGutterWidth;
+		leftL = ((gridBreakpoints.L - gridGutterWidth - pageScrollbarWidth - parentsOffsetW) * (size/12)) - gridGutterWidth;
+		leftM = ((gridBreakpoints.M - gridGutterWidth - pageScrollbarWidth - parentsOffsetW) * (size/12)) - gridGutterWidth;
+		leftS = ((gridBreakpoints.S - gridGutterWidth - pageScrollbarWidth - parentsOffsetW) * (size/12)) - gridGutterWidth;
+		leftXS = ((gridBreakpoints.XS - gridGutterWidth - pageScrollbarWidth - parentsOffsetW) * (size/12)) - gridGutterWidth;
+		leftXXS = ((gridBreakpoints.XXS - gridGutterWidth - pageScrollbarWidth - parentsOffsetW) * (size/12)) - gridGutterWidth;
+		leftStack = ((gridBreakpoints.Stack - gridGutterWidth - pageScrollbarWidth - parentsOffsetW) * (size/12)) - gridGutterWidth;
 
 		var outlineWidth = $(selector).width(),
 			outlineHeight = $(selector).height();
+
 		var $innerMarkers = $(selector).find(".innerMarkers");
 		
 		$innerMarkers.find(".innerMarker-outline").css({ "width" : outlineWidth, "height" : outlineHeight });
@@ -483,7 +503,7 @@ $(document).ready(function() {
 
 		// if default marker, filter out all breakpoint classes
 		if ($(this).hasClass("innerMarker-default")) {
-			var regExPattern = /col-[0-9]{1,2}|col-push-[0-9]{1,2}|col-(newline|Xnewline|throwright|Xthrowright)(?!-)|col-(margin|padding)-(top|bottom)-(0x|1x|2x|3x)(?!-)/g;
+			var regExPattern = /col-[0-9]{1,2}(?!-)|col-push-[0-9]{1,2}(?!-)|col-(newline|Xnewline|throwright|Xthrowright)(?!-)|col-(margin|padding)-(top|bottom)-(0x|1x|2x|3x)(?!-)/g;
 			allClasses = className.match(regExPattern);
 			classes = "";
 			bpName = "Default";
@@ -516,8 +536,10 @@ $(document).ready(function() {
 			bpColor = $(this).attr("data-bp-color");
 
 			// collect breakpoint class names
+			var regExPattern;
 			for(var prop in allClasses) {
-				if(allClasses[prop].indexOf("col-" + bpName) > -1) {
+				regExPattern = "col\\-" + bpName + "\\-";
+				if (allClasses[prop].match(regExPattern)) {
 					classes = classes + "<div class=\"grids-notification--modifier\">" + allClasses[prop].replace("-stackXno", "-nostack") + "</div>";
 				}
 			}
@@ -874,13 +896,21 @@ $(document).ready(function() {
 
 	$("body").append(cheatSheetHTML);
 
-	// bind cheet sheet button
-	$("body").on("click", ".cheat-sheet-toggle", function(){
+	// calculate cheat sheet dimentions
+	function calculateCheatSheetDimensions() {
+		var canvasHeight = parseInt($('.cheat-sheet--canvas').height());
+		$(".cheat-sheet--wrapper").height(canvasHeight);
+
 		var wrapperHeight = parseInt($(".cheat-sheet--wrapper").height()),
 			wrapperBottomPadding = parseInt($(".cheat-sheet--wrapper").css("padding-bottom")),
 			cheetSheetTitleHeight = parseInt($(".cheat-sheet--title").height()),
 			contentHeight = wrapperHeight - wrapperBottomPadding - cheetSheetTitleHeight; 
-		$(".cheat-sheet--content").height(contentHeight);
+		$(".cheat-sheet--content").height(contentHeight);		
+	}
+
+	// bind cheet sheet button
+	$("body").on("click", ".cheat-sheet-toggle", function(){
+		calculateCheatSheetDimensions();
 
 		// show cheat sheet
 		$(".cheat-sheet--canvas").removeClass("cheat-sheet--canvas--hidden");
@@ -897,5 +927,11 @@ $(document).ready(function() {
 			// restore scrollbar to main html doc
 			$("body").css("overflow-y", "auto");
 		}
+	});	
+	// bind after browser resize to update cheat sheet dimensions
+	$(window).resize(function () {
+		var updateCheatSheetId;
+		clearTimeout(updateCheatSheetId);
+		updateCheatSheetId = setTimeout(calculateCheatSheetDimensions, 300);
 	});	
 });
