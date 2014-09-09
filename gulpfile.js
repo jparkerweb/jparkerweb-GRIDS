@@ -23,12 +23,13 @@
 // ==========================================
 	var sourcePaths = {
 		SCSS: 'src/scss/**/*.scss',
-		JS: 'src/js/**/*.js'
+		JS: 'src/js/**/*.js',
+		JSBase: 'src/js/'
 	};
 	var destPaths = {
 		BASE: './',
-		CSS: './',
-		JS: './'
+		CSS: './css/',
+		JS: './js/'
 	};
 // ==========================================
 
@@ -110,6 +111,7 @@ gulp.task('scripts', function (callback) {
 	runSequence(
 		'clean-scripts',
 		'build-scripts',
+		'reload',
 		callback);
 });
 	// clean our build path
@@ -123,7 +125,7 @@ gulp.task('scripts', function (callback) {
 	});
 	// task: build scripts
 	gulp.task('build-scripts', function () {
-		return gulp.src([sourcePaths.JS])
+		return gulp.src([sourcePaths.JSBase + 'grids-toolbox.js'])
 			.pipe(webpack({
 				output: { filename: "grids-toolbox.js" }
 			}))
@@ -139,7 +141,7 @@ gulp.task('scripts', function (callback) {
 // -------------------------
 gulp.task('watch', function () {
 	gulp.watch(sourcePaths.SCSS, ['sass']);
-	gulp.watch(sourcePaths.JS, ['scripts', 'reload']);
+	gulp.watch(sourcePaths.JS, ['scripts']);
 	gulp.watch(destPaths.BASE + '*.html', ['reload']);
 });
 

@@ -56,12 +56,12 @@ $gridlineBackground: #ddd !default;
 $gridlineOpacity: 0.4 !default;
 
 // marker colors for breakpoints
-$markerColor--stack: #16a085;
+$markerColor--stack: #F74687;
 $markerColor--xxs: #30BDF4;
 $markerColor--xs: #c0392b;
 $markerColor--s: #FF6600;
 $markerColor--m: #f1c40f;
-$markerColor--l: #27ae60;
+$markerColor--l: #16a085;
 $markerColor--xl: #3498db;
 $markerColor--xxl: #8e44ad;
 // marker color for default (no breakpoint)
@@ -605,7 +605,7 @@ body.show-marker-outlines {
 		// bp: xxl
 		@if $grid-breakpoint-xxl > 0 {
 			@media (max-width: $grid-breakpoint-xxl) {
-				.grid > [class*='col-'][class*='-xxl']:after {
+				.grid > [class*='col-xxl-']:before {
 					position: absolute;
 					top: 0;
 					left: 0;
@@ -613,7 +613,20 @@ body.show-marker-outlines {
 					content: '';
 					width: calc(100% - #{$grid-gutter-width});
 					height: calc(100% - #{$grid-gutter-width});
-				 }
+				}
+				.grid > .col-xxl-12 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 12px; }
+				.grid > .col-xxl-11 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 11px; }
+				.grid > .col-xxl-10 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 10px; }
+				.grid > .col-xxl-9 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 9px; }
+				.grid > .col-xxl-8 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 8px; }
+				.grid > .col-xxl-7 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 7px; }
+				.grid > .col-xxl-6 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 6px; }
+				.grid > .col-xxl-5 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 5px; }
+				.grid > .col-xxl-4 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 4px; }
+				.grid > .col-xxl-3 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 3px; }
+				.grid > .col-xxl-2 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 2px; }
+				.grid > .col-xxl-1 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 1px; }
+				.grid > .col-xxl-0 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 0px; }
 				.marker-indicator { 
 					background: $markerColor--xxl !important;
 					&:before { content: 'breakpoint: XXL' + ' (' + $grid-breakpoint-xxl + ')'; }
@@ -623,7 +636,7 @@ body.show-marker-outlines {
 		// bp: xl
 		@if $grid-breakpoint-xl > 0 {
 			@media (max-width: $grid-breakpoint-xl) {
-				.grid > [class*='col-'][class*='-xl']:after {
+				.grid > [class*='col-xl-']:before {
 					position: absolute;
 					top: 0;
 					left: 0;
@@ -632,6 +645,19 @@ body.show-marker-outlines {
 					width: calc(100% - #{$grid-gutter-width});
 					height: calc(100% - #{$grid-gutter-width});
 				 }
+				.grid > .col-xl-12 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 12px; }
+				.grid > .col-xl-11 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 11px; }
+				.grid > .col-xl-10 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 10px; }
+				.grid > .col-xl-9 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 9px; }
+				.grid > .col-xl-8 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 8px; }
+				.grid > .col-xl-7 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 7px; }
+				.grid > .col-xl-6 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 6px; }
+				.grid > .col-xl-5 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 5px; }
+				.grid > .col-xl-4 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 4px; }
+				.grid > .col-xl-3 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 3px; }
+				.grid > .col-xl-2 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 2px; }
+				.grid > .col-xl-1 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 1px; }
+				.grid > .col-xl-0 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 0px; }
 				.marker-indicator { 
 					background: $markerColor--xl !important;
 					&:before { content: 'breakpoint: XL' + ' (' + $grid-breakpoint-xl + ')'; }
@@ -641,7 +667,7 @@ body.show-marker-outlines {
 		// bp: l
 		@if $grid-breakpoint-l > 0 {
 			@media (max-width: $grid-breakpoint-l) {
-				.grid > [class*='col-'][class*='-l']:after {
+				.grid > [class*='col-l-']:before {
 					position: absolute;
 					top: 0;
 					left: 0;
@@ -650,6 +676,19 @@ body.show-marker-outlines {
 					width: calc(100% - #{$grid-gutter-width});
 					height: calc(100% - #{$grid-gutter-width});
 				 }
+				.grid > .col-l-12 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 12px; }
+				.grid > .col-l-11 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 11px; }
+				.grid > .col-l-10 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 10px; }
+				.grid > .col-l-9 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 9px; }
+				.grid > .col-l-8 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 8px; }
+				.grid > .col-l-7 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 7px; }
+				.grid > .col-l-6 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 6px; }
+				.grid > .col-l-5 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 5px; }
+				.grid > .col-l-4 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 4px; }
+				.grid > .col-l-3 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 3px; }
+				.grid > .col-l-2 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 2px; }
+				.grid > .col-l-1 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 1px; }
+				.grid > .col-l-0 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 0px; }
 				.marker-indicator { 
 					background: $markerColor--l !important;
 					&:before { content: 'breakpoint: L' + ' (' + $grid-breakpoint-l + ')'; }
@@ -659,7 +698,7 @@ body.show-marker-outlines {
 		// bp: m
 		@if $grid-breakpoint-m > 0 {
 			@media (max-width: $grid-breakpoint-m) {
-				.grid > [class*='col-'][class*='-m']:after {
+				.grid > [class*='col-m-']:before {
 					position: absolute;
 					top: 0;
 					left: 0;
@@ -668,6 +707,19 @@ body.show-marker-outlines {
 					width: calc(100% - #{$grid-gutter-width});
 					height: calc(100% - #{$grid-gutter-width});
 				 }
+				.grid > .col-m-12 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 12px; }
+				.grid > .col-m-11 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 11px; }
+				.grid > .col-m-10 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 10px; }
+				.grid > .col-m-9 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 9px; }
+				.grid > .col-m-8 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 8px; }
+				.grid > .col-m-7 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 7px; }
+				.grid > .col-m-6 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 6px; }
+				.grid > .col-m-5 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 5px; }
+				.grid > .col-m-4 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 4px; }
+				.grid > .col-m-3 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 3px; }
+				.grid > .col-m-2 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 2px; }
+				.grid > .col-m-1 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 1px; }
+				.grid > .col-m-0 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 0px; }
 				.marker-indicator { 
 					background: $markerColor--m !important;
 					&:before { content: 'breakpoint: M' + ' (' + $grid-breakpoint-m + ')'; }
@@ -677,7 +729,7 @@ body.show-marker-outlines {
 		// bp: s
 		@if $grid-breakpoint-s > 0 {
 			@media (max-width: $grid-breakpoint-s) {
-				.grid > [class*='col-'][class*='-s']:not[class*='-stack']:after {
+				.grid > [class*='col-s-']:before {
 					position: absolute;
 					top: 0;
 					left: 0;
@@ -686,6 +738,19 @@ body.show-marker-outlines {
 					width: calc(100% - #{$grid-gutter-width});
 					height: calc(100% - #{$grid-gutter-width});
 				 }
+				.grid > .col-s-12 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 12px; }
+				.grid > .col-s-11 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 11px; }
+				.grid > .col-s-10 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 10px; }
+				.grid > .col-s-9 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 9px; }
+				.grid > .col-s-8 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 8px; }
+				.grid > .col-s-7 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 7px; }
+				.grid > .col-s-6 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 6px; }
+				.grid > .col-s-5 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 5px; }
+				.grid > .col-s-4 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 4px; }
+				.grid > .col-s-3 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 3px; }
+				.grid > .col-s-2 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 2px; }
+				.grid > .col-s-1 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 1px; }
+				.grid > .col-s-0 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 0px; }
 				.marker-indicator { 
 					background: $markerColor--s !important; 
 					&:before { content: 'breakpoint: S' + ' (' + $grid-breakpoint-s + ')'; }
@@ -695,7 +760,7 @@ body.show-marker-outlines {
 		// bp: xs
 		@if $grid-breakpoint-xs > 0 {
 			@media (max-width: $grid-breakpoint-xs) {
-				.grid > [class*='col-'][class*='-xs']:after {
+				.grid > [class*='col-xs-']:before {
 					position: absolute;
 					top: 0;
 					left: 0;
@@ -704,6 +769,19 @@ body.show-marker-outlines {
 					width: calc(100% - #{$grid-gutter-width});
 					height: calc(100% - #{$grid-gutter-width});
 				 }
+				.grid > .col-xs-12 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 12px; }
+				.grid > .col-xs-11 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 11px; }
+				.grid > .col-xs-10 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 10px; }
+				.grid > .col-xs-9 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 9px; }
+				.grid > .col-xs-8 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 8px; }
+				.grid > .col-xs-7 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 7px; }
+				.grid > .col-xs-6 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 6px; }
+				.grid > .col-xs-5 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 5px; }
+				.grid > .col-xs-4 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 4px; }
+				.grid > .col-xs-3 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 3px; }
+				.grid > .col-xs-2 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 2px; }
+				.grid > .col-xs-1 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 1px; }
+				.grid > .col-xs-0 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 0px; }
 				.marker-indicator { 
 					background: $markerColor--xs !important; 
 					&:before { content: 'breakpoint: XS' + ' (' + $grid-breakpoint-xs + ')'; }
@@ -713,7 +791,7 @@ body.show-marker-outlines {
 		// bp: xxs
 		@if $grid-breakpoint-xxs > 0 {
 			@media (max-width: $grid-breakpoint-xxs) {
-				.grid > [class*='col-'][class*='-xxs']:after {
+				.grid > [class*='col-xxs-']:before {
 					position: absolute;
 					top: 0;
 					left: 0;
@@ -722,6 +800,19 @@ body.show-marker-outlines {
 					width: calc(100% - #{$grid-gutter-width});
 					height: calc(100% - #{$grid-gutter-width});
 				 }
+				.grid > .col-xxs-12 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 12px; }
+				.grid > .col-xxs-11 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 11px; }
+				.grid > .col-xxs-10 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 10px; }
+				.grid > .col-xxs-9 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 9px; }
+				.grid > .col-xxs-8 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 8px; }
+				.grid > .col-xxs-7 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 7px; }
+				.grid > .col-xxs-6 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 6px; }
+				.grid > .col-xxs-5 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 5px; }
+				.grid > .col-xxs-4 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 4px; }
+				.grid > .col-xxs-3 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 3px; }
+				.grid > .col-xxs-2 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 2px; }
+				.grid > .col-xxs-1 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 1px; }
+				.grid > .col-xxs-0 > .innerMarkers > .innerMarker-current-breakpoint { max-width: 0px; }
 				.marker-indicator { 
 					background: $markerColor--xxs !important; 
 					&:before { content: 'breakpoint: XXS' + ' (' + $grid-breakpoint-xxs + ')'; }
@@ -731,16 +822,7 @@ body.show-marker-outlines {
 		// bp: stack
 		@if $grid-breakpoint-stack > 0 {
 			@media (max-width: $grid-breakpoint-stack) {
-				.grid > [class*='col-'][class*='-nostack']:after {
-					position: absolute;
-					top: 0;
-					left: 0;
-					outline: 2px dotted $markerColor--stack !important;
-					content: '';
-					width: calc(100% - #{$grid-gutter-width});
-					height: calc(100% - #{$grid-gutter-width});
-				 }
-				.grid > [class*='col-'][class*='-stack']:after {
+				.grid > [class*='col-']:before {
 					position: absolute;
 					top: 0;
 					left: 0;
@@ -749,7 +831,16 @@ body.show-marker-outlines {
 					width: calc(100% - #{$grid-gutter-width});
 					height: calc(100% - #{$grid-gutter-width});
 				 }
-				 .gridlines .col-nostack:after { outline: 0 !important; }
+				.grid > [class*='col-nostack']:before {
+					position: absolute;
+					top: 0;
+					left: 0;
+					outline: 2px dotted $markerColor--stack !important;
+					content: '';
+					width: calc(100% - #{$grid-gutter-width});
+					height: calc(100% - #{$grid-gutter-width});
+				 }
+				 .gridlines .col-nostack:before { outline: 0 !important; }
 				.marker-indicator { 
 					background: $markerColor--stack !important; 
 					&:before { content: 'breakpoint: stack' + ' (' + $grid-breakpoint-stack + ')'; }
@@ -849,11 +940,13 @@ body.show-marker-outlines {
 		bottom: 55px;
 	}	
 }
+
 .innerMarkers { display: none; }
-.col-1, .col-2, .col-3, 
-.col-4, .col-5, .col-6,
-.col-7, .col-8, .col-9, 
-.col-10, .col-11, .col-12 {
+
+.col-0, .col-1, .col-2, .col-3, 
+.col-4, .col-5, .col-6, .col-7, 
+.col-8, .col-9, .col-10, .col-11, 
+.col-12 {
 	.innerMarkers {
 		display: block;
 		position: absolute;
@@ -865,6 +958,10 @@ body.show-marker-outlines {
 			position: absolute;
 			width: 1px;
 			border-right: 1px solid;
+		}
+		.innerMarker-current-breakpoint { 
+			display: none;
+			max-width: -1px;
 		}
 		.innerMarker-outline {
 			outline: 1px solid $innerMarkerOutlineColor;

@@ -4,12 +4,19 @@
 // -- http://jparkerweb.github.io/jparkerweb-GRIDS/ --
 // ---------------------------------------------------
 
+
+// require jQuery
+var $ = require('./jquery-1.11.1.min');
+var jQuery = $;
+
+
+// main toolbox code
 $(document).ready(function() {
 	// *********************************
 	// ***** jQuery RegEx Selector *****
 	// *********************************
 	//http://james.padolsey.com/javascript/regex-selector-for-jquery/
-	jQuery.expr[':'].regex = function(elem, index, match) {
+	$.expr[':'].regex = function(elem, index, match) {
 		var matchParams = match[3].split(','),
 			validLabels = /^(data|css):/,
 			attr = {
@@ -18,7 +25,7 @@ $(document).ready(function() {
 			},
 			regexFlags = 'ig',
 			regex = new RegExp(matchParams.join('').replace(/^\s+|\s+$/g,''), regexFlags);
-		return regex.test(jQuery(elem)[attr.method](attr.property));
+		return regex.test($(elem)[attr.method](attr.property));
 	};
 	// *********************************
 
@@ -154,12 +161,12 @@ $(document).ready(function() {
 	function getScrollbarWidth() {
 		var pageHasScrollbar = ($(document).height() > $(window).height());
 		if (pageHasScrollbar) {
-			var $inner = jQuery('<div style="width: 100%; height:200px;">test</div>'),
-				$outer = jQuery('<div style="width:200px;height:150px; position: absolute; top: 0; left: 0; visibility: hidden; overflow:hidden;"></div>').append($inner),
+			var $inner = $('<div style="width: 100%; height:200px;">test</div>'),
+				$outer = $('<div style="width:200px;height:150px; position: absolute; top: 0; left: 0; visibility: hidden; overflow:hidden;"></div>').append($inner),
 				inner = $inner[0],
 				outer = $outer[0];
 		 
-			jQuery('body').append(outer);
+			$('body').append(outer);
 			var width1 = inner.offsetWidth;
 			$outer.css('overflow', 'scroll');
 			var width2 = outer.clientWidth;
@@ -307,6 +314,7 @@ $(document).ready(function() {
 	function getInnerColMarksHTML() {
 		var innerColMarkers;
 		innerColMarkers = "<div class=\"innerMarkers\">" +
+			"	<div class=\"innerMarker-current-breakpoint\"></div>" +
 			"	<div class=\"innerMarker-outline\"></div>" +
 			"	<div class=\"innerMarker-default\"></div>";
 		for (var prop in gridBreakpoints) {
@@ -334,7 +342,11 @@ $(document).ready(function() {
 	// bind the insert/remove of inner col markers
 	// to click event of each columns
 	$(":regex(class,col\\-[0-9])").on("click", function (event) {
+		//prevent bubble up of click event for nested cols		
+		event.stopPropagation();
+
 		var isGridlinesCol = ($(this).parents(".gridlines").length > 0);
+
 		if(isGridlinesCol) {
 			showGridsNotification("The gridlines overlay is active, to toggle them off click the \"gridlines\" button in the bottom left corner.", 6000);
 		}
@@ -374,20 +386,20 @@ $(document).ready(function() {
 				}
 			}
 		}
-		event.stopPropagation(); //prevent bubble up of click event for nested cols
 	});
 
 	// bind after browser resize to update col markers
+	var updateColMarkersId;
 	$(window).resize(function () {
-		var updateColMarkersId;
 		clearTimeout(updateColMarkersId);
-		updateColMarkersId = setTimeout(updateColMarkers, 300);
+		updateColMarkersId = setTimeout(updateColMarkers, 200);
 	});
 	// update col markers
 	function updateColMarkers($this) {
 		var isInnerColMarkersEnabled = ($(".col-markers-toggle.toggle-button--active").length > 0);
 		if (isInnerColMarkersEnabled) {
 			var $grid;
+			var $thisGrid;
 			var wasColClicked;
 			if($this) {
 				// only select grid for passed in col
@@ -398,98 +410,131 @@ $(document).ready(function() {
 				// get all grids that have col markers displayed
 				$grid = $(".grid:has(> [class*='col-'] > .innerMarkers)");
 					
-				if ($grid.length === 0) { return false; }
+				if ($grid.length === 0) { 
+					return false;
+				}
 			} 
 			var gridsCurrentBreakpoint = $("#gridsCurrentBreakpoint").width();
 			viewportDisplayValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 			
-			// update default cols
-			if (wasColClicked || gridsCurrentBreakpoint === 0) {
-				$grid.children(":regex(class,col\\-[0-9])").each(function() {
-					// set the inner marker left offset for
-					// each breakpoint based on the clicked 
-					// col size
-					var className = $(this).attr("class");
-					if (className.match(/col\-[0-9]{1,2}(?!-)/)) {
-						var size = className.match(/col\-([0-9]{1,2})(?!-)/, '$1');
-						setInnerMarkerOffsets(this, size[1]);
-					}
+			// update all breakpoint cols if no breakpoint is triggered in page
+			if (gridsCurrentBreakpoint === 0) {
+				$grid.each(function() {
+					$(this).children(":regex(class,col\\-[0-9]):has(> .innerMarkers)").each(function() {
+						setDefaultInnerMarkerOffsets($(this));
+					});
 				});
 			}
-
-			// update all breakpoint cols up to current breakpoint
-			if (gridsCurrentBreakpoint > 0) {
+			// update all breakpoint cols if a breakpoint is triggered in page
+			else {
+				var colsWereUpdated;
 				var breakpointCharacter;
-				for (var prop in gridBreakpoints) {
-					// set the breakpoint string character (xxl, xl, l, m, s, xs, xxs)
-					breakpointCharacter = prop.toLowerCase();
-
-					// for each matched breakpoint column set its inner markers
-					$grid.find("[class*=col-" + breakpointCharacter + "-]").each(function() {
-						var className = $(this).attr("class");
-						var regExPattern = "col\\-" + breakpointCharacter + "\\-[0-9]{1,2}(?!\\-)";
-						if (className.match(regExPattern)) {
-							regExPattern = "col\\-" + breakpointCharacter + "\\-([0-9]{1,2})(?!\\-)";
-							var size = className.match(regExPattern, '$1');
-							setInnerMarkerOffsets(this, size[1]);
+				var colSize;
+				// loop through girds that have col markers
+				$grid.each(function() {
+					colsWereUpdated = false;
+					$thisGrid = $(this);
+					// loop each breakpoint
+					for (var prop in gridBreakpoints) {
+						// set the breakpoint string character (xxl, xl, l, m, s, xs, xxs)
+						breakpointCharacter = prop.toLowerCase();
+						if (gridBreakpoints[prop] === gridsCurrentBreakpoint) {
+							// for matched breakpoint column set its inner markers
+							$thisGrid.children("[class*=col-" + breakpointCharacter + "-]:has(.innerMarkers)").each(function() {
+								var className = $(this).attr("class");
+								var regExPattern = "col\\-" + breakpointCharacter + "\\-[0-9]{1,2}(?!\\-)";
+								if (className.match(regExPattern)) {
+									regExPattern = "col\\-" + breakpointCharacter + "\\-([0-9]{1,2})(?!\\-)";
+									colSize = className.match(regExPattern);
+									console.log("colSize2: " + colSize[1]);
+									setInnerMarkerOffsets($(this), colSize[1]);
+									colsWereUpdated = true;
+									return;
+								}
+							});
 						}
-					});
-
-					// if we have looped down to the current breakpoint stop (we are at the smallest needed)
-					if(gridBreakpoints[prop] == gridsCurrentBreakpoint) {
-						break;
+						if (colsWereUpdated) { break; }
 					}
-				}
+					// if col markers not updated yet then update them using default (no modifier was found)
+					if (!colsWereUpdated) {
+						$thisGrid.children(":regex(class,col\\-[0-9]):has(.innerMarkers)").each(function() {
+							// get col size if a col modifier is currenlty triggered
+							colSize = parseInt($(this).find(".innerMarkers > .innerMarker-current-breakpoint:first").css("max-width"));
+							// if known col size set its offsets
+							if (colSize > 0) {
+								setInnerMarkerOffsets($(this), colSize);
+								colSize = -1;
+							}
+							// otherwise set default offsets
+							else {
+								setDefaultInnerMarkerOffsets($(this));
+								colSize = -1;
+							}
+						});
+					}		
+				});
 			}
 
 			// update all col line styles
 			for (var prop in gridBreakpoints) {
 				// set the breakpoint string character (xxl, xl, l, m, s, xs, xxs)
 				var breakpointCharacter = prop.toLowerCase();
-
-				$grid.find("[class*=col-]").each(function(){
-					var markIt = false;
-					var allClasses = $(this).attr("class");
-					// if on "m" breakpoint remove "margin" from class names to avoid false match
-					if (breakpointCharacter == "m") {
-						allClasses = allClasses.replace("-margin","");
-					}
-					// if on stack breakpoint character, rename nostack to stack to ensure match
-					if (breakpointCharacter == "stack") {
-						allClasses = allClasses.replace("-nostack","-stack");
-					}
-					// if on "s" breakpoint character, rename to stack to Xstack to no false positives are found
-					if (breakpointCharacter == "s") {
-						allClasses = allClasses.replace("-stack","-Xstack");
-					}
-					allClasses = allClasses.split(" ");
-					
-					for (var i in allClasses) {
-						if (allClasses[i].indexOf("-" + breakpointCharacter) > -1) { 
-							markIt = true; 
+				$grid.each(function() {
+					$(this).children("[class*=col-]:has(> .innerMarkers)").each(function(){
+						var markIt = false;
+						var allClasses = $(this).attr("class");
+						// if on "m" breakpoint remove "margin" from class names to avoid false match
+						if (breakpointCharacter == "m") {
+							allClasses = allClasses.replace(/\-[xxl|xl|l|s|xs|xxs|stack|nostack]\-margin/gi,"");
 						}
-					}
+						// if on stack breakpoint character, rename nostack to stack to ensure match
+						if (breakpointCharacter == "stack") {
+							allClasses = allClasses.replace(/\-nostack/gi,"-stack");
+						}
+						// if on "s" breakpoint character, rename to stack to Xstack to no false positives are found
+						if (breakpointCharacter == "s") {
+							allClasses = allClasses.replace(/\-stack/gi,"-Xstack");
+						}
+						allClasses = allClasses.split(" ");
+						
+						for (var i in allClasses) {
+							if (allClasses[i].indexOf("col-" + breakpointCharacter) === 0) { 
+								markIt = true; 
+							}
+						}
 
-					if(markIt) {
-						$(this).find(".innerMarker-" + breakpointCharacter).each(function(){
-							var breakpointColor = $(this).css("border-right-color");
-							$(this)
-								.addClass("innerMarker--dotted")
-								.css({ 
-									"border-right-width" : "3px", 
-									"border-right-style" : "dotted" 
-								})
-								.attr({
-									"data-bp-name" : breakpointCharacter,
-									"data-bp-value" : gridBreakpoints[prop],
-									"data-bp-color" : breakpointColor
-								});
-						});
-					}
+						if(markIt) {
+							$(this).find(".innerMarkers > .innerMarker-" + breakpointCharacter +":first").each(function(){
+								var breakpointColor = $(this).css("border-right-color");
+								$(this)
+									.addClass("innerMarker--dotted")
+									.css({ 
+										"border-right-width" : "3px", 
+										"border-right-style" : "dotted" 
+									})
+									.attr({
+										"data-bp-name" : breakpointCharacter,
+										"data-bp-value" : gridBreakpoints[prop],
+										"data-bp-color" : breakpointColor
+									});
+							});
+						}
+					});
 				});
 			}
 		}
-	}	
+	}
+	//
+	function setDefaultInnerMarkerOffsets($this) {
+		// set the inner marker left offset for
+		// each breakpoint based default col size
+		var className = $this.attr("class");
+		if (className.match(/col\-[0-9]{1,2}(?!-)/)) {
+			var size = className.match(/col\-([0-9]{1,2})(?!-)/, '$1');
+			console.log("size: " + size[1]);
+			setInnerMarkerOffsets($this, size[1]);
+		}		
+	}
 	// set the inner marker offsets per passed in col width (1-12)
 	function setInnerMarkerOffsets(selector, size) {
 		var borderWidth = "1px",
@@ -510,18 +555,18 @@ $(document).ready(function() {
 		var outlineWidth = $(selector).width(),
 			outlineHeight = $(selector).height();
 
-		var $innerMarkers = $(selector).find(".innerMarkers");
-		
-		$innerMarkers.find(".innerMarker-outline").css({ "width" : outlineWidth, "height" : outlineHeight });
-		$innerMarkers.find(".innerMarker-default").css({ "margin-left" : "0px", "border-right-width" : "2px", "border-right-style" : "solid", "height" : outlineHeight });
-		$innerMarkers.find(".innerMarker-xxl").css({ "margin-left" : leftXXL, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
-		$innerMarkers.find(".innerMarker-xl").css({ "margin-left" : leftXL, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
-		$innerMarkers.find(".innerMarker-l").css({ "margin-left" : leftL, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
-		$innerMarkers.find(".innerMarker-m").css({ "margin-left" : leftM, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
-		$innerMarkers.find(".innerMarker-s").css({ "margin-left" : leftS, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
-		$innerMarkers.find(".innerMarker-xs").css({ "margin-left" : leftXS, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
-		$innerMarkers.find(".innerMarker-xxs").css({ "margin-left" : leftXXS, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
-		$innerMarkers.find(".innerMarker-stack").css({ "margin-left" : leftStack, "border-right-width" : borderWidth, "border-right-style" : borderStyleStack, "height" : outlineHeight });
+		var $innerMarkers = $(selector).children(".innerMarkers");
+
+		$innerMarkers.children(".innerMarker-outline").css({ "width" : outlineWidth, "height" : outlineHeight });
+		$innerMarkers.children(".innerMarker-default").css({ "margin-left" : "0px", "border-right-width" : "2px", "border-right-style" : "solid", "height" : outlineHeight });
+		$innerMarkers.children(".innerMarker-xxl").css({ "margin-left" : leftXXL, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
+		$innerMarkers.children(".innerMarker-xl").css({ "margin-left" : leftXL, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
+		$innerMarkers.children(".innerMarker-l").css({ "margin-left" : leftL, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
+		$innerMarkers.children(".innerMarker-m").css({ "margin-left" : leftM, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
+		$innerMarkers.children(".innerMarker-s").css({ "margin-left" : leftS, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
+		$innerMarkers.children(".innerMarker-xs").css({ "margin-left" : leftXS, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
+		$innerMarkers.children(".innerMarker-xxs").css({ "margin-left" : leftXXS, "border-right-width" : borderWidth, "border-right-style" : borderStyle, "height" : outlineHeight });
+		$innerMarkers.children(".innerMarker-stack").css({ "margin-left" : leftStack, "border-right-width" : borderWidth, "border-right-style" : borderStyleStack, "height" : outlineHeight });
 	}
 
 	// bind modifier notification
@@ -550,12 +595,12 @@ $(document).ready(function() {
 		else {
 			if ($(this).hasClass("innerMarker-s")) {
 				// this is small breakpoint so we need to remove stack to avoid false positive
-				className = className.replace("-nostack", "");
-				className = className.replace("-stack", "");
+				className = className.replace(/\-nostack/gi, "");
+				className = className.replace(/\-stack/gi, "");
 			}
 			if ($(this).hasClass("innerMarker-stack")) {
-				// this is stack breakpoint so we need to temp rename nostack to stack for nostack matches
-				className = className.replace("-nostack", "-stackXno");
+				// this is stack breakpoint so we need to temp rename nostack to stack-Xno for nostack matches to work
+				className = className.replace(/\-nostack/gi, "-stack-Xno");
 			}
 			allClasses = className.split(" ");
 			classes = "";
@@ -568,7 +613,7 @@ $(document).ready(function() {
 			for(var prop in allClasses) {
 				regExPattern = "col\\-" + bpName + "\\-";
 				if (allClasses[prop].match(regExPattern)) {
-					classes = classes + "<div class=\"grids-notification--modifier\">" + allClasses[prop].replace("-stackXno", "-nostack") + "</div>";
+					classes = classes + "<div class=\"grids-notification--modifier\">" + allClasses[prop].replace("-stack-Xno", "-nostack") + "</div>";
 				}
 			}
 
@@ -762,25 +807,25 @@ $(document).ready(function() {
 		"<!-- Grid Breakpoint Margin/Padding Modifiers -->" +
 		"<div class=\"grid\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Grid Breakpoint Margin/Padding Modifiers:</span></div>" +
-		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid-[margin/padding]-[top/bottom]-[0x/1x/2x/3x]-[breakpoint]</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid-[breakpoint]-[margin/padding]-[top/bottom]-[0x/1x/2x/3x]</span></div>" +
 		"</div>" +
 		"<div class=\"grid\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
-		"&lt;div class=&quot;grid <span class=\"cheat-sheet--attention\">grid-margin-top-3x-xxs</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"&lt;div class=&quot;grid <span class=\"cheat-sheet--attention\">grid-xxs-margin-top-3x</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
 		"</pre>" +
 		"	</div>" +
 		"</div>	" +
 		"<!-- Column Breakpoint Margin/Padding Modifiers -->" +
 		"<div class=\"grid\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Column Breakpoint Margin/Padding Modifiers:</span></div>" +
-		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-[margin/padding]-[top/bottom]-[0x/1x/2x/3x]-[breakpoint]</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-[breakpoint]-[margin/padding]-[top/bottom]-[0x/1x/2x/3x]</span></div>" +
 		"</div>" +
 		"<div class=\"grid\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
 		"&lt;div class=&quot;grid&quot;&gt;\n" +
-		"  &lt;div class=&quot;col-11 <span class=\"cheat-sheet--attention\">col-padding-bottom-1x-xxs</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"  &lt;div class=&quot;col-11 <span class=\"cheat-sheet--attention\">col-xxs-padding-bottom-1x</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
 		"&lt;/div&gt;\n" +
 		"</pre>" +
 		"	</div>" +
@@ -826,24 +871,24 @@ $(document).ready(function() {
 		"<!-- Grid Breakpoint Reverse / Unreverse -->" +
 		"<div class=\"grid\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Grid Breakpoint Reverse / Unreverse:</span></div>" +
-		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid-[reverse/Xreverse]-[breakpoint]</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid-[breakpoint]-[reverse/Xreverse]</span></div>" +
 		"</div>" +
 		"<div class=\"grid\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
-		"&lt;div class=&quot;grid grid-reverse <span class=\"cheat-sheet--attention\">grid-Xreverse-m</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"&lt;div class=&quot;grid grid-reverse <span class=\"cheat-sheet--attention\">grid-m-Xreverse</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
 		"</pre>" +
 		"	</div>" +
 		"</div>	" +
 		"<!-- Grid Nostack AND Reverse / Unreverse -->" +
 		"<div class=\"grid\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Grid Nostack AND Reverse / Unreverse:</span></div>" +
-		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid-[reverse/Xreverse]-nostack</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid-nostack-[reverse/Xreverse]</span></div>" +
 		"</div>" +
 		"<div class=\"grid\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
-		"&lt;div class=&quot;grid <span class=\"cheat-sheet--attention\">grid-reverse-nostack</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"&lt;div class=&quot;grid <span class=\"cheat-sheet--attention\">grid-nostack-reverse</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
 		"</pre>" +
 		"	</div>" +
 		"</div>	" +
@@ -865,13 +910,13 @@ $(document).ready(function() {
 		"<!-- Column Breakpoint Throw Right Modifier -->" +
 		"<div class=\"grid\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Column Breakpoint Throw Right Modifier:</span></div>" +
-		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-[throwright/Xthrowright]-[breakpoint]</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-[breakpoint]-[throwright/Xthrowright]</span></div>" +
 		"</div>" +
 		"<div class=\"grid\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
 		"&lt;div class=&quot;grid&quot;&gt;\n" +
-		"  &lt;div class=&quot;col-3 col-throwright <span class=\"cheat-sheet--attention\">col-Xthrowright-s</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"  &lt;div class=&quot;col-3 col-throwright <span class=\"cheat-sheet--attention\">col-s-Xthrowright</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
 		"  &lt;div class=&quot;col-9&quot;&gt;&hellip;&lt;/div&gt;\n" +
 		"&lt;/div&gt;\n" +
 		"</pre>" +
@@ -895,14 +940,14 @@ $(document).ready(function() {
 		"<!-- Column Breakpoint Newline Modifier -->" +
 		"<div class=\"grid\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Column Breakpoint Newline Modifier:</span></div>" +
-		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-[newline/Xnewline]-[breakpoint]</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-[breakpoint]-[newline/Xnewline]</span></div>" +
 		"</div>" +
 		"<div class=\"grid\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
 		"&lt;div class=&quot;grid&quot;&gt;\n" +
 		"  &lt;div class=&quot;col-3&quot;&gt;&hellip;&lt;/div&gt;\n" +
-		"  &lt;div class=&quot;col-9 col-newline <span class=\"cheat-sheet--attention\">col-Xnewline-xl</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
+		"  &lt;div class=&quot;col-9 col-newline <span class=\"cheat-sheet--attention\">col-xl-Xnewline</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
 		"&lt;/div&gt;\n" +
 		"</pre>" +
 		"	</div>" +
@@ -957,8 +1002,8 @@ $(document).ready(function() {
 		}
 	});	
 	// bind after browser resize to update cheat sheet dimensions
+	var updateCheatSheetId;
 	$(window).resize(function () {
-		var updateCheatSheetId;
 		clearTimeout(updateCheatSheetId);
 		updateCheatSheetId = setTimeout(calculateCheatSheetDimensions, 300);
 	});	

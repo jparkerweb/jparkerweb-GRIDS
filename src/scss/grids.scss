@@ -365,6 +365,7 @@ $col-12: 12 / 12 * 100%;
 		[class*='col-']:not(.col-nostack) {
 			@media (max-width: $grid-breakpoint-stack) {	
 				padding-bottom: $grid-vertical-spacing-stack;
+				&.col-stack-0 { display: none; }
 				// optional top/bottom margin and padding
 				&.col-stack-padding-top-0x { padding-top: 0; }
 				&.col-stack-padding-top-1x { padding-top: $grid-optional-margin-padding-size-1x; }
@@ -385,6 +386,68 @@ $col-12: 12 / 12 * 100%;
 			}
 		}
 	}
+	// nostack breakboint (same as stack breakpoint but allow for col control as the cols are not being stacked)
+	@if $grid-breakpoint-stack > 0 {
+		@media (max-width: $grid-breakpoint-stack) {
+			.col-nostack {
+				padding-bottom: $grid-vertical-spacing-stack;
+				&.col-nostack-0 { display: none; }
+				&.col-nostack-1 { width: $col-1; display: block; }
+				&.col-nostack-2 { width: $col-2; display: block; }
+				&.col-nostack-3 { width: $col-3; display: block; }
+				&.col-nostack-4 { width: $col-4; display: block; }
+				&.col-nostack-5 { width: $col-5; display: block; }
+				&.col-nostack-6 { width: $col-6; display: block; }
+				&.col-nostack-7 { width: $col-7; display: block; }
+				&.col-nostack-8 { width: $col-8; display: block; }
+				&.col-nostack-9 { width: $col-9; display: block; }
+				&.col-nostack-10 { width: $col-10; display: block; }
+				&.col-nostack-11 { width: $col-11; display: block; }
+				&.col-nostack-12 { width: $col-12; display: block; }
+				&.col-nostack-push-0 { margin-left: 0; }
+				&.col-nostack-push-1 { margin-left: $col-1; }
+				&.col-nostack-push-2 { margin-left: $col-2; }
+				&.col-nostack-push-3 { margin-left: $col-3; }
+				&.col-nostack-push-4 { margin-left: $col-4; }
+				&.col-nostack-push-5 { margin-left: $col-5; }
+				&.col-nostack-push-6 { margin-left: $col-6; }
+				&.col-nostack-push-7 { margin-left: $col-7; }
+				&.col-nostack-push-8 { margin-left: $col-8; }
+				&.col-nostack-push-9 { margin-left: $col-9; }
+				&.col-nostack-push-10 { margin-left: $col-10; }
+				&.col-nostack-push-11 { margin-left: $col-11; }
+				&.col-nostack-push-12 { margin-left: $col-12; }
+				// force col to new line (clear floats)
+				&.col-nostack-newline { clear: both; }
+				&.col-nostack-Xnewline { clear: none; }
+				// float col to right
+				&.col-nostack-throwright { float: right; }
+				&.col-nostack-Xthrowright { float: left; }
+				// optional top/bottom margin and padding
+				&.col-nostack-padding-top-0x { padding-top: 0; }
+				&.col-nostack-padding-top-1x { padding-top: $grid-optional-margin-padding-size-1x; }
+				&.col-nostack-padding-top-2x { padding-top: $grid-optional-margin-padding-size-2x; }
+				&.col-nostack-padding-top-3x { padding-top: $grid-optional-margin-padding-size-3x; }
+				&.col-nostack-padding-bottom-0x { padding-bottom: 0; }
+				&.col-nostack-padding-bottom-1x { padding-bottom: $grid-optional-margin-padding-size-1x; }
+				&.col-nostack-padding-bottom-2x { padding-bottom: $grid-optional-margin-padding-size-2x; }
+				&.col-nostack-padding-bottom-3x { padding-bottom: $grid-optional-margin-padding-size-3x; }
+				&.col-nostack-margin-top-0x { margin-top: 0; }
+				&.col-nostack-margin-top-1x { margin-top: $grid-optional-margin-padding-size-1x; }
+				&.col-nostack-margin-top-2x { margin-top: $grid-optional-margin-padding-size-2x; }
+				&.col-nostack-margin-top-3x { margin-top: $grid-optional-margin-padding-size-3x; }
+				&.col-nostack-margin-bottom-0x { margin-bottom: 0; }
+				&.col-nostack-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
+				&.col-nostack-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
+				&.col-nostack-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
+			}
+		}
+	}
+	
+
+
+
+
 
 	// at breakpoints
 	// bp: XLL
