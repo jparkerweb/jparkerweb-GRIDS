@@ -128,7 +128,7 @@ $startingZ-Index: 0 !default;
 	bottom: 125px;
 	left: 5px;
 	z-index: $startingZ-Index + 30;
-	&.breakpoint-markers-active {
+	&.breakpoint-markers-active.can-move {
 		bottom: 145px;
 	}	
 }
@@ -246,7 +246,7 @@ $startingZ-Index: 0 !default;
 	bottom: 95px;
 	left: 5px;
 	z-index: $startingZ-Index + 30;
-	&.breakpoint-markers-active {
+	&.breakpoint-markers-active.can-move {
 		bottom: 115px;
 	}
 }
@@ -306,7 +306,7 @@ body.show-marker-outlines {
 	bottom: 65px;
 	left: 5px;
 	z-index: $startingZ-Index + 30;
-	&.breakpoint-markers-active {
+	&.breakpoint-markers-active.can-move {
 		bottom: 85px;
 	}
 }
@@ -921,7 +921,7 @@ body.show-marker-outlines {
 	bottom: 5px;
 	left: 5px;
 	z-index: $startingZ-Index + 30;
-	&.breakpoint-markers-active {
+	&.breakpoint-markers-active.can-move {
 		bottom: 25px;
 	}	
 }
@@ -936,7 +936,7 @@ body.show-marker-outlines {
 	bottom: 35px;
 	left: 5px;
 	z-index: $startingZ-Index + 30;
-	&.breakpoint-markers-active {
+	&.breakpoint-markers-active.can-move {
 		bottom: 55px;
 	}	
 }

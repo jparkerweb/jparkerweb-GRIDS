@@ -141,13 +141,13 @@ $(document).ready(function() {
 		"<!-- current breakpoint --> " +
 		"<div id=\"gridsCurrentBreakpoint\"></div> " +
 		"<!-- gridlines toggle --> " +
-		"<div class=\"gridlines-toggle\">gridlines</div> " +
+		"<div class=\"gridlines-toggle can-move\">gridlines</div> " +
 		"<!-- markers toggle --> " +
-		"<div class=\"breakpoint-markers-toggle\">breakpoint markers</div>	" +
+		"<div class=\"breakpoint-markers-toggle can-move\">breakpoint markers</div>	" +
 		"<!-- grid row markers toggle --> " +
-		"<div class=\"grid-row-markers-toggle\">grid-row-markers</div>	" +
+		"<div class=\"grid-row-markers-toggle can-move\">grid-row-markers</div>	" +
 		"<!-- col markers toggle --> " +
-		"<div class=\"col-markers-toggle\">col-markers</div>	" +
+		"<div class=\"col-markers-toggle can-move\">col-markers</div>	" +
 		"<!-- marker indicator --> " +
 		"<div class=\"marker-indicator\"></div> " +
 		"<!-- ******************************************************************* --> " +
@@ -952,7 +952,7 @@ $(document).ready(function() {
 
 	var cheatSheetHTML = "" +
 		"<!-- cheat sheet toggle --> " +
-		"<div class=\"cheat-sheet-toggle\">cheat sheet</div> " +
+		"<div class=\"cheat-sheet-toggle can-move\">cheat sheet</div> " +
 		"<!-- cheat sheet markup -->" +
 		"<div class=\"cheat-sheet--canvas cheat-sheet--canvas--hidden\"> " +
 		"	<div class=\"cheat-sheet--wrapper\"> " +
