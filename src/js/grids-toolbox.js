@@ -431,7 +431,7 @@ $(document).ready(function() {
 				var colsWereUpdated;
 				var breakpointCharacter;
 				var colSize;
-				// loop through girds that have col markers
+				// loop through grids that have col markers
 				$grid.each(function() {
 					colsWereUpdated = false;
 					$thisGrid = $(this);
