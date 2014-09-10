@@ -98,7 +98,7 @@ $(document).ready(function() {
 		"--> " +
 		"<!-- gridlines --> " +
 		"<div class=\"gridlines\"> " +
-		"	<div class=\"grid\"> " +
+		"	<div class=\"grid no-grid-classes-display\"> " +
 		"		<div class=\"col-1 col-nostack\"><div class=\"gridlines--col\">1</div></div> " +
 		"		<div class=\"col-1 col-nostack\"><div class=\"gridlines--col\">2</div></div> " +
 		"		<div class=\"col-1 col-nostack\"><div class=\"gridlines--col\">3</div></div> " +
@@ -304,6 +304,7 @@ $(document).ready(function() {
 
 		if (viewportValue > stackBreakpoint || isNaN(stackBreakpoint)) {
 			$(".grid-row-markers-toggle").toggleClass("toggle-button--active");
+			$("body").toggleClass("grid-classes-display");
 		}
 		else {
 			showGridsNotification("\"Grid Row Markers\" are only available for browser widths greater than the \"stack\" breakpoint (" + stackBreakpoint + "px).  Increase the size of your browser to enable this.", 8000);
@@ -676,11 +677,11 @@ $(document).ready(function() {
 	// ***********************
 	var cheatSheetContent = "" +
 		"<!-- grid row -->" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Grid Row:</span></div>" +
 		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid</span></div>" +
 		"</div>" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
 		"&lt;div class=&quot;<span class=\"cheat-sheet--attention\">grid</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
@@ -688,11 +689,11 @@ $(document).ready(function() {
 		"	</div>" +
 		"</div>	" +
 		"<!-- column -->" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Column:</span></div>" +
 		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-[0-12]</span></div>" +
 		"</div>" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
 		"&lt;div class=&quot;grid&quot;&gt;\n" +
@@ -702,11 +703,11 @@ $(document).ready(function() {
 		"	</div>" +
 		"</div>	" +
 		"<!-- push column -->" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Push Column:</span></div>" +
 		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-push-[0-12]</span></div>" +
 		"</div>" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
 		"&lt;div class=&quot;grid&quot;&gt;\n" +
@@ -716,14 +717,14 @@ $(document).ready(function() {
 		"	</div>" +
 		"</div>	" +
 		"<!-- Breakpoint Column Modifiers -->" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Breakpoint Column Modifiers:</span></div>" +
 		"	<div class=\"col-9 col-m-12\">" +
 		"     <span class=\"cheat-sheet--keyword\">.col-[breakpoint]-[0-12]</span>" +
 		"     <div class=\"cheat-sheet--caption\"><span class=\"cheat-sheet--keyword\">[<span class=\"cheat-sheet--attention2\">breakpoint</span>]</span> = <span class=\"cheat-sheet--attention2\">xxl</span>, <span class=\"cheat-sheet--attention2\">xxl</span>, <span class=\"cheat-sheet--attention2\">l</span>, <span class=\"cheat-sheet--attention2\">m</span>, <span class=\"cheat-sheet--attention2\">s</span>, <span class=\"cheat-sheet--attention2\">xs</span>, <span class=\"cheat-sheet--attention2\">xxs</span></div>" +
 		"   </div>" +
 		"</div>" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
 		"&lt;div class=&quot;grid&quot;&gt;\n" +
@@ -733,11 +734,11 @@ $(document).ready(function() {
 		"	</div>" +
 		"</div>	" +
 		"<!-- Breakpoint Push Column -->" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Breakpoint Push Column:</span></div>" +
 		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-[breakpoint]-push-[0-12]</span></div>" +
 		"</div>" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
 		"&lt;div class=&quot;grid&quot;&gt;\n" +
@@ -747,11 +748,11 @@ $(document).ready(function() {
 		"	</div>" +
 		"</div>	" +
 		"<!-- Grid No Stack Modifier -->" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Grid No Stack Modifier:</span></div>" +
 		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid-nostack</span></div>" +
 		"</div>" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
 		"&lt;div class=&quot;grid <span class=\"cheat-sheet--attention\">grid-nostack</span>&quot;&gt;&hellip;&lt;/div&gt;			" +
@@ -759,11 +760,11 @@ $(document).ready(function() {
 		"	</div>" +
 		"</div>	" +
 		"<!-- Column No Stack Modifier -->" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Column No Stack Modifier:</span></div>" +
 		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-nostack</span></div>" +
 		"</div>" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
 		"&lt;div class=&quot;grid&quot;&gt;\n" +
@@ -774,11 +775,11 @@ $(document).ready(function() {
 		"	</div>" +
 		"</div>	" +
 		"<!-- Grid Margin/Padding Modifiers -->" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Grid Margin/Padding Modifiers:</span></div>" +
 		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid-[margin/padding]-[top/bottom]-[0x/1x/2x/3x]</span></div>" +
 		"</div>" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
 		"&lt;div class=&quot;grid <span class=\"cheat-sheet--attention\">grid-padding-top-2x</span> <span class=\"cheat-sheet--attention\">grid-margin-bottom-1x</span>&quot;&gt;&hellip;&lt;/div&gt;		" +
@@ -786,11 +787,11 @@ $(document).ready(function() {
 		"	</div>" +
 		"</div>	" +
 		"<!-- Column Margin/Padding Modifiers -->" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Column Margin/Padding Modifiers:</span></div>" +
 		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-[margin/padding]-[top/bottom]-[0x/1x/2x/3x]</span></div>" +
 		"</div>" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
 		"&lt;div class=&quot;grid&quot;&gt;\n" +
@@ -800,11 +801,11 @@ $(document).ready(function() {
 		"	</div>" +
 		"</div>	" +
 		"<!-- Grid Breakpoint Margin/Padding Modifiers -->" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Grid Breakpoint Margin/Padding Modifiers:</span></div>" +
 		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid-[breakpoint]-[margin/padding]-[top/bottom]-[0x/1x/2x/3x]</span></div>" +
 		"</div>" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
 		"&lt;div class=&quot;grid <span class=\"cheat-sheet--attention\">grid-xxs-margin-top-3x</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
@@ -812,11 +813,11 @@ $(document).ready(function() {
 		"	</div>" +
 		"</div>	" +
 		"<!-- Column Breakpoint Margin/Padding Modifiers -->" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Column Breakpoint Margin/Padding Modifiers:</span></div>" +
 		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-[breakpoint]-[margin/padding]-[top/bottom]-[0x/1x/2x/3x]</span></div>" +
 		"</div>" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
 		"&lt;div class=&quot;grid&quot;&gt;\n" +
@@ -826,11 +827,11 @@ $(document).ready(function() {
 		"	</div>" +
 		"</div>	" +
 		"<!-- Grid Nostack Modifier -->" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Grid Nostack Modifier:</span></div>" +
 		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid-nostack</span></div>" +
 		"</div>" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
 		"&lt;div class=&quot;grid <span class=\"cheat-sheet--attention\">grid-nostack</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
@@ -838,11 +839,11 @@ $(document).ready(function() {
 		"	</div>" +
 		"</div>	" +
 		"<!-- Column Nostack Modifer -->" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Column Nostack Modifer:</span></div>" +
 		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-nostack</span></div>" +
 		"</div>" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
 		"&lt;div class=&quot;grid&quot;&gt;\n" +
@@ -852,11 +853,11 @@ $(document).ready(function() {
 		"	</div>" +
 		"</div>	" +
 		"<!-- Grid Reverse Column Order -->" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Grid Reverse Column Order:</span></div>" +
 		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid-reverse</span></div>" +
 		"</div>" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
 		"&lt;div class=&quot;grid <span class=\"cheat-sheet--attention\">grid-reverse</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
@@ -864,11 +865,11 @@ $(document).ready(function() {
 		"	</div>" +
 		"</div>	" +
 		"<!-- Grid Breakpoint Reverse / Unreverse -->" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Grid Breakpoint Reverse / Unreverse:</span></div>" +
 		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid-[breakpoint]-[reverse/Xreverse]</span></div>" +
 		"</div>" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
 		"&lt;div class=&quot;grid grid-reverse <span class=\"cheat-sheet--attention\">grid-m-Xreverse</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
@@ -876,11 +877,11 @@ $(document).ready(function() {
 		"	</div>" +
 		"</div>	" +
 		"<!-- Grid Nostack AND Reverse / Unreverse -->" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Grid Nostack AND Reverse / Unreverse:</span></div>" +
 		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid-nostack-[reverse/Xreverse]</span></div>" +
 		"</div>" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
 		"&lt;div class=&quot;grid <span class=\"cheat-sheet--attention\">grid-nostack-reverse</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
@@ -888,11 +889,11 @@ $(document).ready(function() {
 		"	</div>" +
 		"</div>	" +
 		"<!-- Column Throw Right Modifier -->" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Column Throw Right Modifier:</span></div>" +
 		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-[throwright/Xthrowright]</span></div>" +
 		"</div>" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
 		"&lt;div class=&quot;grid&quot;&gt;\n" +
@@ -903,11 +904,11 @@ $(document).ready(function() {
 		"	</div>" +
 		"</div>	" +
 		"<!-- Column Breakpoint Throw Right Modifier -->" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Column Breakpoint Throw Right Modifier:</span></div>" +
 		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-[breakpoint]-[throwright/Xthrowright]</span></div>" +
 		"</div>" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
 		"&lt;div class=&quot;grid&quot;&gt;\n" +
@@ -918,11 +919,11 @@ $(document).ready(function() {
 		"	</div>" +
 		"</div>	" +
 		"<!-- Column Newline Modifier -->" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Column Newline Modifier:</span></div>" +
 		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-[newline/Xnewline]</span></div>" +
 		"</div>" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
 		"&lt;div class=&quot;grid&quot;&gt;\n" +
@@ -933,11 +934,11 @@ $(document).ready(function() {
 		"	</div>" +
 		"</div>	" +
 		"<!-- Column Breakpoint Newline Modifier -->" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Column Breakpoint Newline Modifier:</span></div>" +
 		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-[breakpoint]-[newline/Xnewline]</span></div>" +
 		"</div>" +
-		"<div class=\"grid\">" +
+		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"cheat-sheet--codeblock\">" +
 		"&lt;div class=&quot;grid&quot;&gt;\n" +
@@ -1002,4 +1003,42 @@ $(document).ready(function() {
 		clearTimeout(updateCheatSheetId);
 		updateCheatSheetId = setTimeout(calculateCheatSheetDimensions, 300);
 	});	
+	// ****************************	
+
+
+
+	// **********************************
+	// ***** Grid Row Class Display *****
+	// **********************************
+	$gridRows = $(".grid");
+	$gridRows.on("click", function(event) {
+		if($(event.target).hasClass("grid")) {
+			if ($(this).parents(".cheat-sheet--content").length > 0) { return; }
+			var allClasses = $(this).attr("class").split(" ");
+
+			var regExPattern;
+			var message = "";
+			var classes = "";
+			for(var prop in allClasses) {
+				//regExPattern = "grid[s]{0,1}\\-";
+				//if (allClasses[prop].match(regExPattern)) {
+					classes = classes + "<div class=\"grids-notification--modifier\">" + allClasses[prop] + "</div>";
+				//}
+			}
+
+			message = "grid row classes:<br><br>" + classes;
+			var bgColor = $(".grid-row-markers-toggle").css("border-color");
+			showGridsNotification(message, 8000, bgColor, "gridRowClassDisplay");
+		}
+	});
+	// dismiss modifier notification
+	$gridRows.on("mouseleave", function() {
+		var hook = $gridsNotification.attr("data-hook");
+		if (hook) {
+			$gridsNotification
+				.addClass("grids-notification--slide-off-right")
+				.attr("data-hook", "");
+		}
+	});
+	// **********************************	
 });

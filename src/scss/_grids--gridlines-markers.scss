@@ -67,6 +67,8 @@ $markerColor--xxl: #8e44ad;
 $markerColor--default: #7f8c8d;
 // outline color for columns that have inner markers enabled
 $innerMarkerOutlineColor: #ddd;
+// ball marker for displaying grid row classes
+$gridRowMarkerColor: #30BDF4;
 
 // starting z-index of GRIDS toolkit
 // (default is 0 assuming your page elements
@@ -99,7 +101,8 @@ $startingZ-Index: 0 !default;
 %toggle-button {
 	min-width: 150px;
 	background: #30BDF4;	
-	border: 1px solid darken(#30BDF4, 20%);
+	border: 1px solid #30BDF4;
+	box-shadow: 0 2px #A7A7A7;
 	color: white;
 	font-family: $font--inconsolata;
 	font-size: 14px;
@@ -109,10 +112,9 @@ $startingZ-Index: 0 !default;
 	text-align: center;
 	letter-spacing: 1px;
 	line-height: 1.38;
-	transition: all 200ms ease;
+	transition: all 300ms ease;
 	&.toggle-button--active {
-		background: darken(#30BDF4, 20%);
-		border-color: #30BDF4;		
+		background: darken(#30BDF4, 15%);	
 	}
 }
 
@@ -1054,5 +1056,33 @@ body.show-marker-outlines {
 	.grids-notification--modifier {
 		@extend .grids-notification--keyword;
 		margin-top: 3px;
+	}
+}
+
+
+// --------------------------
+// -- grid classes display --
+// --------------------------
+@if $showMarkers == true {
+	body.grid-classes-display .grid:not(.no-grid-classes-display) {
+		&:hover { outline: 1px solid $gridRowMarkerColor !important; }
+		&:before {
+			display: inline-block;
+			position: absolute;
+			top: 0;
+			right: 0;
+			z-index: $startingZ-Index + 10;
+			content: '';
+			width: 0;
+			height: 0;
+			border-radius: 0 0 0 100%;
+			overflow: visible;
+			background: $gridRowMarkerColor;
+			cursor: pointer;
+		}
+		&:hover:before {
+			width: 11px;
+			height: 11px; 
+		}
 	}
 }
