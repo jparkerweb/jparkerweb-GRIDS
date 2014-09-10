@@ -460,7 +460,6 @@ $(document).ready(function() {
 								if (className.match(regExPattern)) {
 									regExPattern = "col\\-" + breakpointCharacter + "\\-([0-9]{1,2})(?!\\-)";
 									colSize = className.match(regExPattern);
-									console.log("colSize2: " + colSize[1]);
 									setInnerMarkerOffsets($(this), colSize[1]);
 									colsWereUpdated = true;
 									return;
@@ -528,7 +527,6 @@ $(document).ready(function() {
 		var className = $this.attr("class");
 		if (className.match(/col\-[0-9]{1,2}(?!-)/)) {
 			var size = className.match(/col\-([0-9]{1,2})(?!-)/, '$1');
-			console.log("size: " + size[1]);
 			setInnerMarkerOffsets($this, size[1]);
 		}		
 	}
