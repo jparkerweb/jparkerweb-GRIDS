@@ -1012,23 +1012,26 @@ $(document).ready(function() {
 	// **********************************
 	$gridRows = $(".grid");
 	$gridRows.on("click", function(event) {
-		if($(event.target).hasClass("grid")) {
-			if ($(this).parents(".cheat-sheet--content").length > 0) { return; }
-			var allClasses = $(this).attr("class").split(" ");
+		var isGridRowMarkersEnabled = ($(".grid-row-markers-toggle.toggle-button--active").length > 0);
+		if(isGridRowMarkersEnabled) {
+			if($(event.target).hasClass("grid")) {
+				if ($(this).parents(".cheat-sheet--content").length > 0) { return; }
+				var allClasses = $(this).attr("class").split(" ");
 
-			var regExPattern;
-			var message = "";
-			var classes = "";
-			for(var prop in allClasses) {
-				//regExPattern = "grid[s]{0,1}\\-";
-				//if (allClasses[prop].match(regExPattern)) {
-					classes = classes + "<div class=\"grids-notification--modifier\">" + allClasses[prop] + "</div>";
-				//}
+				var regExPattern;
+				var message = "";
+				var classes = "";
+				for(var prop in allClasses) {
+					//regExPattern = "grid[s]{0,1}\\-";
+					//if (allClasses[prop].match(regExPattern)) {
+						classes = classes + "<div class=\"grids-notification--modifier\">" + allClasses[prop] + "</div>";
+					//}
+				}
+
+				message = "grid row classes:<br><br>" + classes;
+				var bgColor = $(".grid-row-markers-toggle").css("border-color");
+				showGridsNotification(message, 8000, bgColor, "gridRowClassDisplay");
 			}
-
-			message = "grid row classes:<br><br>" + classes;
-			var bgColor = $(".grid-row-markers-toggle").css("border-color");
-			showGridsNotification(message, 8000, bgColor, "gridRowClassDisplay");
 		}
 	});
 	// dismiss modifier notification
