@@ -434,6 +434,20 @@ $(document).ready(function() {
 				$grid.each(function() {
 					colsWereUpdated = false;
 					$thisGrid = $(this);
+					$thisGrid.children(":regex(class,col\\-[0-9]):has(.innerMarkers)").each(function() {
+						// get col size if a col modifier is currenlty triggered
+						colSize = parseInt($(this).find(".innerMarkers > .innerMarker-current-breakpoint:first").css("max-width"));
+						// if known col size set its offsets
+						if (colSize > 0) {
+							setInnerMarkerOffsets($(this), colSize);
+							colSize = -1;
+						}
+						// otherwise set default offsets
+						else {
+							setDefaultInnerMarkerOffsets($(this));
+							colSize = -1;
+						}
+					});
 					// loop each breakpoint
 					for (var prop in gridBreakpoints) {
 						// set the breakpoint string character (xxl, xl, l, m, s, xs, xxs)
@@ -455,23 +469,6 @@ $(document).ready(function() {
 						}
 						if (colsWereUpdated) { break; }
 					}
-					// if col markers not updated yet then update them using default (no modifier was found)
-					if (!colsWereUpdated) {
-						$thisGrid.children(":regex(class,col\\-[0-9]):has(.innerMarkers)").each(function() {
-							// get col size if a col modifier is currenlty triggered
-							colSize = parseInt($(this).find(".innerMarkers > .innerMarker-current-breakpoint:first").css("max-width"));
-							// if known col size set its offsets
-							if (colSize > 0) {
-								setInnerMarkerOffsets($(this), colSize);
-								colSize = -1;
-							}
-							// otherwise set default offsets
-							else {
-								setDefaultInnerMarkerOffsets($(this));
-								colSize = -1;
-							}
-						});
-					}		
 				});
 			}
 
