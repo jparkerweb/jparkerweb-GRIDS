@@ -1013,6 +1013,9 @@ $col-12: 12 / 12 * 100%;
 	.grid .grid {
 		margin-left: -$grid-gutter-width !important;
 		margin-right: -$grid-gutter-width !important;
+		@if $grid-vertical-spacing > 0 {
+			margin-bottom: -$grid-vertical-spacing !important;
+		}
 	}
 }
 
