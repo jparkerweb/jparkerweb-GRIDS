@@ -969,7 +969,7 @@ $(document).ready(function() {
 		"<div class=\"grid\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"code-block prettyprint linenums\">" +
-		"&lt;div class=&quot;grid <span class=\"cheat-sheet--attention\">grid-textalign-right</span>&quot;&gt;...&lt;/div&gt;" +
+		"&lt;div class=&quot;grid <span class=\"cheat-sheet--attention\">grid-textalign-right</span>&quot;&gt;...&lt;/div&gt;\n" +
 		"</pre>" +
 		"	</div>" +
 		"</div>	" +
@@ -981,9 +981,9 @@ $(document).ready(function() {
 		"<div class=\"grid\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"code-block prettyprint linenums\">" +
-		"&lt;div class=&quot;grid&quot;&gt;" +
-		"&lt;div class=&quot;col-6 <span class=\"cheat-sheet--attention\">col-textalign-center</span>&quot;&gt;...&lt;/div&gt;" +
-		"&lt;/div&gt;" +
+		"&lt;div class=&quot;grid&quot;&gt;\n" +
+		"  &lt;div class=&quot;col-6 <span class=\"cheat-sheet--attention\">col-textalign-center</span>&quot;&gt;...&lt;/div&gt;\n" +
+		"&lt;/div&gt;\n" +
 		"</pre>" +
 		"	</div>" +
 		"</div>	" +
@@ -995,7 +995,7 @@ $(document).ready(function() {
 		"<div class=\"grid\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"code-block prettyprint linenums\">" +
-		"&lt;div class=&quot;grid <span class=\"cheat-sheet--attention\">grid-xxl-textalign-right</span>&quot;&gt;...&lt;/div&gt;" +
+		"&lt;div class=&quot;grid <span class=\"cheat-sheet--attention\">grid-xxl-textalign-right</span>&quot;&gt;...&lt;/div&gt;\n" +
 		"</pre>" +
 		"	</div>" +
 		"</div>	" +
@@ -1007,9 +1007,9 @@ $(document).ready(function() {
 		"<div class=\"grid\">" +
 		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
 		"		<pre class=\"code-block prettyprint linenums\">" +
-		"&lt;div class=&quot;grid&quot;&gt;" +
-		"&lt;div class=&quot;col-6 <span class=\"cheat-sheet--attention\">col-xs-textalign-center</span>&quot;&gt;...&lt;/div&gt;" +
-		"&lt;/div&gt;" +
+		"&lt;div class=&quot;grid&quot;&gt;\n" +
+		"  &lt;div class=&quot;col-6 <span class=\"cheat-sheet--attention\">col-xs-textalign-center</span>&quot;&gt;...&lt;/div&gt;\n" +
+		"&lt;/div&gt;\n" +
 		"</pre>" +
 		"	</div>" +
 		"</div>	";

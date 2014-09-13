@@ -21,7 +21,8 @@
 // ------------------------------------------------------
 // -- To easily extend your GRIDS defined brekpoints   --
 // -- into your site's scss, simply include this       --
-// -- utility class and the config in your scss:       --
+// -- utility class and the config in your             --
+// -- site'sscss:                                      --
 // --    @import "grids--config";                      --
 // --    @import "grids--utility";                     --
 // -- You can now create breakpoint rules for your     --
@@ -49,46 +50,32 @@
 // ------------
 // -- images --
 // ------------
-// ---------------------------------------------------
-// -- scale images, as each fluid column is resized --
-// ---------------------------------------------------
-.grids-content--img {
+// --------------------------------------------------
+// -- scale images as each fluid column is resized --
+// --------------------------------------------------
+.content__img {
 	float: none;
 	max-width: 100%;
 	height: auto;
 }
-// ---------------------------------------------------
-// -- scale images, as each fluid column is resized --
-// -- [disply it as a block element]                --
-// ---------------------------------------------------
-.grids-content--img-block {
-	@extend .grids-content--img;
+// --------------------------------------------------
+// -- scale images as each fluid column is resized --
+// -- [disply it as a block element]               --
+// --------------------------------------------------
+.content__img--block {
+	@extend .content__img;
 	display: block;
 }
 
-
-// ----------------------------------------
-// -- left/center/right align properties --
-// ----------------------------------------
-.grids-content--alignleft { text-align: left; }
-.grids-content--aligncenter { text-align: center; }
-.grids-content--alignright { text-align: right; }
-
-
 // ------------
 // -- floats --
-// -------------------------------
-// -- float element to the left --
-// -------------------------------
-.grids-content--floatleft { 
+// ------------
+.content--floatleft { 
 	float: left; 
 	margin-right: $grid-gutter-width; 
 	margin-bottom: $grid-gutter-width; 
 }
-// --------------------------------
-// -- float element to the right --
-// --------------------------------
-.grids-content--floatright { 
+.content--floatright { 
 	float: right; 
 	margin-left: $grid-gutter-width; 
 	margin-bottom: $grid-gutter-width; 
