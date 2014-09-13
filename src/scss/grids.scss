@@ -86,7 +86,9 @@ $col-12: 12 / 12 * 100%;
 }
 
 
-// grid row
+// --------------
+// -- grid row --
+// --------------
 .grid {
 	display: block;
 	position: relative;
@@ -94,197 +96,14 @@ $col-12: 12 / 12 * 100%;
 	margin-right: auto !important; // important: changes can affect toolbox breakpoint lines
 	max-width: $grid-width !important; // important: changes can affect toolbox breakpoint lines
 	padding-left: $grid-gutter-width !important; // important: changes can affect toolbox breakpoint lines
+	// setting border box model again just in case
+	box-sizing: border-box !important;
+	&:before, &:after { box-sizing: border-box !important; }
 	// clear fix
 	&:after {
 		display: table;
 		content: '';
 		clear: both;
-	}
-	
-	// optional top/bottom margin and padding for grid row
-	&.grid-padding-top-0x { padding-top: 0; }
-	&.grid-padding-top-1x { padding-top: $grid-optional-margin-padding-size-1x; }
-	&.grid-padding-top-2x { padding-top: $grid-optional-margin-padding-size-2x; }
-	&.grid-padding-top-3x { padding-top: $grid-optional-margin-padding-size-3x; }
-	&.grid-padding-bottom-0x { padding-bottom: 0; }
-	&.grid-padding-bottom-1x { padding-bottom: $grid-optional-margin-padding-size-1x; }
-	&.grid-padding-bottom-2x { padding-bottom: $grid-optional-margin-padding-size-2x; }
-	&.grid-padding-bottom-3x { padding-bottom: $grid-optional-margin-padding-size-3x; }
-	&.grid-margin-top-0x { margin-top: 0; }
-	&.grid-margin-top-1x { margin-top: $grid-optional-margin-padding-size-1x; }
-	&.grid-margin-top-2x { margin-top: $grid-optional-margin-padding-size-2x; }
-	&.grid-margin-top-3x { margin-top: $grid-optional-margin-padding-size-3x; }
-	&.grid-margin-bottom-0x { margin-bottom: 0; }
-	&.grid-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
-	&.grid-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
-	&.grid-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
-	// optional top/bottom margin and padding for grid row at breakpoint stack
-	@if $grid-breakpoint-stack > 0 {
-		@media (max-width: $grid-breakpoint-stack) {
-			&.grid-stack-padding-top-0x { padding-top: 0; }
-			&.grid-stack-padding-top-1x { padding-top: $grid-optional-margin-padding-size-1x; }
-			&.grid-stack-padding-top-2x { padding-top: $grid-optional-margin-padding-size-2x; }
-			&.grid-stack-padding-top-3x { padding-top: $grid-optional-margin-padding-size-3x; }
-			&.grid-stack-padding-bottom-0x { padding-bottom: 0; }
-			&.grid-stack-padding-bottom-1x { padding-bottom: $grid-optional-margin-padding-size-1x; }
-			&.grid-stack-padding-bottom-2x { padding-bottom: $grid-optional-margin-padding-size-2x; }
-			&.grid-stack-padding-bottom-3x { padding-bottom: $grid-optional-margin-padding-size-3x; }
-			&.grid-stack-margin-top-0x { margin-top: 0; }
-			&.grid-stack-margin-top-1x { margin-top: $grid-optional-margin-padding-size-1x; }
-			&.grid-stack-margin-top-2x { margin-top: $grid-optional-margin-padding-size-2x; }
-			&.grid-stack-margin-top-3x { margin-top: $grid-optional-margin-padding-size-3x; }
-			&.grid-stack-margin-bottom-0x { margin-bottom: 0; }
-			&.grid-stack-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
-			&.grid-stack-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
-			&.grid-stack-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
-		}
-	}
-	// optional top/bottom margin and padding for grid row at breakpoint xxl
-	@if $grid-breakpoint-xxl > 0 {
-		@media (max-width: $grid-breakpoint-xxl) {
-			&.grid-xxl-padding-top-0x { padding-top: 0; }
-			&.grid-xxl-padding-top-1x { padding-top: $grid-optional-margin-padding-size-1x; }
-			&.grid-xxl-padding-top-2x { padding-top: $grid-optional-margin-padding-size-2x; }
-			&.grid-xxl-padding-top-3x { padding-top: $grid-optional-margin-padding-size-3x; }
-			&.grid-xxl-padding-bottom-0x { padding-bottom: 0; }
-			&.grid-xxl-padding-bottom-1x { padding-bottom: $grid-optional-margin-padding-size-1x; }
-			&.grid-xxl-padding-bottom-2x { padding-bottom: $grid-optional-margin-padding-size-2x; }
-			&.grid-xxl-padding-bottom-3x { padding-bottom: $grid-optional-margin-padding-size-3x; }
-			&.grid-xxl-margin-top-0x { margin-top: 0; }
-			&.grid-xxl-margin-top-1x { margin-top: $grid-optional-margin-padding-size-1x; }
-			&.grid-xxl-margin-top-2x { margin-top: $grid-optional-margin-padding-size-2x; }
-			&.grid-xxl-margin-top-3x { margin-top: $grid-optional-margin-padding-size-3x; }
-			&.grid-xxl-margin-bottom-0x { margin-bottom: 0; }
-			&.grid-xxl-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
-			&.grid-xxl-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
-			&.grid-xxl-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
-		}
-	}
-	// optional top/bottom margin and padding for grid row at breakpoint xl
-	@if $grid-breakpoint-xl > 0 {
-		@media (max-width: $grid-breakpoint-xl) {
-			&.grid-xl-padding-top-0x { padding-top: 0; }
-			&.grid-xl-padding-top-1x { padding-top: $grid-optional-margin-padding-size-1x; }
-			&.grid-xl-padding-top-2x { padding-top: $grid-optional-margin-padding-size-2x; }
-			&.grid-xl-padding-top-3x { padding-top: $grid-optional-margin-padding-size-3x; }
-			&.grid-xl-padding-bottom-0x { padding-bottom: 0; }
-			&.grid-xl-padding-bottom-1x { padding-bottom: $grid-optional-margin-padding-size-1x; }
-			&.grid-xl-padding-bottom-2x { padding-bottom: $grid-optional-margin-padding-size-2x; }
-			&.grid-xl-padding-bottom-3x { padding-bottom: $grid-optional-margin-padding-size-3x; }
-			&.grid-xl-margin-top-0x { margin-top: 0; }
-			&.grid-xl-margin-top-1x { margin-top: $grid-optional-margin-padding-size-1x; }
-			&.grid-xl-margin-top-2x { margin-top: $grid-optional-margin-padding-size-2x; }
-			&.grid-xl-margin-top-3x { margin-top: $grid-optional-margin-padding-size-3x; }
-			&.grid-xl-margin-bottom-0x { margin-bottom: 0; }
-			&.grid-xl-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
-			&.grid-xl-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
-			&.grid-xl-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
-		}
-	}
-	// optional top/bottom margin and padding for grid row at breakpoint l
-	@if $grid-breakpoint-l > 0 {
-		@media (max-width: $grid-breakpoint-l) {
-			&.grid-l-padding-top-0x { padding-top: 0; }
-			&.grid-l-padding-top-1x { padding-top: $grid-optional-margin-padding-size-1x; }
-			&.grid-l-padding-top-2x { padding-top: $grid-optional-margin-padding-size-2x; }
-			&.grid-l-padding-top-3x { padding-top: $grid-optional-margin-padding-size-3x; }
-			&.grid-l-padding-bottom-0x { padding-bottom: 0; }
-			&.grid-l-padding-bottom-1x { padding-bottom: $grid-optional-margin-padding-size-1x; }
-			&.grid-l-padding-bottom-2x { padding-bottom: $grid-optional-margin-padding-size-2x; }
-			&.grid-l-padding-bottom-3x { padding-bottom: $grid-optional-margin-padding-size-3x; }
-			&.grid-l-margin-top-0x { margin-top: 0; }
-			&.grid-l-margin-top-1x { margin-top: $grid-optional-margin-padding-size-1x; }
-			&.grid-l-margin-top-2x { margin-top: $grid-optional-margin-padding-size-2x; }
-			&.grid-l-margin-top-3x { margin-top: $grid-optional-margin-padding-size-3x; }
-			&.grid-l-margin-bottom-0x { margin-bottom: 0; }
-			&.grid-l-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
-			&.grid-l-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
-			&.grid-l-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
-		}
-	}
-	// optional top/bottom margin and padding for grid row at breakpoint m
-	@if $grid-breakpoint-m > 0 {
-		@media (max-width: $grid-breakpoint-m) {
-			&.grid-m-padding-top-0x { padding-top: 0; }
-			&.grid-m-padding-top-1x { padding-top: $grid-optional-margin-padding-size-1x; }
-			&.grid-m-padding-top-2x { padding-top: $grid-optional-margin-padding-size-2x; }
-			&.grid-m-padding-top-3x { padding-top: $grid-optional-margin-padding-size-3x; }
-			&.grid-m-padding-bottom-0x { padding-bottom: 0; }
-			&.grid-m-padding-bottom-1x { padding-bottom: $grid-optional-margin-padding-size-1x; }
-			&.grid-m-padding-bottom-2x { padding-bottom: $grid-optional-margin-padding-size-2x; }
-			&.grid-m-padding-bottom-3x { padding-bottom: $grid-optional-margin-padding-size-3x; }
-			&.grid-m-margin-top-0x { margin-top: 0; }
-			&.grid-m-margin-top-1x { margin-top: $grid-optional-margin-padding-size-1x; }
-			&.grid-m-margin-top-2x { margin-top: $grid-optional-margin-padding-size-2x; }
-			&.grid-m-margin-top-3x { margin-top: $grid-optional-margin-padding-size-3x; }
-			&.grid-m-margin-bottom-0x { margin-bottom: 0; }
-			&.grid-m-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
-			&.grid-m-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
-			&.grid-m-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
-		}
-	}
-	// optional top/bottom margin and padding for grid row at breakpoint s
-	@if $grid-breakpoint-s > 0 {
-		@media (max-width: $grid-breakpoint-s) {
-			&.grid-s-padding-top-0x { padding-top: 0; }
-			&.grid-s-padding-top-1x { padding-top: $grid-optional-margin-padding-size-1x; }
-			&.grid-s-padding-top-2x { padding-top: $grid-optional-margin-padding-size-2x; }
-			&.grid-s-padding-top-3x { padding-top: $grid-optional-margin-padding-size-3x; }
-			&.grid-s-padding-bottom-0x { padding-bottom: 0; }
-			&.grid-s-padding-bottom-1x { padding-bottom: $grid-optional-margin-padding-size-1x; }
-			&.grid-s-padding-bottom-2x { padding-bottom: $grid-optional-margin-padding-size-2x; }
-			&.grid-s-padding-bottom-3x { padding-bottom: $grid-optional-margin-padding-size-3x; }
-			&.grid-s-margin-top-0x { margin-top: 0; }
-			&.grid-s-margin-top-1x { margin-top: $grid-optional-margin-padding-size-1x; }
-			&.grid-s-margin-top-2x { margin-top: $grid-optional-margin-padding-size-2x; }
-			&.grid-s-margin-top-3x { margin-top: $grid-optional-margin-padding-size-3x; }
-			&.grid-s-margin-bottom-0x { margin-bottom: 0; }
-			&.grid-s-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
-			&.grid-s-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
-			&.grid-s-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
-		}
-	}
-	// optional top/bottom margin and padding for grid row at breakpoint xs
-	@if $grid-breakpoint-xs > 0 {
-		@media (max-width: $grid-breakpoint-xs) {
-			&.grid-xs-padding-top-0x { padding-top: 0; }
-			&.grid-xs-padding-top-1x { padding-top: $grid-optional-margin-padding-size-1x; }
-			&.grid-xs-padding-top-2x { padding-top: $grid-optional-margin-padding-size-2x; }
-			&.grid-xs-padding-top-3x { padding-top: $grid-optional-margin-padding-size-3x; }
-			&.grid-xs-padding-bottom-0x { padding-bottom: 0; }
-			&.grid-xs-padding-bottom-1x { padding-bottom: $grid-optional-margin-padding-size-1x; }
-			&.grid-xs-padding-bottom-2x { padding-bottom: $grid-optional-margin-padding-size-2x; }
-			&.grid-xs-padding-bottom-3x { padding-bottom: $grid-optional-margin-padding-size-3x; }
-			&.grid-xs-margin-top-0x { margin-top: 0; }
-			&.grid-xs-margin-top-1x { margin-top: $grid-optional-margin-padding-size-1x; }
-			&.grid-xs-margin-top-2x { margin-top: $grid-optional-margin-padding-size-2x; }
-			&.grid-xs-margin-top-3x { margin-top: $grid-optional-margin-padding-size-3x; }
-			&.grid-xs-margin-bottom-0x { margin-bottom: 0; }
-			&.grid-xs-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
-			&.grid-xs-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
-			&.grid-xs-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
-		}
-	}
-	// optional top/bottom margin and padding for grid row at breakpoint xxs
-	@if $grid-breakpoint-xxs > 0 {
-		@media (max-width: $grid-breakpoint-xxs) {
-			&.grid-xxs-padding-top-0x { padding-top: 0; }
-			&.grid-xxs-padding-top-1x { padding-top: $grid-optional-margin-padding-size-1x; }
-			&.grid-xxs-padding-top-2x { padding-top: $grid-optional-margin-padding-size-2x; }
-			&.grid-xxs-padding-top-3x { padding-top: $grid-optional-margin-padding-size-3x; }
-			&.grid-xxs-padding-bottom-0x { padding-bottom: 0; }
-			&.grid-xxs-padding-bottom-1x { padding-bottom: $grid-optional-margin-padding-size-1x; }
-			&.grid-xxs-padding-bottom-2x { padding-bottom: $grid-optional-margin-padding-size-2x; }
-			&.grid-xxs-padding-bottom-3x { padding-bottom: $grid-optional-margin-padding-size-3x; }
-			&.grid-xxs-margin-top-0x { margin-top: 0; }
-			&.grid-xxs-margin-top-1x { margin-top: $grid-optional-margin-padding-size-1x; }
-			&.grid-xxs-margin-top-2x { margin-top: $grid-optional-margin-padding-size-2x; }
-			&.grid-xxs-margin-top-3x { margin-top: $grid-optional-margin-padding-size-3x; }
-			&.grid-xxs-margin-bottom-0x { margin-bottom: 0; }
-			&.grid-xxs-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
-			&.grid-xxs-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
-			&.grid-xxs-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
-		}
 	}
 
 	// setup our common col class structure
@@ -292,6 +111,10 @@ $col-12: 12 / 12 * 100%;
 		float: left;
 		position: relative;
 		vertical-align: top;
+		// setting border box model again just in case
+		box-sizing: border-box !important;
+		&:before, &:after { box-sizing: border-box !important; }		
+		// set gutters
 		padding-right: $grid-gutter-width;
 		padding-bottom: $grid-vertical-spacing;
 		&:last-of-type {
@@ -347,6 +170,9 @@ $col-12: 12 / 12 * 100%;
 	.col-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
 	.col-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
 	.col-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }	
+	.col-textalign-left { text-align: left; }
+	.col-textalign-center { text-align: center; }
+	.col-textalign-right { text-align: right; }
 }
 @if $grid-breakpoint-stack > 0 {
 	.grid:not(.grid-nostack) {
@@ -383,6 +209,9 @@ $col-12: 12 / 12 * 100%;
 				&.col-stack-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
 				&.col-stack-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
 				&.col-stack-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
+				&.col-stack-textalign-left { text-align: left; }
+				&.col-stack-textalign-center { text-align: center; }
+				&.col-stack-textalign-right { text-align: right; }
 			}
 		}
 	}
@@ -440,6 +269,10 @@ $col-12: 12 / 12 * 100%;
 				&.col-nostack-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
 				&.col-nostack-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
 				&.col-nostack-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
+				// optional text alignment
+				&.col-nostack-textalign-left { text-align: left; }
+				&.col-nostack-textalign-center { text-align: center; }
+				&.col-nostack-textalign-right { text-align: right; }
 			}
 		}
 	}
@@ -506,6 +339,10 @@ $col-12: 12 / 12 * 100%;
 			.col-xxl-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
 			.col-xxl-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
 			.col-xxl-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
+			// optional text alignment
+			.col-xxl-textalign-left { text-align: left; }
+			.col-xxl-textalign-center { text-align: center; }
+			.col-xxl-textalign-right { text-align: right; }
 		}
 	}
 	// bp: XL
@@ -564,6 +401,10 @@ $col-12: 12 / 12 * 100%;
 			.col-xl-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
 			.col-xl-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
 			.col-xl-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
+			// optional text alignment
+			.col-xl-textalign-left { text-align: left; }
+			.col-xl-textalign-center { text-align: center; }
+			.col-xl-textalign-right { text-align: right; }
 		}
 	}
 	// bp: L
@@ -622,6 +463,10 @@ $col-12: 12 / 12 * 100%;
 			.col-l-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
 			.col-l-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
 			.col-l-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }		
+			// optional text alignment
+			.col-l-textalign-left { text-align: left; }
+			.col-l-textalign-center { text-align: center; }
+			.col-l-textalign-right { text-align: right; }
 		}
 	}
 	// bp: M
@@ -680,6 +525,10 @@ $col-12: 12 / 12 * 100%;
 			.col-m-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
 			.col-m-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
 			.col-m-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }		
+			// optional text alignment
+			.col-m-textalign-left { text-align: left; }
+			.col-m-textalign-center { text-align: center; }
+			.col-m-textalign-right { text-align: right; }
 		}
 	}
 	// bp: S
@@ -738,6 +587,10 @@ $col-12: 12 / 12 * 100%;
 			.col-s-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
 			.col-s-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
 			.col-s-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }		
+			// optional text alignment
+			.col-s-textalign-left { text-align: left; }
+			.col-s-textalign-center { text-align: center; }
+			.col-s-textalign-right { text-align: right; }
 		}
 	}
 	// bp: XS
@@ -796,6 +649,10 @@ $col-12: 12 / 12 * 100%;
 			.col-xs-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
 			.col-xs-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
 			.col-xs-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }		
+			// optional text alignment
+			.col-xs-textalign-left { text-align: left; }
+			.col-xs-textalign-center { text-align: center; }
+			.col-xs-textalign-right { text-align: right; }
 		}
 	}
 	// bp: XXS
@@ -854,21 +711,73 @@ $col-12: 12 / 12 * 100%;
 			.col-xxs-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
 			.col-xxs-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
 			.col-xxs-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }		
+			// optional text alignment
+			.col-xxs-textalign-left { text-align: left; }
+			.col-xxs-textalign-center { text-align: center; }
+			.col-xxs-textalign-right { text-align: right; }
 		}
 	}
 }
 
+
+
+// ------------------------
+// -- addon grid classes --
+// ------------------------
 .grid {
 	// reverse display order of columns
 	&.grid-reverse { 
 		[class*=col-] { float: right; }
 	}
-	// bp: XXL
+	// optional top/bottom margin and padding for grid row
+	&.grid-padding-top-0x { padding-top: 0; }
+	&.grid-padding-top-1x { padding-top: $grid-optional-margin-padding-size-1x; }
+	&.grid-padding-top-2x { padding-top: $grid-optional-margin-padding-size-2x; }
+	&.grid-padding-top-3x { padding-top: $grid-optional-margin-padding-size-3x; }
+	&.grid-padding-bottom-0x { padding-bottom: 0; }
+	&.grid-padding-bottom-1x { padding-bottom: $grid-optional-margin-padding-size-1x; }
+	&.grid-padding-bottom-2x { padding-bottom: $grid-optional-margin-padding-size-2x; }
+	&.grid-padding-bottom-3x { padding-bottom: $grid-optional-margin-padding-size-3x; }
+	&.grid-margin-top-0x { margin-top: 0; }
+	&.grid-margin-top-1x { margin-top: $grid-optional-margin-padding-size-1x; }
+	&.grid-margin-top-2x { margin-top: $grid-optional-margin-padding-size-2x; }
+	&.grid-margin-top-3x { margin-top: $grid-optional-margin-padding-size-3x; }
+	&.grid-margin-bottom-0x { margin-bottom: 0; }
+	&.grid-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
+	&.grid-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
+	&.grid-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
+	// optional text alignment
+	&.grid-textalign-left { text-align: left; }
+	&.grid-textalign-center { text-align: center; }
+	&.grid-textalign-right { text-align: right; }
+
+	// bp: xxl
 	@if $grid-breakpoint-xxl > 0 {
 		@media (max-width: $grid-breakpoint-xxl) {
 			// revserse/unreverse display order of columns at xxl xxl
 			&.grid-xxl-reverse [class*=col-] { float: right; }
 			&.grid-xxl-Xreverse [class*=col-] { float: left; }
+			// optional top/bottom margin and padding
+			&.grid-xxl-padding-top-0x { padding-top: 0; }
+			&.grid-xxl-padding-top-1x { padding-top: $grid-optional-margin-padding-size-1x; }
+			&.grid-xxl-padding-top-2x { padding-top: $grid-optional-margin-padding-size-2x; }
+			&.grid-xxl-padding-top-3x { padding-top: $grid-optional-margin-padding-size-3x; }
+			&.grid-xxl-padding-bottom-0x { padding-bottom: 0; }
+			&.grid-xxl-padding-bottom-1x { padding-bottom: $grid-optional-margin-padding-size-1x; }
+			&.grid-xxl-padding-bottom-2x { padding-bottom: $grid-optional-margin-padding-size-2x; }
+			&.grid-xxl-padding-bottom-3x { padding-bottom: $grid-optional-margin-padding-size-3x; }
+			&.grid-xxl-margin-top-0x { margin-top: 0; }
+			&.grid-xxl-margin-top-1x { margin-top: $grid-optional-margin-padding-size-1x; }
+			&.grid-xxl-margin-top-2x { margin-top: $grid-optional-margin-padding-size-2x; }
+			&.grid-xxl-margin-top-3x { margin-top: $grid-optional-margin-padding-size-3x; }
+			&.grid-xxl-margin-bottom-0x { margin-bottom: 0; }
+			&.grid-xxl-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
+			&.grid-xxl-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
+			&.grid-xxl-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
+			// optional text alignment
+			&.grid-xxl-textalign-left { text-align: left; }
+			&.grid-xxl-textalign-center { text-align: center; }
+			&.grid-xxl-textalign-right { text-align: right; }			
 		}
 	}
 	// bp: xl
@@ -877,6 +786,27 @@ $col-12: 12 / 12 * 100%;
 			// revserse/unreverse display order of columns at xl xl
 			&.grid-xl-reverse [class*=col-] { float: right; }
 			&.grid-xl-Xreverse [class*=col-] { float: left; }
+			// optional top/bottom margin and padding
+			&.grid-xl-padding-top-0x { padding-top: 0; }
+			&.grid-xl-padding-top-1x { padding-top: $grid-optional-margin-padding-size-1x; }
+			&.grid-xl-padding-top-2x { padding-top: $grid-optional-margin-padding-size-2x; }
+			&.grid-xl-padding-top-3x { padding-top: $grid-optional-margin-padding-size-3x; }
+			&.grid-xl-padding-bottom-0x { padding-bottom: 0; }
+			&.grid-xl-padding-bottom-1x { padding-bottom: $grid-optional-margin-padding-size-1x; }
+			&.grid-xl-padding-bottom-2x { padding-bottom: $grid-optional-margin-padding-size-2x; }
+			&.grid-xl-padding-bottom-3x { padding-bottom: $grid-optional-margin-padding-size-3x; }
+			&.grid-xl-margin-top-0x { margin-top: 0; }
+			&.grid-xl-margin-top-1x { margin-top: $grid-optional-margin-padding-size-1x; }
+			&.grid-xl-margin-top-2x { margin-top: $grid-optional-margin-padding-size-2x; }
+			&.grid-xl-margin-top-3x { margin-top: $grid-optional-margin-padding-size-3x; }
+			&.grid-xl-margin-bottom-0x { margin-bottom: 0; }
+			&.grid-xl-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
+			&.grid-xl-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
+			&.grid-xl-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
+			// optional text alignment
+			&.grid-xl-textalign-left { text-align: left; }
+			&.grid-xl-textalign-center { text-align: center; }
+			&.grid-xl-textalign-right { text-align: right; }			
 		}
 	}
 	// bp: l
@@ -885,6 +815,27 @@ $col-12: 12 / 12 * 100%;
 			// revserse/unreverse display order of columns at l
 			&.grid-l-reverse [class*=col-] { float: right; }
 			&.grid-l-Xreverse [class*=col-] { float: left; }
+			// optional top/bottom margin and padding
+			&.grid-l-padding-top-0x { padding-top: 0; }
+			&.grid-l-padding-top-1x { padding-top: $grid-optional-margin-padding-size-1x; }
+			&.grid-l-padding-top-2x { padding-top: $grid-optional-margin-padding-size-2x; }
+			&.grid-l-padding-top-3x { padding-top: $grid-optional-margin-padding-size-3x; }
+			&.grid-l-padding-bottom-0x { padding-bottom: 0; }
+			&.grid-l-padding-bottom-1x { padding-bottom: $grid-optional-margin-padding-size-1x; }
+			&.grid-l-padding-bottom-2x { padding-bottom: $grid-optional-margin-padding-size-2x; }
+			&.grid-l-padding-bottom-3x { padding-bottom: $grid-optional-margin-padding-size-3x; }
+			&.grid-l-margin-top-0x { margin-top: 0; }
+			&.grid-l-margin-top-1x { margin-top: $grid-optional-margin-padding-size-1x; }
+			&.grid-l-margin-top-2x { margin-top: $grid-optional-margin-padding-size-2x; }
+			&.grid-l-margin-top-3x { margin-top: $grid-optional-margin-padding-size-3x; }
+			&.grid-l-margin-bottom-0x { margin-bottom: 0; }
+			&.grid-l-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
+			&.grid-l-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
+			&.grid-l-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
+			// optional text alignment
+			&.grid-l-textalign-left { text-align: left; }
+			&.grid-l-textalign-center { text-align: center; }
+			&.grid-l-textalign-right { text-align: right; }			
 		}
 	}
 	// bp: m
@@ -893,6 +844,27 @@ $col-12: 12 / 12 * 100%;
 			// revserse/unreverse display order of columns at m
 			&.grid-m-reverse [class*=col-] { float: right; }
 			&.grid-m-Xreverse [class*=col-] { float: left; }
+			// optional top/bottom margin and padding
+			&.grid-m-padding-top-0x { padding-top: 0; }
+			&.grid-m-padding-top-1x { padding-top: $grid-optional-margin-padding-size-1x; }
+			&.grid-m-padding-top-2x { padding-top: $grid-optional-margin-padding-size-2x; }
+			&.grid-m-padding-top-3x { padding-top: $grid-optional-margin-padding-size-3x; }
+			&.grid-m-padding-bottom-0x { padding-bottom: 0; }
+			&.grid-m-padding-bottom-1x { padding-bottom: $grid-optional-margin-padding-size-1x; }
+			&.grid-m-padding-bottom-2x { padding-bottom: $grid-optional-margin-padding-size-2x; }
+			&.grid-m-padding-bottom-3x { padding-bottom: $grid-optional-margin-padding-size-3x; }
+			&.grid-m-margin-top-0x { margin-top: 0; }
+			&.grid-m-margin-top-1x { margin-top: $grid-optional-margin-padding-size-1x; }
+			&.grid-m-margin-top-2x { margin-top: $grid-optional-margin-padding-size-2x; }
+			&.grid-m-margin-top-3x { margin-top: $grid-optional-margin-padding-size-3x; }
+			&.grid-m-margin-bottom-0x { margin-bottom: 0; }
+			&.grid-m-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
+			&.grid-m-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
+			&.grid-m-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
+			// optional text alignment
+			&.grid-m-textalign-left { text-align: left; }
+			&.grid-m-textalign-center { text-align: center; }
+			&.grid-m-textalign-right { text-align: right; }			
 		}
 	}
 	// bp: s
@@ -901,6 +873,26 @@ $col-12: 12 / 12 * 100%;
 			// revserse/unreverse display order of columns at s
 			&.grid-s-reverse [class*=col-] { float: right; }
 			&.grid-s-Xreverse [class*=col-] { float: left; }
+			&.grid-s-padding-top-0x { padding-top: 0; }
+			&.grid-s-padding-top-1x { padding-top: $grid-optional-margin-padding-size-1x; }
+			&.grid-s-padding-top-2x { padding-top: $grid-optional-margin-padding-size-2x; }
+			&.grid-s-padding-top-3x { padding-top: $grid-optional-margin-padding-size-3x; }
+			&.grid-s-padding-bottom-0x { padding-bottom: 0; }
+			&.grid-s-padding-bottom-1x { padding-bottom: $grid-optional-margin-padding-size-1x; }
+			&.grid-s-padding-bottom-2x { padding-bottom: $grid-optional-margin-padding-size-2x; }
+			&.grid-s-padding-bottom-3x { padding-bottom: $grid-optional-margin-padding-size-3x; }
+			&.grid-s-margin-top-0x { margin-top: 0; }
+			&.grid-s-margin-top-1x { margin-top: $grid-optional-margin-padding-size-1x; }
+			&.grid-s-margin-top-2x { margin-top: $grid-optional-margin-padding-size-2x; }
+			&.grid-s-margin-top-3x { margin-top: $grid-optional-margin-padding-size-3x; }
+			&.grid-s-margin-bottom-0x { margin-bottom: 0; }
+			&.grid-s-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
+			&.grid-s-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
+			&.grid-s-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
+			// optional text alignment
+			&.grid-s-textalign-left { text-align: left; }
+			&.grid-s-textalign-center { text-align: center; }
+			&.grid-s-textalign-right { text-align: right; }			
 		}
 	}
 	// bp: xs
@@ -909,6 +901,26 @@ $col-12: 12 / 12 * 100%;
 			// revserse/unreverse display order of columns at xs
 			&.grid-xs-reverse [class*=col-] { float: right; }
 			&.grid-xs-Xreverse [class*=col-] { float: left; }
+			&.grid-xs-padding-top-0x { padding-top: 0; }
+			&.grid-xs-padding-top-1x { padding-top: $grid-optional-margin-padding-size-1x; }
+			&.grid-xs-padding-top-2x { padding-top: $grid-optional-margin-padding-size-2x; }
+			&.grid-xs-padding-top-3x { padding-top: $grid-optional-margin-padding-size-3x; }
+			&.grid-xs-padding-bottom-0x { padding-bottom: 0; }
+			&.grid-xs-padding-bottom-1x { padding-bottom: $grid-optional-margin-padding-size-1x; }
+			&.grid-xs-padding-bottom-2x { padding-bottom: $grid-optional-margin-padding-size-2x; }
+			&.grid-xs-padding-bottom-3x { padding-bottom: $grid-optional-margin-padding-size-3x; }
+			&.grid-xs-margin-top-0x { margin-top: 0; }
+			&.grid-xs-margin-top-1x { margin-top: $grid-optional-margin-padding-size-1x; }
+			&.grid-xs-margin-top-2x { margin-top: $grid-optional-margin-padding-size-2x; }
+			&.grid-xs-margin-top-3x { margin-top: $grid-optional-margin-padding-size-3x; }
+			&.grid-xs-margin-bottom-0x { margin-bottom: 0; }
+			&.grid-xs-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
+			&.grid-xs-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
+			&.grid-xs-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
+			// optional text alignment
+			&.grid-xs-textalign-left { text-align: left; }
+			&.grid-xs-textalign-center { text-align: center; }
+			&.grid-xs-textalign-right { text-align: right; }			
 		}
 	}
 	// bp: xxs
@@ -917,6 +929,27 @@ $col-12: 12 / 12 * 100%;
 			// revserse/unreverse display order of columns at xxs
 			&.grid-xxs-reverse [class*=col-] { float: right; }
 			&.grid-xxs-Xreverse [class*=col-] { float: left; }
+			// optional top/bottom margin and padding
+			&.grid-xxs-padding-top-0x { padding-top: 0; }
+			&.grid-xxs-padding-top-1x { padding-top: $grid-optional-margin-padding-size-1x; }
+			&.grid-xxs-padding-top-2x { padding-top: $grid-optional-margin-padding-size-2x; }
+			&.grid-xxs-padding-top-3x { padding-top: $grid-optional-margin-padding-size-3x; }
+			&.grid-xxs-padding-bottom-0x { padding-bottom: 0; }
+			&.grid-xxs-padding-bottom-1x { padding-bottom: $grid-optional-margin-padding-size-1x; }
+			&.grid-xxs-padding-bottom-2x { padding-bottom: $grid-optional-margin-padding-size-2x; }
+			&.grid-xxs-padding-bottom-3x { padding-bottom: $grid-optional-margin-padding-size-3x; }
+			&.grid-xxs-margin-top-0x { margin-top: 0; }
+			&.grid-xxs-margin-top-1x { margin-top: $grid-optional-margin-padding-size-1x; }
+			&.grid-xxs-margin-top-2x { margin-top: $grid-optional-margin-padding-size-2x; }
+			&.grid-xxs-margin-top-3x { margin-top: $grid-optional-margin-padding-size-3x; }
+			&.grid-xxs-margin-bottom-0x { margin-bottom: 0; }
+			&.grid-xxs-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
+			&.grid-xxs-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
+			&.grid-xxs-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
+			// optional text alignment
+			&.grid-xxs-textalign-left { text-align: left; }
+			&.grid-xxs-textalign-center { text-align: center; }
+			&.grid-xxs-textalign-right { text-align: right; }			
 		}
 	}
 	// bp: stack
@@ -927,6 +960,49 @@ $col-12: 12 / 12 * 100%;
 			// revserse/unreverse display order of columns at stack
 			&.grid-nostack-reverse [class*=col-] { float: right; }
 			&.grid-nostack-Xreverse [class*=col-] { float: left; }
+			// optional top/bottom margin and padding
+			&.grid-nostack-padding-top-0x { padding-top: 0; }
+			&.grid-nostack-padding-top-1x { padding-top: $grid-optional-margin-padding-size-1x; }
+			&.grid-nostack-padding-top-2x { padding-top: $grid-optional-margin-padding-size-2x; }
+			&.grid-nostack-padding-top-3x { padding-top: $grid-optional-margin-padding-size-3x; }
+			&.grid-nostack-padding-bottom-0x { padding-bottom: 0; }
+			&.grid-nostack-padding-bottom-1x { padding-bottom: $grid-optional-margin-padding-size-1x; }
+			&.grid-nostack-padding-bottom-2x { padding-bottom: $grid-optional-margin-padding-size-2x; }
+			&.grid-nostack-padding-bottom-3x { padding-bottom: $grid-optional-margin-padding-size-3x; }
+			&.grid-nostack-margin-top-0x { margin-top: 0; }
+			&.grid-nostack-margin-top-1x { margin-top: $grid-optional-margin-padding-size-1x; }
+			&.grid-nostack-margin-top-2x { margin-top: $grid-optional-margin-padding-size-2x; }
+			&.grid-nostack-margin-top-3x { margin-top: $grid-optional-margin-padding-size-3x; }
+			&.grid-nostack-margin-bottom-0x { margin-bottom: 0; }
+			&.grid-nostack-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
+			&.grid-nostack-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
+			&.grid-nostack-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }			
+			// optional text alignment
+			&.grid-nostack-textalign-left { text-align: left; }
+			&.grid-nostack-textalign-center { text-align: center; }
+			&.grid-nostack-textalign-right { text-align: right; }
+
+			// optional top/bottom margin and padding
+			&.grid-stack-padding-top-0x { padding-top: 0; }
+			&.grid-stack-padding-top-1x { padding-top: $grid-optional-margin-padding-size-1x; }
+			&.grid-stack-padding-top-2x { padding-top: $grid-optional-margin-padding-size-2x; }
+			&.grid-stack-padding-top-3x { padding-top: $grid-optional-margin-padding-size-3x; }
+			&.grid-stack-padding-bottom-0x { padding-bottom: 0; }
+			&.grid-stack-padding-bottom-1x { padding-bottom: $grid-optional-margin-padding-size-1x; }
+			&.grid-stack-padding-bottom-2x { padding-bottom: $grid-optional-margin-padding-size-2x; }
+			&.grid-stack-padding-bottom-3x { padding-bottom: $grid-optional-margin-padding-size-3x; }
+			&.grid-stack-margin-top-0x { margin-top: 0; }
+			&.grid-stack-margin-top-1x { margin-top: $grid-optional-margin-padding-size-1x; }
+			&.grid-stack-margin-top-2x { margin-top: $grid-optional-margin-padding-size-2x; }
+			&.grid-stack-margin-top-3x { margin-top: $grid-optional-margin-padding-size-3x; }
+			&.grid-stack-margin-bottom-0x { margin-bottom: 0; }
+			&.grid-stack-margin-bottom-1x { margin-bottom: $grid-optional-margin-padding-size-1x; }
+			&.grid-stack-margin-bottom-2x { margin-bottom: $grid-optional-margin-padding-size-2x; }
+			&.grid-stack-margin-bottom-3x { margin-bottom: $grid-optional-margin-padding-size-3x; }
+			// optional text alignment
+			&.grid-stack-textalign-left { text-align: left; }
+			&.grid-stack-textalign-center { text-align: center; }
+			&.grid-stack-textalign-right { text-align: right; }			
 		}
 	}
 }

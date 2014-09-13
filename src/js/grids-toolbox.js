@@ -85,10 +85,49 @@ $(document).ready(function() {
 
 
 
+	// **********************************
+	// ***** Grid Row Class Display *****
+	// **********************************
+	$gridRows = $(".grid");
+	$gridRows.on("click", function(event) {
+		var isGridRowMarkersEnabled = ($(".grid-row-markers-toggle.toggle-button--active").length > 0);
+		if(isGridRowMarkersEnabled) {
+			event.stopImmediatePropagation();
+			if($(event.target).hasClass("grid")) {
+				var allClasses = $(this).attr("class").split(" ");
+
+				var regExPattern;
+				var message = "";
+				var classes = "";
+				for(var prop in allClasses) {
+					//regExPattern = "grid[s]{0,1}\\-";
+					//if (allClasses[prop].match(regExPattern)) {
+						classes = classes + "<div class=\"grids-notification--modifier\">" + allClasses[prop] + "</div>";
+					//}
+				}
+
+				message = "grid row classes:<br><br>" + classes;
+				var bgColor = $(".grid-row-markers-toggle").css("border-color");
+				showGridsNotification(message, 8000, bgColor, "gridRowClassDisplay");
+			}
+		}
+	});
+	// dismiss modifier notification
+	$gridRows.on("mouseleave", function() {
+		var hook = $gridsNotification.attr("data-hook");
+		if (hook) {
+			$gridsNotification
+				.addClass("grids-notification--slide-off-right")
+				.attr("data-hook", "");
+		}
+	});
+	// **********************************	
+
+
+
 	// *********************************
 	// ***** Gridlines and Markers *****
 	// *********************************
-
 	// define markup require to render Gridline & Marker Helper elements
 	var gridlinesAndMarkers = " " +
 		"<!-- " +
@@ -572,7 +611,7 @@ $(document).ready(function() {
 
 		// if default marker, filter out all breakpoint classes
 		if ($(this).hasClass("innerMarker-default")) {
-			var regExPattern = /col-[0-9]{1,2}(?!-)|col-push-[0-9]{1,2}(?!-)|col-(newline|Xnewline|throwright|Xthrowright)(?!-)|col-(margin|padding)-(top|bottom)-(0x|1x|2x|3x)(?!-)/g;
+			var regExPattern = /col-[0-9]{1,2}(?!-)|col-push-[0-9]{1,2}(?!-)|col-(newline|Xnewline|throwright|Xthrowright)(?!-)|col-(margin|padding)-(top|bottom)-(0x|1x|2x|3x)(?!-)|col-textalign-(left|center|right)(?!-)/g;
 			allClasses = className.match(regExPattern);
 			classes = "";
 			bpName = "Default";
@@ -826,32 +865,6 @@ $(document).ready(function() {
 		"</pre>" +
 		"	</div>" +
 		"</div>	" +
-		"<!-- Grid Nostack Modifier -->" +
-		"<div class=\"grid no-grid-classes-display\">" +
-		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Grid Nostack Modifier:</span></div>" +
-		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid-nostack</span></div>" +
-		"</div>" +
-		"<div class=\"grid no-grid-classes-display\">" +
-		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
-		"		<pre class=\"cheat-sheet--codeblock\">" +
-		"&lt;div class=&quot;grid <span class=\"cheat-sheet--attention\">grid-nostack</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
-		"</pre>" +
-		"	</div>" +
-		"</div>	" +
-		"<!-- Column Nostack Modifer -->" +
-		"<div class=\"grid no-grid-classes-display\">" +
-		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Column Nostack Modifer:</span></div>" +
-		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-nostack</span></div>" +
-		"</div>" +
-		"<div class=\"grid no-grid-classes-display\">" +
-		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
-		"		<pre class=\"cheat-sheet--codeblock\">" +
-		"&lt;div class=&quot;grid&quot;&gt;\n" +
-		"  &lt;div class=&quot;col-6 <span class=\"cheat-sheet--attention\">col-nostack</span>&quot;&gt;&hellip;&lt;/div&gt;\n" +
-		"&lt;/div&gt;\n" +
-		"</pre>" +
-		"	</div>" +
-		"</div>	" +
 		"<!-- Grid Reverse Column Order -->" +
 		"<div class=\"grid no-grid-classes-display\">" +
 		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Grid Reverse Column Order:</span></div>" +
@@ -947,7 +960,61 @@ $(document).ready(function() {
 		"&lt;/div&gt;\n" +
 		"</pre>" +
 		"	</div>" +
+		"</div>	" +
+		"<!-- Grid Text Align Modifiers -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Grid Text Align Modifiers:</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid-textalign-[left/center/right]</span></div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"code-block prettyprint linenums\">" +
+		"&lt;div class=&quot;grid <span class=\"cheat-sheet--attention\">grid-textalign-right</span>&quot;&gt;...&lt;/div&gt;" +
+		"</pre>" +
+		"	</div>" +
+		"</div>	" +
+		"<!-- Col Text Align Modifiers -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Col Text Align Modifiers:</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-textalign-[left/center/right]</span></div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"code-block prettyprint linenums\">" +
+		"&lt;div class=&quot;grid&quot;&gt;" +
+		"&lt;div class=&quot;col-6 <span class=\"cheat-sheet--attention\">col-textalign-center</span>&quot;&gt;...&lt;/div&gt;" +
+		"&lt;/div&gt;" +
+		"</pre>" +
+		"	</div>" +
+		"</div>	" +
+		"<!-- Grid Breakpoint Text Align Modifiers -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Grid Breakpoint Text Align Modifiers:</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.grid-[breakpoint]-textalign-[left/center/right]</span></div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"code-block prettyprint linenums\">" +
+		"&lt;div class=&quot;grid <span class=\"cheat-sheet--attention\">grid-xxl-textalign-right</span>&quot;&gt;...&lt;/div&gt;" +
+		"</pre>" +
+		"	</div>" +
+		"</div>	" +
+		"<!-- Col Breakpoint Text Align Modifiers -->" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-3 col-m-12\"><span class=\"cheat-sheet--label\">Col Breakpoint Text Align Modifiers:</span></div>" +
+		"	<div class=\"col-9 col-m-12\"><span class=\"cheat-sheet--keyword\">.col-[breakpoint]-textalign-[left/center/right]</span></div>" +
+		"</div>" +
+		"<div class=\"grid\">" +
+		"	<div class=\"col-push-3 col-9 col-m-push-0 col-m-12\">" +
+		"		<pre class=\"code-block prettyprint linenums\">" +
+		"&lt;div class=&quot;grid&quot;&gt;" +
+		"&lt;div class=&quot;col-6 <span class=\"cheat-sheet--attention\">col-xs-textalign-center</span>&quot;&gt;...&lt;/div&gt;" +
+		"&lt;/div&gt;" +
+		"</pre>" +
+		"	</div>" +
 		"</div>	";
+
+
 
 	var cheatSheetHTML = "" +
 		"<!-- cheat sheet toggle --> " +
@@ -1004,44 +1071,4 @@ $(document).ready(function() {
 		updateCheatSheetId = setTimeout(calculateCheatSheetDimensions, 300);
 	});	
 	// ****************************	
-
-
-
-	// **********************************
-	// ***** Grid Row Class Display *****
-	// **********************************
-	$gridRows = $(".grid");
-	$gridRows.on("click", function(event) {
-		var isGridRowMarkersEnabled = ($(".grid-row-markers-toggle.toggle-button--active").length > 0);
-		if(isGridRowMarkersEnabled) {
-			if($(event.target).hasClass("grid")) {
-				if ($(this).parents(".cheat-sheet--content").length > 0) { return; }
-				var allClasses = $(this).attr("class").split(" ");
-
-				var regExPattern;
-				var message = "";
-				var classes = "";
-				for(var prop in allClasses) {
-					//regExPattern = "grid[s]{0,1}\\-";
-					//if (allClasses[prop].match(regExPattern)) {
-						classes = classes + "<div class=\"grids-notification--modifier\">" + allClasses[prop] + "</div>";
-					//}
-				}
-
-				message = "grid row classes:<br><br>" + classes;
-				var bgColor = $(".grid-row-markers-toggle").css("border-color");
-				showGridsNotification(message, 8000, bgColor, "gridRowClassDisplay");
-			}
-		}
-	});
-	// dismiss modifier notification
-	$gridRows.on("mouseleave", function() {
-		var hook = $gridsNotification.attr("data-hook");
-		if (hook) {
-			$gridsNotification
-				.addClass("grids-notification--slide-off-right")
-				.attr("data-hook", "");
-		}
-	});
-	// **********************************	
 });
