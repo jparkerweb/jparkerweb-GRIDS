@@ -1006,6 +1006,18 @@ $col-12: 12 / 12 * 100%;
 		}
 	}
 }
+
+
+// fix gutters for nested grids
+@if $grid-gutter-width > 0 {
+	.grid .grid {
+		margin-left: -$grid-gutter-width !important;
+		margin-right: -$grid-gutter-width !important;
+	}
+}
+
+
+
 // ---------------------------
 // -- End of Grid Framework --
 // ---------------------------

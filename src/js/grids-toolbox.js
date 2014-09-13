@@ -421,7 +421,7 @@ $(document).ready(function() {
 				}
 				else {
 					var errorMessage;
-					errorMessage = "Column markers can not be displayed for this element because its \"grid\" or \"column\" left/right padding has been altered. This is usual due to nesing a grid inside of an element that has left or right padding OR changing the grid row's padding using an external style.  If extra padding is needed it is advised to do this within the colum where your content resides and not outside of the grid row itself.<br><br>Grid rows and columns should only contain the classes defined in the GRIDS documentation.  Click the <span class=\"grids-notification--keyword\">cheat sheet</span> button in the bottom left corner to view all the classes available.";
+					errorMessage = "Column markers can not be displayed for this element because its \"grid\" or \"column\" left/right padding has been altered. This is usual due to nesing a grid inside of an element that has left or right padding OR changing the grid row's padding using an external style.  If extra padding is needed it is advised to do this within the colum where your content resides.<br><br>Grid rows and columns should only contain the classes defined in the GRIDS documentation.  Click the <span class=\"grids-notification--keyword\">cheat sheet</span> button in the bottom left corner to view all the classes available.";
 					showGridsNotification(errorMessage, 40000, "#c0392b");
 				}
 			}
