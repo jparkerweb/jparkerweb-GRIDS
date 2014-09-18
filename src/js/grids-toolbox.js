@@ -177,6 +177,8 @@ $(document).ready(function() {
 		"</div> " +
 		"<!-- current grid position --> " +
 		"<div id=\"gridsCurrentGridPosition\" class=\"grid\" style=\"visibility:hidden;\"></div> " +
+		"<!-- max grid width --> " +
+		"<div id=\"gridsMaxWidth\"></div> " +
 		"<!-- current breakpoint --> " +
 		"<div id=\"gridsCurrentBreakpoint\"></div> " +
 		"<!-- gridlines toggle --> " +
@@ -672,13 +674,14 @@ $(document).ready(function() {
 
 
 
-	// ****************************
-	// ***** Viewport Display *****
-	// ****************************
+	// ****************************************
+	// ***** Viewport / Grid Size Display *****
+	// ****************************************
 	// markup to display viewport size in top left corner of page
 	var viewportDisplay = "<div id=\"viewportDisplay\" class=\"viewportDisplay\"></div>";
+	var gridSizeDisplay = "<div id=\"gridSizeDisplay\" class=\"gridSizeDisplay\"></div>";
 	// insert Viewport display element
-	$("body").append(viewportDisplay);
+	$("body").append(viewportDisplay + gridSizeDisplay);
 
 	// declare vaiable for global viewport
 	var viewportDisplayValue = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
@@ -686,13 +689,23 @@ $(document).ready(function() {
 	function updateViewportDisplay(html) {
 		$("#viewportDisplay").html(html);
 	}
+	
+	// update grid size display
+	var gridSizeDisplayValue = $("#gridsMaxWidth").width();
+	$("#gridSizeDisplay").html("max grid width: " + gridSizeDisplayValue + "px");
+
 	// set initial viewport display value
 	updateViewportDisplay("vp: " + viewportDisplayValue + "px");
 
-	// bind notification message
+	// bind notification message for viewport
 	$("#viewportDisplay").on("click", function() {
-		var bpColor = $(this).css("background-color");
+		var bpColor = "#7f8c8d";
 		showGridsNotification("The viewport indicator in the top left corner of the page displays the current <span class=\"grids-notification--keyword\">viewport</span> of your browser window.", 6000, bpColor);
+	});
+	// bind notification message for grid max width
+	$("#gridSizeDisplay").on("click", function() {
+		var bpColor = "#7f8c8d";
+		showGridsNotification("The grid width indicator in the top left corner of the page displays the <span class=\"grids-notification--keyword\">maximum width</span> of your grid.", 6000, bpColor);
 	});
 
 	// bind browser resize to update viewport display value and dismiss

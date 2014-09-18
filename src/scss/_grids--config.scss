@@ -10,29 +10,29 @@
 // **************************
 // *********************************************************
 // maximum width of each grid row (should be in px)
-$grid-width:        1024px !default;
+$grid-width: 1024px !default;
 
 // gutter width is the width between columns in a row
 // as well as the width to the left and right of each
 // row (value should be in px)
-$grid-gutter-width:     15px !default;
+$grid-gutter-width: 15px !default;
 // veritcal spacing is the vertical space between grid
 // rows. this is applied by adding a padding-bottom.
 // the defualt is to use the same size as the gutter.
 // (value should be in px)
-$grid-vertical-spacing:	$grid-gutter-width;
+$grid-vertical-spacing:	$grid-gutter-width !default;
 // optionaly you can specify different vertical spacing
 // for all grids at different breakpoints.  the default
 // is to use the same vertical spacing for all breakpoints
 // (value should be in px)
-$grid-vertical-spacing-stack: $grid-vertical-spacing;
-$grid-vertical-spacing-xxs: $grid-vertical-spacing;
-$grid-vertical-spacing-xs: $grid-vertical-spacing;
-$grid-vertical-spacing-s: $grid-vertical-spacing;
-$grid-vertical-spacing-m: $grid-vertical-spacing;
-$grid-vertical-spacing-l: $grid-vertical-spacing;
-$grid-vertical-spacing-xl: $grid-vertical-spacing;
-$grid-vertical-spacing-xxl: $grid-vertical-spacing;
+$grid-vertical-spacing-stack: $grid-vertical-spacing !default;
+$grid-vertical-spacing-xxs:   $grid-vertical-spacing !default;
+$grid-vertical-spacing-xs:    $grid-vertical-spacing !default;
+$grid-vertical-spacing-s:     $grid-vertical-spacing !default;
+$grid-vertical-spacing-m:     $grid-vertical-spacing !default;
+$grid-vertical-spacing-l:     $grid-vertical-spacing !default;
+$grid-vertical-spacing-xl:    $grid-vertical-spacing !default;
+$grid-vertical-spacing-xxl:   $grid-vertical-spacing !default;
 
 // view-port width (breakpoint) to auto-stack all columns
 // (value should be in px).  Set to 0 to disable.

@@ -237,6 +237,8 @@ $startingZ-Index: 0 !default;
 }
 
 
+
+
 // ------------------------------
 // -- gridlines helper classes --
 // ------------------------------
@@ -273,6 +275,32 @@ $startingZ-Index: 0 !default;
 }
 
 
+// --------------------------------------------------
+// -- set max-width variable for grids info diplay --
+// --------------------------------------------------
+#gridsMaxWidth { 
+	display: none;
+	width: $grid-width;
+}
+.gridSizeDisplay { display: none; }
+body.show-marker-outlines {
+	.gridSizeDisplay {
+		@if $showMarkers == false { display: none; }
+		display: inline-block;
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		z-index: $startingZ-Index + 30;
+		padding: 4px 8px;
+		background: #222;
+		color: white;
+		font-size: 12px;
+		text-align: center;
+		min-width: 70px;
+		border-radius: 0 0 10px 0;
+		cursor: pointer;
+	}
+}
 // ------------------------------
 // -- viewport display classes --
 // ------------------------------
@@ -282,16 +310,16 @@ body.show-marker-outlines {
 		@if $showMarkers == false { display: none; }
 		display: inline-block;
 		position: fixed;
-		top: 0px;
+		top: 30px;
 		left: 0px;
 		z-index: $startingZ-Index + 30;
 		padding: 4px 8px;
-		background: black;
+		background: #222;
 		color: white;
 		font-size: 12px;
 		text-align: center;
 		min-width: 70px;
-		border-radius: 0 0 10px 0;
+		border-radius: 0 10px 10px 0;
 		cursor: pointer;
 	}
 }
@@ -361,7 +389,7 @@ body.show-marker-outlines {
 		}
 		// bp: stack
 		&.marker--stack {
-			@if $grid-breakpoint-stack == 0 { display: none; }
+			@if ($grid-breakpoint-stack == 0) or ($grid-breakpoint-stack >= $grid-width) { display: none; }
 			z-index: $startingZ-Index + 17;
 			margin-left: $grid-breakpoint-stack;
 			background: $markerColor--stack;
@@ -422,7 +450,7 @@ body.show-marker-outlines {
 		}
 		// bp: xxs
 		&.marker--xxs {
-			@if $grid-breakpoint-xxs == 0 { display: none; }
+			@if ($grid-breakpoint-xxs == 0) or ($grid-breakpoint-xxs >= $grid-width) { display: none; }
 			z-index: $startingZ-Index + 18;
 			margin-left: $grid-breakpoint-xxs;
 			background: $markerColor--xxs;
@@ -441,7 +469,7 @@ body.show-marker-outlines {
 		}
 		// bp: xs
 		&.marker--xs {
-			@if $grid-breakpoint-xs == 0 { display: none; }
+			@if ($grid-breakpoint-xs == 0) or ($grid-breakpoint-xs >= $grid-width) { display: none; }
 			z-index: $startingZ-Index + 19;
 			margin-left: $grid-breakpoint-xs;
 			background: $markerColor--xs;
@@ -460,7 +488,7 @@ body.show-marker-outlines {
 		}
 		// bp: s
 		&.marker--s {
-			@if $grid-breakpoint-s == 0 { display: none; }
+			@if ($grid-breakpoint-s == 0) or ($grid-breakpoint-s >= $grid-width) { display: none; }
 			z-index: $startingZ-Index + 20;
 			margin-left: $grid-breakpoint-s;
 			background: $markerColor--s;
@@ -479,7 +507,7 @@ body.show-marker-outlines {
 		} 
 		// bp: m
 		&.marker--m {
-			@if $grid-breakpoint-m == 0 { display: none; }
+			@if ($grid-breakpoint-m == 0) or ($grid-breakpoint-m >= $grid-width) { display: none; }
 			z-index: $startingZ-Index + 20;
 			margin-left: $grid-breakpoint-m;
 			background: $markerColor--m;
@@ -498,7 +526,7 @@ body.show-marker-outlines {
 		}
 		// bp: l
 		&.marker--l {
-			@if $grid-breakpoint-l == 0 { display: none; }
+			@if ($grid-breakpoint-l == 0) or ($grid-breakpoint-l >= $grid-width) { display: none; }
 			z-index: $startingZ-Index + 20;
 			margin-left: $grid-breakpoint-l;
 			background: $markerColor--l;
@@ -517,7 +545,7 @@ body.show-marker-outlines {
 		}
 		// bp: xl
 		&.marker--xl {
-			@if $grid-breakpoint-xl == 0 { display: none; }
+			@if ($grid-breakpoint-xl == 0) or ($grid-breakpoint-xl >= $grid-width) { display: none; }
 			z-index: $startingZ-Index + 19;
 			margin-left: $grid-breakpoint-xl;
 			background: $markerColor--xl;
@@ -536,7 +564,7 @@ body.show-marker-outlines {
 		}
 		// bp: xxl
 		&.marker--xxl {
-			@if $grid-breakpoint-xxl == 0 { display: none; }
+			@if ($grid-breakpoint-xxl == 0) or ($grid-breakpoint-xxl >= $grid-width) { display: none; }
 			z-index: $startingZ-Index + 18;
 			margin-left: $grid-breakpoint-xxl;
 			background: $markerColor--xxl;
@@ -604,7 +632,7 @@ body.show-marker-outlines {
 			&:before { content: 'no breakpoint currently triggered'; }
 		}
 		// bp: xxl
-		@if $grid-breakpoint-xxl > 0 {
+		@if ($grid-breakpoint-xxl > 0) and ($grid-breakpoint-xxl <= $grid-width) {
 			@media (max-width: $grid-breakpoint-xxl) {
 				.grid > [class*='col-xxl-']:before {
 					position: absolute;
@@ -635,7 +663,7 @@ body.show-marker-outlines {
 			}
 		}
 		// bp: xl
-		@if $grid-breakpoint-xl > 0 {
+		@if ($grid-breakpoint-xl > 0) and ($grid-breakpoint-xl <= $grid-width) {
 			@media (max-width: $grid-breakpoint-xl) {
 				.grid > [class*='col-xl-']:before {
 					position: absolute;
@@ -666,7 +694,7 @@ body.show-marker-outlines {
 			}
 		}
 		// bp: l
-		@if $grid-breakpoint-l > 0 {
+		@if ($grid-breakpoint-l > 0) and ($grid-breakpoint-l <= $grid-width) {
 			@media (max-width: $grid-breakpoint-l) {
 				.grid > [class*='col-l-']:before {
 					position: absolute;
@@ -697,7 +725,7 @@ body.show-marker-outlines {
 			}
 		}
 		// bp: m
-		@if $grid-breakpoint-m > 0 {
+		@if ($grid-breakpoint-m > 0) and ($grid-breakpoint-m <= $grid-width) {
 			@media (max-width: $grid-breakpoint-m) {
 				.grid > [class*='col-m-']:before {
 					position: absolute;
@@ -728,7 +756,7 @@ body.show-marker-outlines {
 			}
 		}
 		// bp: s
-		@if $grid-breakpoint-s > 0 {
+		@if ($grid-breakpoint-s > 0) and ($grid-breakpoint-s <= $grid-width) {
 			@media (max-width: $grid-breakpoint-s) {
 				.grid > [class*='col-s-']:before {
 					position: absolute;
@@ -759,7 +787,7 @@ body.show-marker-outlines {
 			}
 		}
 		// bp: xs
-		@if $grid-breakpoint-xs > 0 {
+		@if ($grid-breakpoint-xs > 0) and ($grid-breakpoint-xs <= $grid-width) {
 			@media (max-width: $grid-breakpoint-xs) {
 				.grid > [class*='col-xs-']:before {
 					position: absolute;
@@ -790,7 +818,7 @@ body.show-marker-outlines {
 			}
 		}
 		// bp: xxs
-		@if $grid-breakpoint-xxs > 0 {
+		@if ($grid-breakpoint-xxs > 0) and ($grid-breakpoint-xxs <= $grid-width) {
 			@media (max-width: $grid-breakpoint-xxs) {
 				.grid > [class*='col-xxs-']:before {
 					position: absolute;
@@ -821,7 +849,7 @@ body.show-marker-outlines {
 			}
 		}
 		// bp: stack
-		@if $grid-breakpoint-stack > 0 {
+		@if ($grid-breakpoint-stack > 0) and ($grid-breakpoint-stack <= $grid-width) {
 			@media (max-width: $grid-breakpoint-stack) {
 				.grid > [class*='col-']:before {
 					position: absolute;
@@ -862,49 +890,49 @@ body.show-marker-outlines {
 		top: 0;
 	}
 	// bp: stack
-	@if $grid-breakpoint-stack > 0 {
+	@if ($grid-breakpoint-stack > 0) and ($grid-breakpoint-stack <= $grid-width) {
 		.markersFlow--stack {	
 			background-color: $markerColor--stack;
 		}
 	}
 	// bp: xxs
-	@if $grid-breakpoint-xxs > 0 {
+	@if ($grid-breakpoint-xxs > 0) and ($grid-breakpoint-xxs <= $grid-width) {
 		.markersFlow--xxs {	
 			background-color: $markerColor--xxs;
 		}
 	}
 	// bp: xs
-	@if $grid-breakpoint-xs > 0 {
+	@if ($grid-breakpoint-xs > 0) and ($grid-breakpoint-xs <= $grid-width) {
 		.markersFlow--xs {	
 			background-color: $markerColor--xs;
 		}
 	}
 	// bp: s
-	@if $grid-breakpoint-s > 0 {
+	@if ($grid-breakpoint-s > 0) and ($grid-breakpoint-s <= $grid-width) {
 		.markersFlow--s {	
 			background-color: $markerColor--s;
 		}
 	}
 	// bp: m
-	@if $grid-breakpoint-m > 0 {
+	@if ($grid-breakpoint-m > 0) and ($grid-breakpoint-m <= $grid-width) {
 		.markersFlow--m {	
 			background-color: $markerColor--m;
 		}
 	}
 	// bp: l
-	@if $grid-breakpoint-l > 0 {
+	@if ($grid-breakpoint-l > 0) and ($grid-breakpoint-l <= $grid-width) {
 		.markersFlow--l {	
 			background-color: $markerColor--l;
 		}
 	}
 	// bp: xl
-	@if $grid-breakpoint-xl > 0 {
+	@if ($grid-breakpoint-xl > 0) and ($grid-breakpoint-xl <= $grid-width) {
 		.markersFlow--xl {	
 			background-color: $markerColor--xl;
 		}
 	}
 	// bp: xxl
-	@if $grid-breakpoint-xxl > 0 {
+	@if ($grid-breakpoint-xxl > 0) and ($grid-breakpoint-xxl <= $grid-width) {
 		.markersFlow--xxl {	
 			background-color: $markerColor--xxl;
 		}
@@ -981,14 +1009,14 @@ body.show-marker-outlines {
 				border-left-style: solid;
 			}
 		}
-		@if $grid-breakpoint-stack > 0 { .innerMarker-stack { border-color: $markerColor--stack; } }
-		@if $grid-breakpoint-xxs > 0 { .innerMarker-xxs { border-color: $markerColor--xxs; } }
-		@if $grid-breakpoint-xs > 0 { .innerMarker-xs { border-color: $markerColor--xs; } }
-		@if $grid-breakpoint-s > 0 { .innerMarker-s { border-color: $markerColor--s; } }
-		@if $grid-breakpoint-m > 0 { .innerMarker-m { border-color: $markerColor--m; } }
-		@if $grid-breakpoint-l > 0 { .innerMarker-l { border-color: $markerColor--l; } }
-		@if $grid-breakpoint-xl > 0 { .innerMarker-xl { border-color: $markerColor--xl; } }
-		@if $grid-breakpoint-xxl > 0 { .innerMarker-xxl { border-color: $markerColor--xxl; } }
+		@if ($grid-breakpoint-stack > 0) and ($grid-breakpoint-stack <= $grid-width) { .innerMarker-stack { border-color: $markerColor--stack; } }
+		@if ($grid-breakpoint-xxs > 0) and ($grid-breakpoint-xxs <= $grid-width) { .innerMarker-xxs { border-color: $markerColor--xxs; } }
+		@if ($grid-breakpoint-xs > 0) and ($grid-breakpoint-xs <= $grid-width) { .innerMarker-xs { border-color: $markerColor--xs; } }
+		@if ($grid-breakpoint-s > 0) and ($grid-breakpoint-s <= $grid-width) { .innerMarker-s { border-color: $markerColor--s; } }
+		@if ($grid-breakpoint-m > 0) and ($grid-breakpoint-m <= $grid-width) { .innerMarker-m { border-color: $markerColor--m; } }
+		@if ($grid-breakpoint-l > 0) and ($grid-breakpoint-l <= $grid-width) { .innerMarker-l { border-color: $markerColor--l; } }
+		@if ($grid-breakpoint-xl > 0) and ($grid-breakpoint-xl <= $grid-width) { .innerMarker-xl { border-color: $markerColor--xl; } }
+		@if ($grid-breakpoint-xxl > 0) and ($grid-breakpoint-xxl <= $grid-width) { .innerMarker-xxl { border-color: $markerColor--xxl; } }
 		.innerMarker--dotted { 
 			cursor: crosshair;
 			&:hover {

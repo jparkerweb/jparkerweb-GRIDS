@@ -1,0 +1,73 @@
+// ---------------------------------
+// -- jparkerweb-GRIDS Framework  --
+// ---------------------------------------------------
+// -- http://jparkerweb.github.io/jparkerweb-GRIDS/ --
+// ---------------------------------------------------
+
+
+// *****************************************
+// ** This file is to be used to @import  **
+// ** GRIDS into your own SCSS file(s).   **
+// ** This is handy when you want         **
+// ** GRIDS configured differently for    **
+// ** a page or set of pages in your site.**
+// ** In each of your SCSS file(s) that   **
+// ** you want to import GRIDS into, you  **
+// ** can change any/all of the variables **
+// ** defined in "grids--config".         **
+// ** *********************************** **
+// ** Example: your About page needs a    **
+// ** different set of breakpoint values  **
+// ** than your globally defined GRIDS    **
+// ** configuration.                      **
+// ** About.scss might look something     **
+// ** like:                               **
+// ** ----------------------------------- **
+// ** $grid-breakpoint-xxs:   0;          **
+// ** $grid-breakpoint-xs:    0;          **
+// ** $grid-breakpoint-s:     500px;      **
+// ** $grid-breakpoint-m:     700px;      **
+// ** $grid-breakpoint-l:     860px;      **
+// ** $grid-breakpoint-xl:    0;          **
+// ** $grid-breakpoint-xxl:   0;          **
+// ** @import "grids-import";             **
+// ** ----------------------------------- **
+// ** This will import GRIDS directly     **
+// ** into about.css and the about page   **
+// ** wouldn't need a style sheet link    **
+// ** to grids.css (since it already      **
+// ** has all of GRIDS included).         **
+// *****************************************
+
+
+
+
+//-------------------------
+// --- REQUIRED Imports ---
+//-------------------------
+// GRIDS config file --[REQUIRED]--
+// edit "_grids--config.scss" to change the following
+// - grid width
+// - gutter width
+// - vertical spacing
+// - breakpoints (stack, xxs, xs, s, m, l, xl)
+// - optional margin and padding sizes
+@import "grids--config";
+
+// GRIDS Core Library --[REQUIRED]--
+@import "grids--core";
+
+
+//-------------------------
+// --- OPTIONAL Imports ---
+//-------------------------
+// gridline and marker helpers --[OPTIONAL]--
+//  [used for development/layout when designing you page. ]
+//  [comment out the below @import before deploying your  ]
+//  [site to production                                   ]
+@import "grids--gridlines-markers";
+
+// some optional utility classes --[OPTIONAL]--
+//  [you can optionally comment out the below @import if  ] 
+//  [not using any of the utility classes                 ]
+@import "grids--utility";
